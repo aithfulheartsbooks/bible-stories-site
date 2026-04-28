@@ -12,41 +12,20 @@ export default function BookCard({ book, index }: Props) {
   const isAvailable = book.status === "available";
   const CoverComponent = coverMap[book.coverScene || "default"];
 
-  if (!isAvailable) {
-    return (
-      <article
-        className="opacity-0 animate-fade-up flex flex-col rounded-3xl border-2 border-dashed border-terracotta/35 bg-cream/55 p-7 backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:rotate-[0.3deg] hover:border-terracotta/60"
-        style={{ animationDelay }}
-      >
-        <div className="relative mb-6 flex aspect-[2/3] items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-cream-deep to-peach shadow-inner">
-          <div className="absolute right-4 top-4 z-10 rounded-full bg-cream/95 px-3 py-1.5 font-display text-xs font-semibold tracking-wider text-terracotta">
-            {book.number}
-          </div>
-          <div className="text-center font-display italic text-terracotta/70">
-            <span className="mb-2 block animate-twinkle text-4xl">✦</span>
-            Coming Soon
-          </div>
-        </div>
-        <h3 className="mb-1.5 font-display text-2xl font-bold leading-tight text-chestnut">
-          {book.title}
-        </h3>
-        <p className="font-display text-sm italic text-chestnut-soft">
-          {book.subtitle}
-        </p>
-      </article>
-    );
-  }
-
   return (
     <article
-      className="group opacity-0 animate-fade-up flex flex-col rounded-3xl border border-white/80 bg-cream/85 p-7 backdrop-blur-md shadow-md transition-all duration-500 hover:-translate-y-2 hover:-rotate-[0.5deg] hover:shadow-lg"
+      className={
+        isAvailable
+          ? "group opacity-0 animate-fade-up flex flex-col rounded-3xl border border-white/80 bg-cream/85 p-7 backdrop-blur-md shadow-md transition-all duration-500 hover:-translate-y-2"
+          : "opacity-0 animate-fade-up flex flex-col rounded-3xl border-2 border-dashed border-terracotta/35 bg-cream/55 p-7 backdrop-blur-md transition-all duration-500 hover:-translate-y-1"
+      }
       style={{ animationDelay }}
     >
       <div className="relative mb-6 aspect-[2/3] overflow-hidden rounded-2xl bg-cream-deep shadow-md">
         <div className="absolute right-4 top-4 z-10 rounded-full bg-cream/95 px-3 py-1.5 font-display text-xs font-semibold tracking-wider text-terracotta shadow-sm">
           {book.number}
         </div>
-        {book.coverImage ? (
+        {isAvailable && book.coverImage ? (
           <Image
             src={book.coverImage}
             alt={`${book.title} book cover`}
@@ -55,8 +34,15 @@ export default function BookCard({ book, index }: Props) {
             className="object-contain"
             priority={index < 3}
           />
-        ) : (
+        ) : isAvailable ? (
           <CoverComponent />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-cream-deep to-peach text-center font-display italic text-terracotta/70">
+            <div>
+              <span className="mb-2 block animate-twinkle text-4xl">✦</span>
+              Coming Soon
+            </div>
+          </div>
         )}
       </div>
 
@@ -68,42 +54,35 @@ export default function BookCard({ book, index }: Props) {
         {book.subtitle}
       </p>
 
-      <div className="mb-4 flex flex-wrap gap-2">
-        {book.ageRange && (
-          <span className="rounded-full bg-cream-deep px-3 py-1 text-xs font-semibold uppercase tracking-wider text-chestnut-soft">
-            {book.ageRange}
-          </span>
-        )}
-        {book.theme && (
-          <span className="rounded-full bg-gold/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-gold">
-            {book.theme}
-          </span>
-        )}
-      </div>
+      {isAvailable && (
+        <>
+          <div className="mb-4 flex flex-wrap gap-2">
+            {book.ageRange && (
+              <span className="rounded-full bg-cream-deep px-3 py-1 text-xs font-semibold uppercase tracking-wider text-chestnut-soft">
+                {book.ageRange}
+              </span>
+            )}
+            {book.theme && (
+              <span className="rounded-full bg-gold/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-gold">
+                {book.theme}
+              </span>
+            )}
+          </div>
 
-      <p className="mb-6 flex-grow text-sm leading-relaxed text-chestnut-soft">
-        {book.blurb}
-      </p>
+          <p className="mb-6 flex-grow text-sm leading-relaxed text-chestnut-soft">
+            {book.blurb}
+          </p>
 
-      
-        href={book.amazonUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center justify-center gap-2 rounded-full bg-terracotta px-6 py-3.5 text-sm font-semibold text-cream shadow-md transition-all hover:scale-105 hover:bg-chestnut"
-      >
-        Find on Amazon
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="h-4 w-4"
-        >
-          <path d="M5 12h14M13 5l7 7-7 7" />
-        </svg>
-      </a>
+          
+            href={book.amazonUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-terracotta px-6 py-3.5 text-sm font-semibold text-cream shadow-md transition-all hover:scale-105 hover:bg-chestnut"
+          >
+            Find on Amazon →
+          </a>
+        </>
+      )}
     </article>
   );
 }
