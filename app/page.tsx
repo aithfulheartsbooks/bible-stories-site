@@ -44,7 +44,7 @@ export default function Home() {
           style={{ animationDelay: "0.4s" }}
         >
           Warm, gentle retellings of the greatest Bible stories — beautifully
-          illustrated picture books for ages 4 to 8.
+          illustrated picture books for ages 3 to 8.
         </p>
 
         <div
