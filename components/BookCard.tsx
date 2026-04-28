@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Book } from "@/app/books";
 import { coverMap } from "./BookCovers";
 
@@ -17,7 +18,7 @@ export default function BookCard({ book, index }: Props) {
         className="opacity-0 animate-fade-up flex flex-col rounded-3xl border-2 border-dashed border-terracotta/35 bg-cream/55 p-7 backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:rotate-[0.3deg] hover:border-terracotta/60"
         style={{ animationDelay }}
       >
-        <div className="relative mb-6 flex aspect-square items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-cream-deep to-peach shadow-inner">
+        <div className="relative mb-6 flex aspect-[2/3] items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-cream-deep to-peach shadow-inner">
           <div className="absolute right-4 top-4 z-10 rounded-full bg-cream/95 px-3 py-1.5 font-display text-xs font-semibold tracking-wider text-terracotta">
             {book.number}
           </div>
@@ -41,11 +42,22 @@ export default function BookCard({ book, index }: Props) {
       className="group opacity-0 animate-fade-up flex flex-col rounded-3xl border border-white/80 bg-cream/85 p-7 backdrop-blur-md shadow-[0_4px_12px_rgba(122,86,64,0.08),0_12px_32px_rgba(122,86,64,0.06)] transition-all duration-500 hover:-translate-y-2 hover:-rotate-[0.5deg] hover:shadow-[0_8px_20px_rgba(122,86,64,0.12),0_20px_48px_rgba(122,86,64,0.1)]"
       style={{ animationDelay }}
     >
-      <div className="relative mb-6 aspect-square overflow-hidden rounded-2xl shadow-md">
-        <div className="absolute right-4 top-4 z-10 rounded-full bg-cream/95 px-3 py-1.5 font-display text-xs font-semibold tracking-wider text-terracotta">
+      <div className="relative mb-6 aspect-[2/3] overflow-hidden rounded-2xl bg-cream-deep shadow-md">
+        <div className="absolute right-4 top-4 z-10 rounded-full bg-cream/95 px-3 py-1.5 font-display text-xs font-semibold tracking-wider text-terracotta shadow-sm">
           {book.number}
         </div>
-        <CoverComponent />
+        {book.coverImage ? (
+          <Image
+            src={book.coverImage}
+            alt={`${book.title} book cover`}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-contain"
+            priority={index < 3}
+          />
+        ) : (
+          <CoverComponent />
+        )}
       </div>
 
       <h3 className="mb-1.5 font-display text-2xl font-bold leading-tight text-chestnut">
@@ -73,7 +85,7 @@ export default function BookCard({ book, index }: Props) {
         {book.blurb}
       </p>
 
-      <a
+      
         href={book.amazonUrl}
         target="_blank"
         rel="noopener noreferrer"
