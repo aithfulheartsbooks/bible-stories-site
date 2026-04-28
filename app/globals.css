@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: #5a3d2b;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Watercolor paper texture overlay */
+.scenery {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  background: linear-gradient(
+    180deg,
+    #fff3d6 0%,
+    #ffd9b8 18%,
+    #ffc8d4 35%,
+    #e6d4ee 55%,
+    #cbe2f2 75%,
+    #d8e8c8 90%,
+    #c8dcb8 100%
+  );
+}
+
+.scenery::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(255,255,255,0.6) 0%, transparent 8%),
+    radial-gradient(circle at 75% 12%, rgba(255,255,255,0.5) 0%, transparent 6%),
+    radial-gradient(circle at 40% 30%, rgba(255,255,255,0.4) 0%, transparent 5%),
+    radial-gradient(circle at 88% 28%, rgba(255,255,255,0.5) 0%, transparent 7%),
+    radial-gradient(circle at 25% 65%, rgba(255,255,255,0.3) 0%, transparent 4%);
+  filter: blur(2px);
+}
+
+.scenery::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.6;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.cloud {
+  position: fixed;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  filter: blur(8px);
+  z-index: -5;
+}
