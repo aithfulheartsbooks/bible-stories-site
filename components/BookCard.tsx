@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Book } from "@/app/books";
 import { coverMap } from "./BookCovers";
 
