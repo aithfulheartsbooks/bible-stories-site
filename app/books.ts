@@ -24,7 +24,7 @@ export const books: Book[] = [
     number: "Book 01",
     title: "Noah and God's Big Promise",
     subtitle: "Bible Stories for Little Hearts",
-    ageRange: "Ages 4–8",
+    ageRange: "Ages 3–8",
     theme: "Trust",
     blurb:
       "When the rains came, Noah trusted God's plan. A warm story of faith, friendship with the animals, and the promise of the rainbow.",
@@ -36,7 +36,7 @@ export const books: Book[] = [
     number: "Book 02",
     title: "David and the Giant",
     subtitle: "A Little Shepherd with a Big Faith",
-    ageRange: "Ages 4–8",
+    ageRange: "Ages 3–8",
     theme: "Courage",
     blurb:
       "A young shepherd boy discovers that even when we feel small, God is bigger than every giant we face.",
