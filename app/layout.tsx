@@ -17,7 +17,7 @@ const quicksand = Quicksand({
 export const metadata: Metadata = {
   title: "Bible Stories for Little Hearts",
   description:
-    "Warm, gentle retellings of the greatest Bible stories — beautifully illustrated picture books for children ages 4 to 8.",
+    "Warm, gentle retellings of the greatest Bible stories — beautifully illustrated picture books for children ages 3 to 8.",
   keywords: [
     "Christian children's books",
     "Bible stories for kids",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Bible Stories for Little Hearts",
     description:
-      "Beautifully illustrated Bible picture books for children ages 4 to 8.",
+      "Beautifully illustrated Bible picture books for children ages 3 to 8.",
     type: "website",
   },
 };
