@@ -3,8 +3,8 @@
 // =============================================================
 // - status: "available" or "coming-soon"
 // - amazonUrl: paste your Amazon product link
-// - coverScene: "noah" | "david" | "moses" | "default"
-//   (You can add new scenes in components/BookCovers.tsx)
+// - coverImage: path to cover photo in /public folder (e.g. "/covers/noah.png")
+// - coverScene: "noah" | "david" | "moses" | "default" (fallback SVG)
 // =============================================================
 
 export type Book = {
@@ -16,6 +16,7 @@ export type Book = {
   blurb?: string;
   amazonUrl?: string;
   status: "available" | "coming-soon";
+  coverImage?: string;
   coverScene?: "noah" | "david" | "moses" | "default";
 };
 
@@ -30,6 +31,7 @@ export const books: Book[] = [
       "When the rains came, Noah trusted God's plan. A warm story of faith, friendship with the animals, and the promise of the rainbow.",
     amazonUrl: "https://www.amazon.com/dp/B0GYHZ8P9S",
     status: "available",
+    coverImage: "/covers/noah.png",
     coverScene: "noah",
   },
   {
@@ -42,6 +44,7 @@ export const books: Book[] = [
       "A young shepherd boy discovers that even when we feel small, God is bigger than every giant we face.",
     amazonUrl: "https://www.amazon.com/dp/B0GYNRCKQD",
     status: "available",
+    coverImage: "/covers/david.png",
     coverScene: "david",
   },
   {
