@@ -39,7 +39,7 @@ export default function BookCard({ book, index }: Props) {
 
   return (
     <article
-      className="group opacity-0 animate-fade-up flex flex-col rounded-3xl border border-white/80 bg-cream/85 p-7 backdrop-blur-md shadow-[0_4px_12px_rgba(122,86,64,0.08),0_12px_32px_rgba(122,86,64,0.06)] transition-all duration-500 hover:-translate-y-2 hover:-rotate-[0.5deg] hover:shadow-[0_8px_20px_rgba(122,86,64,0.12),0_20px_48px_rgba(122,86,64,0.1)]"
+      className="group opacity-0 animate-fade-up flex flex-col rounded-3xl border border-white/80 bg-cream/85 p-7 backdrop-blur-md shadow-md transition-all duration-500 hover:-translate-y-2 hover:-rotate-[0.5deg] hover:shadow-lg"
       style={{ animationDelay }}
     >
       <div className="relative mb-6 aspect-[2/3] overflow-hidden rounded-2xl bg-cream-deep shadow-md">
@@ -89,7 +89,7 @@ export default function BookCard({ book, index }: Props) {
         href={book.amazonUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center justify-center gap-2 rounded-full bg-terracotta px-6 py-3.5 text-sm font-semibold text-cream shadow-md shadow-terracotta/30 transition-all hover:scale-[1.03] hover:bg-chestnut hover:shadow-lg hover:shadow-terracotta/40"
+        className="inline-flex items-center justify-center gap-2 rounded-full bg-terracotta px-6 py-3.5 text-sm font-semibold text-cream shadow-md transition-all hover:scale-105 hover:bg-chestnut"
       >
         Find on Amazon
         <svg
