@@ -51,7 +51,14 @@ export const books: Book[] = [
     number: "Book 03",
     title: "Moses and the Red Sea",
     subtitle: "A Brave Leader and a Big Way",
-    status: "coming-soon",
+    ageRange: "Ages 3–8",
+    theme: "Faith",
+    blurb:
+      "When the waters rise, Moses trusts God's plan. A brave story of faith, leadership, and the miracle that saved a nation.",
+    amazonUrl: "https://www.amazon.com/dp/B0GZ43TKCK",
+    status: "available",
+    coverImage: "/covers/moses.png",
+    coverScene: "moses",
   },
   {
     number: "Book 04",
