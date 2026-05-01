@@ -1,18 +1,19 @@
 import { books } from "@/app/books";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import SoundButton from "@/components/SoundButton";
 
-type BookTheme = {
+type Theme = {
   pageClass: string;
   quoteClass: string;
   badgeClass: string;
   glowClass: string;
-  icons: { emoji: string; label: string }[];
   quote: string;
   art: "rainbow" | "hills" | "sea" | "default";
+  icons: { emoji: string; label: string }[];
 };
 
-const themes: Record<string, BookTheme> = {
+const themes: Record<string, Theme> = {
   "noah-and-gods-big-promise": {
     pageClass: "bg-gradient-to-b from-sky via-cream to-sage",
     quoteClass: "bg-gradient-to-r from-sky/70 via-cream to-gold/30",
@@ -54,7 +55,7 @@ const themes: Record<string, BookTheme> = {
   },
 };
 
-const defaultTheme: BookTheme = {
+const defaultTheme: Theme = {
   pageClass: "bg-gradient-to-b from-cream via-peach/40 to-sage/50",
   quoteClass: "bg-gradient-to-r from-cream to-peach/40",
   badgeClass: "bg-sage/70 text-chestnut-soft",
@@ -72,7 +73,7 @@ export function generateStaticParams() {
   return books.map((book) => ({ slug: book.slug }));
 }
 
-function StorybookArt({ art }: { art: BookTheme["art"] }) {
+function StorybookArt({ art }: { art: Theme["art"] }) {
   if (art === "rainbow") {
     return (
       <>
@@ -90,8 +91,6 @@ function StorybookArt({ art }: { art: BookTheme["art"] }) {
         <div className="pointer-events-none absolute right-14 top-20 h-28 w-28 rounded-full bg-gold/60 blur-sm animate-bob" />
         <div className="pointer-events-none absolute bottom-0 left-[-8%] h-48 w-[60%] rounded-t-full bg-sage/60" />
         <div className="pointer-events-none absolute bottom-[-20px] right-[-10%] h-56 w-[65%] rounded-t-full bg-gold/25" />
-        <div className="pointer-events-none absolute left-[12%] top-[28%] text-6xl opacity-60 animate-bob">🐑</div>
-        <div className="pointer-events-none absolute right-[15%] bottom-[18%] text-5xl opacity-50 animate-twinkle">⭐</div>
       </>
     );
   }
@@ -102,8 +101,6 @@ function StorybookArt({ art }: { art: BookTheme["art"] }) {
         <div className="pointer-events-none absolute left-[-12%] top-[22%] h-[520px] w-[36%] rounded-r-full bg-sky/65 blur-sm animate-bob" />
         <div className="pointer-events-none absolute right-[-12%] top-[22%] h-[520px] w-[36%] rounded-l-full bg-sky/65 blur-sm animate-bob" style={{ animationDelay: "0.5s" }} />
         <div className="pointer-events-none absolute bottom-0 left-0 h-28 w-full bg-gradient-to-t from-sky/70 to-transparent" />
-        <div className="pointer-events-none absolute left-[18%] bottom-[18%] text-5xl opacity-60 animate-bob">🌊</div>
-        <div className="pointer-events-none absolute right-[20%] top-[18%] text-5xl opacity-50 animate-twinkle">✨</div>
       </>
     );
   }
@@ -111,36 +108,36 @@ function StorybookArt({ art }: { art: BookTheme["art"] }) {
   return null;
 }
 
-function MovingStoryCharacters({ art }: { art: BookTheme["art"] }) {
-  if (art === "rainbow") {
+function MovingStoryCharacters({ slug }: { slug: string }) {
+  if (slug === "noah-and-gods-big-promise") {
     return (
       <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Noah story animals">
-        <button className="story-character walk-path-a left-[5%] top-[52%] text-3xl sm:left-[10%] sm:text-5xl" type="button" aria-label="Bouncing elephant" onClick={() => new Audio('/sounds/sheep.mp3').play()}>🐘</button>
-        <button className="story-character walk-path-b right-[5%] top-[46%] text-3xl sm:right-[12%] sm:text-5xl" type="button" aria-label="Bouncing giraffe" style={{ animationDelay: "0.8s" }}>🦒</button>
-        <button className="story-character float-path-a left-[18%] top-[18%] text-2xl sm:text-4xl" type="button" aria-label="Flying dove">🕊️</button>
-        <button className="story-character float-path-b right-[18%] top-[24%] text-2xl sm:text-4xl" type="button" aria-label="Flying duck" style={{ animationDelay: "1.2s" }} onClick={() => new Audio('/sounds/bird.mp3').play()}>🦆</button>
+        <SoundButton className="story-character walk-path-a left-[5%] top-[52%] text-3xl sm:left-[10%] sm:text-5xl" label="Bouncing elephant" src="/sounds/sheep.mp3">🐘</SoundButton>
+        <SoundButton className="story-character walk-path-b right-[5%] top-[46%] text-3xl sm:right-[12%] sm:text-5xl" label="Bouncing giraffe" src="/sounds/sheep.mp3" delay="0.8s">🦒</SoundButton>
+        <SoundButton className="story-character float-path-a left-[18%] top-[18%] text-2xl sm:text-4xl" label="Flying dove" src="/sounds/bird.mp3">🕊️</SoundButton>
+        <SoundButton className="story-character float-path-b right-[18%] top-[24%] text-2xl sm:text-4xl" label="Flying duck" src="/sounds/bird.mp3" delay="1.2s">🦆</SoundButton>
       </div>
     );
   }
 
-  if (art === "hills") {
+  if (slug === "david-and-the-giant") {
     return (
       <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive David story animals">
-        <button className="story-character walk-path-a left-[7%] bottom-[13%] text-3xl sm:left-[13%] sm:text-5xl" type="button" aria-label="Walking sheep">🐑</button>
-        <button className="story-character walk-path-b right-[6%] bottom-[18%] text-3xl sm:right-[14%] sm:text-5xl" type="button" aria-label="Walking sheep" style={{ animationDelay: "0.9s" }}>🐑</button>
-        <button className="story-character float-path-c left-[20%] top-[24%] text-xl sm:text-3xl" type="button" aria-label="Moving stone">🪨</button>
-        <button className="story-character float-path-d right-[20%] top-[18%] text-2xl sm:text-4xl" type="button" aria-label="Twinkling star" style={{ animationDelay: "0.7s" }}>⭐</button>
+        <SoundButton className="story-character walk-path-a left-[7%] bottom-[13%] text-3xl sm:left-[13%] sm:text-5xl" label="Walking sheep" src="/sounds/sheep.mp3">🐑</SoundButton>
+        <SoundButton className="story-character walk-path-b right-[6%] bottom-[18%] text-3xl sm:right-[14%] sm:text-5xl" label="Walking sheep" src="/sounds/sheep.mp3" delay="0.9s">🐑</SoundButton>
+        <SoundButton className="story-character float-path-c left-[20%] top-[24%] text-xl sm:text-3xl" label="Moving stone" src="/sounds/sheep.mp3">🪨</SoundButton>
+        <SoundButton className="story-character float-path-d right-[20%] top-[18%] text-2xl sm:text-4xl" label="Twinkling star" src="/sounds/bird.mp3" delay="0.7s">⭐</SoundButton>
       </div>
     );
   }
 
-  if (art === "sea") {
+  if (slug === "moses-and-the-red-sea") {
     return (
       <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Moses sea animals">
-        <button className="story-character swim-path-a left-[5%] top-[46%] text-3xl sm:left-[12%] sm:text-5xl" type="button" aria-label="Swimming fish" onClick={() => new Audio('/sounds/water.mp3').play()}>🐟</button>
-        <button className="story-character swim-path-b right-[7%] top-[55%] text-3xl sm:right-[13%] sm:text-5xl" type="button" aria-label="Swimming fish" style={{ animationDelay: "0.8s" }}>🐠</button>
-        <button className="story-character float-path-c left-[18%] bottom-[15%] text-2xl sm:text-4xl" type="button" aria-label="Sparkle">✨</button>
-        <button className="story-character float-path-d right-[18%] top-[20%] text-2xl sm:text-4xl" type="button" aria-label="Moving wave" style={{ animationDelay: "0.6s" }}>🌊</button>
+        <SoundButton className="story-character swim-path-a left-[5%] top-[46%] text-3xl sm:left-[12%] sm:text-5xl" label="Swimming fish" src="/sounds/water.mp3">🐟</SoundButton>
+        <SoundButton className="story-character swim-path-b right-[7%] top-[55%] text-3xl sm:right-[13%] sm:text-5xl" label="Swimming fish" src="/sounds/water.mp3" delay="0.8s">🐠</SoundButton>
+        <SoundButton className="story-character float-path-c left-[18%] bottom-[15%] text-2xl sm:text-4xl" label="Sparkle" src="/sounds/bird.mp3">✨</SoundButton>
+        <SoundButton className="story-character float-path-d right-[18%] top-[20%] text-2xl sm:text-4xl" label="Moving wave" src="/sounds/water.mp3" delay="0.6s">🌊</SoundButton>
       </div>
     );
   }
@@ -150,7 +147,6 @@ function MovingStoryCharacters({ art }: { art: BookTheme["art"] }) {
 
 export default function BookPage({ params }: { params: { slug: string } }) {
   const book = books.find((b) => b.slug === params.slug);
-
   if (!book) return notFound();
 
   const theme = themes[book.slug] || defaultTheme;
@@ -166,13 +162,10 @@ export default function BookPage({ params }: { params: { slug: string } }) {
       </div>
 
       <StorybookArt art={theme.art} />
-      <MovingStoryCharacters art={theme.art} />
+      <MovingStoryCharacters slug={book.slug} />
 
       <section className="relative z-20 mx-auto max-w-6xl px-6 pb-20 pt-16 sm:pt-24">
-        <a
-          href="/"
-          className="mb-8 inline-flex rounded-full bg-white/70 px-4 py-2 text-sm font-semibold text-chestnut-soft shadow-sm backdrop-blur transition hover:bg-white"
-        >
+        <a href="/" className="mb-8 inline-flex rounded-full bg-white/70 px-4 py-2 text-sm font-semibold text-chestnut-soft shadow-sm backdrop-blur transition hover:bg-white">
           ← Back to all books
         </a>
 
@@ -183,13 +176,7 @@ export default function BookPage({ params }: { params: { slug: string } }) {
               <div className="relative rounded-[2rem] bg-white/70 p-5 shadow-2xl backdrop-blur-md ring-1 ring-white/80">
                 {book.coverImage && (
                   <div className="relative h-[390px] w-[260px] sm:h-[480px] sm:w-[320px]">
-                    <Image
-                      src={book.coverImage}
-                      alt={`${book.title} book cover`}
-                      fill
-                      priority
-                      className="rounded-2xl object-contain shadow-lg transition duration-500 hover:scale-[1.02]"
-                    />
+                    <Image src={book.coverImage} alt={`${book.title} book cover`} fill priority className="rounded-2xl object-contain shadow-lg transition duration-500 hover:scale-[1.02]" />
                   </div>
                 )}
               </div>
@@ -199,33 +186,18 @@ export default function BookPage({ params }: { params: { slug: string } }) {
 
           <div className="opacity-0 animate-fade-up rounded-[2rem] bg-white/75 p-8 shadow-xl backdrop-blur-md ring-1 ring-white/80 sm:p-10" style={{ animationDelay: "0.25s" }}>
             <div className="mb-5 flex flex-wrap gap-3">
-              <span className="rounded-full bg-terracotta/15 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-terracotta">
-                {book.number}
-              </span>
-              {book.ageRange && (
-                <span className="rounded-full bg-sky/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-chestnut-soft">
-                  {book.ageRange}
-                </span>
-              )}
+              <span className="rounded-full bg-terracotta/15 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-terracotta">{book.number}</span>
+              {book.ageRange && <span className="rounded-full bg-sky/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-chestnut-soft">{book.ageRange}</span>}
             </div>
 
-            <h1 className="mb-4 font-display text-4xl font-extrabold leading-tight text-chestnut sm:text-5xl">
-              {book.title}
-            </h1>
-
-            <p className="mb-6 font-display text-xl italic text-terracotta">
-              {book.subtitle}
-            </p>
+            <h1 className="mb-4 font-display text-4xl font-extrabold leading-tight text-chestnut sm:text-5xl">{book.title}</h1>
+            <p className="mb-6 font-display text-xl italic text-terracotta">{book.subtitle}</p>
 
             <div className={`mb-7 rounded-3xl ${theme.quoteClass} p-5 shadow-inner`}>
-              <p className="font-display text-xl font-semibold italic text-chestnut">
-                “{theme.quote}”
-              </p>
+              <p className="font-display text-xl font-semibold italic text-chestnut">“{theme.quote}”</p>
             </div>
 
-            <p className="mb-7 text-base leading-relaxed text-chestnut-soft sm:text-lg">
-              {book.blurb}
-            </p>
+            <p className="mb-7 text-base leading-relaxed text-chestnut-soft sm:text-lg">{book.blurb}</p>
 
             <div className="mb-8 grid gap-4 sm:grid-cols-3">
               {theme.icons.map((item) => (
@@ -236,27 +208,14 @@ export default function BookPage({ params }: { params: { slug: string } }) {
               ))}
             </div>
 
-            {book.theme && (
-              <div className="mb-8">
-                <span className={`inline-flex rounded-full px-5 py-2 text-sm font-bold uppercase tracking-wider shadow-sm ${theme.badgeClass}`}>
-                  Theme: {book.theme}
-                </span>
-              </div>
-            )}
+            {book.theme && <div className="mb-8"><span className={`inline-flex rounded-full px-5 py-2 text-sm font-bold uppercase tracking-wider shadow-sm ${theme.badgeClass}`}>Theme: {book.theme}</span></div>}
 
             {book.status === "available" && book.amazonUrl && (
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                <a
-                  href={book.amazonUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-full bg-terracotta px-8 py-4 text-lg font-bold text-cream shadow-lg transition hover:scale-105 hover:bg-chestnut"
-                >
+                <a href={book.amazonUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full bg-terracotta px-8 py-4 text-lg font-bold text-cream shadow-lg transition hover:scale-105 hover:bg-chestnut">
                   Buy on Amazon →
                 </a>
-                <span className="text-sm font-semibold text-chestnut-soft">
-                  A gentle Bible story for ages 3–8
-                </span>
+                <span className="text-sm font-semibold text-chestnut-soft">A gentle Bible story for ages 3–8</span>
               </div>
             )}
           </div>
