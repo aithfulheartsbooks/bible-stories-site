@@ -62,9 +62,16 @@ export const books: Book[] = [
   },
   {
     number: "Book 04",
-    title: "Coming Soon",
-    subtitle: "A new adventure is on the way",
+    title: "Jonah and the Big Fish",
+    subtitle: "A Story of Obedience and Second Chances",
+    ageRange: "Ages 3–8",
+    theme: "Obedience",
+    blurb:
+      "When Jonah runs from God's plan, he ends up in a big adventure. A playful story about obedience, second chances, and how God never gives up on us.",
+    amazonUrl: "https://www.amazon.com/dp/B0GZ43TKCK",
     status: "coming-soon",
+    coverImage: "/covers/jonah.png",
+    coverScene: "default",
   },
   {
     number: "Book 05",
