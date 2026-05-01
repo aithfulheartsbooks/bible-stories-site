@@ -85,4 +85,28 @@ export const books: Book[] = [
     subtitle: "Stay tuned for more",
     status: "coming-soon",
   },
+  {
+    number: "Book 07",
+    title: "Coming Soon",
+    subtitle: "Another story to discover",
+    status: "coming-soon",
+  },
+  {
+    number: "Book 08",
+    title: "Coming Soon",
+    subtitle: "Another story to discover",
+    status: "coming-soon",
+  },
+  {
+    number: "Book 09",
+    title: "Coming Soon",
+    subtitle: "Another story to discover",
+    status: "coming-soon",
+  },
+  {
+    number: "Book 10",
+    title: "Coming Soon",
+    subtitle: "Stay tuned for more",
+    status: "coming-soon",
+  },
 ];
