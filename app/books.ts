@@ -93,6 +93,7 @@ export const books: Book[] = [
     title: "Coming Soon",
     subtitle: "Stay tuned for more",
     status: "coming-soon",
+    coverScene: "book-06",
   },
   {
     number: "Book 07",
