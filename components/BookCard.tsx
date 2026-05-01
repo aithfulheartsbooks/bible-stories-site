@@ -25,7 +25,7 @@ export default function BookCard({ book, index }: Props) {
         <div className="absolute right-4 top-4 z-10 rounded-full bg-cream/95 px-3 py-1.5 font-display text-xs font-semibold tracking-wider text-terracotta shadow-sm">
           {book.number}
         </div>
-        {isAvailable && book.coverImage ? (
+        {book.coverImage ? (
           <Image
             src={book.coverImage}
             alt={`${book.title} book cover`}
