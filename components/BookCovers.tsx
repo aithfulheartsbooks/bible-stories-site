@@ -116,5 +116,7 @@ export const coverMap = {
   noah: NoahCover,
   david: DavidCover,
   moses: MosesCover,
+  "book-05": Book05Cover,
+  "book-06": Book06Cover,
   default: DefaultCover,
 };
