@@ -114,33 +114,33 @@ function StorybookArt({ art }: { art: BookTheme["art"] }) {
 function MovingStoryCharacters({ art }: { art: BookTheme["art"] }) {
   if (art === "rainbow") {
     return (
-      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-        <div className="absolute left-[6%] top-[52%] text-3xl opacity-80 animate-bob sm:left-[10%] sm:text-5xl">🐘</div>
-        <div className="absolute right-[8%] top-[46%] text-3xl opacity-80 animate-bob sm:right-[12%] sm:text-5xl" style={{ animationDelay: "0.8s" }}>🦒</div>
-        <div className="absolute left-[18%] top-[18%] text-2xl opacity-75 animate-twinkle sm:text-4xl">🕊️</div>
-        <div className="absolute right-[18%] top-[24%] text-xl opacity-70 animate-bob sm:text-3xl" style={{ animationDelay: "1.2s" }}>🐦</div>
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Noah story animals">
+        <button className="story-character walk-path-a left-[5%] top-[52%] text-3xl sm:left-[10%] sm:text-5xl" type="button" aria-label="Bouncing elephant">🐘</button>
+        <button className="story-character walk-path-b right-[5%] top-[46%] text-3xl sm:right-[12%] sm:text-5xl" type="button" aria-label="Bouncing giraffe" style={{ animationDelay: "0.8s" }}>🦒</button>
+        <button className="story-character float-path-a left-[18%] top-[18%] text-2xl sm:text-4xl" type="button" aria-label="Flying dove">🕊️</button>
+        <button className="story-character float-path-b right-[18%] top-[24%] text-xl sm:text-3xl" type="button" aria-label="Flying bird" style={{ animationDelay: "1.2s" }}>🐦</button>
       </div>
     );
   }
 
   if (art === "hills") {
     return (
-      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-        <div className="absolute left-[7%] bottom-[13%] text-3xl opacity-80 animate-bob sm:left-[13%] sm:text-5xl">🐑</div>
-        <div className="absolute right-[8%] bottom-[18%] text-3xl opacity-75 animate-bob sm:right-[14%] sm:text-5xl" style={{ animationDelay: "0.9s" }}>🐑</div>
-        <div className="absolute left-[20%] top-[24%] text-xl opacity-70 animate-twinkle sm:text-3xl">🪨</div>
-        <div className="absolute right-[20%] top-[18%] text-2xl opacity-70 animate-twinkle sm:text-4xl" style={{ animationDelay: "0.7s" }}>⭐</div>
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive David story animals">
+        <button className="story-character walk-path-a left-[7%] bottom-[13%] text-3xl sm:left-[13%] sm:text-5xl" type="button" aria-label="Walking sheep">🐑</button>
+        <button className="story-character walk-path-b right-[6%] bottom-[18%] text-3xl sm:right-[14%] sm:text-5xl" type="button" aria-label="Walking sheep" style={{ animationDelay: "0.9s" }}>🐑</button>
+        <button className="story-character float-path-c left-[20%] top-[24%] text-xl sm:text-3xl" type="button" aria-label="Moving stone">🪨</button>
+        <button className="story-character float-path-d right-[20%] top-[18%] text-2xl sm:text-4xl" type="button" aria-label="Twinkling star" style={{ animationDelay: "0.7s" }}>⭐</button>
       </div>
     );
   }
 
   if (art === "sea") {
     return (
-      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-        <div className="absolute left-[5%] top-[46%] text-3xl opacity-75 animate-bob sm:left-[12%] sm:text-5xl">🐟</div>
-        <div className="absolute right-[7%] top-[55%] text-3xl opacity-75 animate-bob sm:right-[13%] sm:text-5xl" style={{ animationDelay: "0.8s" }}>🐠</div>
-        <div className="absolute left-[18%] bottom-[15%] text-2xl opacity-70 animate-twinkle sm:text-4xl">✨</div>
-        <div className="absolute right-[18%] top-[20%] text-2xl opacity-70 animate-twinkle sm:text-4xl" style={{ animationDelay: "0.6s" }}>🌊</div>
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Moses sea animals">
+        <button className="story-character swim-path-a left-[5%] top-[46%] text-3xl sm:left-[12%] sm:text-5xl" type="button" aria-label="Swimming fish">🐟</button>
+        <button className="story-character swim-path-b right-[7%] top-[55%] text-3xl sm:right-[13%] sm:text-5xl" type="button" aria-label="Swimming fish" style={{ animationDelay: "0.8s" }}>🐠</button>
+        <button className="story-character float-path-c left-[18%] bottom-[15%] text-2xl sm:text-4xl" type="button" aria-label="Sparkle">✨</button>
+        <button className="story-character float-path-d right-[18%] top-[20%] text-2xl sm:text-4xl" type="button" aria-label="Moving wave" style={{ animationDelay: "0.6s" }}>🌊</button>
       </div>
     );
   }
@@ -168,7 +168,7 @@ export default function BookPage({ params }: { params: { slug: string } }) {
       <StorybookArt art={theme.art} />
       <MovingStoryCharacters art={theme.art} />
 
-      <section className="relative mx-auto max-w-6xl px-6 pb-20 pt-16 sm:pt-24">
+      <section className="relative z-20 mx-auto max-w-6xl px-6 pb-20 pt-16 sm:pt-24">
         <a
           href="/"
           className="mb-8 inline-flex rounded-full bg-white/70 px-4 py-2 text-sm font-semibold text-chestnut-soft shadow-sm backdrop-blur transition hover:bg-white"
