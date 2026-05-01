@@ -111,6 +111,43 @@ function StorybookArt({ art }: { art: BookTheme["art"] }) {
   return null;
 }
 
+function MovingStoryCharacters({ art }: { art: BookTheme["art"] }) {
+  if (art === "rainbow") {
+    return (
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div className="absolute left-[6%] top-[52%] text-3xl opacity-80 animate-bob sm:left-[10%] sm:text-5xl">🐘</div>
+        <div className="absolute right-[8%] top-[46%] text-3xl opacity-80 animate-bob sm:right-[12%] sm:text-5xl" style={{ animationDelay: "0.8s" }}>🦒</div>
+        <div className="absolute left-[18%] top-[18%] text-2xl opacity-75 animate-twinkle sm:text-4xl">🕊️</div>
+        <div className="absolute right-[18%] top-[24%] text-xl opacity-70 animate-bob sm:text-3xl" style={{ animationDelay: "1.2s" }}>🐦</div>
+      </div>
+    );
+  }
+
+  if (art === "hills") {
+    return (
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div className="absolute left-[7%] bottom-[13%] text-3xl opacity-80 animate-bob sm:left-[13%] sm:text-5xl">🐑</div>
+        <div className="absolute right-[8%] bottom-[18%] text-3xl opacity-75 animate-bob sm:right-[14%] sm:text-5xl" style={{ animationDelay: "0.9s" }}>🐑</div>
+        <div className="absolute left-[20%] top-[24%] text-xl opacity-70 animate-twinkle sm:text-3xl">🪨</div>
+        <div className="absolute right-[20%] top-[18%] text-2xl opacity-70 animate-twinkle sm:text-4xl" style={{ animationDelay: "0.7s" }}>⭐</div>
+      </div>
+    );
+  }
+
+  if (art === "sea") {
+    return (
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div className="absolute left-[5%] top-[46%] text-3xl opacity-75 animate-bob sm:left-[12%] sm:text-5xl">🐟</div>
+        <div className="absolute right-[7%] top-[55%] text-3xl opacity-75 animate-bob sm:right-[13%] sm:text-5xl" style={{ animationDelay: "0.8s" }}>🐠</div>
+        <div className="absolute left-[18%] bottom-[15%] text-2xl opacity-70 animate-twinkle sm:text-4xl">✨</div>
+        <div className="absolute right-[18%] top-[20%] text-2xl opacity-70 animate-twinkle sm:text-4xl" style={{ animationDelay: "0.6s" }}>🌊</div>
+      </div>
+    );
+  }
+
+  return null;
+}
+
 export default function BookPage({ params }: { params: { slug: string } }) {
   const book = books.find((b) => b.slug === params.slug);
 
@@ -129,6 +166,7 @@ export default function BookPage({ params }: { params: { slug: string } }) {
       </div>
 
       <StorybookArt art={theme.art} />
+      <MovingStoryCharacters art={theme.art} />
 
       <section className="relative mx-auto max-w-6xl px-6 pb-20 pt-16 sm:pt-24">
         <a
