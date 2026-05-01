@@ -7,11 +7,11 @@ export default function sitemap() {
   return [
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: new Date().toISOString(),
     },
     ...availableBooks.map((book) => ({
       url: `${baseUrl}/book/${book.slug}`,
-      lastModified: new Date(),
+      lastModified: new Date().toISOString(),
     })),
   ];
 }
