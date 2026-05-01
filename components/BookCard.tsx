@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Book } from "@/app/books";
 import { coverMap } from "./BookCovers";
 
@@ -12,15 +13,8 @@ export default function BookCard({ book, index }: Props) {
   const isAvailable = book.status === "available";
   const CoverComponent = coverMap[book.coverScene || "default"];
 
-  return (
-    <article
-      className={
-        isAvailable
-          ? "group opacity-0 animate-fade-up flex flex-col rounded-3xl border border-white/80 bg-cream/85 p-7 backdrop-blur-md shadow-md transition-all duration-500 hover:-translate-y-2"
-          : "opacity-0 animate-fade-up flex flex-col rounded-3xl border-2 border-dashed border-terracotta/35 bg-cream/55 p-7 backdrop-blur-md transition-all duration-500 hover:-translate-y-1"
-      }
-      style={{ animationDelay }}
-    >
+  const CardContent = (
+    <>
       <div className="relative mb-6 aspect-[2/3] overflow-hidden rounded-2xl bg-cream-deep shadow-md">
         <div className="absolute right-4 top-4 z-10 rounded-full bg-cream/95 px-3 py-1.5 font-display text-xs font-semibold tracking-wider text-terracotta shadow-sm">
           {book.number}
@@ -53,6 +47,25 @@ export default function BookCard({ book, index }: Props) {
       <p className="mb-4 font-display text-base italic text-chestnut-soft">
         {book.subtitle}
       </p>
+    </>
+  );
+
+  return (
+    <article
+      className={
+        isAvailable
+          ? "group opacity-0 animate-fade-up flex flex-col rounded-3xl border border-white/80 bg-cream/85 p-7 backdrop-blur-md shadow-md transition-all duration-500 hover:-translate-y-2"
+          : "opacity-0 animate-fade-up flex flex-col rounded-3xl border-2 border-dashed border-terracotta/35 bg-cream/55 p-7 backdrop-blur-md transition-all duration-500 hover:-translate-y-1"
+      }
+      style={{ animationDelay }}
+    >
+      {isAvailable ? (
+        <Link href={`/book/${book.slug}`} className="block">
+          {CardContent}
+        </Link>
+      ) : (
+        CardContent
+      )}
 
       {isAvailable && (
         <>
