@@ -5,10 +5,12 @@
 // - amazonUrl: paste your Amazon product link
 // - coverImage: path to cover photo in /public folder (e.g. "/covers/noah.png")
 // - coverScene: "noah" | "david" | "moses" | "default" (fallback SVG)
+// - slug: used for each book's SEO-friendly page URL
 // =============================================================
 
 export type Book = {
   number: string;
+  slug: string;
   title: string;
   subtitle?: string;
   ageRange?: string;
@@ -23,6 +25,7 @@ export type Book = {
 export const books: Book[] = [
   {
     number: "Book 01",
+    slug: "noah-and-gods-big-promise",
     title: "Noah and God's Big Promise",
     subtitle: "Bible Stories for Little Hearts",
     ageRange: "Ages 3–8",
@@ -36,6 +39,7 @@ export const books: Book[] = [
   },
   {
     number: "Book 02",
+    slug: "david-and-the-giant",
     title: "David and the Giant",
     subtitle: "A Little Shepherd with a Big Faith",
     ageRange: "Ages 3–8",
@@ -49,6 +53,7 @@ export const books: Book[] = [
   },
   {
     number: "Book 03",
+    slug: "moses-and-the-red-sea",
     title: "Moses and the Red Sea",
     subtitle: "A Brave Leader and a Big Way",
     ageRange: "Ages 3–8",
@@ -62,6 +67,7 @@ export const books: Book[] = [
   },
   {
     number: "Book 04",
+    slug: "jonah-and-the-big-fish",
     title: "Coming Soon",
     subtitle: "Another story to discover",
     ageRange: "Ages 3–8",
@@ -75,36 +81,42 @@ export const books: Book[] = [
   },
   {
     number: "Book 05",
+    slug: "book-05-coming-soon",
     title: "Coming Soon",
     subtitle: "Another story to discover",
     status: "coming-soon",
   },
   {
     number: "Book 06",
+    slug: "book-06-coming-soon",
     title: "Coming Soon",
     subtitle: "Stay tuned for more",
     status: "coming-soon",
   },
   {
     number: "Book 07",
+    slug: "book-07-coming-soon",
     title: "Coming Soon",
     subtitle: "Another story to discover",
     status: "coming-soon",
   },
   {
     number: "Book 08",
+    slug: "book-08-coming-soon",
     title: "Coming Soon",
     subtitle: "Another story to discover",
     status: "coming-soon",
   },
   {
     number: "Book 09",
+    slug: "book-09-coming-soon",
     title: "Coming Soon",
     subtitle: "Another story to discover",
     status: "coming-soon",
   },
   {
     number: "Book 10",
+    slug: "book-10-coming-soon",
     title: "Coming Soon",
     subtitle: "Stay tuned for more",
     status: "coming-soon",
