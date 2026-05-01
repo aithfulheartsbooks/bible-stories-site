@@ -62,8 +62,8 @@ export const books: Book[] = [
   },
   {
     number: "Book 04",
-    title: "Jonah and the Big Fish",
-    subtitle: "A Story of Obedience and Second Chances",
+    title: "Coming Soon",
+    subtitle: "Another story to discover",
     ageRange: "Ages 3–8",
     theme: "Obedience",
     blurb:
