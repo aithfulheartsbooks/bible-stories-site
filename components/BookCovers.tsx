@@ -112,11 +112,50 @@ export const Book06Cover = () => (
   </svg>
 );
 
+export const Book11Cover = () => (
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" className="h-full w-full">
+    <defs>
+      <linearGradient id="sky-book11" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#ffe5b8" />
+        <stop offset="100%" stopColor="#ffd4a0" />
+      </linearGradient>
+    </defs>
+    <rect width="200" height="200" fill="url(#sky-book11)" />
+    <circle cx="100" cy="70" r="32" fill="#ffc87a" opacity="0.8" />
+    <path d="M 40 150 Q 100 125 160 150 L 160 200 L 40 200 Z" fill="#ffe0b0" opacity="0.9" />
+    <path d="M 30 160 Q 100 140 170 160 L 170 200 L 30 200 Z" fill="#ffd090" opacity="0.7" />
+    <text x="100" y="168" textAnchor="middle" fontSize="14" fontFamily="serif" fill="#c89656" fontStyle="italic">Coming Soon</text>
+    <ellipse cx="40" cy="45" rx="16" ry="6" fill="#fff" opacity="0.5" />
+    <ellipse cx="160" cy="40" rx="18" ry="7" fill="#fff" opacity="0.5" />
+  </svg>
+);
+
+export const Book12Cover = () => (
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" className="h-full w-full">
+    <defs>
+      <linearGradient id="sky-book12" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#c8e8ff" />
+        <stop offset="100%" stopColor="#a0d4ff" />
+      </linearGradient>
+    </defs>
+    <rect width="200" height="200" fill="url(#sky-book12)" />
+    <circle cx="80" cy="65" r="20" fill="#a0c8ff" opacity="0.6" />
+    <circle cx="130" cy="60" r="25" fill="#80b8ff" opacity="0.5" />
+    <path d="M 30 150 Q 100 125 170 150 L 170 200 L 30 200 Z" fill="#c0e0ff" opacity="0.8" />
+    <path d="M 25 162 Q 100 140 175 162 L 175 200 L 25 200 Z" fill="#a0d0ff" opacity="0.6" />
+    <text x="100" y="170" textAnchor="middle" fontSize="14" fontFamily="serif" fill="#5688c8" fontStyle="italic">Coming Soon</text>
+    <ellipse cx="45" cy="42" rx="15" ry="6" fill="#fff" opacity="0.4" />
+    <ellipse cx="155" cy="38" rx="17" ry="7" fill="#fff" opacity="0.4" />
+  </svg>
+);
+
 export const coverMap = {
   noah: NoahCover,
   david: DavidCover,
   moses: MosesCover,
   "book-05": Book05Cover,
   "book-06": Book06Cover,
+  "book-11": Book11Cover,
+  "book-12": Book12Cover,
   default: DefaultCover,
 };
