@@ -53,6 +53,32 @@ const themes: Record<string, Theme> = {
       { emoji: "🙏", label: "Faith" },
     ],
   },
+  "book-05-coming-soon": {
+    pageClass: "bg-gradient-to-b from-golden-hour via-cream to-sunset/30",
+    quoteClass: "bg-gradient-to-r from-peach/70 via-cream to-gold/40",
+    badgeClass: "bg-gold/40 text-chestnut-soft",
+    glowClass: "bg-gold/40",
+    quote: "A new adventure is on its way. Stay tuned!",
+    art: "default",
+    icons: [
+      { emoji: "✨", label: "New" },
+      { emoji: "🌟", label: "Wonder" },
+      { emoji: "💛", label: "Joy" },
+    ],
+  },
+  "book-06-coming-soon": {
+    pageClass: "bg-gradient-to-b from-twilight via-cream to-lavender/40",
+    quoteClass: "bg-gradient-to-r from-sky/70 via-cream to-lavender/50",
+    badgeClass: "bg-sky/60 text-chestnut-soft",
+    glowClass: "bg-sky/40",
+    quote: "Another wonderful story is waiting for you.",
+    art: "default",
+    icons: [
+      { emoji: "📖", label: "Story" },
+      { emoji: "🌙", label: "Dream" },
+      { emoji: "💜", label: "Faith" },
+    ],
+  },
 };
 
 const defaultTheme: Theme = {
