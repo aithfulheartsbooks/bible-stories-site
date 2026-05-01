@@ -115,10 +115,10 @@ function MovingStoryCharacters({ art }: { art: BookTheme["art"] }) {
   if (art === "rainbow") {
     return (
       <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Noah story animals">
-        <button className="story-character walk-path-a left-[5%] top-[52%] text-3xl sm:left-[10%] sm:text-5xl" type="button" aria-label="Bouncing elephant">🐘</button>
+        <button className="story-character walk-path-a left-[5%] top-[52%] text-3xl sm:left-[10%] sm:text-5xl" type="button" aria-label="Bouncing elephant" onClick={() => new Audio('/sounds/sheep.mp3').play()}>🐘</button>
         <button className="story-character walk-path-b right-[5%] top-[46%] text-3xl sm:right-[12%] sm:text-5xl" type="button" aria-label="Bouncing giraffe" style={{ animationDelay: "0.8s" }}>🦒</button>
         <button className="story-character float-path-a left-[18%] top-[18%] text-2xl sm:text-4xl" type="button" aria-label="Flying dove">🕊️</button>
-        <button className="story-character float-path-b right-[18%] top-[24%] text-2xl sm:text-4xl" type="button" aria-label="Flying duck" style={{ animationDelay: "1.2s" }}>🦆</button>
+        <button className="story-character float-path-b right-[18%] top-[24%] text-2xl sm:text-4xl" type="button" aria-label="Flying duck" style={{ animationDelay: "1.2s" }} onClick={() => new Audio('/sounds/bird.mp3').play()}>🦆</button>
       </div>
     );
   }
@@ -137,7 +137,7 @@ function MovingStoryCharacters({ art }: { art: BookTheme["art"] }) {
   if (art === "sea") {
     return (
       <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Moses sea animals">
-        <button className="story-character swim-path-a left-[5%] top-[46%] text-3xl sm:left-[12%] sm:text-5xl" type="button" aria-label="Swimming fish">🐟</button>
+        <button className="story-character swim-path-a left-[5%] top-[46%] text-3xl sm:left-[12%] sm:text-5xl" type="button" aria-label="Swimming fish" onClick={() => new Audio('/sounds/water.mp3').play()}>🐟</button>
         <button className="story-character swim-path-b right-[7%] top-[55%] text-3xl sm:right-[13%] sm:text-5xl" type="button" aria-label="Swimming fish" style={{ animationDelay: "0.8s" }}>🐠</button>
         <button className="story-character float-path-c left-[18%] bottom-[15%] text-2xl sm:text-4xl" type="button" aria-label="Sparkle">✨</button>
         <button className="story-character float-path-d right-[18%] top-[20%] text-2xl sm:text-4xl" type="button" aria-label="Moving wave" style={{ animationDelay: "0.6s" }}>🌊</button>
