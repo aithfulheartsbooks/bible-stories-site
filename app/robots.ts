@@ -1,5 +1,5 @@
 export default function robots() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bible-stories-for-little-hearts.vercel.app";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://faithfulheartsbooks.com";
 
   return {
     rules: [
