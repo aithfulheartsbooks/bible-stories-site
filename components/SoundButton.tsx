@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { useEffect, useRef } from "react";
 
 type Props = {
   children: ReactNode;
@@ -11,10 +12,18 @@ type Props = {
 };
 
 export default function SoundButton({ children, className, label, src, delay }: Props) {
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    audioRef.current = new Audio(src);
+    audioRef.current.volume = 0.4;
+  }, [src]);
+
   function handlePress() {
-    const sound = new Audio(src);
-    sound.volume = 0.35;
-    sound.play().catch(() => {});
+    if (!audioRef.current) return;
+
+    audioRef.current.currentTime = 0;
+    audioRef.current.play().catch(() => {});
   }
 
   return (
