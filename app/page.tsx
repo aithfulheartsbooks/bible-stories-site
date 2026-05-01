@@ -2,9 +2,49 @@ import { books } from "./books";
 import BookCard from "@/components/BookCard";
 import RainbowArc from "@/components/RainbowArc";
 
+const availableBooks = books.filter((book) => book.status === "available");
+
+const bookStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Bible Stories for Little Hearts Book Collection",
+  description:
+    "Warm, gentle retellings of Bible stories for children ages 3 to 8.",
+  itemListElement: availableBooks.map((book, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: {
+      "@type": "Book",
+      name: book.title,
+      description: book.blurb,
+      bookFormat: "https://schema.org/Paperback",
+      inLanguage: "en",
+      isFamilyFriendly: true,
+      audience: {
+        "@type": "PeopleAudience",
+        suggestedMinAge: 3,
+        suggestedMaxAge: 8,
+      },
+      genre: ["Christian children's books", "Bible stories for kids"],
+      offers: book.amazonUrl
+        ? {
+            "@type": "Offer",
+            url: book.amazonUrl,
+            availability: "https://schema.org/InStock",
+          }
+        : undefined,
+    },
+  })),
+};
+
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(bookStructuredData) }}
+      />
+
       {/* Background scenery */}
       <div className="scenery" />
       <div className="cloud animate-drift-slow h-[60px] w-[180px] top-[8%] left-[-200px]" />
