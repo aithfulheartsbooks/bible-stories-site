@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   keywords: [
     "Christian children's books",
     "Bible stories for kids",
-    "picture books ages 4-8",
+    "picture books ages 3-8",
     "Sunday school books",
     "faith-based children's books",
   ],
