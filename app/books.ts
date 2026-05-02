@@ -4,7 +4,7 @@
 // - status: "available" or "coming-soon"
 // - amazonUrl: paste your Amazon product link
 // - coverImage: path to cover photo in /public folder (e.g. "/covers/noah.png")
-// - coverScene: "noah" | "david" | "moses" | "default" (fallback SVG)
+// - coverScene: "noah" | "david" | "moses" | "book-05" | "book-06" | "book-11" | "book-12" | "default" (fallback SVG)
 // - slug: used for each book's SEO-friendly page URL
 // =============================================================
 
@@ -19,7 +19,15 @@ export type Book = {
   amazonUrl?: string;
   status: "available" | "coming-soon";
   coverImage?: string;
-  coverScene?: "noah" | "david" | "moses" | "default";
+  coverScene?:
+    | "noah"
+    | "david"
+    | "moses"
+    | "book-05"
+    | "book-06"
+    | "book-11"
+    | "book-12"
+    | "default";
 };
 
 export const books: Book[] = [
