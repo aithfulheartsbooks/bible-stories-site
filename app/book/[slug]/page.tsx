@@ -53,6 +53,19 @@ const themes: Record<string, Theme> = {
       { emoji: "🙏", label: "Faith" },
     ],
   },
+  "jonah-and-the-big-fish": {
+    pageClass: "bg-gradient-to-b from-sky via-blue-50 to-cream",
+    quoteClass: "bg-gradient-to-r from-sky/80 via-cream to-sage/40",
+    badgeClass: "bg-sky/80 text-chestnut-soft",
+    glowClass: "bg-sky/50",
+    quote: "Even when Jonah ran away, God gave him a second chance and guided him back with love.",
+    art: "sea",
+    icons: [
+      { emoji: "🐟", label: "Big Fish" },
+      { emoji: "🌊", label: "Adventure" },
+      { emoji: "💙", label: "Second Chance" },
+    ],
+  },
   "book-05-coming-soon": {
     pageClass: "bg-gradient-to-b from-golden-hour via-cream to-sunset/30",
     quoteClass: "bg-gradient-to-r from-peach/70 via-cream to-gold/40",
@@ -190,6 +203,17 @@ function MovingStoryCharacters({ slug }: { slug: string }) {
         <SoundButton className="story-character swim-path-b right-[7%] top-[55%] text-3xl sm:right-[13%] sm:text-5xl" label="Swimming fish" src="/sounds/water.mp3" delay="0.8s">🐠</SoundButton>
         <SoundButton className="story-character float-path-c left-[18%] bottom-[15%] text-2xl sm:text-4xl" label="Sparkle" src="/sounds/bird.mp3">✨</SoundButton>
         <SoundButton className="story-character float-path-d right-[18%] top-[20%] text-2xl sm:text-4xl" label="Moving wave" src="/sounds/water.mp3" delay="0.6s">🌊</SoundButton>
+      </div>
+    );
+  }
+
+  if (slug === "jonah-and-the-big-fish") {
+    return (
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Jonah sea animals">
+        <SoundButton className="story-character swim-path-a left-[4%] top-[38%] text-3xl sm:left-[9%] sm:text-5xl" label="Swimming fish" src="/sounds/water.mp3">🐟</SoundButton>
+        <SoundButton className="story-character swim-path-b right-[5%] top-[47%] text-3xl sm:right-[10%] sm:text-5xl" label="Swimming fish" src="/sounds/water.mp3" delay="0.7s">🐠</SoundButton>
+        <SoundButton className="story-character swim-path-a left-[14%] bottom-[18%] text-2xl sm:text-4xl" label="Little swimming fish" src="/sounds/water.mp3" delay="1.3s">🐟</SoundButton>
+        <SoundButton className="story-character float-path-d right-[15%] bottom-[20%] text-2xl sm:text-4xl" label="Bubbling wave" src="/sounds/water.mp3" delay="0.4s">🌊</SoundButton>
       </div>
     );
   }
