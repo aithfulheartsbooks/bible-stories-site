@@ -66,6 +66,19 @@ const themes: Record<string, Theme> = {
       { emoji: "💙", label: "Second Chance" },
     ],
   },
+  "daniel-and-the-lions": {
+    pageClass: "bg-gradient-to-b from-gold/30 via-cream to-peach/40",
+    quoteClass: "bg-gradient-to-r from-gold/40 via-cream to-peach/70",
+    badgeClass: "bg-gold/40 text-chestnut-soft",
+    glowClass: "bg-gold/40",
+    quote: "Daniel prayed with a brave heart, and God was with him among the lions.",
+    art: "hills",
+    icons: [
+      { emoji: "🦁", label: "Lions" },
+      { emoji: "🙏", label: "Prayer" },
+      { emoji: "💛", label: "Courage" },
+    ],
+  },
   "book-05-coming-soon": {
     pageClass: "bg-gradient-to-b from-golden-hour via-cream to-sunset/30",
     quoteClass: "bg-gradient-to-r from-peach/70 via-cream to-gold/40",
@@ -214,6 +227,17 @@ function MovingStoryCharacters({ slug }: { slug: string }) {
         <SoundButton className="story-character swim-path-b right-[5%] top-[47%] text-3xl sm:right-[10%] sm:text-5xl" label="Swimming fish" src="/sounds/water.mp3" delay="0.7s">🐠</SoundButton>
         <SoundButton className="story-character swim-path-a left-[14%] bottom-[18%] text-2xl sm:text-4xl" label="Little swimming fish" src="/sounds/water.mp3" delay="1.3s">🐟</SoundButton>
         <SoundButton className="story-character float-path-d right-[15%] bottom-[20%] text-2xl sm:text-4xl" label="Bubbling wave" src="/sounds/water.mp3" delay="0.4s">🌊</SoundButton>
+      </div>
+    );
+  }
+
+  if (slug === "daniel-and-the-lions") {
+    return (
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Daniel lions">
+        <SoundButton className="story-character lion-path-a left-[5%] bottom-[16%] text-4xl sm:left-[11%] sm:text-6xl" label="Gentle lion" src="/sounds/lion.wav">🦁</SoundButton>
+        <SoundButton className="story-character lion-path-b right-[5%] bottom-[18%] text-4xl sm:right-[12%] sm:text-6xl" label="Gentle lion" src="/sounds/lion.wav" delay="0.8s">🦁</SoundButton>
+        <SoundButton className="story-character float-path-c left-[20%] top-[24%] text-2xl sm:text-4xl" label="Faithful prayer" src="/sounds/bird.mp3" delay="0.4s">🙏</SoundButton>
+        <SoundButton className="story-character float-path-d right-[20%] top-[22%] text-2xl sm:text-4xl" label="Golden sparkle" src="/sounds/bird.mp3" delay="1s">✨</SoundButton>
       </div>
     );
   }

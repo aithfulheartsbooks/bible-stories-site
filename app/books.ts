@@ -89,10 +89,16 @@ export const books: Book[] = [
   },
   {
     number: "Book 05",
-    slug: "book-05-coming-soon",
-    title: "Coming Soon",
-    subtitle: "Another story to discover",
-    status: "coming-soon",
+    slug: "daniel-and-the-lions",
+    title: "Daniel and the Lions",
+    subtitle: "A Brave Heart and a Faithful Prayer",
+    ageRange: "Ages 3–8",
+    theme: "Prayer",
+    blurb:
+      "When Daniel keeps praying to God, he is sent into a den of lions. A brave story about faith, prayer, and trusting God when we feel afraid.",
+    amazonUrl: "https://www.amazon.com/dp/B0GZGFJTSL",
+    status: "available",
+    coverImage: "/covers/daniel.jpg",
     coverScene: "book-05",
   },
   {
