@@ -103,10 +103,16 @@ export const books: Book[] = [
   },
   {
     number: "Book 06",
-    slug: "book-06-coming-soon",
-    title: "Coming Soon",
-    subtitle: "Stay tuned for more",
-    status: "coming-soon",
+    slug: "esther-the-brave-queen",
+    title: "Esther the Brave Queen",
+    subtitle: "A Courageous Heart and a Faithful Voice",
+    ageRange: "Ages 3–8",
+    theme: "Bravery",
+    blurb:
+      "Even when Esther felt small and afraid, she found the courage to speak up for others. A beautiful story about purpose, faith, and being chosen for such a time as this.",
+    amazonUrl: "https://www.amazon.com/dp/B0GZK239VN",
+    status: "available",
+    coverImage: "/covers/esther.png",
     coverScene: "book-06",
   },
   {
