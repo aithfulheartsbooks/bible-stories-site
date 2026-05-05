@@ -82,7 +82,7 @@ export const books: Book[] = [
     theme: "Obedience",
     blurb:
       "When Jonah runs from God's plan, he ends up in a big adventure. A playful story about obedience, second chances, and how God never gives up on us.",
-    amazonUrl: "https://a.co/d/0aJKdUls",
+    amazonUrl: "https://www.amazon.com/dp/B0GZDKNN5L",
     status: "available",
     coverImage: "/covers/jonah.png",
     coverScene: "default",
