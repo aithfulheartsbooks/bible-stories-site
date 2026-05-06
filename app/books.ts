@@ -147,10 +147,17 @@ export const books: Book[] = [
   },
   {
     number: "Book 09",
-    slug: "book-09-coming-soon",
-    title: "Coming Soon",
-    subtitle: "Another story to discover",
-    status: "coming-soon",
+    slug: "the-easter-story",
+    title: "The Easter Story",
+    subtitle: "God's Greatest Rescue",
+    ageRange: "Ages 3-8",
+    theme: "Hope",
+    blurb:
+      "A joyful retelling of Jesus' death and resurrection, helping little hearts understand God's greatest rescue with warmth, wonder, and hope.",
+    amazonUrl: "https://www.amazon.com/dp/B0GZPY9RL1",
+    status: "available",
+    coverImage: "/covers/easter.png",
+    coverScene: "default",
   },
   {
     number: "Book 10",
