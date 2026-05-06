@@ -25,6 +25,8 @@ export type Book = {
     | "moses"
     | "book-05"
     | "book-06"
+    | "book-07"
+    | "book-08"
     | "book-11"
     | "book-12"
     | "default";
@@ -117,17 +119,31 @@ export const books: Book[] = [
   },
   {
     number: "Book 07",
-    slug: "book-07-coming-soon",
-    title: "Coming Soon",
-    subtitle: "Another story to discover",
-    status: "coming-soon",
+    slug: "the-christmas-story",
+    title: "The Christmas Story",
+    subtitle: "God Comes Close in Love",
+    ageRange: "Ages 3-8",
+    theme: "Love",
+    blurb:
+      "A tender retelling of the night Jesus was born, filled with wonder, warmth, and the beautiful truth that God came close because He loves us.",
+    amazonUrl: "https://www.amazon.com/dp/B0GZNQZQGX",
+    status: "available",
+    coverImage: "/covers/christmas.png",
+    coverScene: "book-07",
   },
   {
     number: "Book 08",
-    slug: "book-08-coming-soon",
-    title: "Coming Soon",
-    subtitle: "Another story to discover",
-    status: "coming-soon",
+    slug: "josephs-colorful-coat",
+    title: "Joseph's Colorful Coat",
+    subtitle: "God Turns Everything Around",
+    ageRange: "Ages 3-8",
+    theme: "Forgiveness",
+    blurb:
+      "Joseph's story shows little hearts how God can work through hard days, surprising turns, and brave forgiveness to bring good in the end.",
+    amazonUrl: "https://www.amazon.com/dp/B0GZL3YG8L",
+    status: "available",
+    coverImage: "/covers/joseph.png",
+    coverScene: "book-08",
   },
   {
     number: "Book 09",

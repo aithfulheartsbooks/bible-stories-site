@@ -155,6 +155,8 @@ export const coverMap = {
   moses: MosesCover,
   "book-05": Book05Cover,
   "book-06": Book06Cover,
+  "book-07": DefaultCover,
+  "book-08": DefaultCover,
   "book-11": Book11Cover,
   "book-12": Book12Cover,
   default: DefaultCover,

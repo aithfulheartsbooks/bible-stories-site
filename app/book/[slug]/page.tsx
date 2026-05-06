@@ -92,6 +92,32 @@ const themes: Record<string, Theme> = {
       { emoji: "🙏", label: "Faith" },
     ],
   },
+  "the-christmas-story": {
+    pageClass: "bg-gradient-to-b from-twilight via-sky/60 to-cream",
+    quoteClass: "bg-gradient-to-r from-twilight/40 via-cream to-gold/40",
+    badgeClass: "bg-gold/35 text-chestnut-soft",
+    glowClass: "bg-gold/45",
+    quote: "God came close in love, and the whole world was given the greatest gift.",
+    art: "default",
+    icons: [
+      { emoji: "\u2b50", label: "Wonder" },
+      { emoji: "\u{1f476}", label: "Gift" },
+      { emoji: "\u2764\ufe0f", label: "Love" },
+    ],
+  },
+  "josephs-colorful-coat": {
+    pageClass: "bg-gradient-to-b from-sky via-cream to-sage/60",
+    quoteClass: "bg-gradient-to-r from-sky/70 via-cream to-gold/35",
+    badgeClass: "bg-sage/70 text-chestnut-soft",
+    glowClass: "bg-sage/45",
+    quote: "Even when life turned upside down, God was working everything around for good.",
+    art: "hills",
+    icons: [
+      { emoji: "\u2728", label: "Hope" },
+      { emoji: "\u{1f308}", label: "Color" },
+      { emoji: "\u2764\ufe0f", label: "Forgiveness" },
+    ],
+  },
   "book-05-coming-soon": {
     pageClass: "bg-gradient-to-b from-golden-hour via-cream to-sunset/30",
     quoteClass: "bg-gradient-to-r from-peach/70 via-cream to-gold/40",
@@ -262,6 +288,28 @@ function MovingStoryCharacters({ slug }: { slug: string }) {
         <SoundButton className="story-character float-path-b right-[12%] top-[28%] text-3xl sm:text-5xl" label="Golden sparkle" src="/sounds/bird.mp3" delay="0.8s">✨</SoundButton>
         <SoundButton className="story-character float-path-c left-[18%] bottom-[20%] text-2xl sm:text-4xl" label="Faithful prayer" src="/sounds/bird.mp3" delay="0.4s">🙏</SoundButton>
         <SoundButton className="story-character float-path-d right-[18%] bottom-[22%] text-2xl sm:text-4xl" label="Brave heart" src="/sounds/bird.mp3" delay="1s">💛</SoundButton>
+      </div>
+    );
+  }
+
+  if (slug === "the-christmas-story") {
+    return (
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Christmas story lights">
+        <SoundButton className="story-character float-path-a left-[12%] top-[18%] text-3xl sm:text-5xl" label="Bethlehem star" src="/sounds/bird.mp3">{"\u2b50"}</SoundButton>
+        <SoundButton className="story-character float-path-b right-[12%] top-[24%] text-3xl sm:text-5xl" label="Golden light" src="/sounds/bird.mp3" delay="0.8s">{"\u2728"}</SoundButton>
+        <SoundButton className="story-character float-path-c left-[18%] bottom-[20%] text-2xl sm:text-4xl" label="Gift of love" src="/sounds/bird.mp3" delay="0.4s">{"\u2764\ufe0f"}</SoundButton>
+        <SoundButton className="story-character float-path-d right-[18%] bottom-[22%] text-2xl sm:text-4xl" label="Joyful wonder" src="/sounds/bird.mp3" delay="1s">{"\u{1f476}"}</SoundButton>
+      </div>
+    );
+  }
+
+  if (slug === "josephs-colorful-coat") {
+    return (
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Joseph story colors">
+        <SoundButton className="story-character float-path-a left-[10%] top-[25%] text-3xl sm:text-5xl" label="Colorful promise" src="/sounds/bird.mp3">{"\u{1f308}"}</SoundButton>
+        <SoundButton className="story-character float-path-b right-[12%] top-[28%] text-3xl sm:text-5xl" label="Bright hope" src="/sounds/bird.mp3" delay="0.8s">{"\u2728"}</SoundButton>
+        <SoundButton className="story-character walk-path-a left-[12%] bottom-[16%] text-3xl sm:text-5xl" label="Gentle field sound" src="/sounds/sheep.mp3" delay="0.4s">{"\u2b50"}</SoundButton>
+        <SoundButton className="story-character float-path-d right-[18%] bottom-[22%] text-2xl sm:text-4xl" label="Forgiving heart" src="/sounds/bird.mp3" delay="1s">{"\u2764\ufe0f"}</SoundButton>
       </div>
     );
   }
