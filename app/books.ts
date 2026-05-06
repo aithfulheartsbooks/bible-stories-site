@@ -161,10 +161,17 @@ export const books: Book[] = [
   },
   {
     number: "Book 10",
-    slug: "book-10-coming-soon",
-    title: "Coming Soon",
-    subtitle: "Stay tuned for more",
-    status: "coming-soon",
+    slug: "ruth-and-naomi",
+    title: "Ruth and Naomi",
+    subtitle: "Where You Go, I Will Go",
+    ageRange: "Ages 3-8",
+    theme: "Loyal Love",
+    blurb:
+      "Walk with Ruth and Naomi through hard times and harvest fields as God weaves faithful love into His greatest plan, from Bethlehem to King David and to Jesus himself.",
+    amazonUrl: "https://www.amazon.com/dp/B0GZQX7D3N",
+    status: "available",
+    coverImage: "/covers/ruth.png",
+    coverScene: "default",
   },
   {
     number: "Book 11",
