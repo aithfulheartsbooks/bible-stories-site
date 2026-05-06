@@ -31,6 +31,9 @@ export const metadata: Metadata = {
       "Beautifully illustrated Bible picture books for children ages 3 to 8.",
     type: "website",
   },
+  other: {
+    "p:domain_verify": "00b7e44b7c949bfae0fdb2abb0184a82",
+  },
 };
 
 export default function RootLayout({
