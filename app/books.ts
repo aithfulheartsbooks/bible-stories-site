@@ -175,10 +175,16 @@ export const books: Book[] = [
   },
   {
     number: "Book 11",
-    slug: "book-11-coming-soon",
-    title: "Coming Soon",
-    subtitle: "Another story to discover",
-    status: "coming-soon",
+    slug: "the-birth-of-moses",
+    title: "The Birth of Moses",
+    subtitle: "God Protects From the Beginning",
+    ageRange: "Ages 3-8",
+    theme: "Protection",
+    blurb:
+      "A mother's love, a brave big sister, and a tiny basket on the Nile show little hearts how God protects His children from the very beginning.",
+    amazonUrl: "https://www.amazon.com/dp/B0H15BN3RD",
+    status: "available",
+    coverImage: "/covers/birth-of-moses.jpg",
     coverScene: "book-11",
   },
   {
