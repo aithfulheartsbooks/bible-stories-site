@@ -69,6 +69,7 @@ export default function RootLayout({
               var link = event.target.closest && event.target.closest('a[href*="amazon.com"]');
               if (!link || typeof window.gtag !== 'function') return;
 
+              var params = new URLSearchParams(window.location.search);
               var bookTitle =
                 link.closest('article')?.querySelector('h3')?.textContent?.trim() ||
                 document.querySelector('h1')?.textContent?.trim() ||
@@ -77,7 +78,12 @@ export default function RootLayout({
               window.gtag('event', 'amazon_click', {
                 book_title: bookTitle,
                 link_url: link.href,
-                page_path: window.location.pathname
+                page_path: window.location.pathname,
+                page_url: window.location.href,
+                referrer_url: document.referrer || '',
+                utm_source: params.get('utm_source') || '',
+                utm_medium: params.get('utm_medium') || '',
+                utm_campaign: params.get('utm_campaign') || ''
               });
             });
           `}
