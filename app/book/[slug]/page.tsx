@@ -2,6 +2,7 @@ import { books } from "@/app/books";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import SoundButton from "@/components/SoundButton";
+import type { Metadata } from "next";
 
 type Theme = {
   pageClass: string;
@@ -227,6 +228,38 @@ const defaultTheme: Theme = {
 
 export function generateStaticParams() {
   return books.map((book) => ({ slug: book.slug }));
+}
+
+export function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Metadata {
+  const book = books.find((b) => b.slug === params.slug);
+
+  if (!book) {
+    return {
+      title: "Book Not Found | Bible Stories for Little Hearts",
+    };
+  }
+
+  const description =
+    book.blurb ||
+    "A gentle Bible story made with love for little hearts ages 3 to 8.";
+
+  return {
+    title: `${book.title} | Bible Stories for Little Hearts`,
+    description,
+    alternates: {
+      canonical: `/book/${book.slug}`,
+    },
+    openGraph: {
+      title: book.title,
+      description,
+      type: "website",
+      url: `/book/${book.slug}`,
+    },
+  };
 }
 
 function StorybookArt({ art }: { art: Theme["art"] }) {
