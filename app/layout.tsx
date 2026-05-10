@@ -18,6 +18,7 @@ const quicksand = Quicksand({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.faithfulheartsbooks.com"),
   title: "Bible Stories for Little Hearts",
   description:
     "Warm, gentle retellings of the greatest Bible stories — beautifully illustrated picture books for children ages 3 to 8.",
@@ -36,6 +37,9 @@ export const metadata: Metadata = {
   },
   other: {
     "p:domain_verify": "00b7e44b7c949bfae0fdb2abb0184a82",
+  },
+  alternates: {
+    canonical: "/",
   },
 };
 
