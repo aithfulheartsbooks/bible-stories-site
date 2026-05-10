@@ -6,6 +6,7 @@
 // - coverImage: path to cover photo in /public folder (e.g. "/covers/noah.png")
 // - coverScene: "noah" | "david" | "moses" | "book-05" | "book-06" | "book-11" | "book-12" | "default" (fallback SVG)
 // - slug: used for each book's SEO-friendly page URL
+// - PLANNED_BOOK_COUNT controls how many future slots appear on the homepage.
 // =============================================================
 
 export type Book = {
@@ -32,7 +33,28 @@ export type Book = {
     | "default";
 };
 
-export const books: Book[] = [
+const PLANNED_BOOK_COUNT = 20;
+
+function formatBookNumber(number: number) {
+  return `Book ${String(number).padStart(2, "0")}`;
+}
+
+function createComingSoonBooks(start: number, end: number): Book[] {
+  return Array.from({ length: end - start + 1 }, (_, index) => {
+    const bookNumber = start + index;
+
+    return {
+      number: formatBookNumber(bookNumber),
+      slug: `book-${bookNumber}-coming-soon`,
+      title: "Coming Soon",
+      subtitle: "Stay tuned for more",
+      status: "coming-soon" as const,
+      coverScene: "default" as const,
+    };
+  });
+}
+
+const publishedBooks: Book[] = [
   {
     number: "Book 01",
     slug: "noah-and-gods-big-promise",
@@ -187,12 +209,9 @@ export const books: Book[] = [
     coverImage: "/covers/birth-of-moses.jpg",
     coverScene: "book-11",
   },
-  {
-    number: "Book 12",
-    slug: "book-12-coming-soon",
-    title: "Coming Soon",
-    subtitle: "Stay tuned for more",
-    status: "coming-soon",
-    coverScene: "book-12",
-  },
+];
+
+export const books: Book[] = [
+  ...publishedBooks,
+  ...createComingSoonBooks(publishedBooks.length + 1, PLANNED_BOOK_COUNT),
 ];

@@ -24,7 +24,7 @@ export default function BookCard({ book, index }: Props) {
             src={book.coverImage}
             alt={`${book.title} book cover`}
             fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1536px) 25vw, 20vw"
             className="object-contain"
             priority={index < 3}
           />
@@ -54,8 +54,8 @@ export default function BookCard({ book, index }: Props) {
     <article
       className={
         isAvailable
-          ? "group opacity-0 animate-fade-up flex flex-col rounded-3xl border border-white/80 bg-cream/85 p-7 backdrop-blur-md shadow-md transition-all duration-500 hover:-translate-y-2"
-          : "opacity-0 animate-fade-up flex flex-col rounded-3xl border-2 border-dashed border-terracotta/35 bg-cream/55 p-7 backdrop-blur-md transition-all duration-500 hover:-translate-y-1"
+          ? "group opacity-0 animate-fade-up flex flex-col rounded-3xl border border-white/80 bg-cream/85 p-5 backdrop-blur-md shadow-md transition-all duration-500 hover:-translate-y-2 sm:p-6 2xl:p-5"
+          : "opacity-0 animate-fade-up flex flex-col rounded-3xl border-2 border-dashed border-terracotta/35 bg-cream/55 p-5 backdrop-blur-md transition-all duration-500 hover:-translate-y-1 sm:p-6 2xl:p-5"
       }
       style={{ animationDelay }}
     >

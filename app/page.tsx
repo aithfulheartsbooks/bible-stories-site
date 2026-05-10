@@ -96,7 +96,7 @@ export default function Home() {
       </header>
 
       {/* Books Grid */}
-      <section className="mx-auto max-w-7xl px-6 pb-16 pt-8">
+      <section className="mx-auto max-w-[1800px] px-4 pb-16 pt-8 sm:px-6">
         <div className="opacity-0 animate-fade-up mb-12 text-center">
           <div className="mb-2 text-xl tracking-[0.5em] text-gold">✦ ✦ ✦</div>
           <h2 className="font-display text-3xl font-semibold text-chestnut">
@@ -104,9 +104,9 @@ export default function Home() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
           {books.map((book, index) => (
-            <BookCard key={book.number} book={book} index={index} />
+            <BookCard key={book.slug} book={book} index={index} />
           ))}
         </div>
       </section>
