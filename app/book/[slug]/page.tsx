@@ -158,6 +158,19 @@ const themes: Record<string, Theme> = {
       { emoji: "\u2764\ufe0f", label: "Protection" },
     ],
   },
+  "solomon-and-wisdom": {
+    pageClass: "bg-gradient-to-b from-gold/30 via-cream to-lavender/45",
+    quoteClass: "bg-gradient-to-r from-gold/35 via-cream to-lavender/45",
+    badgeClass: "bg-gold/35 text-chestnut-soft",
+    glowClass: "bg-gold/45",
+    quote: "Solomon asked God for wisdom, and God gave generously.",
+    art: "hills",
+    icons: [
+      { emoji: "\u{1f451}", label: "King" },
+      { emoji: "\u{1f4a1}", label: "Wisdom" },
+      { emoji: "\u{1f64f}", label: "Prayer" },
+    ],
+  },
   "book-05-coming-soon": {
     pageClass: "bg-gradient-to-b from-golden-hour via-cream to-sunset/30",
     quoteClass: "bg-gradient-to-r from-peach/70 via-cream to-gold/40",
@@ -415,6 +428,17 @@ function MovingStoryCharacters({ slug }: { slug: string }) {
         <SoundButton className="story-character float-path-b right-[12%] top-[26%] text-3xl sm:text-5xl" label="God's protection" src="/sounds/bird.mp3" delay="0.8s">{"\u2728"}</SoundButton>
         <SoundButton className="story-character float-path-c left-[18%] bottom-[18%] text-2xl sm:text-4xl" label="Baby basket" src="/sounds/water.mp3" delay="0.4s">{"\u{1f9fa}"}</SoundButton>
         <SoundButton className="story-character float-path-d right-[18%] bottom-[22%] text-2xl sm:text-4xl" label="Mother's love" src="/sounds/bird.mp3" delay="1s">{"\u2764\ufe0f"}</SoundButton>
+      </div>
+    );
+  }
+
+  if (slug === "solomon-and-wisdom") {
+    return (
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Solomon wisdom story">
+        <SoundButton className="story-character float-path-a left-[12%] top-[22%] text-3xl sm:text-5xl" label="Royal crown" src="/sounds/bird.mp3">{"\u{1f451}"}</SoundButton>
+        <SoundButton className="story-character float-path-b right-[12%] top-[28%] text-3xl sm:text-5xl" label="Wisdom light" src="/sounds/bird.mp3" delay="0.8s">{"\u{1f4a1}"}</SoundButton>
+        <SoundButton className="story-character float-path-c left-[18%] bottom-[18%] text-2xl sm:text-4xl" label="Listening heart" src="/sounds/bird.mp3" delay="0.4s">{"\u2764\ufe0f"}</SoundButton>
+        <SoundButton className="story-character float-path-d right-[18%] bottom-[22%] text-2xl sm:text-4xl" label="Faithful prayer" src="/sounds/bird.mp3" delay="1s">{"\u{1f64f}"}</SoundButton>
       </div>
     );
   }

@@ -209,6 +209,20 @@ const publishedBooks: Book[] = [
     coverImage: "/covers/birth-of-moses.jpg",
     coverScene: "book-11",
   },
+  {
+    number: "Book 12",
+    slug: "solomon-and-wisdom",
+    title: "Solomon and Wisdom",
+    subtitle: "Ask God for Wisdom",
+    ageRange: "Ages 3-8",
+    theme: "Wisdom",
+    blurb:
+      "When God told Solomon he could ask for anything, Solomon chose wisdom. A thoughtful story about listening hearts, wise choices, and asking God for help every day.",
+    amazonUrl: "https://www.amazon.com/dp/B0H184LKSF",
+    status: "available",
+    coverImage: "/covers/solomon-and-wisdom.jpg",
+    coverScene: "book-12",
+  },
 ];
 
 export const books: Book[] = [
