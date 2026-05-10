@@ -160,5 +160,6 @@ export const coverMap = {
   "book-11": Book11Cover,
   "book-12": Book12Cover,
   "book-13": DefaultCover,
+  "book-14": DefaultCover,
   default: DefaultCover,
 };

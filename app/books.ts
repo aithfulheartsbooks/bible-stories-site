@@ -31,6 +31,7 @@ export type Book = {
     | "book-11"
     | "book-12"
     | "book-13"
+    | "book-14"
     | "default";
 };
 
@@ -237,6 +238,20 @@ const publishedBooks: Book[] = [
     status: "available",
     coverImage: "/covers/elijah-still-small-voice.jpg",
     coverScene: "book-13",
+  },
+  {
+    number: "Book 14",
+    slug: "jesus-calms-the-storm",
+    title: "Jesus Calms the Storm",
+    subtitle: "Peace, Be Still",
+    ageRange: "Ages 3-8",
+    theme: "Peace",
+    blurb:
+      "When the wind howled and the waves rose high, Jesus was right there in the boat. A comforting story that reminds little hearts Jesus is near in every storm.",
+    amazonUrl: "https://www.amazon.com/dp/B0H18WDG5P",
+    status: "available",
+    coverImage: "/covers/jesus-calms-the-storm.jpg",
+    coverScene: "book-14",
   },
 ];
 
