@@ -1,4 +1,4 @@
-const baseUrl = "https://faithfulheartsbooks.com";
+const baseUrl = "https://www.faithfulheartsbooks.com";
 
 const urls = [
   { loc: `${baseUrl}/`, lastmod: "2026-05-01", changefreq: "weekly", priority: "1.0" },
