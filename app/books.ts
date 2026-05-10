@@ -30,6 +30,7 @@ export type Book = {
     | "book-08"
     | "book-11"
     | "book-12"
+    | "book-13"
     | "default";
 };
 
@@ -222,6 +223,20 @@ const publishedBooks: Book[] = [
     status: "available",
     coverImage: "/covers/solomon-and-wisdom.jpg",
     coverScene: "book-12",
+  },
+  {
+    number: "Book 13",
+    slug: "elijah-and-the-still-small-voice",
+    title: "Elijah and the Still Small Voice",
+    subtitle: "God Speaks in the Quiet",
+    ageRange: "Ages 3-8",
+    theme: "Listening",
+    blurb:
+      "Elijah was brave and faithful, but even brave people can feel tired and afraid. A comforting story about hearing God's gentle voice in quiet moments.",
+    amazonUrl: "https://www.amazon.com/dp/B0H18JDFCW",
+    status: "available",
+    coverImage: "/covers/elijah-still-small-voice.jpg",
+    coverScene: "book-13",
   },
 ];
 
