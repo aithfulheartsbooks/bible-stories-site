@@ -32,6 +32,7 @@ export type Book = {
     | "book-12"
     | "book-13"
     | "book-14"
+    | "book-15"
     | "default";
 };
 
@@ -252,6 +253,20 @@ const publishedBooks: Book[] = [
     status: "available",
     coverImage: "/covers/jesus-calms-the-storm.jpg",
     coverScene: "book-14",
+  },
+  {
+    number: "Book 15",
+    slug: "the-creation-story",
+    title: "The Creation Story",
+    subtitle: "God Made Everything",
+    ageRange: "Ages 3-8",
+    theme: "Wonder",
+    blurb:
+      "A joyful retelling of Genesis 1 that helps little hearts see the beauty of God's world, from light and sky to animals, people, and rest.",
+    amazonUrl: "https://www.amazon.com/dp/B0H18HQKWT",
+    status: "available",
+    coverImage: "/covers/the-creation-story.jpg",
+    coverScene: "book-15",
   },
 ];
 

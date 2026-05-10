@@ -197,6 +197,19 @@ const themes: Record<string, Theme> = {
       { emoji: "\u{1f54a}\ufe0f", label: "Peace" },
     ],
   },
+  "the-creation-story": {
+    pageClass: "bg-gradient-to-b from-sky/70 via-cream to-sage/45",
+    quoteClass: "bg-gradient-to-r from-sky/70 via-cream to-gold/35",
+    badgeClass: "bg-sage/70 text-chestnut-soft",
+    glowClass: "bg-gold/35",
+    quote: "In the beginning, God made everything good.",
+    art: "rainbow",
+    icons: [
+      { emoji: "\u2600\ufe0f", label: "Light" },
+      { emoji: "\u{1f33f}", label: "Life" },
+      { emoji: "\u{1f30d}", label: "Creation" },
+    ],
+  },
   "book-05-coming-soon": {
     pageClass: "bg-gradient-to-b from-golden-hour via-cream to-sunset/30",
     quoteClass: "bg-gradient-to-r from-peach/70 via-cream to-gold/40",
@@ -487,6 +500,17 @@ function MovingStoryCharacters({ slug }: { slug: string }) {
         <SoundButton className="story-character float-path-b right-[12%] top-[26%] text-3xl sm:text-5xl" label="Peace in the storm" src="/sounds/bird.mp3" delay="0.8s">{"\u{1f54a}\ufe0f"}</SoundButton>
         <SoundButton className="story-character float-path-c left-[18%] bottom-[18%] text-2xl sm:text-4xl" label="Boat on the water" src="/sounds/water.mp3" delay="0.4s">{"\u26f5"}</SoundButton>
         <SoundButton className="story-character float-path-d right-[18%] bottom-[22%] text-2xl sm:text-4xl" label="Quiet heart" src="/sounds/bird.mp3" delay="1s">{"\u2728"}</SoundButton>
+      </div>
+    );
+  }
+
+  if (slug === "the-creation-story") {
+    return (
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Creation story wonder">
+        <SoundButton className="story-character float-path-a left-[12%] top-[20%] text-3xl sm:text-5xl" label="Creation light" src="/sounds/bird.mp3">{"\u2600\ufe0f"}</SoundButton>
+        <SoundButton className="story-character float-path-b right-[12%] top-[24%] text-3xl sm:text-5xl" label="Created world" src="/sounds/bird.mp3" delay="0.8s">{"\u{1f30d}"}</SoundButton>
+        <SoundButton className="story-character float-path-c left-[18%] bottom-[20%] text-2xl sm:text-4xl" label="Growing garden" src="/sounds/bird.mp3" delay="0.4s">{"\u{1f33f}"}</SoundButton>
+        <SoundButton className="story-character float-path-d right-[18%] bottom-[22%] text-2xl sm:text-4xl" label="Wonderful creation" src="/sounds/bird.mp3" delay="1s">{"\u2728"}</SoundButton>
       </div>
     );
   }

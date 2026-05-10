@@ -16,6 +16,7 @@ const urls = [
   { loc: `${baseUrl}/book/solomon-and-wisdom`, lastmod: "2026-05-10", changefreq: "monthly", priority: "0.8" },
   { loc: `${baseUrl}/book/elijah-and-the-still-small-voice`, lastmod: "2026-05-10", changefreq: "monthly", priority: "0.8" },
   { loc: `${baseUrl}/book/jesus-calms-the-storm`, lastmod: "2026-05-10", changefreq: "monthly", priority: "0.8" },
+  { loc: `${baseUrl}/book/the-creation-story`, lastmod: "2026-05-10", changefreq: "monthly", priority: "0.8" },
 ];
 
 export function GET() {
