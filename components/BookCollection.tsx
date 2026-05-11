@@ -226,7 +226,7 @@ export default function BookCollection({ books }: Props) {
                   : "border-terracotta/25 bg-white/55 hover:border-terracotta/50"
               }`}
             >
-              Publication Order
+              Book Order
             </button>
             <button
               type="button"
