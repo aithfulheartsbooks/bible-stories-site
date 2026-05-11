@@ -73,6 +73,7 @@ const BIBLE_BOOK_ORDER: Record<string, SeriesPlacement> = {
   luke: { order: 4200, testament: "new" },
   john: { order: 4300, testament: "new" },
   acts: { order: 4400, testament: "new" },
+  ephesians: { order: 4500, testament: "new" },
 };
 
 function parseBookNumber(book: Book) {

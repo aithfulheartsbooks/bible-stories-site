@@ -302,6 +302,22 @@ const publishedBooks: Book[] = [
     coverImage: "/covers/the-creation-story.jpg",
     coverScene: "book-15",
   },
+  {
+    number: "Book 16",
+    slug: "the-armor-of-god",
+    title: "The Armor of God",
+    subtitle: "Dressed for God's Adventure",
+    ageRange: "Ages 3-8",
+    theme: "Faith",
+    blurb:
+      "A joyful story from Ephesians 6 that helps little hearts remember God gives us truth, righteousness, peace, faith, salvation, and His Word for every adventure.",
+    amazonUrl: "https://www.amazon.com/dp/B0H1BQX3LP",
+    scriptureReference: "Ephesians 6:10-18",
+    biblicalOrder: 160,
+    status: "available",
+    coverImage: "/covers/armor-of-god.jpg",
+    coverScene: "default",
+  },
 ];
 
 export const books: Book[] = [
