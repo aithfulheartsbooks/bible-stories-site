@@ -318,6 +318,38 @@ const publishedBooks: Book[] = [
     coverImage: "/covers/armor-of-god.jpg",
     coverScene: "default",
   },
+  {
+    number: "Book 17",
+    slug: "zacchaeus",
+    title: "Zacchaeus",
+    subtitle: "Jesus Loves Everyone - Even Me!",
+    ageRange: "Ages 3-8",
+    theme: "Love",
+    blurb:
+      "A warm, joyful retelling of the little man in the tree, reminding children that Jesus sees every heart and His love can change everything.",
+    amazonUrl: "https://www.amazon.com/dp/B0H1CG1P1X",
+    scriptureReference: "Luke 19:1-10",
+    biblicalOrder: 148,
+    status: "available",
+    coverImage: "/covers/zacchaeus.jpg",
+    coverScene: "default",
+  },
+  {
+    number: "Book 18",
+    slug: "the-good-samaritan",
+    title: "The Good Samaritan",
+    subtitle: "Love Your Neighbour",
+    ageRange: "Ages 3-8",
+    theme: "Love",
+    blurb:
+      "Jesus' parable of a kind helper on the Jericho road teaches little hearts to love their neighbour with compassion, courage, and care.",
+    amazonUrl: "https://www.amazon.com/dp/B0H1CPYC6T",
+    scriptureReference: "Luke 10:25-37",
+    biblicalOrder: 145,
+    status: "available",
+    coverImage: "/covers/the-good-samaritan.jpg",
+    coverScene: "default",
+  },
 ];
 
 export const books: Book[] = [
