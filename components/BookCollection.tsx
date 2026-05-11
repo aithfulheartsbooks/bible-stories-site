@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { Book } from "@/app/books";
 import BookCard from "@/components/BookCard";
 
-const BOOKS_PER_PAGE = 12;
+const DESKTOP_BOOKS_PER_PAGE = 18;
+const MOBILE_BOOKS_PER_PAGE = 9;
 
 const THEME_FILTERS = [
   "All Books",
@@ -146,10 +147,33 @@ type Props = {
   books: Book[];
 };
 
+function useBooksPerPage() {
+  const [booksPerPage, setBooksPerPage] = useState(DESKTOP_BOOKS_PER_PAGE);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 600px)");
+    const updateBooksPerPage = () => {
+      setBooksPerPage(
+        mediaQuery.matches ? DESKTOP_BOOKS_PER_PAGE : MOBILE_BOOKS_PER_PAGE,
+      );
+    };
+
+    updateBooksPerPage();
+    mediaQuery.addEventListener("change", updateBooksPerPage);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateBooksPerPage);
+    };
+  }, []);
+
+  return booksPerPage;
+}
+
 export default function BookCollection({ books }: Props) {
   const [activeTheme, setActiveTheme] = useState<ThemeFilter>("All Books");
   const [sortMode, setSortMode] = useState<SortMode>("publication");
   const [currentPage, setCurrentPage] = useState(1);
+  const booksPerPage = useBooksPerPage();
 
   const filteredBooks = useMemo(() => {
     return sortBooks(
@@ -160,12 +184,16 @@ export default function BookCollection({ books }: Props) {
 
   const pageCount = Math.max(
     1,
-    Math.ceil(filteredBooks.length / BOOKS_PER_PAGE),
+    Math.ceil(filteredBooks.length / booksPerPage),
   );
   const visibleBooks = filteredBooks.slice(
-    (currentPage - 1) * BOOKS_PER_PAGE,
-    currentPage * BOOKS_PER_PAGE,
+    (currentPage - 1) * booksPerPage,
+    currentPage * booksPerPage,
   );
+
+  useEffect(() => {
+    setCurrentPage((page) => Math.min(page, pageCount));
+  }, [pageCount]);
 
   function selectTheme(theme: ThemeFilter) {
     setActiveTheme(theme);
