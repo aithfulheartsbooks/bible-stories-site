@@ -40,7 +40,7 @@ export type Book = {
     | "default";
 };
 
-const PLANNED_BOOK_COUNT = 20;
+const PLANNED_BOOK_COUNT = 22;
 
 function formatBookNumber(number: number) {
   return `Book ${String(number).padStart(2, "0")}`;
