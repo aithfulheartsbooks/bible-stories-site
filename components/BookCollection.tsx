@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { Book } from "@/app/books";
 import BookCard from "@/components/BookCard";
 
@@ -175,6 +175,7 @@ export default function BookCollection({ books }: Props) {
   const [sortMode, setSortMode] = useState<SortMode>("publication");
   const [currentPage, setCurrentPage] = useState(1);
   const booksPerPage = useBooksPerPage();
+  const shouldScrollToBooks = useRef(false);
 
   const filteredBooks = useMemo(() => {
     return sortBooks(
@@ -196,6 +197,20 @@ export default function BookCollection({ books }: Props) {
     setCurrentPage((page) => Math.min(page, pageCount));
   }, [pageCount]);
 
+  useEffect(() => {
+    if (!shouldScrollToBooks.current) return;
+
+    shouldScrollToBooks.current = false;
+    const animationFrame = window.requestAnimationFrame(() => {
+      document.getElementById("books")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+
+    return () => window.cancelAnimationFrame(animationFrame);
+  }, [currentPage]);
+
   function selectTheme(theme: ThemeFilter) {
     setActiveTheme(theme);
     setCurrentPage(1);
@@ -208,11 +223,10 @@ export default function BookCollection({ books }: Props) {
   }
 
   function goToPage(page: number) {
+    if (page === currentPage) return;
+
+    shouldScrollToBooks.current = true;
     setCurrentPage(page);
-    document.getElementById("books")?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
   }
 
   return (
