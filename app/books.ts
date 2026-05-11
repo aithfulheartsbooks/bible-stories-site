@@ -6,6 +6,7 @@
 // - coverImage: path to cover photo in /public folder (e.g. "/covers/noah.png")
 // - coverScene: "noah" | "david" | "moses" | "book-05" | "book-06" | "book-11" | "book-12" | "default" (fallback SVG)
 // - slug: used for each book's SEO-friendly page URL
+// - scriptureReference: used to place the book on the Series Map automatically
 // - PLANNED_BOOK_COUNT controls how many future slots appear on the homepage.
 // =============================================================
 
@@ -18,6 +19,7 @@ export type Book = {
   theme?: string;
   blurb?: string;
   amazonUrl?: string;
+  scriptureReference?: string;
   status: "available" | "coming-soon";
   coverImage?: string;
   coverScene?:
@@ -43,7 +45,7 @@ function formatBookNumber(number: number) {
 }
 
 function createComingSoonBooks(start: number, end: number): Book[] {
-  return Array.from({ length: end - start + 1 }, (_, index) => {
+  return Array.from({ length: Math.max(0, end - start + 1) }, (_, index) => {
     const bookNumber = start + index;
 
     return {
@@ -68,6 +70,7 @@ const publishedBooks: Book[] = [
     blurb:
       "When the rains came, Noah trusted God's plan. A warm story of faith, friendship with the animals, and the promise of the rainbow.",
     amazonUrl: "https://www.amazon.com/dp/B0GYHZ8P9S",
+    scriptureReference: "Genesis 6-9",
     status: "available",
     coverImage: "/covers/noah.png",
     coverScene: "noah",
@@ -82,6 +85,7 @@ const publishedBooks: Book[] = [
     blurb:
       "A young shepherd boy discovers that even when we feel small, God is bigger than every giant we face.",
     amazonUrl: "https://www.amazon.com/dp/B0GYNRCKQD",
+    scriptureReference: "1 Samuel 17",
     status: "available",
     coverImage: "/covers/david.png",
     coverScene: "david",
@@ -96,6 +100,7 @@ const publishedBooks: Book[] = [
     blurb:
       "When the waters rise, Moses trusts God's plan. A brave story of faith, leadership, and the miracle that saved a nation.",
     amazonUrl: "https://www.amazon.com/dp/B0GZ43TKCK",
+    scriptureReference: "Exodus 14",
     status: "available",
     coverImage: "/covers/moses.png",
     coverScene: "moses",
@@ -110,6 +115,7 @@ const publishedBooks: Book[] = [
     blurb:
       "When Jonah runs from God's plan, he ends up in a big adventure. A playful story about obedience, second chances, and how God never gives up on us.",
     amazonUrl: "https://www.amazon.com/dp/B0GZDKNN5L",
+    scriptureReference: "Book of Jonah",
     status: "available",
     coverImage: "/covers/jonah.png",
     coverScene: "default",
@@ -124,6 +130,7 @@ const publishedBooks: Book[] = [
     blurb:
       "When Daniel keeps praying to God, he is sent into a den of lions. A brave story about faith, prayer, and trusting God when we feel afraid.",
     amazonUrl: "https://www.amazon.com/dp/B0GZGFJTSL",
+    scriptureReference: "Daniel 6",
     status: "available",
     coverImage: "/covers/daniel.jpg",
     coverScene: "book-05",
@@ -138,6 +145,7 @@ const publishedBooks: Book[] = [
     blurb:
       "Even when Esther felt small and afraid, she found the courage to speak up for others. A beautiful story about purpose, faith, and being chosen for such a time as this.",
     amazonUrl: "https://www.amazon.com/dp/B0GZK239VN",
+    scriptureReference: "Book of Esther",
     status: "available",
     coverImage: "/covers/esther.png",
     coverScene: "book-06",
@@ -152,6 +160,7 @@ const publishedBooks: Book[] = [
     blurb:
       "A tender retelling of the night Jesus was born, filled with wonder, warmth, and the beautiful truth that God came close because He loves us.",
     amazonUrl: "https://www.amazon.com/dp/B0GZNQZQGX",
+    scriptureReference: "Luke 2",
     status: "available",
     coverImage: "/covers/christmas.png",
     coverScene: "book-07",
@@ -166,6 +175,7 @@ const publishedBooks: Book[] = [
     blurb:
       "Joseph's story shows little hearts how God can work through hard days, surprising turns, and brave forgiveness to bring good in the end.",
     amazonUrl: "https://www.amazon.com/dp/B0GZL3YG8L",
+    scriptureReference: "Genesis 37-50",
     status: "available",
     coverImage: "/covers/joseph.png",
     coverScene: "book-08",
@@ -180,6 +190,7 @@ const publishedBooks: Book[] = [
     blurb:
       "A joyful retelling of Jesus' death and resurrection, helping little hearts understand God's greatest rescue with warmth, wonder, and hope.",
     amazonUrl: "https://www.amazon.com/dp/B0GZPY9RL1",
+    scriptureReference: "Matthew 28",
     status: "available",
     coverImage: "/covers/easter.png",
     coverScene: "default",
@@ -194,6 +205,7 @@ const publishedBooks: Book[] = [
     blurb:
       "Walk with Ruth and Naomi through hard times and harvest fields as God weaves faithful love into His greatest plan, from Bethlehem to King David and to Jesus himself.",
     amazonUrl: "https://www.amazon.com/dp/B0GZQX7D3N",
+    scriptureReference: "Book of Ruth",
     status: "available",
     coverImage: "/covers/ruth.png",
     coverScene: "default",
@@ -208,6 +220,7 @@ const publishedBooks: Book[] = [
     blurb:
       "A mother's love, a brave big sister, and a tiny basket on the Nile show little hearts how God protects His children from the very beginning.",
     amazonUrl: "https://www.amazon.com/dp/B0H15BN3RD",
+    scriptureReference: "Exodus 1-2",
     status: "available",
     coverImage: "/covers/birth-of-moses.jpg",
     coverScene: "book-11",
@@ -222,6 +235,7 @@ const publishedBooks: Book[] = [
     blurb:
       "When God told Solomon he could ask for anything, Solomon chose wisdom. A thoughtful story about listening hearts, wise choices, and asking God for help every day.",
     amazonUrl: "https://www.amazon.com/dp/B0H184LKSF",
+    scriptureReference: "1 Kings 3",
     status: "available",
     coverImage: "/covers/solomon-and-wisdom.jpg",
     coverScene: "book-12",
@@ -236,6 +250,7 @@ const publishedBooks: Book[] = [
     blurb:
       "Elijah was brave and faithful, but even brave people can feel tired and afraid. A comforting story about hearing God's gentle voice in quiet moments.",
     amazonUrl: "https://www.amazon.com/dp/B0H18JDFCW",
+    scriptureReference: "1 Kings 19",
     status: "available",
     coverImage: "/covers/elijah-still-small-voice.jpg",
     coverScene: "book-13",
@@ -250,6 +265,7 @@ const publishedBooks: Book[] = [
     blurb:
       "When the wind howled and the waves rose high, Jesus was right there in the boat. A comforting story that reminds little hearts Jesus is near in every storm.",
     amazonUrl: "https://www.amazon.com/dp/B0H18WDG5P",
+    scriptureReference: "Mark 4",
     status: "available",
     coverImage: "/covers/jesus-calms-the-storm.jpg",
     coverScene: "book-14",
@@ -264,6 +280,7 @@ const publishedBooks: Book[] = [
     blurb:
       "A joyful retelling of Genesis 1 that helps little hearts see the beauty of God's world, from light and sky to animals, people, and rest.",
     amazonUrl: "https://www.amazon.com/dp/B0H18HQKWT",
+    scriptureReference: "Genesis 1",
     status: "available",
     coverImage: "/covers/the-creation-story.jpg",
     coverScene: "book-15",

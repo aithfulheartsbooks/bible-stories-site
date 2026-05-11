@@ -1,5 +1,5 @@
 import { books } from "./books";
-import BookCard from "@/components/BookCard";
+import BookCollection from "@/components/BookCollection";
 import RainbowArc from "@/components/RainbowArc";
 
 const availableBooks = books.filter((book) => book.status === "available");
@@ -57,8 +57,30 @@ export default function Home() {
         style={{ animationDelay: "-60s" }}
       />
 
+      <nav className="sticky top-0 z-50 border-b border-white/60 bg-cream/85 px-4 py-3 shadow-sm backdrop-blur-md sm:px-6">
+        <div className="mx-auto flex max-w-[1800px] flex-wrap items-center justify-center gap-3 sm:justify-between">
+          <a
+            href="#top"
+            className="text-center font-display text-base font-bold text-chestnut sm:text-lg"
+          >
+            Bible Stories for Little Hearts
+          </a>
+          <div className="flex items-center gap-2 text-sm font-semibold text-chestnut-soft sm:gap-4">
+            <a className="rounded-full px-3 py-2 hover:text-terracotta" href="#books">
+              Books
+            </a>
+            <a
+              className="rounded-full px-3 py-2 hover:text-terracotta"
+              href="#series-map"
+            >
+              Series Map
+            </a>
+          </div>
+        </div>
+      </nav>
+
       {/* Hero */}
-      <header className="relative px-6 pb-12 pt-24 text-center sm:pt-28">
+      <header id="top" className="relative px-6 pb-12 pt-24 text-center sm:pt-28">
         <RainbowArc />
 
         <span
@@ -83,43 +105,29 @@ export default function Home() {
           className="opacity-0 animate-fade-up mx-auto max-w-xl font-display text-base italic text-chestnut-soft sm:text-lg md:text-xl"
           style={{ animationDelay: "0.4s" }}
         >
-          Warm, gentle retellings of the greatest Bible stories — beautifully
-          illustrated picture books for ages 3 to 8.
+          Warm, gentle retellings of the greatest Bible stories &mdash;
+          beautifully illustrated picture books for ages 3 to 8.
         </p>
 
         <div
           className="opacity-0 animate-fade-up mt-12 inline-block animate-bob text-2xl text-chestnut-soft"
           style={{ animationDelay: "0.55s" }}
         >
-          ↓
+          &darr;
         </div>
       </header>
 
-      {/* Books Grid */}
-      <section className="mx-auto max-w-[1800px] px-4 pb-16 pt-8 sm:px-6">
-        <div className="opacity-0 animate-fade-up mb-12 text-center">
-          <div className="mb-2 text-xl tracking-[0.5em] text-gold">✦ ✦ ✦</div>
-          <h2 className="font-display text-3xl font-semibold text-chestnut">
-            Our Storybook Collection
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
-          {books.map((book, index) => (
-            <BookCard key={book.slug} book={book} index={index} />
-          ))}
-        </div>
-      </section>
+      <BookCollection books={books} />
 
       {/* Footer */}
       <footer className="px-6 pb-16 pt-12 text-center text-chestnut-soft">
         <div className="mx-auto mb-6 h-0.5 w-16 rounded bg-gold/50" />
         <p className="mx-auto max-w-lg font-display text-base italic">
-          &ldquo;Let the little children come to me.&rdquo; — A series made with
+          &ldquo;Let the little children come to me.&rdquo; &mdash; A series made with
           love for growing hearts.
         </p>
         <p className="mt-6 text-sm opacity-70">
-          © {new Date().getFullYear()} Bible Stories for Little Hearts. All
+          &copy; {new Date().getFullYear()} Bible Stories for Little Hearts. All
           rights reserved.
         </p>
       </footer>
