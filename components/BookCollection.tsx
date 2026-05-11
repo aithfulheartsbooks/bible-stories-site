@@ -270,7 +270,7 @@ export default function BookCollection({ books }: Props) {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 min-[600px]:grid-cols-[repeat(auto-fill,minmax(220px,1fr))]">
+        <div className="grid grid-cols-1 gap-6 min-[600px]:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] 2xl:grid-cols-6">
           {visibleBooks.map((book, index) => (
             <BookCard key={book.slug} book={book} index={index} />
           ))}
