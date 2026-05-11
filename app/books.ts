@@ -350,6 +350,22 @@ const publishedBooks: Book[] = [
     coverImage: "/covers/the-good-samaritan.jpg",
     coverScene: "default",
   },
+  {
+    number: "Book 19",
+    slug: "the-lost-sheep",
+    title: "The Lost Sheep",
+    subtitle: "Jesus Comes to Find You",
+    ageRange: "Ages 3-8",
+    theme: "Love",
+    blurb:
+      "A tender story of the shepherd who searches until he finds the one lost sheep, reminding little hearts that Jesus knows them by name and never gives up.",
+    amazonUrl: "https://www.amazon.com/dp/B0H1CTPVMV",
+    scriptureReference: "Luke 15:3-7; Matthew 18:12-14",
+    biblicalOrder: 147,
+    status: "available",
+    coverImage: "/covers/the-lost-sheep.jpg",
+    coverScene: "default",
+  },
 ];
 
 export const books: Book[] = [
