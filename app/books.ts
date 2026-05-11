@@ -67,7 +67,7 @@ const publishedBooks: Book[] = [
     slug: "noah-and-gods-big-promise",
     title: "Noah and God's Big Promise",
     subtitle: "Bible Stories for Little Hearts",
-    ageRange: "Ages 3–8",
+    ageRange: "Ages 3-8",
     theme: "Trust",
     blurb:
       "When the rains came, Noah trusted God's plan. A warm story of faith, friendship with the animals, and the promise of the rainbow.",
@@ -83,7 +83,7 @@ const publishedBooks: Book[] = [
     slug: "david-and-the-giant",
     title: "David and the Giant",
     subtitle: "A Little Shepherd with a Big Faith",
-    ageRange: "Ages 3–8",
+    ageRange: "Ages 3-8",
     theme: "Courage",
     blurb:
       "A young shepherd boy discovers that even when we feel small, God is bigger than every giant we face.",
@@ -99,7 +99,7 @@ const publishedBooks: Book[] = [
     slug: "moses-and-the-red-sea",
     title: "Moses and the Red Sea",
     subtitle: "A Brave Leader and a Big Way",
-    ageRange: "Ages 3–8",
+    ageRange: "Ages 3-8",
     theme: "Faith",
     blurb:
       "When the waters rise, Moses trusts God's plan. A brave story of faith, leadership, and the miracle that saved a nation.",
@@ -115,7 +115,7 @@ const publishedBooks: Book[] = [
     slug: "jonah-and-the-big-fish",
     title: "Jonah and the Big Fish",
     subtitle: "A Big Fish and a Second Chance",
-    ageRange: "Ages 3–8",
+    ageRange: "Ages 3-8",
     theme: "Obedience",
     blurb:
       "When Jonah runs from God's plan, he ends up in a big adventure. A playful story about obedience, second chances, and how God never gives up on us.",
@@ -131,7 +131,7 @@ const publishedBooks: Book[] = [
     slug: "daniel-and-the-lions",
     title: "Daniel and the Lions",
     subtitle: "A Brave Heart and a Faithful Prayer",
-    ageRange: "Ages 3–8",
+    ageRange: "Ages 3-8",
     theme: "Prayer",
     blurb:
       "When Daniel keeps praying to God, he is sent into a den of lions. A brave story about faith, prayer, and trusting God when we feel afraid.",
@@ -147,7 +147,7 @@ const publishedBooks: Book[] = [
     slug: "esther-the-brave-queen",
     title: "Esther the Brave Queen",
     subtitle: "A Courageous Heart and a Faithful Voice",
-    ageRange: "Ages 3–8",
+    ageRange: "Ages 3-8",
     theme: "Bravery",
     blurb:
       "Even when Esther felt small and afraid, she found the courage to speak up for others. A beautiful story about purpose, faith, and being chosen for such a time as this.",
