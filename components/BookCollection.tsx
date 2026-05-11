@@ -93,6 +93,13 @@ function chapterOffset(reference: string) {
 }
 
 function getSeriesPlacement(book: Book): SeriesPlacement | null {
+  if (typeof book.biblicalOrder === "number") {
+    return {
+      order: book.biblicalOrder,
+      testament: book.biblicalOrder >= 130 ? "new" : "old",
+    };
+  }
+
   if (!book.scriptureReference) return null;
 
   const reference = normalizeReference(book.scriptureReference);
