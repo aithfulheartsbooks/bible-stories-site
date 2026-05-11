@@ -207,11 +207,19 @@ export default function BookCollection({ books }: Props) {
     setCurrentPage(1);
   }
 
+  function goToPage(page: number) {
+    setCurrentPage(page);
+    document.getElementById("books")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+
   return (
     <>
       <section
         id="books"
-        className="mx-auto max-w-[1800px] px-4 pb-16 pt-8 sm:px-6"
+        className="mx-auto max-w-[1800px] scroll-mt-24 px-4 pb-16 pt-8 sm:px-6"
       >
         <div className="opacity-0 animate-fade-up mb-12 text-center">
           <div className="mb-2 text-xl tracking-[0.5em] text-gold">
@@ -284,7 +292,7 @@ export default function BookCollection({ books }: Props) {
           >
             <button
               type="button"
-              onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
+              onClick={() => goToPage(Math.max(1, currentPage - 1))}
               disabled={currentPage === 1}
               className="rounded-full border border-terracotta/25 bg-cream/80 px-4 py-2 text-sm font-semibold text-chestnut-soft transition hover:border-terracotta hover:text-terracotta disabled:cursor-not-allowed disabled:opacity-45"
             >
@@ -299,7 +307,7 @@ export default function BookCollection({ books }: Props) {
                 <button
                   key={page}
                   type="button"
-                  onClick={() => setCurrentPage(page)}
+                  onClick={() => goToPage(page)}
                   className={`h-10 min-w-10 rounded-full border px-3 text-sm font-bold transition ${
                     isActive
                       ? "border-terracotta bg-terracotta text-cream shadow-md"
@@ -314,9 +322,7 @@ export default function BookCollection({ books }: Props) {
 
             <button
               type="button"
-              onClick={() =>
-                setCurrentPage((page) => Math.min(pageCount, page + 1))
-              }
+              onClick={() => goToPage(Math.min(pageCount, currentPage + 1))}
               disabled={currentPage === pageCount}
               className="rounded-full border border-terracotta/25 bg-cream/80 px-4 py-2 text-sm font-semibold text-chestnut-soft transition hover:border-terracotta hover:text-terracotta disabled:cursor-not-allowed disabled:opacity-45"
             >

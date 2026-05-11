@@ -366,6 +366,23 @@ const publishedBooks: Book[] = [
     coverImage: "/covers/the-lost-sheep.jpg",
     coverScene: "default",
   },
+  {
+    number: "Book 20",
+    slug: "the-feeding-of-the-5000",
+    title: "The Feeding of the 5,000",
+    subtitle: "Jesus Has More Than Enough",
+    ageRange: "Ages 3-8",
+    theme: "Faith",
+    blurb:
+      "A sunlit miracle story about a small lunch, a willing child, and Jesus making more than enough for everyone on the hillside.",
+    amazonUrl: "https://www.amazon.com/dp/B0H1D867ZJ",
+    scriptureReference:
+      "Mark 6:30-44; John 6:1-14; Matthew 14:13-21; Luke 9:10-17",
+    biblicalOrder: 142,
+    status: "available",
+    coverImage: "/covers/feeding-the-5000.jpg",
+    coverScene: "default",
+  },
 ];
 
 export const books: Book[] = [
