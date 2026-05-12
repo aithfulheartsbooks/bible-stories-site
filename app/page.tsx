@@ -126,6 +126,24 @@ export default function Home() {
           &ldquo;Let the little children come to me.&rdquo; &mdash; A series made with
           love for growing hearts.
         </p>
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <a
+            href="https://www.instagram.com/faithriversbooks/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center rounded-full border border-terracotta/25 bg-cream/80 px-5 py-2.5 text-sm font-semibold text-chestnut-soft shadow-sm transition hover:border-terracotta hover:bg-terracotta hover:text-cream"
+          >
+            Follow on Instagram
+          </a>
+          <a
+            href="https://www.pinterest.com/faithfulheartsbooks/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center rounded-full border border-terracotta/25 bg-cream/80 px-5 py-2.5 text-sm font-semibold text-chestnut-soft shadow-sm transition hover:border-terracotta hover:bg-terracotta hover:text-cream"
+          >
+            Find us on Pinterest
+          </a>
+        </div>
         <p className="mt-6 text-sm opacity-70">
           &copy; {new Date().getFullYear()} Bible Stories for Little Hearts. All
           rights reserved.
