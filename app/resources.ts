@@ -36,6 +36,13 @@ export const resources: Resource[] = [
     href: "/resources/family-story-time-cards.pdf",
   },
   {
+    title: "My Favorite Bible Story Activity Sheet",
+    type: "Activity Sheet",
+    description:
+      "A simple draw-and-respond page children can use after any story.",
+    href: "/resources/my-favorite-bible-story-activity-sheet.pdf",
+  },
+  {
     title: "The Creation Story Coloring Page",
     type: "Coloring Page",
     book: "Book 15",
