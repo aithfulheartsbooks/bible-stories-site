@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Quicksand } from "next/font/google";
 import Script from "next/script";
+import AskAngelWidget from "@/components/AskAngelWidget";
 import "./globals.css";
 
 const GA_MEASUREMENT_ID = "G-56F5YQWQE9";
@@ -89,6 +90,7 @@ export default function RootLayout({
           `}
         </Script>
         {children}
+        <AskAngelWidget />
       </body>
     </html>
   );
