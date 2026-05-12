@@ -383,6 +383,22 @@ const publishedBooks: Book[] = [
     coverImage: "/covers/feeding-the-5000.jpg",
     coverScene: "default",
   },
+  {
+    number: "Book 21",
+    slug: "adam-and-eve-in-the-garden",
+    title: "Adam and Eve in the Garden",
+    subtitle: "God's Beautiful Beginning",
+    ageRange: "Ages 3-8",
+    theme: "Wonder",
+    blurb:
+      "A gentle garden story about God's beautiful beginning, the first family, and the loving care He showed from the very start.",
+    amazonUrl: "https://www.amazon.com/dp/B0H1JDBH3V",
+    scriptureReference: "Genesis 2-3",
+    biblicalOrder: 15,
+    status: "available",
+    coverImage: "/covers/adam-and-eve-in-the-garden.jpg",
+    coverScene: "default",
+  },
 ];
 
 export const books: Book[] = [
