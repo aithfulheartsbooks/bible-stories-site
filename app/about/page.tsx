@@ -49,7 +49,7 @@ export default function AboutPage() {
           style={{ animationDelay: "0.15s" }}
         >
           <div className="space-y-5 text-base leading-relaxed text-chestnut-soft sm:text-lg">
-            <p>
+            <p className="text-lg font-semibold text-chestnut sm:text-xl">
               Faith Rivers believes the greatest gift you can give a child is a
               love for God&apos;s Word &mdash; and that love begins with a story.
             </p>
@@ -106,6 +106,10 @@ export default function AboutPage() {
           >
             &larr; Back to Books
           </a>
+
+          <p className="mt-6 text-xs font-semibold text-chestnut-soft/70">
+            faithfulheartsbooks.com
+          </p>
         </div>
       </section>
     </main>
