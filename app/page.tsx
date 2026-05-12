@@ -1,6 +1,7 @@
 import { books } from "./books";
 import BookCollection from "@/components/BookCollection";
 import RainbowArc from "@/components/RainbowArc";
+import SiteNav from "@/components/SiteNav";
 
 const availableBooks = books.filter((book) => book.status === "available");
 
@@ -57,27 +58,7 @@ export default function Home() {
         style={{ animationDelay: "-60s" }}
       />
 
-      <nav className="sticky top-0 z-50 border-b border-white/60 bg-cream/85 px-4 py-3 shadow-sm backdrop-blur-md sm:px-6">
-        <div className="mx-auto flex max-w-[1800px] flex-wrap items-center justify-center gap-3 sm:justify-between">
-          <a
-            href="#top"
-            className="text-center font-display text-base font-bold text-chestnut sm:text-lg"
-          >
-            Bible Stories for Little Hearts
-          </a>
-          <div className="flex items-center gap-2 text-sm font-semibold text-chestnut-soft sm:gap-4">
-            <a className="rounded-full px-3 py-2 hover:text-terracotta" href="#books">
-              Books
-            </a>
-            <a
-              className="rounded-full px-3 py-2 hover:text-terracotta"
-              href="#series-map"
-            >
-              Series Map
-            </a>
-          </div>
-        </div>
-      </nav>
+      <SiteNav brandHref="#top" />
 
       {/* Hero */}
       <header id="top" className="relative px-6 pb-12 pt-24 text-center sm:pt-28">
