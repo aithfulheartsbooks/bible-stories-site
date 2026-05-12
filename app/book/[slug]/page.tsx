@@ -210,6 +210,71 @@ const themes: Record<string, Theme> = {
       { emoji: "\u{1f30d}", label: "Creation" },
     ],
   },
+  "the-armor-of-god": {
+    pageClass: "bg-gradient-to-b from-gold/30 via-cream to-sky/45",
+    quoteClass: "bg-gradient-to-r from-gold/35 via-cream to-sky/35",
+    badgeClass: "bg-gold/35 text-chestnut-soft",
+    glowClass: "bg-gold/35",
+    quote: "God gives us what we need for every brave adventure.",
+    art: "hills",
+    icons: [
+      { emoji: "\u{1f6e1}\ufe0f", label: "Shield" },
+      { emoji: "\u26d1\ufe0f", label: "Helmet" },
+      { emoji: "\u2728", label: "Truth" },
+    ],
+  },
+  zacchaeus: {
+    pageClass: "bg-gradient-to-b from-sage/50 via-cream to-gold/30",
+    quoteClass: "bg-gradient-to-r from-sage/45 via-cream to-gold/35",
+    badgeClass: "bg-sage/70 text-chestnut-soft",
+    glowClass: "bg-sage/40",
+    quote: "Jesus sees every heart and calls each one by name.",
+    art: "hills",
+    icons: [
+      { emoji: "\u{1f333}", label: "Tree" },
+      { emoji: "\u2764\ufe0f", label: "Seen" },
+      { emoji: "\u2728", label: "Changed" },
+    ],
+  },
+  "the-good-samaritan": {
+    pageClass: "bg-gradient-to-b from-peach/55 via-cream to-sage/45",
+    quoteClass: "bg-gradient-to-r from-peach/55 via-cream to-sage/35",
+    badgeClass: "bg-peach/70 text-chestnut-soft",
+    glowClass: "bg-peach/45",
+    quote: "Love stops to help, even when the road is hard.",
+    art: "hills",
+    icons: [
+      { emoji: "\u2764\ufe0f", label: "Love" },
+      { emoji: "\u{1f9fa}", label: "Care" },
+      { emoji: "\u2728", label: "Kindness" },
+    ],
+  },
+  "the-lost-sheep": {
+    pageClass: "bg-gradient-to-b from-sage/55 via-cream to-gold/25",
+    quoteClass: "bg-gradient-to-r from-sage/45 via-cream to-gold/30",
+    badgeClass: "bg-sage/70 text-chestnut-soft",
+    glowClass: "bg-sage/45",
+    quote: "Jesus comes to find you and carries you home with joy.",
+    art: "hills",
+    icons: [
+      { emoji: "\u{1f411}", label: "Sheep" },
+      { emoji: "\u2728", label: "Found" },
+      { emoji: "\u2764\ufe0f", label: "Loved" },
+    ],
+  },
+  "the-feeding-of-the-5000": {
+    pageClass: "bg-gradient-to-b from-gold/35 via-cream to-sky/35",
+    quoteClass: "bg-gradient-to-r from-gold/35 via-cream to-sage/35",
+    badgeClass: "bg-gold/35 text-chestnut-soft",
+    glowClass: "bg-gold/40",
+    quote: "When we offer what we have, Jesus makes more than enough.",
+    art: "hills",
+    icons: [
+      { emoji: "\u{1f35e}", label: "Bread" },
+      { emoji: "\u{1f41f}", label: "Fish" },
+      { emoji: "\u{1f9fa}", label: "Enough" },
+    ],
+  },
   "book-05-coming-soon": {
     pageClass: "bg-gradient-to-b from-golden-hour via-cream to-sunset/30",
     quoteClass: "bg-gradient-to-r from-peach/70 via-cream to-gold/40",
@@ -511,6 +576,61 @@ function MovingStoryCharacters({ slug }: { slug: string }) {
         <SoundButton className="story-character float-path-b right-[12%] top-[24%] text-3xl sm:text-5xl" label="Created world" src="/sounds/bird.mp3" delay="0.8s">{"\u{1f30d}"}</SoundButton>
         <SoundButton className="story-character float-path-c left-[18%] bottom-[20%] text-2xl sm:text-4xl" label="Growing garden" src="/sounds/bird.mp3" delay="0.4s">{"\u{1f33f}"}</SoundButton>
         <SoundButton className="story-character float-path-d right-[18%] bottom-[22%] text-2xl sm:text-4xl" label="Wonderful creation" src="/sounds/bird.mp3" delay="1s">{"\u2728"}</SoundButton>
+      </div>
+    );
+  }
+
+  if (slug === "the-armor-of-god") {
+    return (
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Armor of God story">
+        <SoundButton className="story-character float-path-a left-[10%] top-[22%] text-3xl sm:text-5xl" label="Shield of faith" src="/sounds/bird.mp3">{"\u{1f6e1}\ufe0f"}</SoundButton>
+        <SoundButton className="story-character float-path-b right-[12%] top-[26%] text-3xl sm:text-5xl" label="Helmet of salvation" src="/sounds/bird.mp3" delay="0.8s">{"\u26d1\ufe0f"}</SoundButton>
+        <SoundButton className="story-character walk-path-a left-[14%] bottom-[18%] text-2xl sm:text-4xl" label="Shoes of peace" src="/sounds/sheep.mp3" delay="0.4s">{"\u{1f45f}"}</SoundButton>
+        <SoundButton className="story-character float-path-d right-[18%] bottom-[22%] text-2xl sm:text-4xl" label="Truth sparkle" src="/sounds/bird.mp3" delay="1s">{"\u2728"}</SoundButton>
+      </div>
+    );
+  }
+
+  if (slug === "zacchaeus") {
+    return (
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Zacchaeus story">
+        <SoundButton className="story-character float-path-a left-[10%] top-[20%] text-3xl sm:text-5xl" label="Sycamore tree" src="/sounds/bird.mp3">{"\u{1f333}"}</SoundButton>
+        <SoundButton className="story-character float-path-b right-[12%] top-[28%] text-3xl sm:text-5xl" label="Jesus sees you" src="/sounds/bird.mp3" delay="0.8s">{"\u2764\ufe0f"}</SoundButton>
+        <SoundButton className="story-character float-path-c left-[18%] bottom-[18%] text-2xl sm:text-4xl" label="Generous gift" src="/sounds/bird.mp3" delay="0.4s">{"\u{1f4b0}"}</SoundButton>
+        <SoundButton className="story-character float-path-d right-[18%] bottom-[22%] text-2xl sm:text-4xl" label="Changed heart" src="/sounds/bird.mp3" delay="1s">{"\u2728"}</SoundButton>
+      </div>
+    );
+  }
+
+  if (slug === "the-good-samaritan") {
+    return (
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Good Samaritan story">
+        <SoundButton className="story-character float-path-a left-[10%] top-[24%] text-3xl sm:text-5xl" label="Kind heart" src="/sounds/bird.mp3">{"\u2764\ufe0f"}</SoundButton>
+        <SoundButton className="story-character walk-path-a right-[10%] bottom-[18%] text-3xl sm:text-5xl" label="Road helper" src="/sounds/sheep.mp3" delay="0.8s">{"\u{1f9fa}"}</SoundButton>
+        <SoundButton className="story-character float-path-c left-[18%] bottom-[20%] text-2xl sm:text-4xl" label="Healing care" src="/sounds/bird.mp3" delay="0.4s">{"\u2728"}</SoundButton>
+        <SoundButton className="story-character float-path-d right-[18%] top-[24%] text-2xl sm:text-4xl" label="Love your neighbour" src="/sounds/bird.mp3" delay="1s">{"\u2764\ufe0f"}</SoundButton>
+      </div>
+    );
+  }
+
+  if (slug === "the-lost-sheep") {
+    return (
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Lost Sheep story">
+        <SoundButton className="story-character walk-path-a left-[8%] bottom-[16%] text-3xl sm:left-[12%] sm:text-5xl" label="Little sheep" src="/sounds/sheep.mp3">{"\u{1f411}"}</SoundButton>
+        <SoundButton className="story-character walk-path-b right-[8%] bottom-[20%] text-3xl sm:right-[12%] sm:text-5xl" label="Found sheep" src="/sounds/sheep.mp3" delay="0.8s">{"\u{1f411}"}</SoundButton>
+        <SoundButton className="story-character float-path-c left-[18%] top-[24%] text-2xl sm:text-4xl" label="Shepherd's lantern" src="/sounds/bird.mp3" delay="0.4s">{"\u2728"}</SoundButton>
+        <SoundButton className="story-character float-path-d right-[18%] top-[28%] text-2xl sm:text-4xl" label="Carried home" src="/sounds/bird.mp3" delay="1s">{"\u2764\ufe0f"}</SoundButton>
+      </div>
+    );
+  }
+
+  if (slug === "the-feeding-of-the-5000") {
+    return (
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Feeding of the 5000 story">
+        <SoundButton className="story-character float-path-a left-[10%] top-[24%] text-3xl sm:text-5xl" label="Five loaves" src="/sounds/bird.mp3">{"\u{1f35e}"}</SoundButton>
+        <SoundButton className="story-character swim-path-b right-[8%] top-[46%] text-3xl sm:right-[12%] sm:text-5xl" label="Two fish" src="/sounds/water.mp3" delay="0.8s">{"\u{1f41f}"}</SoundButton>
+        <SoundButton className="story-character float-path-c left-[18%] bottom-[18%] text-2xl sm:text-4xl" label="Basket full" src="/sounds/bird.mp3" delay="0.4s">{"\u{1f9fa}"}</SoundButton>
+        <SoundButton className="story-character float-path-d right-[18%] bottom-[22%] text-2xl sm:text-4xl" label="More than enough" src="/sounds/bird.mp3" delay="1s">{"\u2728"}</SoundButton>
       </div>
     );
   }
