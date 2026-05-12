@@ -1,28 +1,6 @@
 import SiteNav from "@/components/SiteNav";
-
-const resources = [
-  {
-    title: "Bible Stories Reading Tracker",
-    type: "Reading Tracker",
-    description:
-      "A gentle checklist to help little hearts follow along as the series grows.",
-    href: "/resources/bible-stories-reading-tracker.pdf",
-  },
-  {
-    title: "Bible Verse Cards for Little Hearts",
-    type: "Verse Cards",
-    description:
-      "Simple printable cards for bedtime, story time, memory practice, or encouragement.",
-    href: "/resources/bible-verse-cards-for-little-hearts.pdf",
-  },
-  {
-    title: "The Lost Sheep Coloring Page",
-    type: "Coloring Page",
-    description:
-      "A peaceful printable coloring page made from The Lost Sheep artwork.",
-    href: "/resources/the-lost-sheep-coloring-page.pdf",
-  },
-];
+import ResourceCollection from "@/components/ResourceCollection";
+import { resources } from "@/app/resources";
 
 export const metadata = {
   title: "Free Resources | Bible Stories for Little Hearts",
@@ -69,32 +47,7 @@ export default function FreeResourcesPage() {
           </div>
         </div>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {resources.map((resource, index) => (
-            <article
-              key={resource.title}
-              className="opacity-0 animate-fade-up flex h-full flex-col rounded-3xl border border-white/80 bg-cream/85 p-7 text-left shadow-md backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:shadow-lg"
-              style={{ animationDelay: `${0.12 + index * 0.1}s` }}
-            >
-              <span className="mb-5 w-fit rounded-full border border-gold/40 bg-white/60 px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] text-terracotta">
-                {resource.type}
-              </span>
-              <h2 className="font-display text-2xl font-bold leading-tight text-chestnut">
-                {resource.title}
-              </h2>
-              <p className="mt-4 flex-1 text-base leading-relaxed text-chestnut-soft">
-                {resource.description}
-              </p>
-              <a
-                href={resource.href}
-                download
-                className="mt-7 inline-flex items-center justify-center rounded-full bg-terracotta px-5 py-3 text-sm font-bold text-cream shadow-sm transition hover:bg-chestnut"
-              >
-                Download PDF
-              </a>
-            </article>
-          ))}
-        </div>
+        <ResourceCollection resources={resources} />
 
         <div
           className="opacity-0 animate-fade-up mx-auto mt-12 max-w-2xl rounded-3xl border border-white/80 bg-white/55 p-6 shadow-sm backdrop-blur-md"
