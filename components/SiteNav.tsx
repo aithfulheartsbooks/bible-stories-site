@@ -25,6 +25,12 @@ export default function SiteNav({ brandHref = "/#top" }: SiteNavProps) {
           <a className="rounded-full px-3 py-2 hover:text-terracotta" href="/about">
             About
           </a>
+          <a
+            className="rounded-full px-3 py-2 hover:text-terracotta"
+            href="/free-resources"
+          >
+            Free Resources
+          </a>
         </div>
       </div>
     </nav>
