@@ -1,7 +1,7 @@
 export default function RainbowArc() {
   return (
     <svg
-      className="absolute left-1/2 top-4 h-28 w-64 -translate-x-1/2 opacity-0 animate-fade-up sm:h-36 sm:w-72"
+      className="mx-auto mb-3 h-20 w-52 opacity-0 animate-fade-up sm:mb-4 sm:h-24 sm:w-60 md:h-28 md:w-64"
       viewBox="0 0 280 140"
       xmlns="http://www.w3.org/2000/svg"
     >
