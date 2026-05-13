@@ -31,6 +31,12 @@ export default function SiteNav({ brandHref = "/#top" }: SiteNavProps) {
           >
             Free Resources
           </a>
+          <a
+            className="rounded-full border border-terracotta/30 bg-terracotta/10 px-3 py-2 font-bold text-terracotta hover:bg-terracotta hover:text-cream transition"
+            href="/giveaway"
+          >
+            🎁 Giveaway
+          </a>
         </div>
       </div>
     </nav>
