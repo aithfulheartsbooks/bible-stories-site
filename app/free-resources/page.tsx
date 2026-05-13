@@ -13,7 +13,7 @@ export const metadata = {
 
 export default function FreeResourcesPage() {
   return (
-    <main className="relative min-h-screen overflow-hidden font-body text-chestnut">
+    <main className="relative min-h-screen overflow-x-hidden font-body text-chestnut">
       <div className="scenery" />
       <div className="cloud animate-drift-slow h-[60px] w-[180px] top-[8%] left-[-200px]" />
       <div
