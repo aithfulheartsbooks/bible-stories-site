@@ -60,6 +60,29 @@ body {
   z-index: -5;
 }
 
+/* Warm individual book pages so they match the main book-card style better. */
+main[class*="bg-gradient-to-b"][class*="via-cream"] {
+  background-image: linear-gradient(
+    180deg,
+    #fff3d6 0%,
+    #ffd9b8 18%,
+    #ffc8d4 35%,
+    #e6d4ee 55%,
+    #cbe2f2 75%,
+    #d8e8c8 90%,
+    #c8dcb8 100%
+  ) !important;
+}
+
+main[class*="bg-gradient-to-b"][class*="via-cream"] [class*="bg-white"] {
+  background-color: rgba(255, 251, 240, 0.86) !important;
+}
+
+main[class*="bg-gradient-to-b"][class*="via-cream"] [class*="bg-white"]:not(nav) {
+  border-color: rgba(255, 255, 255, 0.8) !important;
+  box-shadow: 0 4px 12px rgba(122, 86, 64, 0.08), 0 12px 32px rgba(122, 86, 64, 0.06) !important;
+}
+
 .story-character {
   position: absolute;
   z-index: 5;
