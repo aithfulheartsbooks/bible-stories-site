@@ -61,13 +61,11 @@ export default function Home() {
       <SiteNav brandHref="#top" />
 
       {/* Hero */}
-      <header id="top" className="relative px-6 pb-6 pt-32 text-center sm:pb-8 sm:pt-36">
-        <div className="relative top-6 sm:top-8">
-          <RainbowArc />
-        </div>
+      <header id="top" className="relative px-6 pb-4 pt-28 text-center sm:pb-6 sm:pt-32">
+        <RainbowArc />
 
         <span
-          className="opacity-0 animate-fade-up mb-6 inline-block rounded-full border border-terracotta/20 bg-white/55 px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-terracotta backdrop-blur-sm"
+          className="opacity-0 animate-fade-up mb-5 inline-block rounded-full border border-terracotta/20 bg-white/55 px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-terracotta backdrop-blur-sm"
           style={{ animationDelay: "0.1s" }}
         >
           A Children&apos;s Book Series
@@ -93,7 +91,7 @@ export default function Home() {
         </p>
 
         <div
-          className="opacity-0 animate-fade-up mt-8 inline-block animate-bob text-2xl text-chestnut-soft"
+          className="opacity-0 animate-fade-up mt-6 inline-block animate-bob text-2xl text-chestnut-soft"
           style={{ animationDelay: "0.55s" }}
         >
           &darr;
