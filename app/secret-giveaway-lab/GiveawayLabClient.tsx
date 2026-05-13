@@ -4,32 +4,6 @@ import { FormEvent, useEffect, useState } from "react";
 
 const ACCESS_CODE = "littlehearts";
 
-const giveawayWinners: Array<{
-  date: string;
-  nickname: string;
-}> = [];
-
-const whyJoinItems = [
-  "Enter the monthly paperback book giveaway",
-  "Get new book launch announcements",
-  "Hear when a book is free on Kindle",
-  "Receive free Bible story printables and family resources",
-  "Stay connected with Bible Stories for Little Hearts",
-];
-
-const monthlyChecklist = [
-  "Confirm Kit receives the subscriber.",
-  "Confirm Kit sends the welcome email.",
-  "Confirm Zapier adds the entry to Google Sheets.",
-  "Filter Google Sheet entries by the current month.",
-  "Remove duplicate emails and keep only the first entry.",
-  "Copy nicknames into Wheel of Names.",
-  "Take a screenshot before spinning and after the winner is selected.",
-  "Email the winner privately and ask for book choice plus US mailing address.",
-  "Show only the winner nickname publicly.",
-  "Update the next draw date and winners board when ready.",
-];
-
 export default function GiveawayLabClient() {
   const [code, setCode] = useState("");
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -38,24 +12,21 @@ export default function GiveawayLabClient() {
   useEffect(() => {
     if (!isUnlocked) return;
 
-    const existingScript = document.querySelector(
-      'script[data-uid="5e7711b2e5"]'
-    );
-
-    if (existingScript) return;
+    const oldScript = document.getElementById("kit-embed-script");
+    if (oldScript) oldScript.remove();
 
     const script = document.createElement("script");
-    script.src =
-      "https://bible-stories-for-little-hearts.kit.com/5e7711b2e5/index.js";
-    script.setAttribute("data-uid", "5e7711b2e5");
+    script.id = "kit-embed-script";
     script.async = true;
-    document.head.appendChild(script);
+    script.dataset.uid = "5e7711b2e5";
+    script.src = "https://bible-stories-for-little-hearts.kit.com/5e7711b2e5/index.js";
 
-    return () => {
-      if (document.head.contains(script)) {
-        document.head.removeChild(script);
-      }
-    };
+    const container = document.getElementById("kit-form-container");
+
+    if (container) {
+      container.innerHTML = "";
+      container.appendChild(script);
+    }
   }, [isUnlocked]);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -78,11 +49,6 @@ export default function GiveawayLabClient() {
           <h1 className="font-display text-3xl font-bold text-chestnut">
             Giveaway Test Page
           </h1>
-          <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-chestnut-soft">
-            This private page is for testing the giveaway form, email-list
-            wording, and monthly checklist before anything is added to the
-            public website.
-          </p>
 
           <form onSubmit={handleSubmit} className="mt-8 space-y-4">
             <input
@@ -90,261 +56,48 @@ export default function GiveawayLabClient() {
               value={code}
               onChange={(event) => setCode(event.target.value)}
               placeholder="Enter access code"
-              className="w-full rounded-2xl border border-chestnut/15 bg-white/70 px-4 py-3 text-center text-sm text-chestnut outline-none transition focus:border-terracotta focus:ring-4 focus:ring-terracotta/10"
+              className="w-full rounded-2xl border border-chestnut/15 bg-white/70 px-4 py-3 text-center text-sm text-chestnut outline-none"
             />
+
             <button
               type="submit"
-              className="w-full rounded-full bg-terracotta px-6 py-3 text-sm font-bold text-cream shadow-md transition hover:bg-chestnut"
+              className="w-full rounded-full bg-terracotta px-6 py-3 text-sm font-bold text-cream"
             >
               Open Test Page
             </button>
           </form>
 
           {error ? <p className="mt-4 text-sm text-terracotta">{error}</p> : null}
-
-          <p className="mt-6 text-xs leading-relaxed text-chestnut-soft">
-            Not linked in navigation. Not added to the homepage. Marked noindex.
-          </p>
         </div>
       </section>
     );
   }
 
   return (
-    <section className="relative z-10 mx-auto max-w-6xl px-6 pb-20 pt-24 text-center sm:pt-28">
-      <div className="opacity-0 animate-fade-up mx-auto max-w-3xl">
-        <span className="mb-6 inline-block rounded-full border border-terracotta/20 bg-white/55 px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-terracotta backdrop-blur-sm">
-          Private Email List + Giveaway Test
-        </span>
-
-        <h1 className="mb-4 font-display text-5xl font-extrabold leading-tight text-chestnut sm:text-6xl">
+    <section className="relative z-10 mx-auto max-w-4xl px-6 pb-20 pt-24 sm:pt-28">
+      <div className="text-center">
+        <h1 className="font-display text-5xl font-extrabold text-chestnut">
           Monthly Book Giveaway
         </h1>
 
-        <p className="mx-auto max-w-2xl text-lg leading-relaxed text-chestnut-soft sm:text-xl">
-          Enter for a chance to win one free paperback each month. You&apos;ll
-          also receive occasional updates from Bible Stories for Little Hearts,
-          including new book releases, free Kindle promotions, and family Bible
-          story resources.
+        <p className="mx-auto mt-4 max-w-2xl text-lg text-chestnut-soft">
+          Enter for a chance to win one free paperback each month and join the
+          Bible Stories for Little Hearts email list.
+        </p>
+      </div>
+
+      <div className="mt-10 rounded-3xl border border-white/80 bg-cream/85 p-8 shadow-md backdrop-blur-md">
+        <h2 className="font-display text-2xl font-bold text-chestnut">
+          Enter This Month
+        </h2>
+
+        <p className="mt-2 text-sm text-chestnut-soft">
+          Parent or guardian must enter. Mailing address requested only if you
+          win.
         </p>
 
-        <div className="mt-6 text-xl tracking-widest text-gold">
-          {"\u2726 \u2726 \u2726"}
-        </div>
+        <div id="kit-form-container" className="mt-6"></div>
       </div>
-
-      <div
-        className="opacity-0 animate-fade-up mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-6 text-left lg:grid-cols-3"
-        style={{ animationDelay: "0.2s" }}
-      >
-        <article className="rounded-3xl border border-white/80 bg-cream/85 p-8 shadow-md backdrop-blur-md">
-          <h2 className="font-display text-xl font-bold text-chestnut">
-            Enter This Month
-          </h2>
-          <p className="mt-1 font-display text-sm font-semibold text-terracotta">
-            📅 Next Draw: June 1, 2026
-          </p>
-          <p className="mt-4 text-sm leading-relaxed text-chestnut-soft">
-            Parent or guardian must enter. Mailing address is requested only if
-            you win.
-          </p>
-
-          <div className="giveaway-kit-form mt-6">
-            <div data-uid="5e7711b2e5" />
-          </div>
-
-          <p className="mt-4 text-center text-xs leading-relaxed text-chestnut-soft">
-            By entering, you agree to receive giveaway updates and occasional
-            emails from Bible Stories for Little Hearts. You can unsubscribe
-            anytime.
-          </p>
-
-          <p className="mt-3 text-center text-xs leading-relaxed text-chestnut-soft">
-            No purchase necessary. US residents 18+ only. One entry per person
-            per round.
-          </p>
-        </article>
-
-        <article className="rounded-3xl border border-white/80 bg-cream/85 p-8 shadow-md backdrop-blur-md">
-          <h2 className="mb-5 font-display text-xl font-bold text-chestnut">
-            💌 Why Join?
-          </h2>
-          <ul className="space-y-3 text-sm leading-relaxed text-chestnut-soft">
-            {whyJoinItems.map((item) => (
-              <li key={item} className="flex gap-3">
-                <span className="mt-0.5 text-gold">✦</span>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-6 rounded-2xl border border-terracotta/15 bg-white/45 p-4 text-center text-xs leading-relaxed text-chestnut-soft">
-            The goal is to build a warm reader list instead of relying only on
-            social media algorithms.
-          </div>
-        </article>
-
-        <article className="rounded-3xl border border-white/80 bg-cream/85 p-8 shadow-md backdrop-blur-md">
-          <h2 className="mb-6 font-display text-xl font-bold text-chestnut">
-            🏆 Recent Winners
-          </h2>
-
-          {giveawayWinners.length === 0 ? (
-            <div className="mb-6 rounded-2xl border border-amber-200/50 bg-amber-50/50 p-6 text-center font-display italic text-chestnut-soft">
-              ✨ Our first draw is June 1, 2026 — be the first winner!
-            </div>
-          ) : (
-            <div className="mb-6">
-              {giveawayWinners.slice(0, 6).map((winner) => (
-                <div
-                  key={`${winner.date}-${winner.nickname}`}
-                  className="flex items-center gap-3 border-b border-chestnut/10 py-3 last:border-0"
-                >
-                  <span className="text-lg text-gold">🌟</span>
-                  <div>
-                    <p className="font-display text-sm font-semibold text-chestnut">
-                      {winner.nickname}
-                    </p>
-                    <p className="text-xs text-chestnut-soft">{winner.date}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-
-          <div className="my-6 border-t border-chestnut/10" />
-
-          <h3 className="mb-4 font-display text-xs font-bold uppercase tracking-widest text-chestnut-soft">
-            How It Works
-          </h3>
-
-          <div className="space-y-3">
-            <div className="flex items-start gap-3">
-              <span className="text-lg">📝</span>
-              <div>
-                <p className="font-display text-xs font-semibold text-chestnut">
-                  Enter
-                </p>
-                <p className="text-xs leading-relaxed text-chestnut-soft">
-                  Submit email and display nickname before the draw date.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <span className="text-lg">🎲</span>
-              <div>
-                <p className="font-display text-xs font-semibold text-chestnut">
-                  Random Draw
-                </p>
-                <p className="text-xs leading-relaxed text-chestnut-soft">
-                  Winner selected randomly on the 1st of each month.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <span className="text-lg">📦</span>
-              <div>
-                <p className="font-display text-xs font-semibold text-chestnut">
-                  Win!
-                </p>
-                <p className="text-xs leading-relaxed text-chestnut-soft">
-                  Choose any book — shipped free to your US address.
-                </p>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div
-        className="opacity-0 animate-fade-up mx-auto mt-10 grid max-w-5xl grid-cols-1 gap-6 text-left lg:grid-cols-2"
-        style={{ animationDelay: "0.35s" }}
-      >
-        <article className="rounded-3xl border border-white/80 bg-white/55 p-6 shadow-sm backdrop-blur-md">
-          <h2 className="font-display text-2xl font-bold text-chestnut">
-            Test checklist
-          </h2>
-          <ul className="mt-4 space-y-2 text-sm leading-relaxed text-chestnut-soft">
-            <li>✓ Submit a test nickname and email.</li>
-            <li>✓ Confirm Kit receives the subscriber.</li>
-            <li>✓ Confirm Kit sends the welcome email.</li>
-            <li>✓ Confirm Zapier adds the entry to Google Sheets.</li>
-            <li>✓ Check the page on iPhone and desktop.</li>
-            <li>✓ Keep this page hidden until the giveaway is ready.</li>
-          </ul>
-        </article>
-
-        <article className="rounded-3xl border border-white/80 bg-white/55 p-6 shadow-sm backdrop-blur-md">
-          <h2 className="font-display text-2xl font-bold text-chestnut">
-            Private monthly checklist
-          </h2>
-          <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm leading-relaxed text-chestnut-soft">
-            {monthlyChecklist.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ol>
-        </article>
-      </div>
-
-      <style jsx global>{`
-        .giveaway-kit-form .formkit-form {
-          background: transparent !important;
-          padding: 0 !important;
-          margin: 0 !important;
-          width: 100% !important;
-          max-width: none !important;
-        }
-
-        .giveaway-kit-form .formkit-form * {
-          box-sizing: border-box !important;
-        }
-
-        .giveaway-kit-form .formkit-field {
-          margin-bottom: 0.75rem !important;
-        }
-
-        .giveaway-kit-form .formkit-input {
-          width: 100% !important;
-          border-radius: 12px !important;
-          border: 1.5px solid rgba(90, 61, 43, 0.15) !important;
-          background: rgba(255, 255, 255, 0.6) !important;
-          font-family: var(--font-quicksand), sans-serif !important;
-          font-size: 0.9rem !important;
-          color: #5a3d2b !important;
-          padding: 0.75rem 1rem !important;
-          outline: none !important;
-        }
-
-        .giveaway-kit-form .formkit-input:focus {
-          border-color: #d97757 !important;
-          box-shadow: 0 0 0 3px rgba(217, 119, 87, 0.1) !important;
-        }
-
-        .giveaway-kit-form .formkit-submit {
-          width: 100% !important;
-          border-radius: 9999px !important;
-          background: #d97757 !important;
-          color: #fdf6e9 !important;
-          font-family: var(--font-quicksand), sans-serif !important;
-          font-weight: 700 !important;
-          font-size: 0.95rem !important;
-          padding: 0.9rem 1.5rem !important;
-          border: none !important;
-          cursor: pointer !important;
-          transition: background 0.3s !important;
-          box-shadow: 0 4px 12px rgba(217, 119, 87, 0.3) !important;
-          margin-top: 0.5rem !important;
-        }
-
-        .giveaway-kit-form .formkit-submit:hover {
-          background: #5a3d2b !important;
-        }
-
-        .giveaway-kit-form .formkit-guarantee {
-          display: none !important;
-        }
-      `}</style>
     </section>
   );
 }
