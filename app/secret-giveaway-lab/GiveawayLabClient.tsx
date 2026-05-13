@@ -9,6 +9,27 @@ const giveawayWinners: Array<{
   nickname: string;
 }> = [];
 
+const whyJoinItems = [
+  "Enter the monthly paperback book giveaway",
+  "Get new book launch announcements",
+  "Hear when a book is free on Kindle",
+  "Receive free Bible story printables and family resources",
+  "Stay connected with Bible Stories for Little Hearts",
+];
+
+const monthlyChecklist = [
+  "Confirm Kit receives the subscriber.",
+  "Confirm Kit sends the welcome email.",
+  "Confirm Zapier adds the entry to Google Sheets.",
+  "Filter Google Sheet entries by the current month.",
+  "Remove duplicate emails and keep only the first entry.",
+  "Copy nicknames into Wheel of Names.",
+  "Take a screenshot before spinning and after the winner is selected.",
+  "Email the winner privately and ask for book choice plus US mailing address.",
+  "Show only the winner nickname publicly.",
+  "Update the next draw date and winners board when ready.",
+];
+
 export default function GiveawayLabClient() {
   const [code, setCode] = useState("");
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -58,8 +79,9 @@ export default function GiveawayLabClient() {
             Giveaway Test Page
           </h1>
           <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-chestnut-soft">
-            This page is only for private testing before the giveaway is added
-            anywhere public on the website.
+            This private page is for testing the giveaway form, email-list
+            wording, and monthly checklist before anything is added to the
+            public website.
           </p>
 
           <form onSubmit={handleSubmit} className="mt-8 space-y-4">
@@ -92,7 +114,7 @@ export default function GiveawayLabClient() {
     <section className="relative z-10 mx-auto max-w-6xl px-6 pb-20 pt-24 text-center sm:pt-28">
       <div className="opacity-0 animate-fade-up mx-auto max-w-3xl">
         <span className="mb-6 inline-block rounded-full border border-terracotta/20 bg-white/55 px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-terracotta backdrop-blur-sm">
-          Private Test Page
+          Private Email List + Giveaway Test
         </span>
 
         <h1 className="mb-4 font-display text-5xl font-extrabold leading-tight text-chestnut sm:text-6xl">
@@ -100,8 +122,10 @@ export default function GiveawayLabClient() {
         </h1>
 
         <p className="mx-auto max-w-2xl text-lg leading-relaxed text-chestnut-soft sm:text-xl">
-          Test the giveaway form, winner board, and mobile layout here before
-          anything is added to the public Free Resources page.
+          Enter for a chance to win one free paperback each month. You&apos;ll
+          also receive occasional updates from Bible Stories for Little Hearts,
+          including new book releases, free Kindle promotions, and family Bible
+          story resources.
         </p>
 
         <div className="mt-6 text-xl tracking-widest text-gold">
@@ -110,7 +134,7 @@ export default function GiveawayLabClient() {
       </div>
 
       <div
-        className="opacity-0 animate-fade-up mx-auto mt-12 grid max-w-4xl grid-cols-1 gap-6 text-left md:grid-cols-2"
+        className="opacity-0 animate-fade-up mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-6 text-left lg:grid-cols-3"
         style={{ animationDelay: "0.2s" }}
       >
         <article className="rounded-3xl border border-white/80 bg-cream/85 p-8 shadow-md backdrop-blur-md">
@@ -120,15 +144,43 @@ export default function GiveawayLabClient() {
           <p className="mt-1 font-display text-sm font-semibold text-terracotta">
             📅 Next Draw: June 1, 2026
           </p>
+          <p className="mt-4 text-sm leading-relaxed text-chestnut-soft">
+            Parent or guardian must enter. Mailing address is requested only if
+            you win.
+          </p>
 
           <div className="giveaway-kit-form mt-6">
             <div data-uid="5e7711b2e5" />
           </div>
 
           <p className="mt-4 text-center text-xs leading-relaxed text-chestnut-soft">
-            No purchase necessary. US residents 18+ only. Parent or guardian
-            must enter. One entry per person per round.
+            By entering, you agree to receive giveaway updates and occasional
+            emails from Bible Stories for Little Hearts. You can unsubscribe
+            anytime.
           </p>
+
+          <p className="mt-3 text-center text-xs leading-relaxed text-chestnut-soft">
+            No purchase necessary. US residents 18+ only. One entry per person
+            per round.
+          </p>
+        </article>
+
+        <article className="rounded-3xl border border-white/80 bg-cream/85 p-8 shadow-md backdrop-blur-md">
+          <h2 className="mb-5 font-display text-xl font-bold text-chestnut">
+            💌 Why Join?
+          </h2>
+          <ul className="space-y-3 text-sm leading-relaxed text-chestnut-soft">
+            {whyJoinItems.map((item) => (
+              <li key={item} className="flex gap-3">
+                <span className="mt-0.5 text-gold">✦</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-6 rounded-2xl border border-terracotta/15 bg-white/45 p-4 text-center text-xs leading-relaxed text-chestnut-soft">
+            The goal is to build a warm reader list instead of relying only on
+            social media algorithms.
+          </div>
         </article>
 
         <article className="rounded-3xl border border-white/80 bg-cream/85 p-8 shadow-md backdrop-blur-md">
@@ -173,7 +225,7 @@ export default function GiveawayLabClient() {
                   Enter
                 </p>
                 <p className="text-xs leading-relaxed text-chestnut-soft">
-                  Submit nickname and email before draw date.
+                  Submit email and display nickname before the draw date.
                 </p>
               </div>
             </div>
@@ -206,19 +258,33 @@ export default function GiveawayLabClient() {
       </div>
 
       <div
-        className="opacity-0 animate-fade-up mx-auto mt-10 max-w-4xl rounded-3xl border border-white/80 bg-white/55 p-6 text-left shadow-sm backdrop-blur-md"
+        className="opacity-0 animate-fade-up mx-auto mt-10 grid max-w-5xl grid-cols-1 gap-6 text-left lg:grid-cols-2"
         style={{ animationDelay: "0.35s" }}
       >
-        <h2 className="font-display text-2xl font-bold text-chestnut">
-          Test checklist
-        </h2>
-        <ul className="mt-4 space-y-2 text-sm leading-relaxed text-chestnut-soft">
-          <li>✓ Submit a test nickname and email.</li>
-          <li>✓ Confirm Kit sends the welcome email.</li>
-          <li>✓ Confirm Zapier adds the entry to Google Sheets.</li>
-          <li>✓ Check the page on iPhone and desktop.</li>
-          <li>✓ Keep this page hidden until the giveaway is ready.</li>
-        </ul>
+        <article className="rounded-3xl border border-white/80 bg-white/55 p-6 shadow-sm backdrop-blur-md">
+          <h2 className="font-display text-2xl font-bold text-chestnut">
+            Test checklist
+          </h2>
+          <ul className="mt-4 space-y-2 text-sm leading-relaxed text-chestnut-soft">
+            <li>✓ Submit a test nickname and email.</li>
+            <li>✓ Confirm Kit receives the subscriber.</li>
+            <li>✓ Confirm Kit sends the welcome email.</li>
+            <li>✓ Confirm Zapier adds the entry to Google Sheets.</li>
+            <li>✓ Check the page on iPhone and desktop.</li>
+            <li>✓ Keep this page hidden until the giveaway is ready.</li>
+          </ul>
+        </article>
+
+        <article className="rounded-3xl border border-white/80 bg-white/55 p-6 shadow-sm backdrop-blur-md">
+          <h2 className="font-display text-2xl font-bold text-chestnut">
+            Private monthly checklist
+          </h2>
+          <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm leading-relaxed text-chestnut-soft">
+            {monthlyChecklist.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ol>
+        </article>
       </div>
 
       <style jsx global>{`
