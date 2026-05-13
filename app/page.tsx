@@ -61,8 +61,10 @@ export default function Home() {
       <SiteNav brandHref="#top" />
 
       {/* Hero */}
-      <header id="top" className="relative px-6 pb-12 pt-24 text-center sm:pt-28">
-        <RainbowArc />
+      <header id="top" className="relative px-6 pb-6 pt-32 text-center sm:pb-8 sm:pt-36">
+        <div className="relative top-6 sm:top-8">
+          <RainbowArc />
+        </div>
 
         <span
           className="opacity-0 animate-fade-up mb-6 inline-block rounded-full border border-terracotta/20 bg-white/55 px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-terracotta backdrop-blur-sm"
@@ -91,7 +93,7 @@ export default function Home() {
         </p>
 
         <div
-          className="opacity-0 animate-fade-up mt-12 inline-block animate-bob text-2xl text-chestnut-soft"
+          className="opacity-0 animate-fade-up mt-8 inline-block animate-bob text-2xl text-chestnut-soft"
           style={{ animationDelay: "0.55s" }}
         >
           &darr;
