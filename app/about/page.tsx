@@ -26,7 +26,7 @@ export default function AboutPage() {
 
       <SiteNav />
 
-      <section className="relative z-10 mx-auto max-w-[700px] px-6 pb-16 pt-24 text-center">
+      <section className="relative z-10 mx-auto max-w-[700px] px-6 pb-16 pt-32 text-center">
         <div className="opacity-0 animate-fade-up">
           <Image
             src="/Faith_Rivers.png"
