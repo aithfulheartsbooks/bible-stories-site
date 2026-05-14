@@ -11,6 +11,8 @@ export default function ResourceCollection({
   resources,
 }: ResourceCollectionProps) {
   const [activeType, setActiveType] = useState("All Resources");
+  const [searchQuery, setSearchQuery] = useState("");
+
   const familyTypes = [
     "Reading Tracker",
     "Verse Cards",
@@ -18,25 +20,44 @@ export default function ResourceCollection({
     "Story Time",
     "Activity Sheet",
   ];
-  const coloringResources = resources.filter(
+
+  const normalizedQuery = searchQuery.trim().toLowerCase();
+
+  const searchedResources = useMemo(() => {
+    if (!normalizedQuery) return resources;
+
+    return resources.filter((resource) => {
+      return [
+        resource.title,
+        resource.description,
+        resource.type,
+        resource.book ?? "",
+      ]
+        .join(" ")
+        .toLowerCase()
+        .includes(normalizedQuery);
+    });
+  }, [resources, normalizedQuery]);
+
+  const coloringResources = searchedResources.filter(
     (resource) => resource.type === "Coloring Page"
   );
-  const familyResources = resources.filter((resource) =>
+  const familyResources = searchedResources.filter((resource) =>
     familyTypes.includes(resource.type)
   );
-  const posterResources = resources.filter(
+  const posterResources = searchedResources.filter(
     (resource) => resource.type === "Poster"
   );
-  const lessonPackResources = resources.filter(
+  const lessonPackResources = searchedResources.filter(
     (resource) => resource.type === "Lesson Pack"
   );
-  const devotionalResources = resources.filter(
+  const devotionalResources = searchedResources.filter(
     (resource) => resource.type === "Devotional"
   );
-  const bookmarkResources = resources.filter(
+  const bookmarkResources = searchedResources.filter(
     (resource) => resource.type === "Bookmark"
   );
-  const certificateResources = resources.filter(
+  const certificateResources = searchedResources.filter(
     (resource) => resource.type === "Certificate"
   );
 
@@ -60,8 +81,9 @@ export default function ResourceCollection({
 
   const visibleResources =
     activeType === "All Resources"
-      ? resources
-      : resources.filter((resource) => resource.type === activeType);
+      ? searchedResources
+      : searchedResources.filter((resource) => resource.type === activeType);
+
   const activeTitle =
     activeType === "Poster"
       ? "Memory Verse Posters"
@@ -77,6 +99,27 @@ export default function ResourceCollection({
 
   return (
     <>
+      <div className="mx-auto mt-10 max-w-2xl">
+        <div className="rounded-[28px] border border-white/80 bg-white/80 p-3 shadow-md backdrop-blur-md">
+          <div className="flex items-center gap-3 rounded-2xl border border-[#E8C07D]/40 bg-[#FAF3E0]/70 px-4 py-3 focus-within:border-[#C1623F] focus-within:ring-4 focus-within:ring-[#C1623F]/10">
+            <span className="text-xl">🔎</span>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search printables, Bible stories, trackers, devotionals..."
+              className="w-full bg-transparent text-[15px] text-chestnut outline-none placeholder:text-chestnut-soft/60 sm:text-base"
+            />
+          </div>
+        </div>
+
+        {searchQuery && (
+          <p className="mt-3 text-sm font-semibold text-chestnut-soft/80">
+            Showing results for “{searchQuery}”
+          </p>
+        )}
+      </div>
+
       <div className="mt-10 flex flex-wrap justify-center gap-2">
         {types.map((type) => {
           const isActive = activeType === type;
@@ -199,6 +242,8 @@ function ResourceSection({
   resources: Resource[];
   compact?: boolean;
 }) {
+  if (resources.length === 0) return null;
+
   return (
     <section className="text-left">
       <div className="mb-5 flex flex-col gap-2 text-center sm:text-left">
@@ -255,10 +300,17 @@ function ResourceCard({
         </span>
         {resource.book ? (
           <span className="w-fit rounded-full bg-white/50 px-3 py-1 text-xs font-bold text-chestnut-soft">
-            {resource.book}
+            Pairs with {resource.book}
           </span>
         ) : null}
       </div>
+
+      <div className="mb-4 overflow-hidden rounded-2xl border border-white/70 bg-gradient-to-br from-[#FAF3E0] via-white to-[#FCE7D3] p-6 shadow-inner">
+        <div className="flex aspect-[4/3] items-center justify-center rounded-xl border border-dashed border-[#C1623F]/20 bg-white/40 text-center font-display text-lg font-bold text-[#5C3D2E]/75">
+          {resource.type}
+        </div>
+      </div>
+
       <h3
         className={`font-display font-bold leading-tight text-chestnut ${
           compact ? "text-xl" : "text-2xl"
@@ -266,6 +318,7 @@ function ResourceCard({
       >
         {resource.title}
       </h3>
+
       <p
         className={`mt-3 flex-1 leading-relaxed text-chestnut-soft ${
           compact ? "text-sm" : "text-base"
@@ -273,6 +326,7 @@ function ResourceCard({
       >
         {resource.description}
       </p>
+
       <a
         href={resource.href}
         download
