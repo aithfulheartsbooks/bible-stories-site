@@ -87,7 +87,7 @@ export default function Home() {
           </h1>
 
           <p
-            className="opacity-0 animate-fade-up mx-auto max-w-2xl font-display text-lg italic leading-relaxed text-chestnut-soft sm:text-xl md:text-2xl"
+            className="opacity-0 animate-fade-up mx-auto max-w-2xl font-display text-[15px] italic leading-relaxed text-chestnut-soft sm:text-xl md:text-2xl"
             style={{ animationDelay: "0.4s" }}
           >
             Warm, gentle retellings of the greatest Bible stories &mdash;
