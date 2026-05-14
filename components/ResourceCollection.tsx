@@ -33,6 +33,12 @@ export default function ResourceCollection({
   const devotionalResources = resources.filter(
     (resource) => resource.type === "Devotional"
   );
+  const bookmarkResources = resources.filter(
+    (resource) => resource.type === "Bookmark"
+  );
+  const certificateResources = resources.filter(
+    (resource) => resource.type === "Certificate"
+  );
 
   const types = useMemo(
     () => [
@@ -46,6 +52,8 @@ export default function ResourceCollection({
       "Poster",
       "Lesson Pack",
       "Devotional",
+      "Bookmark",
+      "Certificate",
     ],
     []
   );
@@ -61,7 +69,11 @@ export default function ResourceCollection({
         ? "Sunday School Lesson Packs"
         : activeType === "Devotional"
           ? "5-Day Family Devotionals"
-          : activeType;
+          : activeType === "Bookmark"
+            ? "Bookmark Set"
+            : activeType === "Certificate"
+              ? "Certificate of Completion"
+              : activeType;
 
   return (
     <>
@@ -121,6 +133,18 @@ export default function ResourceCollection({
             compact
           />
           <ResourceSection
+            title="Bookmark Set"
+            eyebrow={`${bookmarkResources.length} collection`}
+            description="Cut-out bookmarks for little readers - one for every book in the series. Tuck one inside a gifted book or let children collect them all."
+            resources={bookmarkResources}
+          />
+          <ResourceSection
+            title="Certificate of Completion"
+            eyebrow={`${certificateResources.length} certificate`}
+            description="Celebrate every little heart that journeys through the full series."
+            resources={certificateResources}
+          />
+          <ResourceSection
             title="Coloring Pages"
             eyebrow={`${coloringResources.length} books`}
             description="Book-by-book coloring pages arranged in series order for easy browsing."
@@ -142,7 +166,11 @@ export default function ResourceCollection({
                     ? "Simple one-page guides for teachers, parents, and church leaders. Each pack pairs with a book in the series."
                     : activeType === "Devotional"
                       ? "A gentle week of story, verse, and connection - one devotional sheet per book, designed for bedtime or mealtime."
-                : "Gentle printable resources for families, classrooms, and quiet story moments."
+                      : activeType === "Bookmark"
+                        ? "Cut-out bookmarks for little readers - one for every book in the series. Tuck one inside a gifted book or let children collect them all."
+                        : activeType === "Certificate"
+                          ? "Celebrate every little heart that journeys through the full series."
+                          : "Gentle printable resources for families, classrooms, and quiet story moments."
             }
             resources={visibleResources}
             compact={[

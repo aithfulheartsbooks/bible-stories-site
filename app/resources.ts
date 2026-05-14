@@ -110,6 +110,26 @@ const devotionals: Resource[] = publishedBookResources.map((book) => ({
   href: `/resources/${book.resourceSlug}-devotional.pdf`,
 }));
 
+const bookmarkSet: Resource[] = [
+  {
+    title: "Bible Stories Bookmark Collection",
+    type: "Bookmark",
+    description:
+      "A full set of printable cut-out bookmarks - one per book in the series. Each bookmark includes the book title and key verse.",
+    href: "/resources/bible-stories-bookmark-collection.pdf",
+  },
+];
+
+const certificate: Resource[] = [
+  {
+    title: "Bible Stories for Little Hearts Certificate of Completion",
+    type: "Certificate",
+    description:
+      "A printable certificate for children who have read through the Bible Stories for Little Hearts series. Fill in their name and celebrate!",
+    href: "/resources/bible-stories-certificate-of-completion.pdf",
+  },
+];
+
 const coloringPages: Resource[] = publishedBookResources.map((book) => ({
   title: `${book.title} Coloring Page`,
   type: "Coloring Page",
@@ -123,5 +143,7 @@ export const resources: Resource[] = [
   ...memoryVersePosters,
   ...lessonPacks,
   ...devotionals,
+  ...bookmarkSet,
+  ...certificate,
   ...coloringPages,
 ];
