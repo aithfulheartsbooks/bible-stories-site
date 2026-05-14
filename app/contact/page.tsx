@@ -38,7 +38,7 @@ export default function ContactPage() {
   }
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-[#FAF3E0] font-body text-[#5C3D2E]">
+    <main className="relative min-h-screen overflow-x-hidden font-body text-[#5C3D2E]">
       <div className="scenery" />
       <SiteNav />
 
