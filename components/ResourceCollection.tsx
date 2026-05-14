@@ -11,25 +11,57 @@ export default function ResourceCollection({
   resources,
 }: ResourceCollectionProps) {
   const [activeType, setActiveType] = useState("All Resources");
+  const familyTypes = [
+    "Reading Tracker",
+    "Verse Cards",
+    "Prayer",
+    "Story Time",
+    "Activity Sheet",
+  ];
   const coloringResources = resources.filter(
     (resource) => resource.type === "Coloring Page"
   );
-  const printableResources = resources.filter(
-    (resource) => resource.type !== "Coloring Page"
+  const familyResources = resources.filter((resource) =>
+    familyTypes.includes(resource.type)
+  );
+  const posterResources = resources.filter(
+    (resource) => resource.type === "Poster"
+  );
+  const lessonPackResources = resources.filter(
+    (resource) => resource.type === "Lesson Pack"
+  );
+  const devotionalResources = resources.filter(
+    (resource) => resource.type === "Devotional"
   );
 
   const types = useMemo(
     () => [
       "All Resources",
-      ...Array.from(new Set(resources.map((resource) => resource.type))),
+      "Reading Tracker",
+      "Verse Cards",
+      "Prayer",
+      "Story Time",
+      "Activity Sheet",
+      "Coloring Page",
+      "Poster",
+      "Lesson Pack",
+      "Devotional",
     ],
-    [resources]
+    []
   );
 
   const visibleResources =
     activeType === "All Resources"
       ? resources
       : resources.filter((resource) => resource.type === activeType);
+  const activeTitle =
+    activeType === "Poster"
+      ? "Memory Verse Posters"
+      : activeType === "Lesson Pack"
+        ? "Sunday School Lesson Packs"
+        : activeType === "Devotional"
+          ? "5-Day Family Devotionals"
+          : activeType;
 
   return (
     <>
@@ -63,9 +95,30 @@ export default function ResourceCollection({
         <div className="mt-10 space-y-12">
           <ResourceSection
             title="Family Printables"
-            eyebrow={`${printableResources.length} activities`}
+            eyebrow={`${familyResources.length} activities`}
             description="Reading trackers, verse cards, prayer cards, and simple story-time sheets."
-            resources={printableResources}
+            resources={familyResources}
+          />
+          <ResourceSection
+            title="Memory Verse Posters"
+            eyebrow={`${posterResources.length} posters`}
+            description="Beautiful printable posters - one key verse from each story, sized for little walls and big hearts."
+            resources={posterResources}
+            compact
+          />
+          <ResourceSection
+            title="Sunday School Lesson Packs"
+            eyebrow={`${lessonPackResources.length} lesson packs`}
+            description="Simple one-page guides for teachers, parents, and church leaders. Each pack pairs with a book in the series."
+            resources={lessonPackResources}
+            compact
+          />
+          <ResourceSection
+            title="5-Day Family Devotionals"
+            eyebrow={`${devotionalResources.length} devotionals`}
+            description="A gentle week of story, verse, and connection - one devotional sheet per book, designed for bedtime or mealtime."
+            resources={devotionalResources}
+            compact
           />
           <ResourceSection
             title="Coloring Pages"
@@ -78,15 +131,26 @@ export default function ResourceCollection({
       ) : (
         <div className="mt-10">
           <ResourceSection
-            title={activeType}
+            title={activeTitle}
             eyebrow={`${visibleResources.length} printables`}
             description={
               activeType === "Coloring Page"
                 ? "Book-by-book coloring pages arranged in series order for easy browsing."
+                : activeType === "Poster"
+                  ? "Beautiful printable posters - one key verse from each story, sized for little walls and big hearts."
+                  : activeType === "Lesson Pack"
+                    ? "Simple one-page guides for teachers, parents, and church leaders. Each pack pairs with a book in the series."
+                    : activeType === "Devotional"
+                      ? "A gentle week of story, verse, and connection - one devotional sheet per book, designed for bedtime or mealtime."
                 : "Gentle printable resources for families, classrooms, and quiet story moments."
             }
             resources={visibleResources}
-            compact={activeType === "Coloring Page"}
+            compact={[
+              "Coloring Page",
+              "Poster",
+              "Lesson Pack",
+              "Devotional",
+            ].includes(activeType)}
           />
         </div>
       )}

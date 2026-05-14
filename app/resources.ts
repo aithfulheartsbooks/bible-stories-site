@@ -1,3 +1,5 @@
+import { books } from "@/app/books";
+
 export type Resource = {
   title: string;
   type: string;
@@ -6,7 +8,13 @@ export type Resource = {
   href: string;
 };
 
-export const resources: Resource[] = [
+type BookResourceMeta = {
+  number: string;
+  title: string;
+  resourceSlug: string;
+};
+
+const familyPrintables: Resource[] = [
   {
     title: "Bible Stories Reading Tracker",
     type: "Reading Tracker",
@@ -42,167 +50,78 @@ export const resources: Resource[] = [
       "A simple draw-and-respond page children can use after any story.",
     href: "/resources/my-favorite-bible-story-activity-sheet.pdf",
   },
-  {
-    title: "Noah and God's Big Promise Coloring Page",
-    type: "Coloring Page",
-    book: "Book 01",
-    description:
-      "A printable coloring page from Noah and God's Big Promise artwork.",
-    href: "/resources/noah-and-gods-big-promise-coloring-page.pdf",
-  },
-  {
-    title: "David and the Giant Coloring Page",
-    type: "Coloring Page",
-    book: "Book 02",
-    description: "A printable coloring page from David and the Giant artwork.",
-    href: "/resources/david-and-the-giant-coloring-page.pdf",
-  },
-  {
-    title: "Moses and the Red Sea Coloring Page",
-    type: "Coloring Page",
-    book: "Book 03",
-    description:
-      "A printable coloring page from Moses and the Red Sea artwork.",
-    href: "/resources/moses-and-the-red-sea-coloring-page.pdf",
-  },
-  {
-    title: "Jonah and the Big Fish Coloring Page",
-    type: "Coloring Page",
-    book: "Book 04",
-    description:
-      "A printable coloring page from Jonah and the Big Fish artwork.",
-    href: "/resources/jonah-and-the-big-fish-coloring-page.pdf",
-  },
-  {
-    title: "Daniel and the Lions Coloring Page",
-    type: "Coloring Page",
-    book: "Book 05",
-    description:
-      "A printable coloring page from Daniel and the Lions artwork.",
-    href: "/resources/daniel-and-the-lions-coloring-page.pdf",
-  },
-  {
-    title: "Esther the Brave Queen Coloring Page",
-    type: "Coloring Page",
-    book: "Book 06",
-    description:
-      "A printable coloring page from Esther the Brave Queen artwork.",
-    href: "/resources/esther-the-brave-queen-coloring-page.pdf",
-  },
-  {
-    title: "The Christmas Story Coloring Page",
-    type: "Coloring Page",
-    book: "Book 07",
-    description:
-      "A printable coloring page from The Christmas Story artwork.",
-    href: "/resources/the-christmas-story-coloring-page.pdf",
-  },
-  {
-    title: "Joseph's Colorful Coat Coloring Page",
-    type: "Coloring Page",
-    book: "Book 08",
-    description:
-      "A printable coloring page from Joseph's Colorful Coat artwork.",
-    href: "/resources/josephs-colorful-coat-coloring-page.pdf",
-  },
-  {
-    title: "The Easter Story Coloring Page",
-    type: "Coloring Page",
-    book: "Book 09",
-    description: "A printable coloring page from The Easter Story artwork.",
-    href: "/resources/the-easter-story-coloring-page.pdf",
-  },
-  {
-    title: "Ruth and Naomi Coloring Page",
-    type: "Coloring Page",
-    book: "Book 10",
-    description: "A printable coloring page from Ruth and Naomi artwork.",
-    href: "/resources/ruth-and-naomi-coloring-page.pdf",
-  },
-  {
-    title: "The Birth of Moses Coloring Page",
-    type: "Coloring Page",
-    book: "Book 11",
-    description:
-      "A printable coloring page from The Birth of Moses artwork.",
-    href: "/resources/the-birth-of-moses-coloring-page.pdf",
-  },
-  {
-    title: "Solomon and Wisdom Coloring Page",
-    type: "Coloring Page",
-    book: "Book 12",
-    description:
-      "A printable coloring page from Solomon and Wisdom artwork.",
-    href: "/resources/solomon-and-wisdom-coloring-page.pdf",
-  },
-  {
-    title: "Elijah and the Still Small Voice Coloring Page",
-    type: "Coloring Page",
-    book: "Book 13",
-    description:
-      "A printable coloring page from Elijah and the Still Small Voice artwork.",
-    href: "/resources/elijah-and-the-still-small-voice-coloring-page.pdf",
-  },
-  {
-    title: "Jesus Calms the Storm Coloring Page",
-    type: "Coloring Page",
-    book: "Book 14",
-    description:
-      "A printable coloring page from Jesus Calms the Storm artwork.",
-    href: "/resources/jesus-calms-the-storm-coloring-page.pdf",
-  },
-  {
-    title: "The Creation Story Coloring Page",
-    type: "Coloring Page",
-    book: "Book 15",
-    description:
-      "A printable coloring page from The Creation Story artwork.",
-    href: "/resources/the-creation-story-coloring-page.pdf",
-  },
-  {
-    title: "The Armor of God Coloring Page",
-    type: "Coloring Page",
-    book: "Book 16",
-    description:
-      "A printable coloring page from The Armor of God artwork.",
-    href: "/resources/the-armor-of-god-coloring-page.pdf",
-  },
-  {
-    title: "Zacchaeus Coloring Page",
-    type: "Coloring Page",
-    book: "Book 17",
-    description: "A printable coloring page from Zacchaeus artwork.",
-    href: "/resources/zacchaeus-coloring-page.pdf",
-  },
-  {
-    title: "The Good Samaritan Coloring Page",
-    type: "Coloring Page",
-    book: "Book 18",
-    description:
-      "A printable coloring page from The Good Samaritan artwork.",
-    href: "/resources/the-good-samaritan-coloring-page.pdf",
-  },
-  {
-    title: "The Lost Sheep Coloring Page",
-    type: "Coloring Page",
-    book: "Book 19",
-    description:
-      "A peaceful printable coloring page made from The Lost Sheep artwork.",
-    href: "/resources/the-lost-sheep-coloring-page.pdf",
-  },
-  {
-    title: "Feeding the 5000 Coloring Page",
-    type: "Coloring Page",
-    book: "Book 20",
-    description:
-      "A printable coloring page from Feeding the 5000 artwork.",
-    href: "/resources/feeding-the-5000-coloring-page.pdf",
-  },
-  {
-    title: "Adam and Eve Coloring Page",
-    type: "Coloring Page",
-    book: "Book 21",
-    description: "A printable coloring page from Adam and Eve artwork.",
-    href: "/resources/adam-and-eve-coloring-page.pdf",
-  },
+];
+
+const coloringPageSlugsByBook: Record<string, string> = {
+  "Book 01": "noah-and-gods-big-promise",
+  "Book 02": "david-and-the-giant",
+  "Book 03": "moses-and-the-red-sea",
+  "Book 04": "jonah-and-the-big-fish",
+  "Book 05": "daniel-and-the-lions",
+  "Book 06": "esther-the-brave-queen",
+  "Book 07": "the-christmas-story",
+  "Book 08": "josephs-colorful-coat",
+  "Book 09": "the-easter-story",
+  "Book 10": "ruth-and-naomi",
+  "Book 11": "the-birth-of-moses",
+  "Book 12": "solomon-and-wisdom",
+  "Book 13": "elijah-and-the-still-small-voice",
+  "Book 14": "jesus-calms-the-storm",
+  "Book 15": "the-creation-story",
+  "Book 16": "the-armor-of-god",
+  "Book 17": "zacchaeus",
+  "Book 18": "the-good-samaritan",
+  "Book 19": "the-lost-sheep",
+  "Book 20": "feeding-the-5000",
+  "Book 21": "adam-and-eve",
+};
+
+const publishedBookResources: BookResourceMeta[] = books
+  .filter((book) => book.status === "available")
+  .map((book) => ({
+    number: book.number,
+    title: book.title,
+    resourceSlug:
+      coloringPageSlugsByBook[book.number] ??
+      book.slug.replace(/^the-feeding-of-the-/, "feeding-the-"),
+  }));
+
+const memoryVersePosters: Resource[] = publishedBookResources.map((book) => ({
+  title: `${book.title} Memory Verse Poster`,
+  type: "Poster",
+  book: book.number,
+  description: `A printable 5x7 memory verse poster from ${book.title}. Display it in a bedroom, nursery, or classroom.`,
+  href: `/resources/${book.resourceSlug}-verse-poster.pdf`,
+}));
+
+const lessonPacks: Resource[] = publishedBookResources.map((book) => ({
+  title: `${book.title} Lesson Pack`,
+  type: "Lesson Pack",
+  book: book.number,
+  description: `A one-page Sunday school guide for ${book.title} - includes a key verse, story summary, discussion questions, and a simple activity.`,
+  href: `/resources/${book.resourceSlug}-lesson-pack.pdf`,
+}));
+
+const devotionals: Resource[] = publishedBookResources.map((book) => ({
+  title: `${book.title} 5-Day Devotional`,
+  type: "Devotional",
+  book: book.number,
+  description: `A printable 5-day devotional for families using ${book.title} - a short focus for each day of the week.`,
+  href: `/resources/${book.resourceSlug}-devotional.pdf`,
+}));
+
+const coloringPages: Resource[] = publishedBookResources.map((book) => ({
+  title: `${book.title} Coloring Page`,
+  type: "Coloring Page",
+  book: book.number,
+  description: `A printable coloring page from ${book.title} artwork.`,
+  href: `/resources/${book.resourceSlug}-coloring-page.pdf`,
+}));
+
+export const resources: Resource[] = [
+  ...familyPrintables,
+  ...memoryVersePosters,
+  ...lessonPacks,
+  ...devotionals,
+  ...coloringPages,
 ];
