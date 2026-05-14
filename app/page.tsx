@@ -61,40 +61,45 @@ export default function Home() {
       <SiteNav brandHref="#top" />
 
       {/* Hero */}
-      <header id="top" className="relative px-6 pb-4 pt-28 text-center sm:pb-6 sm:pt-32">
+      <header
+        id="top"
+        className="relative overflow-hidden px-6 pb-6 pt-32 text-center sm:pb-8 sm:pt-36"
+      >
         <RainbowArc />
 
-        <span
-          className="opacity-0 animate-fade-up mb-5 inline-block rounded-full border border-terracotta/20 bg-white/55 px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-terracotta backdrop-blur-sm"
-          style={{ animationDelay: "0.1s" }}
-        >
-          A Children&apos;s Book Series
-        </span>
-
-        <h1
-          className="opacity-0 animate-fade-up mb-4 font-display text-5xl font-extrabold leading-[1.05] tracking-tight text-chestnut sm:text-6xl md:text-7xl"
-          style={{ animationDelay: "0.25s" }}
-        >
-          Bible Stories
-          <br />
-          <span className="font-medium italic text-terracotta">
-            for Little Hearts
+        <div className="relative z-10">
+          <span
+            className="opacity-0 animate-fade-up mb-6 inline-block rounded-full border border-terracotta/20 bg-white/55 px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-terracotta backdrop-blur-sm"
+            style={{ animationDelay: "0.1s" }}
+          >
+            A Children&apos;s Book Series
           </span>
-        </h1>
 
-        <p
-          className="opacity-0 animate-fade-up mx-auto max-w-xl font-display text-base italic text-chestnut-soft sm:text-lg md:text-xl"
-          style={{ animationDelay: "0.4s" }}
-        >
-          Warm, gentle retellings of the greatest Bible stories &mdash;
-          beautifully illustrated picture books for ages 3 to 8.
-        </p>
+          <h1
+            className="opacity-0 animate-fade-up mb-5 font-display text-5xl font-extrabold leading-[1.02] tracking-tight text-chestnut sm:text-6xl md:text-7xl"
+            style={{ animationDelay: "0.25s" }}
+          >
+            Bible Stories
+            <br />
+            <span className="font-medium italic text-terracotta">
+              for Little Hearts
+            </span>
+          </h1>
 
-        <div
-          className="opacity-0 animate-fade-up mt-6 inline-block animate-bob text-2xl text-chestnut-soft"
-          style={{ animationDelay: "0.55s" }}
-        >
-          &darr;
+          <p
+            className="opacity-0 animate-fade-up mx-auto max-w-2xl font-display text-lg italic leading-relaxed text-chestnut-soft sm:text-xl md:text-2xl"
+            style={{ animationDelay: "0.4s" }}
+          >
+            Warm, gentle retellings of the greatest Bible stories &mdash;
+            beautifully illustrated picture books for ages 3 to 8.
+          </p>
+
+          <div
+            className="opacity-0 animate-fade-up mt-8 inline-block animate-bob text-2xl text-chestnut-soft"
+            style={{ animationDelay: "0.55s" }}
+          >
+            &darr;
+          </div>
         </div>
       </header>
 
