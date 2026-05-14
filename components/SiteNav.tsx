@@ -13,23 +13,26 @@ export default function SiteNav({ brandHref = "/#top" }: SiteNavProps) {
           Bible Stories for Little Hearts
         </a>
         <div className="flex items-center gap-1 text-[0.92rem] font-semibold text-chestnut-soft sm:gap-4 sm:text-sm">
+          <a className="rounded-full px-2.5 py-1.5 hover:text-terracotta sm:px-3 sm:py-2" href="/">
+            Home
+          </a>
           <a className="rounded-full px-2.5 py-1.5 hover:text-terracotta sm:px-3 sm:py-2" href="/#books">
             Books
-          </a>
-          <a
-            className="rounded-full px-2.5 py-1.5 hover:text-terracotta sm:px-3 sm:py-2"
-            href="/#series-map"
-          >
-            Series Map
-          </a>
-          <a className="rounded-full px-2.5 py-1.5 hover:text-terracotta sm:px-3 sm:py-2" href="/about">
-            About
           </a>
           <a
             className="rounded-full px-2.5 py-1.5 hover:text-terracotta sm:px-3 sm:py-2"
             href="/free-resources"
           >
             Free Resources
+          </a>
+          <a className="rounded-full px-2.5 py-1.5 hover:text-terracotta sm:px-3 sm:py-2" href="/about">
+            About
+          </a>
+          <a
+            className="rounded-full px-2.5 py-1.5 hover:text-terracotta sm:px-3 sm:py-2"
+            href="/contact"
+          >
+            Contact
           </a>
         </div>
       </div>
