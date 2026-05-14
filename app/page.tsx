@@ -46,7 +46,6 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(bookStructuredData) }}
       />
 
-      {/* Background scenery */}
       <div className="scenery" />
       <div className="cloud animate-drift-slow h-[60px] w-[180px] top-[8%] left-[-200px]" />
       <div
@@ -60,7 +59,6 @@ export default function Home() {
 
       <SiteNav brandHref="#top" />
 
-      {/* Hero */}
       <header
         id="top"
         className="relative overflow-hidden px-6 pb-6 pt-32 text-center sm:pb-8 sm:pt-36"
@@ -105,7 +103,57 @@ export default function Home() {
 
       <BookCollection books={books} />
 
-      {/* Footer */}
+      <section className="relative z-10 bg-[#5C3D2E] px-6 py-12 text-center">
+        <div className="mx-auto max-w-2xl">
+          <h2 className="font-display text-4xl font-bold text-[#FAF3E0] sm:text-5xl">
+            Never Miss a New Story
+          </h2>
+
+          <p className="mx-auto mt-4 max-w-[380px] text-sm leading-relaxed text-[#FAF3E0]/70 sm:text-base">
+            Join our family and be the first to hear about new books, free printables, and seasonal resources.
+          </p>
+
+          <form
+            action="https://faithfulheartsbooks.us8.list-manage.com/subscribe/post?u=6cfdb989086ba1756ad8140c3&id=77051f5892&f_id=002f13e1f0"
+            method="POST"
+            target="_blank"
+            noValidate
+            className="mx-auto mt-8 flex max-w-[480px] flex-col gap-3 sm:flex-row"
+          >
+            <div
+              style={{ position: "absolute", left: "-5000px" }}
+              aria-hidden="true"
+            >
+              <input
+                type="text"
+                name="b_6cfdb989086ba1756ad8140c3_77051f5892"
+                tabIndex={-1}
+                defaultValue=""
+              />
+            </div>
+
+            <input
+              type="email"
+              name="EMAIL"
+              placeholder="Your email address"
+              required
+              className="w-full rounded-lg border border-white/20 bg-white/15 px-4 py-3 text-[#FAF3E0] outline-none placeholder:text-[#FAF3E0]/50"
+            />
+
+            <button
+              type="submit"
+              className="w-full rounded-lg bg-[#E8C07D] px-6 py-3 font-bold text-[#5C3D2E] transition hover:brightness-105 sm:w-auto"
+            >
+              Join the Family
+            </button>
+          </form>
+
+          <p className="mt-4 text-xs text-[#FAF3E0]/40">
+            No spam. Unsubscribe anytime. 🌟
+          </p>
+        </div>
+      </section>
+
       <footer className="px-6 pb-16 pt-12 text-center text-chestnut-soft">
         <div className="mx-auto mb-6 h-0.5 w-16 rounded bg-gold/50" />
         <p className="mx-auto max-w-lg font-display text-base italic">
