@@ -37,6 +37,12 @@ export default function ContactPage() {
             method="POST"
             className="space-y-6 text-left"
           >
+            <input
+              type="hidden"
+              name="_next"
+              value="https://www.faithfulheartsbooks.com/contact/thank-you"
+            />
+
             <div>
               <label className="mb-2 block text-sm font-semibold text-[#5C3D2E]">
                 Name
