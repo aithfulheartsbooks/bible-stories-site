@@ -8,28 +8,28 @@ export default function SiteNav({ brandHref = "/#top" }: SiteNavProps) {
       <div className="mx-auto flex max-w-[1800px] flex-wrap items-center justify-center gap-2 sm:gap-3 sm:justify-between">
         <a
           href={brandHref}
-          className="text-center font-display text-[0.95rem] font-bold text-chestnut sm:text-lg"
+          className="whitespace-nowrap text-center font-display text-[0.95rem] font-bold text-chestnut sm:text-lg"
         >
           Bible Stories for Little Hearts
         </a>
         <div className="flex items-center gap-1 text-[0.92rem] font-semibold text-chestnut-soft sm:gap-4 sm:text-sm">
-          <a className="rounded-full px-2.5 py-1.5 hover:text-terracotta sm:px-3 sm:py-2" href="/">
+          <a className="whitespace-nowrap rounded-full px-2.5 py-1.5 hover:text-terracotta sm:px-3 sm:py-2" href="/">
             Home
           </a>
-          <a className="rounded-full px-2.5 py-1.5 hover:text-terracotta sm:px-3 sm:py-2" href="/#books">
+          <a className="whitespace-nowrap rounded-full px-2.5 py-1.5 hover:text-terracotta sm:px-3 sm:py-2" href="/#books">
             Books
           </a>
           <a
-            className="rounded-full px-2.5 py-1.5 hover:text-terracotta sm:px-3 sm:py-2"
+            className="whitespace-nowrap rounded-full px-2.5 py-1.5 hover:text-terracotta sm:px-3 sm:py-2"
             href="/free-resources"
           >
             Free Resources
           </a>
-          <a className="rounded-full px-2.5 py-1.5 hover:text-terracotta sm:px-3 sm:py-2" href="/about">
+          <a className="whitespace-nowrap rounded-full px-2.5 py-1.5 hover:text-terracotta sm:px-3 sm:py-2" href="/about">
             About
           </a>
           <a
-            className="rounded-full px-2.5 py-1.5 hover:text-terracotta sm:px-3 sm:py-2"
+            className="whitespace-nowrap rounded-full px-2.5 py-1.5 hover:text-terracotta sm:px-3 sm:py-2"
             href="/contact"
           >
             Contact
