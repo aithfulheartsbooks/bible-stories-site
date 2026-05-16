@@ -225,7 +225,7 @@ function ResourceCard({
   resource: Resource;
   index: number;
 }) {
-  const icon = resourceIcons[resource.type] ?? "📄";
+  const icon = resource.icon ?? resourceIcons[resource.type] ?? "📄";
 
   return (
     <article

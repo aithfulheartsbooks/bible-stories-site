@@ -3,6 +3,7 @@ import { books } from "@/app/books";
 export type Resource = {
   title: string;
   type: string;
+  icon?: string;
   book?: string;
   section: string;
   groupLabel?: string;
@@ -14,6 +15,16 @@ type BookResourceMeta = {
   number: string;
   title: string;
   resourceSlug: string;
+};
+
+type PerBookResourceType = {
+  type: string;
+  icon: string;
+  suffix: string;
+  section: string;
+  groupLabel?: string;
+  titleTemplate: string;
+  descriptionTemplate: string;
 };
 
 const familyPrintables: Resource[] = [
@@ -101,51 +112,86 @@ const publishedBookResources: BookResourceMeta[] = books
       book.slug.replace(/^the-feeding-of-the-/, "feeding-the-"),
   }));
 
-const memoryVersePosters: Resource[] = publishedBookResources.map((book) => ({
-  title: `${book.title} Memory Verse Poster`,
-  type: "Poster",
-  book: book.number,
-  section: "Memory Verse Posters",
-  description: `A printable 5x7 memory verse poster from ${book.title}. Display it in a bedroom, nursery, or classroom.`,
-  href: `/resources/${book.resourceSlug}-verse-poster.pdf`,
-}));
+const perBookResourceTypes: PerBookResourceType[] = [
+  {
+    type: "Activity Sheet",
+    icon: "✏️",
+    suffix: "activity-sheet",
+    section: "Family Printables",
+    groupLabel: "Per-Story Activity Sheets",
+    titleTemplate: "{title} Activity Sheet",
+    descriptionTemplate:
+      "A printable draw-and-respond activity sheet for {title}. Children draw their favorite scene and answer simple questions about the story.",
+  },
+  {
+    type: "Poster",
+    icon: "🖼️",
+    suffix: "verse-poster",
+    section: "Memory Verse Posters",
+    titleTemplate: "{title} Memory Verse Poster",
+    descriptionTemplate:
+      "A printable 5x7 memory verse poster from {title}. Display it in a bedroom, nursery, or classroom.",
+  },
+  {
+    type: "Lesson Pack",
+    icon: "📋",
+    suffix: "lesson-pack",
+    section: "Sunday School Lesson Packs",
+    titleTemplate: "{title} Lesson Pack",
+    descriptionTemplate:
+      "A one-page Sunday school guide for {title} - includes a key verse, story summary, discussion questions, and a simple activity.",
+  },
+  {
+    type: "Devotional",
+    icon: "❤️",
+    suffix: "devotional",
+    section: "5-Day Family Devotionals",
+    titleTemplate: "{title} 5-Day Devotional",
+    descriptionTemplate:
+      "A printable 5-day devotional for families using {title} - a short focus for each day of the week.",
+  },
+  {
+    type: "Sequencing Cards",
+    icon: "🃏",
+    suffix: "sequencing-cards",
+    section: "Story Sequencing Cards",
+    titleTemplate: "{title} Sequencing Cards",
+    descriptionTemplate:
+      "Printable cut-out scene cards from {title}. Children arrange the cards in the correct story order - a hands-on activity for ages 3 to 6.",
+  },
+  {
+    type: "Coloring Page",
+    icon: "🎨",
+    suffix: "coloring-page",
+    section: "Coloring Pages",
+    titleTemplate: "{title} Coloring Page",
+    descriptionTemplate: "A printable coloring page from {title} artwork.",
+  },
+];
 
-const lessonPacks: Resource[] = publishedBookResources.map((book) => ({
-  title: `${book.title} Lesson Pack`,
-  type: "Lesson Pack",
-  book: book.number,
-  section: "Sunday School Lesson Packs",
-  description: `A one-page Sunday school guide for ${book.title} - includes a key verse, story summary, discussion questions, and a simple activity.`,
-  href: `/resources/${book.resourceSlug}-lesson-pack.pdf`,
-}));
+function fillTemplate(template: string, book: BookResourceMeta) {
+  return template.replace(/{title}/g, book.title);
+}
 
-const devotionals: Resource[] = publishedBookResources.map((book) => ({
-  title: `${book.title} 5-Day Devotional`,
-  type: "Devotional",
-  book: book.number,
-  section: "5-Day Family Devotionals",
-  description: `A printable 5-day devotional for families using ${book.title} - a short focus for each day of the week.`,
-  href: `/resources/${book.resourceSlug}-devotional.pdf`,
-}));
+function generatePerBookResources(resourceType: PerBookResourceType) {
+  return publishedBookResources.map((book) => ({
+    title: fillTemplate(resourceType.titleTemplate, book),
+    type: resourceType.type,
+    icon: resourceType.icon,
+    book: book.number,
+    section: resourceType.section,
+    groupLabel: resourceType.groupLabel,
+    description: fillTemplate(resourceType.descriptionTemplate, book),
+    href: `/resources/${book.resourceSlug}-${resourceType.suffix}.pdf`,
+  }));
+}
 
-const perBookActivitySheets: Resource[] = publishedBookResources.map((book) => ({
-  title: `${book.title} Activity Sheet`,
-  type: "Activity Sheet",
-  book: book.number,
-  section: "Family Printables",
-  groupLabel: "Per-Story Activity Sheets",
-  description: `A printable draw-and-respond activity sheet for ${book.title}. Children draw their favorite scene and answer simple questions about the story.`,
-  href: `/resources/${book.resourceSlug}-activity-sheet.pdf`,
-}));
-
-const sequencingCards: Resource[] = publishedBookResources.map((book) => ({
-  title: `${book.title} Sequencing Cards`,
-  type: "Sequencing Cards",
-  book: book.number,
-  section: "Story Sequencing Cards",
-  description: `Printable cut-out scene cards from ${book.title}. Children arrange the cards in the correct story order - a hands-on activity for ages 3 to 6.`,
-  href: `/resources/${book.resourceSlug}-sequencing-cards.pdf`,
-}));
+const perBookResourcesByType = Object.fromEntries(
+  perBookResourceTypes.map((resourceType) => [
+    resourceType.type,
+    generatePerBookResources(resourceType),
+  ])
+) as Record<string, Resource[]>;
 
 const bookmarkSet: Resource[] = [
   {
@@ -169,23 +215,14 @@ const certificate: Resource[] = [
   },
 ];
 
-const coloringPages: Resource[] = publishedBookResources.map((book) => ({
-  title: `${book.title} Coloring Page`,
-  type: "Coloring Page",
-  book: book.number,
-  section: "Coloring Pages",
-  description: `A printable coloring page from ${book.title} artwork.`,
-  href: `/resources/${book.resourceSlug}-coloring-page.pdf`,
-}));
-
 export const resources: Resource[] = [
   ...familyPrintables,
-  ...perBookActivitySheets,
-  ...memoryVersePosters,
-  ...lessonPacks,
-  ...devotionals,
-  ...sequencingCards,
+  ...perBookResourcesByType["Activity Sheet"],
+  ...perBookResourcesByType["Poster"],
+  ...perBookResourcesByType["Lesson Pack"],
+  ...perBookResourcesByType["Devotional"],
+  ...perBookResourcesByType["Sequencing Cards"],
   ...bookmarkSet,
   ...certificate,
-  ...coloringPages,
+  ...perBookResourcesByType["Coloring Page"],
 ];
