@@ -4,6 +4,8 @@ export type Resource = {
   title: string;
   type: string;
   icon?: string;
+  previewSrc?: string;
+  previewAlt?: string;
   book?: string;
   section: string;
   groupLabel?: string;
@@ -21,6 +23,8 @@ type PerBookResourceType = {
   type: string;
   icon: string;
   suffix: string;
+  previewSuffix?: string;
+  previewFolder?: string;
   section: string;
   groupLabel?: string;
   titleTemplate: string;
@@ -163,6 +167,8 @@ const perBookResourceTypes: PerBookResourceType[] = [
     type: "Coloring Page",
     icon: "🎨",
     suffix: "coloring-page",
+    previewSuffix: "coloring-page-preview",
+    previewFolder: "/resources/previews/",
     section: "Coloring Pages",
     titleTemplate: "{title} Coloring Page",
     descriptionTemplate: "A printable coloring page from {title} artwork.",
@@ -183,6 +189,14 @@ function generatePerBookResources(resourceType: PerBookResourceType) {
     groupLabel: resourceType.groupLabel,
     description: fillTemplate(resourceType.descriptionTemplate, book),
     href: `/resources/${book.resourceSlug}-${resourceType.suffix}.pdf`,
+    previewSrc:
+      resourceType.previewFolder && resourceType.previewSuffix
+        ? `${resourceType.previewFolder}${book.resourceSlug}-${resourceType.previewSuffix}.png`
+        : undefined,
+    previewAlt:
+      resourceType.previewFolder && resourceType.previewSuffix
+        ? `Preview of ${book.title} coloring page`
+        : undefined,
   }));
 }
 

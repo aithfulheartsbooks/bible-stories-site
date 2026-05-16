@@ -247,7 +247,7 @@ function ResourceCard({
       <div className="mb-5 overflow-hidden rounded-2xl border border-[#E8D9BB] bg-[#FAF3E0] shadow-inner">
         <div className="aspect-[3/4] border-t-4 border-[#C1623F] bg-gradient-to-br from-[#FFFDF8] via-[#FAF3E0] to-[#FCE7D3] p-6">
           <div className="flex h-full flex-col items-center justify-center rounded-xl bg-white/40 p-6 text-center">
-            <div className="mb-4 text-5xl">{icon}</div>
+            <ResourceThumbnail resource={resource} icon={icon} />
 
             <div className="font-display text-xl font-bold leading-snug text-[#5C3D2E]">
               {resource.title}
@@ -277,4 +277,27 @@ function ResourceCard({
       </a>
     </article>
   );
+}
+
+function ResourceThumbnail({
+  resource,
+  icon,
+}: {
+  resource: Resource;
+  icon: string;
+}) {
+  const [imageFailed, setImageFailed] = useState(false);
+
+  if (resource.previewSrc && !imageFailed) {
+    return (
+      <img
+        src={resource.previewSrc}
+        alt={resource.previewAlt ?? resource.title}
+        onError={() => setImageFailed(true)}
+        className="mb-4 block h-full max-h-[220px] w-full rounded-lg object-cover"
+      />
+    );
+  }
+
+  return <div className="mb-4 text-5xl">{icon}</div>;
 }
