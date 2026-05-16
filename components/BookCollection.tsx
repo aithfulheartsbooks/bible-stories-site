@@ -290,6 +290,12 @@ export default function BookCollection({ books }: Props) {
             >
               A-Z
             </button>
+            <a
+              href="#series-map"
+              className="rounded-full border border-terracotta/25 bg-white/55 px-4 py-2 transition hover:border-terracotta/50 hover:text-terracotta"
+            >
+              Series Map
+            </a>
           </div>
         </div>
 
