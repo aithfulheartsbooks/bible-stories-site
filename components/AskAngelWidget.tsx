@@ -486,13 +486,27 @@ const widgetScript = String.raw`
       .replace(/\*(.*?)\*/g, '<em>$1</em>')
       .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1 &rarr;</a>')
       .replace(/(^|[\s>])(https?:\/\/[^\s<]+)/g, function (match, prefix, url) {
-        return prefix + '<a href="' + url + '" target="_blank" rel="noopener">' + url + ' &rarr;</a>';
+        return prefix + buildLink(url, url);
+      })
+      .replace(/(^|[\s>])((?:www\.)?faithfulheartsbooks\.com(?:\/[^\s<]*)?)/gi, function (match, prefix, url) {
+        const href = url.startsWith('www.') ? 'https://' + url : 'https://www.' + url;
+        return prefix + buildLink(href, url);
+      })
+      .replace(/(^|[\s>])(\/(?:about|contact|free-resources|book\/[a-z0-9-]+|newsletter\/thank-you)(?:[^\s<]*)?)/gi, function (match, prefix, path) {
+        return prefix + buildLink(SITE_URL + path, path);
       })
       .replace(/\n/g, '<br>');
 
     row.appendChild(bubble);
     messagesEl.appendChild(row);
     messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  function buildLink(href, label) {
+    const trailing = (label.match(/[.,!?)]$/) || [''])[0];
+    const cleanLabel = trailing ? label.slice(0, -1) : label;
+    const cleanHref = trailing ? href.slice(0, -1) : href;
+    return '<a href="' + cleanHref + '" target="_blank" rel="noopener">' + cleanLabel + ' &rarr;</a>' + trailing;
   }
 
   function showTyping() {
