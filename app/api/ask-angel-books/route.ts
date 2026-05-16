@@ -5,10 +5,18 @@ export function GET() {
     .filter((book) => book.status === "available")
     .map((book) => ({
       number: book.number,
+      numberValue: Number(book.number.replace(/\D/g, "")) || 0,
+      slug: book.slug,
       title: book.title,
+      subtitle: book.subtitle || "",
+      ageRange: book.ageRange || "",
       theme: book.theme || "",
       desc: book.blurb || "",
-      amazonUrl: book.amazonUrl || `https://www.faithfulheartsbooks.com/book/${book.slug}`,
+      scriptureReference: book.scriptureReference || "",
+      biblicalOrder: book.biblicalOrder ?? null,
+      bookUrl: `https://www.faithfulheartsbooks.com/book/${book.slug}`,
+      amazonUrl:
+        book.amazonUrl || `https://www.faithfulheartsbooks.com/book/${book.slug}`,
     }));
 
   return Response.json({

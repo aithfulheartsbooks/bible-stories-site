@@ -1,10 +1,636 @@
 import Script from "next/script";
 
-const widgetStyles = "#ask-angel-btn {\n    position: fixed;\n    bottom: 28px;\n    right: 28px;\n    width: 72px;\n    height: 72px;\n    border-radius: 50%;\n    background: linear-gradient(135deg, #fde8c0, #f5c878);\n    box-shadow: 0 4px 20px rgba(220,160,60,0.5), 0 0 0 6px rgba(245,200,120,0.2);\n    border: none;\n    cursor: pointer;\n    z-index: 9999;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    animation: angel-pulse 2.8s ease-in-out infinite;\n    transition: transform 0.2s ease;\n  }\n  #ask-angel-btn:hover { transform: scale(1.08); }\n  #ask-angel-btn:active { transform: scale(0.96); }\n  @keyframes angel-pulse {\n    0%,100% { box-shadow: 0 4px 20px rgba(220,160,60,0.5), 0 0 0 6px rgba(245,200,120,0.2); }\n    50% { box-shadow: 0 4px 30px rgba(220,160,60,0.75), 0 0 0 14px rgba(245,200,120,0.12); }\n  }\n  #ask-angel-btn::after {\n    content: 'Ask Angel';\n    position: absolute;\n    bottom: 78px;\n    right: 0;\n    background: #5a3e2b;\n    color: #f5ddb8;\n    font-size: 0.72rem;\n    padding: 5px 12px;\n    border-radius: 20px;\n    white-space: nowrap;\n    opacity: 0;\n    transform: translateY(6px);\n    transition: opacity 0.2s, transform 0.2s;\n    pointer-events: none;\n  }\n  #ask-angel-btn:hover::after { opacity: 1; transform: translateY(0); }\n  #ask-angel-panel {\n    position: fixed;\n    bottom: 112px;\n    right: 28px;\n    width: 340px;\n    max-height: 520px;\n    background: white;\n    border-radius: 22px;\n    box-shadow: 0 12px 48px rgba(80,40,10,0.22);\n    border: 1.5px solid #f0e0cc;\n    display: flex;\n    flex-direction: column;\n    z-index: 9998;\n    overflow: hidden;\n    opacity: 0;\n    transform: translateY(20px) scale(0.95);\n    pointer-events: none;\n    transition: opacity 0.28s ease, transform 0.28s ease;\n    font-family: inherit;\n  }\n  #ask-angel-panel.open {\n    opacity: 1;\n    transform: translateY(0) scale(1);\n    pointer-events: all;\n  }\n  .angel-header {\n    background: linear-gradient(135deg, #e8a855, #c47830);\n    padding: 14px 16px;\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    flex-shrink: 0;\n  }\n  .angel-header-avatar {\n    width: 38px; height: 38px;\n    border-radius: 50%;\n    background: rgba(255,255,255,0.22);\n    display: flex; align-items: center; justify-content: center;\n    flex-shrink: 0;\n  }\n  .angel-header-avatar svg { width: 28px; height: 28px; }\n  .angel-header-text { flex: 1; }\n  .angel-header-text h3 { color: white; font-size: 0.95rem; font-weight: 600; line-height: 1.2; margin: 0; }\n  .angel-header-text p { color: rgba(255,255,255,0.82); font-size: 0.68rem; margin: 2px 0 0; }\n  .angel-close-btn {\n    background: rgba(255,255,255,0.18);\n    border: none; color: white;\n    width: 28px; height: 28px;\n    border-radius: 50%; font-size: 18px;\n    cursor: pointer;\n    display: flex; align-items: center; justify-content: center;\n    flex-shrink: 0; transition: background 0.2s;\n  }\n  .angel-close-btn:hover { background: rgba(255,255,255,0.3); }\n  .angel-messages {\n    flex: 1; overflow-y: auto;\n    padding: 16px 14px;\n    display: flex; flex-direction: column; gap: 10px;\n    background: #fdf8f3; scroll-behavior: smooth;\n  }\n  .angel-messages::-webkit-scrollbar { width: 4px; }\n  .angel-messages::-webkit-scrollbar-thumb { background: #e0c8a8; border-radius: 4px; }\n  .angel-msg-row { display: flex; gap: 7px; align-items: flex-end; }\n  .angel-msg-row.user { flex-direction: row-reverse; }\n  .angel-msg-avatar {\n    width: 26px; height: 26px; border-radius: 50%;\n    background: linear-gradient(135deg, #fde8c0, #f5c878);\n    display: flex; align-items: center; justify-content: center;\n    flex-shrink: 0;\n  }\n  .angel-msg-avatar svg { width: 18px; height: 18px; }\n  .angel-bubble {\n    max-width: 78%; padding: 9px 13px;\n    border-radius: 16px; font-size: 0.78rem;\n    line-height: 1.55; word-wrap: break-word;\n  }\n  .angel-bubble.bot {\n    background: white; color: #4a3020;\n    border: 1px solid #f0e0cc;\n    border-bottom-left-radius: 5px;\n    box-shadow: 0 2px 8px rgba(100,60,20,0.07);\n  }\n  .angel-bubble.user {\n    background: linear-gradient(135deg, #e8a855, #c47830);\n    color: white; border-bottom-right-radius: 5px;\n  }\n  .angel-bubble a { color: #c47830; font-weight: 700; }\n  .angel-bubble.user a { color: white; }\n  .angel-typing { display: flex; gap: 7px; align-items: flex-end; }\n  .angel-typing-bubble {\n    background: white; border: 1px solid #f0e0cc;\n    border-radius: 16px; border-bottom-left-radius: 5px;\n    padding: 10px 14px; display: flex; gap: 5px; align-items: center;\n    box-shadow: 0 2px 8px rgba(100,60,20,0.07);\n  }\n  .angel-dot {\n    width: 7px; height: 7px; border-radius: 50%;\n    background: #c47830;\n    animation: angel-tdot 1.3s ease-in-out infinite; opacity: 0.6;\n  }\n  .angel-dot:nth-child(2) { animation-delay: 0.18s; }\n  .angel-dot:nth-child(3) { animation-delay: 0.36s; }\n  @keyframes angel-tdot {\n    0%,60%,100% { transform: translateY(0); opacity: 0.5; }\n    30% { transform: translateY(-5px); opacity: 1; }\n  }\n  .angel-input-area {\n    padding: 12px 14px; border-top: 1.5px solid #f0e0cc;\n    display: flex; gap: 8px; align-items: center;\n    background: white; flex-shrink: 0;\n  }\n  .angel-input {\n    flex: 1; border: 1.5px solid #e8d5c0;\n    border-radius: 22px; padding: 9px 14px;\n    font-size: 0.76rem; font-family: inherit;\n    color: #4a3020; background: #fdf8f3;\n    outline: none; transition: border-color 0.2s;\n  }\n  .angel-input:focus { border-color: #c47830; }\n  .angel-input::placeholder { color: #c0a080; }\n  .angel-input:disabled { opacity: 0.6; }\n  .angel-send {\n    width: 36px; height: 36px; border-radius: 50%;\n    background: linear-gradient(135deg, #e8a855, #c47830);\n    border: none; cursor: pointer;\n    display: flex; align-items: center; justify-content: center;\n    flex-shrink: 0; transition: transform 0.15s;\n    box-shadow: 0 2px 8px rgba(196,120,48,0.35);\n  }\n  .angel-send:hover { transform: scale(1.08); }\n  .angel-send:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }\n  .angel-send svg { width: 16px; height: 16px; fill: white; }\n  .angel-powered {\n    text-align: center; font-size: 0.58rem;\n    color: #c0a888; padding: 5px 0 8px;\n    background: white; flex-shrink: 0;\n  }\n  /* Loading state in input */\n  .angel-input-area.loading .angel-input::placeholder { content: 'Loading books…'; }\n  @media (max-width: 400px) {\n    #ask-angel-panel { width: calc(100vw - 24px); right: 12px; bottom: 100px; }\n    #ask-angel-btn { right: 16px; bottom: 16px; }\n  }";
+const widgetStyles = String.raw`
+  #ask-angel-btn {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #fde8c0, #f5c878);
+    box-shadow: 0 4px 20px rgba(220,160,60,0.5), 0 0 0 6px rgba(245,200,120,0.2);
+    border: none;
+    cursor: pointer;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: angel-pulse 2.8s ease-in-out infinite;
+    transition: transform 0.2s ease;
+  }
+  #ask-angel-btn:hover { transform: scale(1.08); }
+  #ask-angel-btn:active { transform: scale(0.96); }
+  @keyframes angel-pulse {
+    0%,100% { box-shadow: 0 4px 20px rgba(220,160,60,0.5), 0 0 0 6px rgba(245,200,120,0.2); }
+    50% { box-shadow: 0 4px 30px rgba(220,160,60,0.75), 0 0 0 14px rgba(245,200,120,0.12); }
+  }
+  #ask-angel-btn::after {
+    content: 'Ask Angel';
+    position: absolute;
+    bottom: 78px;
+    right: 0;
+    background: #5a3e2b;
+    color: #f5ddb8;
+    font-size: 0.72rem;
+    padding: 5px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none;
+  }
+  #ask-angel-btn:hover::after { opacity: 1; transform: translateY(0); }
+  #ask-angel-panel {
+    position: fixed;
+    bottom: 112px;
+    right: 28px;
+    width: 340px;
+    max-height: 520px;
+    background: white;
+    border-radius: 22px;
+    box-shadow: 0 12px 48px rgba(80,40,10,0.22);
+    border: 1.5px solid #f0e0cc;
+    display: flex;
+    flex-direction: column;
+    z-index: 9998;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    pointer-events: none;
+    transition: opacity 0.28s ease, transform 0.28s ease;
+    font-family: inherit;
+  }
+  #ask-angel-panel.open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: all;
+  }
+  .angel-header {
+    background: linear-gradient(135deg, #e8a855, #c47830);
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .angel-header-avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.22);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .angel-header-avatar svg { width: 28px; height: 28px; }
+  .angel-header-text { flex: 1; }
+  .angel-header-text h3 { color: white; font-size: 0.95rem; font-weight: 600; line-height: 1.2; margin: 0; }
+  .angel-header-text p { color: rgba(255,255,255,0.82); font-size: 0.68rem; margin: 2px 0 0; }
+  .angel-close-btn {
+    background: rgba(255,255,255,0.18);
+    border: none; color: white;
+    width: 28px; height: 28px;
+    border-radius: 50%; font-size: 18px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: background 0.2s;
+  }
+  .angel-close-btn:hover { background: rgba(255,255,255,0.3); }
+  .angel-messages {
+    flex: 1; overflow-y: auto;
+    padding: 16px 14px;
+    display: flex; flex-direction: column; gap: 10px;
+    background: #fdf8f3; scroll-behavior: smooth;
+  }
+  .angel-messages::-webkit-scrollbar { width: 4px; }
+  .angel-messages::-webkit-scrollbar-thumb { background: #e0c8a8; border-radius: 4px; }
+  .angel-msg-row { display: flex; gap: 7px; align-items: flex-end; }
+  .angel-msg-row.user { flex-direction: row-reverse; }
+  .angel-msg-avatar {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: linear-gradient(135deg, #fde8c0, #f5c878);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .angel-msg-avatar svg { width: 18px; height: 18px; }
+  .angel-bubble {
+    max-width: 78%; padding: 9px 13px;
+    border-radius: 16px; font-size: 0.78rem;
+    line-height: 1.55; word-wrap: break-word;
+  }
+  .angel-bubble.bot {
+    background: white; color: #4a3020;
+    border: 1px solid #f0e0cc;
+    border-bottom-left-radius: 5px;
+    box-shadow: 0 2px 8px rgba(100,60,20,0.07);
+  }
+  .angel-bubble.user {
+    background: linear-gradient(135deg, #e8a855, #c47830);
+    color: white; border-bottom-right-radius: 5px;
+  }
+  .angel-bubble a { color: #c47830; font-weight: 700; }
+  .angel-bubble.user a { color: white; }
+  .angel-typing { display: flex; gap: 7px; align-items: flex-end; }
+  .angel-typing-bubble {
+    background: white; border: 1px solid #f0e0cc;
+    border-radius: 16px; border-bottom-left-radius: 5px;
+    padding: 10px 14px; display: flex; gap: 5px; align-items: center;
+    box-shadow: 0 2px 8px rgba(100,60,20,0.07);
+  }
+  .angel-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #c47830;
+    animation: angel-tdot 1.3s ease-in-out infinite; opacity: 0.6;
+  }
+  .angel-dot:nth-child(2) { animation-delay: 0.18s; }
+  .angel-dot:nth-child(3) { animation-delay: 0.36s; }
+  @keyframes angel-tdot {
+    0%,60%,100% { transform: translateY(0); opacity: 0.5; }
+    30% { transform: translateY(-5px); opacity: 1; }
+  }
+  .angel-input-area {
+    padding: 12px 14px; border-top: 1.5px solid #f0e0cc;
+    display: flex; gap: 8px; align-items: center;
+    background: white; flex-shrink: 0;
+  }
+  .angel-input {
+    flex: 1; border: 1.5px solid #e8d5c0;
+    border-radius: 22px; padding: 9px 14px;
+    font-size: 0.76rem; font-family: inherit;
+    color: #4a3020; background: #fdf8f3;
+    outline: none; transition: border-color 0.2s;
+  }
+  .angel-input:focus { border-color: #c47830; }
+  .angel-input::placeholder { color: #c0a080; }
+  .angel-input:disabled { opacity: 0.6; }
+  .angel-send {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, #e8a855, #c47830);
+    border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: transform 0.15s;
+    box-shadow: 0 2px 8px rgba(196,120,48,0.35);
+  }
+  .angel-send:hover { transform: scale(1.08); }
+  .angel-send:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  .angel-send svg { width: 16px; height: 16px; fill: white; }
+  .angel-powered {
+    text-align: center; font-size: 0.58rem;
+    color: #c0a888; padding: 5px 0 8px;
+    background: white; flex-shrink: 0;
+  }
+  @media (max-width: 400px) {
+    #ask-angel-panel { width: calc(100vw - 24px); right: 12px; bottom: 100px; }
+    #ask-angel-btn { right: 16px; bottom: 16px; }
+  }
+`;
 
-const widgetMarkup = "<!-- Angel Button -->\n<button id=\"ask-angel-btn\" aria-label=\"Ask Angel — Find your book\">\n  <svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\">\n    <ellipse cx=\"50\" cy=\"18\" rx=\"18\" ry=\"5\" fill=\"none\" stroke=\"#e8a030\" stroke-width=\"3.5\" opacity=\"0.9\"/>\n    <ellipse cx=\"22\" cy=\"58\" rx=\"18\" ry=\"11\" fill=\"#fff8e8\" stroke=\"#f0c870\" stroke-width=\"2\" transform=\"rotate(-20 22 58)\"/>\n    <ellipse cx=\"20\" cy=\"62\" rx=\"12\" ry=\"7\" fill=\"#fdecc0\" stroke=\"#f0c870\" stroke-width=\"1.5\" transform=\"rotate(-30 20 62)\"/>\n    <ellipse cx=\"78\" cy=\"58\" rx=\"18\" ry=\"11\" fill=\"#fff8e8\" stroke=\"#f0c870\" stroke-width=\"2\" transform=\"rotate(20 78 58)\"/>\n    <ellipse cx=\"80\" cy=\"62\" rx=\"12\" ry=\"7\" fill=\"#fdecc0\" stroke=\"#f0c870\" stroke-width=\"1.5\" transform=\"rotate(30 80 62)\"/>\n    <ellipse cx=\"50\" cy=\"75\" rx=\"18\" ry=\"14\" fill=\"#fff0d0\" stroke=\"#f0c880\" stroke-width=\"1.5\"/>\n    <circle cx=\"50\" cy=\"46\" r=\"22\" fill=\"#fde8c8\" stroke=\"#f0c090\" stroke-width=\"1.5\"/>\n    <circle cx=\"43\" cy=\"44\" r=\"3.5\" fill=\"#5a3010\"/>\n    <circle cx=\"57\" cy=\"44\" r=\"3.5\" fill=\"#5a3010\"/>\n    <circle cx=\"44.2\" cy=\"42.8\" r=\"1.2\" fill=\"white\"/>\n    <circle cx=\"58.2\" cy=\"42.8\" r=\"1.2\" fill=\"white\"/>\n    <path d=\"M43 52 Q50 58 57 52\" stroke=\"#c07040\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\"/>\n    <circle cx=\"39\" cy=\"50\" r=\"5\" fill=\"#f0a080\" opacity=\"0.35\"/>\n    <circle cx=\"61\" cy=\"50\" r=\"5\" fill=\"#f0a080\" opacity=\"0.35\"/>\n    <circle cx=\"50\" cy=\"49\" r=\"2\" fill=\"#e09070\" opacity=\"0.5\"/>\n    <path d=\"M30 40 Q32 26 50 24 Q68 26 70 40\" fill=\"#f0c878\" stroke=\"#e0a840\" stroke-width=\"1\"/>\n  </svg>\n</button>\n\n<!-- Angel Chat Panel -->\n<div id=\"ask-angel-panel\" role=\"dialog\" aria-label=\"Ask Angel chat\">\n  <div class=\"angel-header\">\n    <div class=\"angel-header-avatar\">\n      <svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\">\n        <ellipse cx=\"50\" cy=\"18\" rx=\"18\" ry=\"5\" fill=\"none\" stroke=\"rgba(255,220,140,0.9)\" stroke-width=\"3.5\"/>\n        <ellipse cx=\"22\" cy=\"58\" rx=\"15\" ry=\"9\" fill=\"rgba(255,255,255,0.3)\" stroke=\"rgba(255,220,140,0.7)\" stroke-width=\"2\" transform=\"rotate(-20 22 58)\"/>\n        <ellipse cx=\"78\" cy=\"58\" rx=\"15\" ry=\"9\" fill=\"rgba(255,255,255,0.3)\" stroke=\"rgba(255,220,140,0.7)\" stroke-width=\"2\" transform=\"rotate(20 78 58)\"/>\n        <circle cx=\"50\" cy=\"46\" r=\"22\" fill=\"rgba(255,240,200,0.5)\" stroke=\"rgba(255,220,140,0.8)\" stroke-width=\"1.5\"/>\n        <circle cx=\"43\" cy=\"44\" r=\"3\" fill=\"rgba(255,255,255,0.9)\"/>\n        <circle cx=\"57\" cy=\"44\" r=\"3\" fill=\"rgba(255,255,255,0.9)\"/>\n        <path d=\"M43 52 Q50 58 57 52\" stroke=\"rgba(255,255,255,0.9)\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\"/>\n      </svg>\n    </div>\n    <div class=\"angel-header-text\">\n      <h3>Ask Angel ✨</h3>\n      <p>Find the perfect Bible story book</p>\n    </div>\n    <button class=\"angel-close-btn\" id=\"angel-close-btn\" aria-label=\"Close\">×</button>\n  </div>\n  <div class=\"angel-messages\" id=\"angel-messages\">\n    <div class=\"angel-msg-row\">\n      <div class=\"angel-msg-avatar\">\n        <svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\">\n          <circle cx=\"50\" cy=\"46\" r=\"20\" fill=\"#fde8c8\"/>\n          <circle cx=\"43\" cy=\"44\" r=\"3\" fill=\"#5a3010\"/>\n          <circle cx=\"57\" cy=\"44\" r=\"3\" fill=\"#5a3010\"/>\n          <path d=\"M43 52 Q50 57 57 52\" stroke=\"#c07040\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\"/>\n          <circle cx=\"39\" cy=\"50\" r=\"4\" fill=\"#f0a080\" opacity=\"0.3\"/>\n          <circle cx=\"61\" cy=\"50\" r=\"4\" fill=\"#f0a080\" opacity=\"0.3\"/>\n        </svg>\n      </div>\n      <div class=\"angel-bubble bot\">Hello! 👋 I'm Angel, your guide to <em>Bible Stories for Little Hearts</em>.<br><br>Tell me about your child — their age, what they love, or a lesson you'd like to explore — and I'll find the perfect book! 🌟</div>\n    </div>\n  </div>\n  <div class=\"angel-input-area\" id=\"angel-input-area\">\n    <input class=\"angel-input\" id=\"angel-input\" type=\"text\"\n      placeholder=\"e.g. my 5 year old loves animals…\"\n      autocomplete=\"off\" maxlength=\"300\"/>\n    <button class=\"angel-send\" id=\"angel-send-btn\" aria-label=\"Send\">\n      <svg viewBox=\"0 0 24 24\"><path d=\"M2.01 21L23 12 2.01 3 2 10l15 2-15 2z\"/></svg>\n    </button>\n  </div>\n  <div class=\"angel-powered\">&#10022; Bible Stories for Little Hearts &#10022;</div>\n</div>";
+const angelIcon = String.raw`
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="50" cy="18" rx="18" ry="5" fill="none" stroke="#e8a030" stroke-width="3.5" opacity="0.9"/>
+    <ellipse cx="22" cy="58" rx="18" ry="11" fill="#fff8e8" stroke="#f0c870" stroke-width="2" transform="rotate(-20 22 58)"/>
+    <ellipse cx="20" cy="62" rx="12" ry="7" fill="#fdecc0" stroke="#f0c870" stroke-width="1.5" transform="rotate(-30 20 62)"/>
+    <ellipse cx="78" cy="58" rx="18" ry="11" fill="#fff8e8" stroke="#f0c870" stroke-width="2" transform="rotate(20 78 58)"/>
+    <ellipse cx="80" cy="62" rx="12" ry="7" fill="#fdecc0" stroke="#f0c870" stroke-width="1.5" transform="rotate(30 80 62)"/>
+    <ellipse cx="50" cy="75" rx="18" ry="14" fill="#fff0d0" stroke="#f0c880" stroke-width="1.5"/>
+    <circle cx="50" cy="46" r="22" fill="#fde8c8" stroke="#f0c090" stroke-width="1.5"/>
+    <circle cx="43" cy="44" r="3.5" fill="#5a3010"/>
+    <circle cx="57" cy="44" r="3.5" fill="#5a3010"/>
+    <circle cx="44.2" cy="42.8" r="1.2" fill="white"/>
+    <circle cx="58.2" cy="42.8" r="1.2" fill="white"/>
+    <path d="M43 52 Q50 58 57 52" stroke="#c07040" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <circle cx="39" cy="50" r="5" fill="#f0a080" opacity="0.35"/>
+    <circle cx="61" cy="50" r="5" fill="#f0a080" opacity="0.35"/>
+    <circle cx="50" cy="49" r="2" fill="#e09070" opacity="0.5"/>
+    <path d="M30 40 Q32 26 50 24 Q68 26 70 40" fill="#f0c878" stroke="#e0a840" stroke-width="1"/>
+  </svg>
+`;
 
-const widgetScript = "(function () {\n  // ── IMPORTANT: Replace with your Cloudflare Worker URL after deploying ──\n  const WORKER_URL = 'https://ask-angel.ruhezhao.workers.dev';\n\n  // ── Cache books for the session so we only scrape once ──\n  let booksCache = null;\n  let isOpen = false;\n  let isLoading = false;\n  let history = [];\n  let typingEl = null;\n\n  const panelEl    = document.getElementById('ask-angel-panel');\n  const messagesEl = document.getElementById('angel-messages');\n  const inputEl    = document.getElementById('angel-input');\n  const sendEl     = document.getElementById('angel-send-btn');\n  const closeEl    = document.getElementById('angel-close-btn');\n  const btnEl      = document.getElementById('ask-angel-btn');\n\n  // ── Open / close ──\n  btnEl.addEventListener('click', async () => {\n    isOpen = !isOpen;\n    panelEl.classList.toggle('open', isOpen);\n    if (isOpen) {\n      inputEl.focus();\n      // Fetch books the first time the panel opens\n      if (!booksCache) await loadBooks();\n    }\n  });\n  closeEl.addEventListener('click', () => {\n    isOpen = false;\n    panelEl.classList.remove('open');\n  });\n  inputEl.addEventListener('keydown', e => {\n    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }\n  });\n  sendEl.addEventListener('click', sendMessage);\n\n  // ════════════════════════════════════════════════\n  //  BOOK FETCHING\n  //  Reads books directly from the page DOM.\n  //  Works because Ask Angel is embedded IN the page,\n  //  so it can read all the book cards already on screen.\n  //  No extra network request needed!\n  //  When you add Book 21–36, they appear on the page\n  //  automatically and Angel picks them up instantly.\n  // ════════════════════════════════════════════════\n  async function loadBooks() {\n    try {\n      inputEl.placeholder = 'Loading all books...';\n\n      const res = await fetch(window.location.origin + '/api/ask-angel-books', {\n        credentials: 'same-origin',\n      });\n      if (res.ok) {\n        const data = await res.json();\n        booksCache = dedupeBooks(data.books || []);\n        if (booksCache.length > 0) return;\n      }\n    } catch (error) {\n      console.warn('Ask Angel could not load the book data endpoint.', error);\n    } finally {\n      inputEl.placeholder = 'e.g. my 5 year old loves animals...';\n    }\n\n    try {\n      const sitemapBooks = await scrapeBookPagesFromSitemap();\n      const domBooks = await scrapeFromDOM();\n      booksCache = dedupeBooks([...sitemapBooks, ...domBooks]);\n      if (booksCache.length > 0) return;\n    } catch (error) {\n      console.warn('Ask Angel could not load books from fallback scraping.', error);\n    }\n\n    booksCache = getBuiltInBooks();\n  }\n\n  // ?? Read books from the current page plus every discoverable paginated page ??\n  async function scrapeFromDOM() {\n    const currentBooks = scrapeBooksFromRoot(document, window.location.href);\n    const paginationUrls = findPaginationUrls(document, window.location.href);\n    const paginatedBooks = await scrapePages(paginationUrls);\n\n    return dedupeBooks([...currentBooks, ...paginatedBooks]);\n  }\n\n  function scrapeBooksFromRoot(root, pageUrl) {\n    const books = [];\n    const seenCards = new Set();\n    const links = root.querySelectorAll('a[href*=\"amazon.com\"], a[href*=\"amzn.to\"], a[href*=\"/book/\"]');\n\n    links.forEach(link => {\n      const card = findBookCard(link);\n      if (!card || seenCards.has(card)) return;\n      seenCards.add(card);\n\n      const book = scrapeBookFromCard(card, link, pageUrl);\n      if (book) books.push(book);\n    });\n\n    return books;\n  }\n\n  function findBookCard(link) {\n    return link.closest('article') ||\n      link.closest('[class*=\"book\" i]') ||\n      link.closest('li') ||\n      link.closest('section') ||\n      link.closest('div');\n  }\n\n  function scrapeBookFromCard(card, fallbackLink, pageUrl) {\n    const titleEl = card.querySelector('h1, h2, h3, h4, strong, [class*=\"title\" i]');\n    const title = cleanText(titleEl ? titleEl.textContent : fallbackLink.textContent);\n    if (!title || title.length < 3 || /^buy|learn|find|page|next|previous$/i.test(title)) return null;\n\n    const amazonLink = card.querySelector('a[href*=\"amazon.com\"], a[href*=\"amzn.to\"]');\n    const bookPageLink = card.querySelector('a[href*=\"/book/\"]');\n    const amazonUrl = amazonLink\n      ? absoluteUrl(amazonLink.getAttribute('href'), pageUrl)\n      : bookPageLink\n        ? absoluteUrl(bookPageLink.getAttribute('href'), pageUrl)\n        : absoluteUrl(fallbackLink.getAttribute('href'), pageUrl);\n\n    const descEl = Array.from(card.querySelectorAll('p')).find(p => cleanText(p.textContent).length > 20);\n    const desc = descEl ? cleanText(descEl.textContent) : '';\n    const theme = findTheme(card);\n\n    return { title, desc, theme, amazonUrl };\n  }\n\n  function findTheme(card) {\n    const candidates = Array.from(card.querySelectorAll('[class*=\"theme\" i], [class*=\"tag\" i], [class*=\"badge\" i], span'));\n    const ignored = /^(book\\s*\\d+|ages?\\s*\\d|buy|learn|read|amazon|available|coming soon)$/i;\n    const themeEl = candidates.find(el => {\n      const text = cleanText(el.textContent);\n      return text.length > 1 && text.length < 32 && !ignored.test(text);\n    });\n\n    return themeEl ? cleanText(themeEl.textContent) : '';\n  }\n\n  function findPaginationUrls(root, baseUrl) {\n    const urls = new Set();\n    const links = root.querySelectorAll('nav[aria-label*=\"page\" i] a[href], a[href][aria-label*=\"page\" i], a[href*=\"page\"], a[href*=\"?p=\"], a[href*=\"?page=\"]');\n\n    links.forEach(link => {\n      const label = cleanText(link.textContent || link.getAttribute('aria-label') || '');\n      const href = link.getAttribute('href');\n      const url = absoluteUrl(href, baseUrl);\n      if (!url || !isSameSite(url)) return;\n      if (/^(previous|next)$/i.test(label)) return;\n      if (/\\bpage\\b/i.test(label) || /^\\d+$/.test(label) || /[?&](page|p)=\\d+/i.test(url)) {\n        urls.add(url);\n      }\n    });\n\n    return Array.from(urls);\n  }\n\n  async function scrapePages(urls) {\n    const books = [];\n\n    for (const url of urls) {\n      try {\n        const res = await fetch(url, { credentials: 'same-origin' });\n        if (!res.ok) continue;\n        const html = await res.text();\n        books.push(...parseHTMLForBooks(html, url));\n      } catch (error) {\n        console.warn('Ask Angel could not scrape page:', url, error);\n      }\n    }\n\n    return books;\n  }\n\n  async function scrapeHomePageHTML() {\n    try {\n      const res = await fetch(window.location.origin + '/', { credentials: 'same-origin' });\n      if (!res.ok) return [];\n      return parseHTMLForBooks(await res.text(), window.location.origin + '/');\n    } catch {\n      return [];\n    }\n  }\n\n  async function scrapeBookPagesFromSitemap() {\n    try {\n      const res = await fetch(window.location.origin + '/sitemap.xml', { credentials: 'same-origin' });\n      if (!res.ok) return [];\n\n      const xml = await res.text();\n      const doc = new DOMParser().parseFromString(xml, 'application/xml');\n      const urls = Array.from(doc.querySelectorAll('loc'))\n        .map(loc => cleanText(loc.textContent))\n        .filter(url => /\\/book\\//.test(url) && isSameSite(url))\n        .slice(0, 80);\n\n      return scrapePages(urls);\n    } catch (error) {\n      console.warn('Ask Angel could not read sitemap.', error);\n      return [];\n    }\n  }\n\n  function dedupeBooks(books) {\n    const byTitle = new Map();\n\n    books.forEach(book => {\n      if (!book || !book.title) return;\n\n      const key = normalizeTitle(book.title);\n      if (!key) return;\n\n      const existing = byTitle.get(key);\n      if (!existing) {\n        byTitle.set(key, book);\n        return;\n      }\n\n      const existingHasAmazon = isAmazonUrl(existing.amazonUrl);\n      const bookHasAmazon = isAmazonUrl(book.amazonUrl);\n      byTitle.set(key, {\n        title: existing.title || book.title,\n        desc: longerText(existing.desc, book.desc),\n        theme: existing.theme || book.theme || '',\n        amazonUrl: bookHasAmazon && !existingHasAmazon\n          ? book.amazonUrl\n          : existing.amazonUrl || book.amazonUrl || '',\n      });\n    });\n\n    return Array.from(byTitle.values());\n  }\n\n  function isAmazonUrl(url) {\n    return /amazon\\.com|amzn\\.to/.test(url || '');\n  }\n\n  function longerText(first, second) {\n    const a = first || '';\n    const b = second || '';\n    return b.length > a.length ? b : a;\n  }\n\n  function absoluteUrl(href, baseUrl) {\n    if (!href) return '';\n    try {\n      return new URL(href, baseUrl || window.location.href).href;\n    } catch {\n      return '';\n    }\n  }\n\n  function isSameSite(url) {\n    try {\n      return new URL(url).origin === window.location.origin;\n    } catch {\n      return false;\n    }\n  }\n\n  function cleanText(text) {\n    return (text || '').replace(/\\s+/g, ' ').trim();\n  }\n\n  function normalizeTitle(title) {\n    return cleanText(title).toLowerCase().replace(/[^a-z0-9]+/g, '');\n  }\n\n\n  // ── Parse fetched HTML for books ──\n  // ?? Parse fetched HTML for books ??\n  function parseHTMLForBooks(html, pageUrl) {\n    const doc = new DOMParser().parseFromString(html, 'text/html');\n    const books = scrapeBooksFromRoot(doc, pageUrl);\n\n    // Detail pages often have one title, one Amazon link, and the description\n    // outside a compact card. Capture that shape too.\n    const amazonLink = doc.querySelector('a[href*=\"amazon.com\"], a[href*=\"amzn.to\"]');\n    const titleEl = doc.querySelector('h1');\n    if (amazonLink && titleEl) {\n      const paragraphs = Array.from(doc.querySelectorAll('p'))\n        .map(p => cleanText(p.textContent))\n        .filter(text => text.length > 30);\n      books.push({\n        title: cleanText(titleEl.textContent),\n        desc: paragraphs[0] || '',\n        theme: '',\n        amazonUrl: absoluteUrl(amazonLink.getAttribute('href'), pageUrl),\n      });\n    }\n\n    return dedupeBooks(books);\n  }\n\n  // ════════════════════════════════════════════════\n  //  BUILT-IN FALLBACK LIST\n  //  All 21 current books — used only if scraping fails.\n  //  You do NOT need to update this as you add books\n  //  because the DOM scraper handles Books 21–36\n  //  automatically when they appear on your site.\n  // ════════════════════════════════════════════════\n  function getBuiltInBooks() {\n    return [\n      { title: \"Noah and God's Big Promise\",      theme: \"Trust\",       desc: \"When the rains came, Noah trusted God's plan. A warm story of faith, friendship with the animals, and the promise of the rainbow.\",                                                            amazonUrl: \"https://www.amazon.com/dp/B0GYHZ8P9S\" },\n      { title: \"David and the Giant\",              theme: \"Courage\",     desc: \"A young shepherd boy discovers that even when we feel small, God is bigger than every giant we face.\",                                                                                         amazonUrl: \"https://www.amazon.com/dp/B0GYNRCKQD\" },\n      { title: \"Moses and the Red Sea\",            theme: \"Faith\",       desc: \"When the waters rise, Moses trusts God's plan. A brave story of faith, leadership, and the miracle that saved a nation.\",                                                                     amazonUrl: \"https://www.amazon.com/dp/B0GZ43TKCK\" },\n      { title: \"Jonah and the Big Fish\",           theme: \"Obedience\",   desc: \"When Jonah runs from God's plan, he ends up in a big adventure. A playful story about obedience, second chances, and how God never gives up on us.\",                                         amazonUrl: \"https://www.amazon.com/dp/B0GZDKNN5L\" },\n      { title: \"Daniel and the Lions\",             theme: \"Prayer\",      desc: \"When Daniel keeps praying to God, he is sent into a den of lions. A brave story about faith, prayer, and trusting God when we feel afraid.\",                                                 amazonUrl: \"https://www.amazon.com/dp/B0GZGFJTSL\" },\n      { title: \"Esther the Brave Queen\",           theme: \"Bravery\",     desc: \"Even when Esther felt small and afraid, she found the courage to speak up for others. A beautiful story about purpose, faith, and being chosen for such a time as this.\",                    amazonUrl: \"https://www.amazon.com/dp/B0GZK239VN\" },\n      { title: \"The Christmas Story\",              theme: \"Love\",        desc: \"A tender retelling of the night Jesus was born, filled with wonder, warmth, and the beautiful truth that God came close because He loves us.\",                                                amazonUrl: \"https://www.amazon.com/dp/B0GZNQZQGX\" },\n      { title: \"Joseph's Colorful Coat\",           theme: \"Forgiveness\", desc: \"Joseph's story shows little hearts how God can work through hard days, surprising turns, and brave forgiveness to bring good in the end.\",                                                    amazonUrl: \"https://www.amazon.com/dp/B0GZL3YG8L\" },\n      { title: \"The Easter Story\",                 theme: \"Hope\",        desc: \"A joyful retelling of Jesus' death and resurrection, helping little hearts understand God's greatest rescue with warmth, wonder, and hope.\",                                                  amazonUrl: \"https://www.amazon.com/dp/B0GZPY9RL1\" },\n      { title: \"Ruth and Naomi\",                   theme: \"Loyal Love\",  desc: \"Walk with Ruth and Naomi through hard times and harvest fields as God weaves faithful love into His greatest plan.\",                                                                          amazonUrl: \"https://www.amazon.com/dp/B0GZQX7D3N\" },\n      { title: \"The Birth of Moses\",               theme: \"Protection\",  desc: \"A mother's love, a brave big sister, and a tiny basket on the Nile show little hearts how God protects His children from the very beginning.\",                                                amazonUrl: \"https://www.amazon.com/dp/B0H15BN3RD\" },\n      { title: \"Solomon and Wisdom\",               theme: \"Wisdom\",      desc: \"When God told Solomon he could ask for anything, Solomon chose wisdom. A thoughtful story about listening hearts, wise choices, and asking God for help every day.\",                          amazonUrl: \"https://www.amazon.com/dp/B0H184LKSF\" },\n      { title: \"Elijah and the Still Small Voice\", theme: \"Listening\",   desc: \"Elijah was brave and faithful, but even brave people can feel tired and afraid. A comforting story about hearing God's gentle voice in quiet moments.\",                                      amazonUrl: \"https://www.amazon.com/dp/B0H18JDFCW\" },\n      { title: \"Jesus Calms the Storm\",            theme: \"Peace\",       desc: \"When the wind howled and the waves rose high, Jesus was right there in the boat. A comforting story that reminds little hearts Jesus is near in every storm.\",                                amazonUrl: \"https://www.amazon.com/dp/B0H18WDG5P\" },\n      { title: \"The Creation Story\",               theme: \"Wonder\",      desc: \"A joyful retelling of Genesis 1 that helps little hearts see the beauty of God's world, from light and sky to animals, people, and rest.\",                                                   amazonUrl: \"https://www.amazon.com/dp/B0H18HQKWT\" },\n      { title: \"The Armor of God\",                 theme: \"Faith\",       desc: \"A joyful story from Ephesians 6 that helps little hearts remember God gives us truth, righteousness, peace, faith, salvation, and His Word for every adventure.\",                            amazonUrl: \"https://www.amazon.com/dp/B0H1BQX3LP\" },\n      { title: \"Zacchaeus\",                        theme: \"Love\",        desc: \"A warm, joyful retelling of the little man in the tree, reminding children that Jesus sees every heart and His love can change everything.\",                                                  amazonUrl: \"https://www.amazon.com/dp/B0H1CG1P1X\" },\n      { title: \"The Good Samaritan\",               theme: \"Love\",        desc: \"Jesus' parable of a kind helper on the Jericho road teaches little hearts to love their neighbour with compassion, courage, and care.\",                                                       amazonUrl: \"https://www.amazon.com/dp/B0H1CPYC6T\" },\n      { title: \"The Lost Sheep\",                   theme: \"God's Love\",  desc: \"A beautiful parable about how God searches for every lost soul, no matter what, because every single one matters to Him.\",                                                                    amazonUrl: \"https://www.amazon.com/dp/B0H1CTPVMV\" },\n      { title: \"The Feeding of the 5,000\",         theme: \"Generosity\",  desc: \"A little boy shares his lunch and Jesus uses it to feed thousands. A wonderful story about how even a small offering in God's hands can do amazing things.\",                                 amazonUrl: \"https://www.amazon.com/dp/B0H1D867ZJ\" },\n      { title: \"Adam and Eve in the Garden\",      theme: \"Wonder\",      desc: \"A gentle garden story about God's beautiful beginning, the first family, and the loving care He showed from the very start.\",                                             amazonUrl: \"https://www.amazon.com/dp/B0H1JDBH3V\" },\n    ];\n  }\n\n  // ── Build system prompt with live book list ──\n  function buildSystemPrompt() {\n    const books = dedupeBooks(booksCache || getBuiltInBooks());\n    const bookList = books.map((b, i) =>\n      `Book ${i + 1}: \"${b.title}\"${b.theme ? ' | Theme: ' + b.theme : ''}${b.desc ? ' | ' + b.desc : ''} | Link: ${b.amazonUrl}`\n    ).join('\\n');\n\n    return `You are Angel, the warm and friendly assistant inside the \"Ask Angel\" chat for \"Bible Stories for Little Hearts\" — a children's Bible picture book series by Faith Rivers for ages 3–8.\n\nYou help parents, grandparents, teachers, and caregivers in two ways:\n1. Find the perfect book from this series\n2. Share Bible verses related to the stories and themes in this series\n\nBOOKS CURRENTLY IN THE SERIES (${books.length} books):\n${bookList}\n\nGUIDELINES:\n- Be warm, gentle, and encouraging — match the tone of a faith-based children's brand\n- When introducing yourself in chat, say \"I'm Angel\" rather than \"I'm Ask Angel\"\n- Recommend 1-2 books maximum per response\n- Always include the book link when recommending\n- Keep responses short and friendly — parents are busy\n- You may share Bible verses when asked — always use the NLT (New Living Translation) for child-friendly language\n- Always quote the full verse text, then include the reference (e.g. Joshua 1:9, NLT)\n- When sharing a verse, connect it to a relevant book from the series whenever possible\n- Only share verses related to the stories, themes, or characters in this series (trust, courage, faith, love, prayer, forgiveness, wisdom, hope, peace, etc.)\n- If asked anything unrelated to the books or Bible verses, kindly say: \"I'm here to help you find the perfect Bible story or share an encouraging verse! What are you looking for?\"\n- Never invent books not in the list above\n- Use clues from the parent (child's age, interests, lesson needed) to choose the best match\n- The current number of available books is exactly ${books.length}. If a parent asks how many books there are, answer exactly: \"There are ${books.length} books currently available in the series.\" Never claim a different total.`;\n  }\n\n  // ── UI Helpers ──\n  function avatarSVG() {\n    return `<svg viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\">\n      <circle cx=\"50\" cy=\"46\" r=\"20\" fill=\"#fde8c8\"/>\n      <circle cx=\"43\" cy=\"44\" r=\"3\" fill=\"#5a3010\"/>\n      <circle cx=\"57\" cy=\"44\" r=\"3\" fill=\"#5a3010\"/>\n      <path d=\"M43 52 Q50 57 57 52\" stroke=\"#c07040\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\"/>\n      <circle cx=\"39\" cy=\"50\" r=\"4\" fill=\"#f0a080\" opacity=\"0.3\"/>\n      <circle cx=\"61\" cy=\"50\" r=\"4\" fill=\"#f0a080\" opacity=\"0.3\"/>\n    </svg>`;\n  }\n\n  function appendMessage(text, role) {\n    const row = document.createElement('div');\n    row.className = 'angel-msg-row' + (role === 'user' ? ' user' : '');\n    if (role === 'assistant') {\n      const av = document.createElement('div');\n      av.className = 'angel-msg-avatar';\n      av.innerHTML = avatarSVG();\n      row.appendChild(av);\n    }\n    const bub = document.createElement('div');\n    bub.className = 'angel-bubble ' + (role === 'user' ? 'user' : 'bot');\n    bub.innerHTML = text\n      .replace(/\\*\\*(.*?)\\*\\*/g, '<strong>$1</strong>')\n      .replace(/\\*(.*?)\\*/g, '<em>$1</em>')\n      .replace(/\\[([^\\]]+)\\]\\((https?:\\/\\/[^\\)]+)\\)/g, '<a href=\"$2\" target=\"_blank\" rel=\"noopener\">$1 →</a>')\n      .replace(/(^|[\\s>])(https?:\\/\\/[^\\s<]+)/g, (match, prefix, url) => prefix + '<a href=\"' + url + '\" target=\"_blank\" rel=\"noopener\">' + url + ' &rarr;</a>')\n      .replace(/\\n/g, '<br>');\n    row.appendChild(bub);\n    messagesEl.appendChild(row);\n    messagesEl.scrollTop = messagesEl.scrollHeight;\n  }\n\n  function showTyping() {\n    typingEl = document.createElement('div');\n    typingEl.className = 'angel-typing';\n    const av = document.createElement('div');\n    av.className = 'angel-msg-avatar';\n    av.innerHTML = avatarSVG();\n    const bub = document.createElement('div');\n    bub.className = 'angel-typing-bubble';\n    bub.innerHTML = '<div class=\"angel-dot\"></div><div class=\"angel-dot\"></div><div class=\"angel-dot\"></div>';\n    typingEl.appendChild(av);\n    typingEl.appendChild(bub);\n    messagesEl.appendChild(typingEl);\n    messagesEl.scrollTop = messagesEl.scrollHeight;\n  }\n\n  function hideTyping() {\n    if (typingEl) { typingEl.remove(); typingEl = null; }\n  }\n\n  function localFallbackReply(question) {\n    const books = dedupeBooks(booksCache || getBuiltInBooks());\n    const q = cleanText(question).toLowerCase();\n    const latest = books[books.length - 1];\n\n    if (/how many|count|total|number of books/.test(q)) {\n      return \`There are **\${books.length} books** currently available in the series.\`;\n    }\n\n    if (/new|newest|latest|recent|book 21/.test(q) && latest) {\n      return \`The newest book is **\${latest.title}**.\${latest.desc ? ' ' + latest.desc : ''} [Find it on Amazon](\${latest.amazonUrl})\`;\n    }\n\n    const themeMatch = books.find(book => {\n      const haystack = \`\${book.title || ''} \${book.theme || ''} \${book.desc || ''}\`.toLowerCase();\n      return q.split(/\\s+/).some(word => word.length > 4 && haystack.includes(word));\n    });\n\n    if (themeMatch) {\n      return \`I think **\${themeMatch.title}** could be a lovely fit.\${themeMatch.desc ? ' ' + themeMatch.desc : ''} [Find it on Amazon](\${themeMatch.amazonUrl})\`;\n    }\n\n    return \`I can still see **\${books.length} books** in the series, but the AI helper is having trouble connecting right now. Please try again in a moment, or ask about a theme like courage, prayer, love, faith, or wonder.\`;\n  }\n\n  function delay(ms) {\n    return new Promise(resolve => setTimeout(resolve, ms));\n  }\n\n  async function fetchWorkerWithRetry(payload) {\n    let lastError;\n\n    for (let attempt = 0; attempt < 2; attempt += 1) {\n      try {\n        const res = await fetch(WORKER_URL, {\n          method: 'POST',\n          headers: { 'Content-Type': 'application/json' },\n          body: JSON.stringify(payload)\n        });\n\n        if (!res.ok) throw new Error('Ask Angel worker failed with status ' + res.status);\n        return res;\n      } catch (error) {\n        lastError = error;\n        if (attempt === 0) await delay(1500);\n      }\n    }\n\n    throw lastError;\n  }\n\n  // ── Send message ──\n  async function sendMessage() {\n    const text = inputEl.value.trim();\n    if (!text || isLoading) return;\n\n    inputEl.value = '';\n    isLoading = true;\n    sendEl.disabled = true;\n\n    appendMessage(text, 'user');\n    history.push({ role: 'user', content: text });\n    showTyping();\n\n    try {\n      const res = await fetchWorkerWithRetry({\n        messages: history,\n        system: buildSystemPrompt()\n      });\n\n      const data = await res.json();\n      hideTyping();\n\n      const reply = data.content?.[0]?.text || localFallbackReply(text);\n      history.push({ role: 'assistant', content: reply });\n      appendMessage(reply, 'assistant');\n\n    } catch (error) {\n      console.warn('Ask Angel worker request failed.', error);\n      hideTyping();\n      const reply = localFallbackReply(text);\n      history.push({ role: 'assistant', content: reply });\n      appendMessage(reply, 'assistant');\n    } finally {\n      isLoading = false;\n      sendEl.disabled = false;\n      inputEl.focus();\n    }\n  }\n\n})();";
+const widgetMarkup = String.raw`
+  <button id="ask-angel-btn" aria-label="Ask Angel - Find your book">
+    ${angelIcon}
+  </button>
+
+  <div id="ask-angel-panel" role="dialog" aria-label="Ask Angel chat">
+    <div class="angel-header">
+      <div class="angel-header-avatar">${angelIcon}</div>
+      <div class="angel-header-text">
+        <h3>Ask Angel &#10022;</h3>
+        <p>Find the perfect Bible story book</p>
+      </div>
+      <button class="angel-close-btn" id="angel-close-btn" aria-label="Close">&times;</button>
+    </div>
+    <div class="angel-messages" id="angel-messages">
+      <div class="angel-msg-row">
+        <div class="angel-msg-avatar">${angelIcon}</div>
+        <div class="angel-bubble bot">
+          Hello! I am Angel, your guide to <em>Bible Stories for Little Hearts</em>.<br><br>
+          Tell me about your child, a Bible story, a theme, or something on the website, and I will help.
+        </div>
+      </div>
+    </div>
+    <div class="angel-input-area" id="angel-input-area">
+      <input class="angel-input" id="angel-input" type="text"
+        placeholder="e.g. my 5 year old loves animals..."
+        autocomplete="off" maxlength="300"/>
+      <button class="angel-send" id="angel-send-btn" aria-label="Send">
+        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+    </div>
+    <div class="angel-powered">&#10022; Bible Stories for Little Hearts &#10022;</div>
+  </div>
+`;
+
+const widgetScript = String.raw`
+(function () {
+  const WORKER_URL = 'https://ask-angel.ruhezhao.workers.dev';
+  const SITE_URL = 'https://www.faithfulheartsbooks.com';
+
+  let booksCache = null;
+  let isOpen = false;
+  let isLoading = false;
+  let history = [];
+  let typingEl = null;
+
+  const panelEl = document.getElementById('ask-angel-panel');
+  const messagesEl = document.getElementById('angel-messages');
+  const inputEl = document.getElementById('angel-input');
+  const sendEl = document.getElementById('angel-send-btn');
+  const closeEl = document.getElementById('angel-close-btn');
+  const btnEl = document.getElementById('ask-angel-btn');
+
+  btnEl.addEventListener('click', async function () {
+    isOpen = !isOpen;
+    panelEl.classList.toggle('open', isOpen);
+    if (isOpen) {
+      inputEl.focus();
+      if (!booksCache) await loadBooks();
+    }
+  });
+
+  closeEl.addEventListener('click', function () {
+    isOpen = false;
+    panelEl.classList.remove('open');
+  });
+
+  inputEl.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      sendMessage();
+    }
+  });
+
+  sendEl.addEventListener('click', sendMessage);
+
+  async function loadBooks() {
+    try {
+      inputEl.placeholder = 'Loading all books...';
+      const response = await fetch(window.location.origin + '/api/ask-angel-books', {
+        credentials: 'same-origin'
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        booksCache = normalizeBooks(data.books || []);
+        if (booksCache.length > 0) return;
+      }
+    } catch (error) {
+      console.warn('Ask Angel could not load the book data endpoint.', error);
+    } finally {
+      inputEl.placeholder = 'e.g. my 5 year old loves animals...';
+    }
+
+    booksCache = normalizeBooks(getBuiltInBooks());
+  }
+
+  function normalizeBooks(books) {
+    const byTitle = new Map();
+
+    books.forEach(function (book) {
+      if (!book || !book.title || /^coming soon$/i.test(book.title)) return;
+
+      const key = normalizeTitle(book.title);
+      if (!key) return;
+
+      const existing = byTitle.get(key) || {};
+      const bookHasAmazon = isAmazonUrl(book.amazonUrl);
+      const existingHasAmazon = isAmazonUrl(existing.amazonUrl);
+
+      byTitle.set(key, {
+        number: existing.number || book.number || '',
+        numberValue: Number(existing.numberValue || book.numberValue || parseBookNumberValue(book)),
+        slug: existing.slug || book.slug || '',
+        title: existing.title || book.title,
+        subtitle: existing.subtitle || book.subtitle || '',
+        ageRange: existing.ageRange || book.ageRange || '',
+        theme: existing.theme || book.theme || '',
+        desc: longerText(existing.desc, book.desc),
+        scriptureReference: existing.scriptureReference || book.scriptureReference || '',
+        biblicalOrder: existing.biblicalOrder ?? book.biblicalOrder ?? null,
+        bookUrl: existing.bookUrl || book.bookUrl || (book.slug ? SITE_URL + '/book/' + book.slug : ''),
+        amazonUrl: bookHasAmazon && !existingHasAmazon
+          ? book.amazonUrl
+          : existing.amazonUrl || book.amazonUrl || ''
+      });
+    });
+
+    return Array.from(byTitle.values()).sort(function (a, b) {
+      return parseBookNumberValue(a) - parseBookNumberValue(b);
+    });
+  }
+
+  function parseBookNumberValue(book) {
+    return Number(book.numberValue || String(book.number || '').replace(/\D/g, '')) || 0;
+  }
+
+  function getNewestBook(books) {
+    return books.slice().sort(function (a, b) {
+      return parseBookNumberValue(b) - parseBookNumberValue(a);
+    })[0];
+  }
+
+  function buildSeriesMapSummary(books) {
+    return books
+      .filter(function (book) {
+        return book.scriptureReference || typeof book.biblicalOrder === 'number';
+      })
+      .sort(function (a, b) {
+        const byBibleOrder = (Number(a.biblicalOrder) || 9999) - (Number(b.biblicalOrder) || 9999);
+        return byBibleOrder || parseBookNumberValue(a) - parseBookNumberValue(b);
+      })
+      .map(function (book) {
+        return (book.number || 'Book') + ': ' + book.title + (book.scriptureReference ? ' - ' + book.scriptureReference : '');
+      })
+      .join('\n');
+  }
+
+  function buildWebsiteKnowledge(books, newestBook) {
+    const seriesMap = buildSeriesMapSummary(books);
+
+    return [
+      'WEBSITE KNOWLEDGE:',
+      '- Website: faithfulheartsbooks.com, home of Bible Stories for Little Hearts by Faith Rivers.',
+      '- Homepage: storybook collection, theme filters, Book Order/A-Z sorting, pagination, a Series Map pill, and newsletter signup.',
+      '- Series Map: shows books in biblical timeline order, grouped into Old Testament and New Testament. It uses cover thumbnails, book numbers, titles, and scripture references. It is different from publication order.',
+      '- Newest available book: ' + (newestBook ? (newestBook.number + ' "' + newestBook.title + '"') : 'the available book with the highest book number in live book data') + '.',
+      '- Always calculate newest/latest/new book from the highest available book number in the live book data. Do not rely on a manually written newest-book sentence.',
+      '- Free Resources page: /free-resources. It includes printable resources such as coloring pages, memory verse posters, lesson packs, 5-day devotionals, bookmarks, and certificates when available.',
+      '- About page: /about. It introduces Faith Rivers and the heart behind the series.',
+      '- Contact page: /contact. Families can reach the site there or use info@faithfulheartsbooks.com.',
+      '- Newsletter signup: on the homepage for updates about new books and free printables.',
+      '',
+      'SERIES MAP ORDER FROM LIVE BOOK DATA:',
+      seriesMap || 'Use scriptureReference and biblicalOrder fields from live book data.'
+    ].join('\n');
+  }
+
+  function buildSystemPrompt() {
+    const books = normalizeBooks(booksCache || getBuiltInBooks());
+    const newestBook = getNewestBook(books);
+    const websiteKnowledge = buildWebsiteKnowledge(books, newestBook);
+    const bookList = books.map(function (book) {
+      return [
+        (book.number || 'Book') + ': "' + book.title + '"',
+        book.subtitle ? 'Subtitle: ' + book.subtitle : '',
+        book.theme ? 'Theme: ' + book.theme : '',
+        book.scriptureReference ? 'Scripture: ' + book.scriptureReference : '',
+        book.desc || '',
+        book.bookUrl ? 'Book page: ' + book.bookUrl : '',
+        book.amazonUrl ? 'Amazon: ' + book.amazonUrl : ''
+      ].filter(Boolean).join(' | ');
+    }).join('\n');
+
+    return [
+      'You are Angel, the warm and friendly assistant inside the Ask Angel chat for Bible Stories for Little Hearts, a Christian children book series by Faith Rivers for ages 3-8.',
+      '',
+      'You help parents, grandparents, teachers, and caregivers in three ways:',
+      '1. Find the perfect book from this series.',
+      '2. Explain website sections and where to find things.',
+      '3. Share Bible verse references and brief encouragement related to the stories and themes in this series.',
+      '',
+      websiteKnowledge,
+      '',
+      'BOOKS CURRENTLY AVAILABLE (' + books.length + ' books):',
+      bookList,
+      '',
+      'GUIDELINES:',
+      '- Be warm, gentle, and encouraging. Match the tone of a faith-based children book brand.',
+      '- When introducing yourself, say "I am Angel" rather than "I am Ask Angel".',
+      '- Recommend 1-2 books maximum per response.',
+      '- Always include the Amazon link when recommending a book if one exists; otherwise include the book page link.',
+      '- Keep responses short and friendly because parents are busy.',
+      '- Answer questions about website navigation, Series Map, Free Resources, About, Contact, newsletter, and available books using WEBSITE KNOWLEDGE.',
+      '- If asked about the Series Map, explain that it is biblical chronological order and mention Old Testament/New Testament grouping.',
+      '- If asked for the newest/latest/new book, answer using this live value: ' + (newestBook ? newestBook.number + ' "' + newestBook.title + '"' : 'highest available book number') + '.',
+      '- If asked how many books are available, answer exactly: "There are ' + books.length + ' books currently available in the series."',
+      '- Ignore Coming Soon placeholder cards when counting available books or naming the newest available book.',
+      '- Never invent books not in the live book list above.',
+      '- If asked anything unrelated to the books, website, or Bible encouragement, kindly say: "I am here to help you find the perfect Bible story, understand the website, or share an encouraging verse. What are you looking for?"'
+    ].join('\n');
+  }
+
+  function localFallbackReply(question) {
+    const books = normalizeBooks(booksCache || getBuiltInBooks());
+    const newestBook = getNewestBook(books);
+    const q = cleanText(question).toLowerCase();
+
+    if (/series map|timeline|biblical order|chronological/.test(q)) {
+      return 'The **Series Map** shows the books in biblical timeline order, grouped into Old Testament and New Testament. It uses each book reference, so new books can slot into the right Bible-story position automatically.';
+    }
+
+    if (/free resources|printable|coloring|lesson|devotional|bookmark|certificate/.test(q)) {
+      return 'The **Free Resources** page has printable resources like coloring pages, memory verse posters, lesson packs, 5-day devotionals, bookmarks, and certificates when available. You can visit **/free-resources**.';
+    }
+
+    if (/how many|count|total|number of books/.test(q)) {
+      return 'There are **' + books.length + ' books** currently available in the series.';
+    }
+
+    if (/new|newest|latest|recent/.test(q) && newestBook) {
+      return 'The newest book is **' + newestBook.title + '**' + (newestBook.desc ? '. ' + newestBook.desc : '') + ' [Find it on Amazon](' + (newestBook.amazonUrl || newestBook.bookUrl) + ')';
+    }
+
+    const themeMatch = books.find(function (book) {
+      const haystack = (book.title + ' ' + book.theme + ' ' + book.desc + ' ' + book.scriptureReference).toLowerCase();
+      return q.split(/\s+/).some(function (word) {
+        return word.length > 4 && haystack.includes(word);
+      });
+    });
+
+    if (themeMatch) {
+      return 'I think **' + themeMatch.title + '** could be a lovely fit.' + (themeMatch.desc ? ' ' + themeMatch.desc : '') + ' [Find it on Amazon](' + (themeMatch.amazonUrl || themeMatch.bookUrl) + ')';
+    }
+
+    return 'I can see **' + books.length + ' books** in the series. Ask me about a theme, the newest book, the Series Map, or the Free Resources page.';
+  }
+
+  function avatarSVG() {
+    return document.querySelector('#ask-angel-btn svg').outerHTML;
+  }
+
+  function appendMessage(text, role) {
+    const row = document.createElement('div');
+    row.className = 'angel-msg-row' + (role === 'user' ? ' user' : '');
+
+    if (role === 'assistant') {
+      const avatar = document.createElement('div');
+      avatar.className = 'angel-msg-avatar';
+      avatar.innerHTML = avatarSVG();
+      row.appendChild(avatar);
+    }
+
+    const bubble = document.createElement('div');
+    bubble.className = 'angel-bubble ' + (role === 'user' ? 'user' : 'bot');
+    bubble.innerHTML = text
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1 &rarr;</a>')
+      .replace(/(^|[\s>])(https?:\/\/[^\s<]+)/g, function (match, prefix, url) {
+        return prefix + '<a href="' + url + '" target="_blank" rel="noopener">' + url + ' &rarr;</a>';
+      })
+      .replace(/\n/g, '<br>');
+
+    row.appendChild(bubble);
+    messagesEl.appendChild(row);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  function showTyping() {
+    typingEl = document.createElement('div');
+    typingEl.className = 'angel-typing';
+    const avatar = document.createElement('div');
+    avatar.className = 'angel-msg-avatar';
+    avatar.innerHTML = avatarSVG();
+    const bubble = document.createElement('div');
+    bubble.className = 'angel-typing-bubble';
+    bubble.innerHTML = '<div class="angel-dot"></div><div class="angel-dot"></div><div class="angel-dot"></div>';
+    typingEl.appendChild(avatar);
+    typingEl.appendChild(bubble);
+    messagesEl.appendChild(typingEl);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  function hideTyping() {
+    if (typingEl) {
+      typingEl.remove();
+      typingEl = null;
+    }
+  }
+
+  function delay(ms) {
+    return new Promise(function (resolve) {
+      setTimeout(resolve, ms);
+    });
+  }
+
+  async function fetchWorkerWithRetry(payload) {
+    let lastError;
+
+    for (let attempt = 0; attempt < 2; attempt += 1) {
+      try {
+        const response = await fetch(WORKER_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) throw new Error('Ask Angel worker failed with status ' + response.status);
+        return response;
+      } catch (error) {
+        lastError = error;
+        if (attempt === 0) await delay(1500);
+      }
+    }
+
+    throw lastError;
+  }
+
+  async function sendMessage() {
+    const text = inputEl.value.trim();
+    if (!text || isLoading) return;
+
+    inputEl.value = '';
+    isLoading = true;
+    sendEl.disabled = true;
+
+    appendMessage(text, 'user');
+    history.push({ role: 'user', content: text });
+    showTyping();
+
+    try {
+      if (!booksCache) await loadBooks();
+      const response = await fetchWorkerWithRetry({
+        messages: history,
+        system: buildSystemPrompt()
+      });
+
+      const data = await response.json();
+      hideTyping();
+
+      const reply = data.content && data.content[0] && data.content[0].text
+        ? data.content[0].text
+        : localFallbackReply(text);
+
+      history.push({ role: 'assistant', content: reply });
+      appendMessage(reply, 'assistant');
+    } catch (error) {
+      console.warn('Ask Angel worker request failed.', error);
+      hideTyping();
+      const reply = localFallbackReply(text);
+      history.push({ role: 'assistant', content: reply });
+      appendMessage(reply, 'assistant');
+    } finally {
+      isLoading = false;
+      sendEl.disabled = false;
+      inputEl.focus();
+    }
+  }
+
+  function isAmazonUrl(url) {
+    return /amazon\.com|amzn\.to/.test(url || '');
+  }
+
+  function longerText(first, second) {
+    const a = first || '';
+    const b = second || '';
+    return b.length > a.length ? b : a;
+  }
+
+  function cleanText(text) {
+    return (text || '').replace(/\s+/g, ' ').trim();
+  }
+
+  function normalizeTitle(title) {
+    return cleanText(title).toLowerCase().replace(/[^a-z0-9]+/g, '');
+  }
+
+  function getBuiltInBooks() {
+    return [
+      { number: 'Book 01', title: "Noah and God's Big Promise", theme: 'Trust', desc: "When the rains came, Noah trusted God's plan.", scriptureReference: 'Genesis 6-9', biblicalOrder: 20, amazonUrl: 'https://www.amazon.com/dp/B0GYHZ8P9S' },
+      { number: 'Book 02', title: 'David and the Giant', theme: 'Courage', desc: 'A young shepherd boy discovers that God is bigger than every giant.', scriptureReference: '1 Samuel 17', biblicalOrder: 70, amazonUrl: 'https://www.amazon.com/dp/B0GYNRCKQD' },
+      { number: 'Book 03', title: 'Moses and the Red Sea', theme: 'Faith', desc: "Moses trusts God's plan as God makes a way through the sea.", scriptureReference: 'Exodus 14', biblicalOrder: 50, amazonUrl: 'https://www.amazon.com/dp/B0GZ43TKCK' },
+      { number: 'Book 04', title: 'Jonah and the Big Fish', theme: 'Obedience', desc: 'A playful story about obedience and second chances.', scriptureReference: 'Book of Jonah', biblicalOrder: 120, amazonUrl: 'https://www.amazon.com/dp/B0GZDKNN5L' },
+      { number: 'Book 05', title: 'Daniel and the Lions', theme: 'Prayer', desc: 'A brave story about faith, prayer, and trusting God.', scriptureReference: 'Daniel 6', biblicalOrder: 110, amazonUrl: 'https://www.amazon.com/dp/B0GZGFJTSL' },
+      { number: 'Book 06', title: 'Esther the Brave Queen', theme: 'Bravery', desc: 'A beautiful story about courage, purpose, and faith.', scriptureReference: 'Book of Esther', biblicalOrder: 100, amazonUrl: 'https://www.amazon.com/dp/B0GZK239VN' },
+      { number: 'Book 07', title: 'The Christmas Story', theme: 'Love', desc: 'A tender retelling of the night Jesus was born.', scriptureReference: 'Luke 2', biblicalOrder: 130, amazonUrl: 'https://www.amazon.com/dp/B0GZNQZQGX' },
+      { number: 'Book 08', title: "Joseph's Colorful Coat", theme: 'Forgiveness', desc: 'A story about hard days, surprising turns, and brave forgiveness.', scriptureReference: 'Genesis 37-50', biblicalOrder: 30, amazonUrl: 'https://www.amazon.com/dp/B0GZL3YG8L' },
+      { number: 'Book 09', title: 'The Easter Story', theme: 'Hope', desc: "A joyful retelling of Jesus' death and resurrection.", scriptureReference: 'Matthew 28', biblicalOrder: 150, amazonUrl: 'https://www.amazon.com/dp/B0GZPY9RL1' },
+      { number: 'Book 10', title: 'Ruth and Naomi', theme: 'Loyal Love', desc: 'A warm story of faithful love through hard times.', scriptureReference: 'Book of Ruth', biblicalOrder: 60, amazonUrl: 'https://www.amazon.com/dp/B0GZQX7D3N' },
+      { number: 'Book 11', title: 'The Birth of Moses', theme: 'Protection', desc: 'A story of a tiny basket, a brave sister, and God protecting His children.', scriptureReference: 'Exodus 1-2', biblicalOrder: 40, amazonUrl: 'https://www.amazon.com/dp/B0H15BN3RD' },
+      { number: 'Book 12', title: 'Solomon and Wisdom', theme: 'Wisdom', desc: 'A thoughtful story about asking God for wisdom.', scriptureReference: '1 Kings 3', biblicalOrder: 80, amazonUrl: 'https://www.amazon.com/dp/B0H184LKSF' },
+      { number: 'Book 13', title: 'Elijah and the Still Small Voice', theme: 'Listening', desc: "A comforting story about hearing God's gentle voice.", scriptureReference: '1 Kings 19', biblicalOrder: 90, amazonUrl: 'https://www.amazon.com/dp/B0H18JDFCW' },
+      { number: 'Book 14', title: 'Jesus Calms the Storm', theme: 'Peace', desc: 'A comforting story that reminds little hearts Jesus is near in every storm.', scriptureReference: 'Mark 4', biblicalOrder: 140, amazonUrl: 'https://www.amazon.com/dp/B0H18WDG5P' },
+      { number: 'Book 15', title: 'The Creation Story', theme: 'Wonder', desc: "A joyful retelling of Genesis 1 and the beauty of God's world.", scriptureReference: 'Genesis 1', biblicalOrder: 10, amazonUrl: 'https://www.amazon.com/dp/B0H18HQKWT' },
+      { number: 'Book 16', title: 'The Armor of God', theme: 'Faith', desc: 'A joyful story from Ephesians 6 about being dressed for God adventure.', scriptureReference: 'Ephesians 6:10-18', biblicalOrder: 160, amazonUrl: 'https://www.amazon.com/dp/B0H1BQX3LP' },
+      { number: 'Book 17', title: 'Zacchaeus', theme: 'Love', desc: 'A joyful retelling that Jesus sees every heart.', scriptureReference: 'Luke 19:1-10', biblicalOrder: 148, amazonUrl: 'https://www.amazon.com/dp/B0H1CG1P1X' },
+      { number: 'Book 18', title: 'The Good Samaritan', theme: 'Love', desc: 'A story of compassion, courage, and care.', scriptureReference: 'Luke 10:25-37', biblicalOrder: 145, amazonUrl: 'https://www.amazon.com/dp/B0H1CPYC6T' },
+      { number: 'Book 19', title: 'The Lost Sheep', theme: 'Love', desc: 'A tender story that Jesus knows each child by name.', scriptureReference: 'Luke 15:3-7; Matthew 18:12-14', biblicalOrder: 147, amazonUrl: 'https://www.amazon.com/dp/B0H1CTPVMV' },
+      { number: 'Book 20', title: 'The Feeding of the 5,000', theme: 'Faith', desc: 'A miracle story about a small lunch and Jesus making more than enough.', scriptureReference: 'Mark 6:30-44; John 6:1-14', biblicalOrder: 142, amazonUrl: 'https://www.amazon.com/dp/B0H1D867ZJ' },
+      { number: 'Book 21', title: 'Adam and Eve in the Garden', theme: 'Wonder', desc: "A gentle garden story about God's beautiful beginning.", scriptureReference: 'Genesis 2-3', biblicalOrder: 15, amazonUrl: 'https://www.amazon.com/dp/B0H1JDBH3V' }
+    ];
+  }
+})();
+`;
 
 export default function AskAngelWidget() {
   return (
