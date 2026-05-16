@@ -8,10 +8,19 @@ type Props = {
   index: number;
 };
 
+function buildBookAlt(book: Book) {
+  const themeText = book.theme
+    ? ` about ${book.theme.toLowerCase()}`
+    : "";
+
+  return `${book.title} - Bible Stories for Little Hearts ${book.number} - children's Christian picture book${themeText} for ages 3-8`;
+}
+
 export default function BookCard({ book, index }: Props) {
   const animationDelay = `${0.15 + index * 0.08}s`;
   const isAvailable = book.status === "available";
   const CoverComponent = coverMap[book.coverScene || "default"];
+  const altText = buildBookAlt(book);
 
   const CardContent = (
     <>
@@ -22,7 +31,7 @@ export default function BookCard({ book, index }: Props) {
         {book.coverImage ? (
           <Image
             src={book.coverImage}
-            alt={`${book.title} book cover`}
+            alt={altText}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1536px) 25vw, 20vw"
             className="object-contain"
