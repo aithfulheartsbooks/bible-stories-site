@@ -19,6 +19,22 @@ const resourceIcons: Record<string, string> = {
   Devotional: "❤️",
   Bookmark: "🔖",
   Certificate: "⭐",
+  "Sequencing Cards": "🃏",
+};
+
+const sectionOrder = [
+  "Family Printables",
+  "Memory Verse Posters",
+  "Sunday School Lesson Packs",
+  "5-Day Family Devotionals",
+  "Story Sequencing Cards",
+  "Bookmark Set + Certificate",
+  "Coloring Pages",
+];
+
+const sectionSubtitles: Record<string, string> = {
+  "Story Sequencing Cards":
+    "Cut-out scene cards for little hands to arrange in story order - perfect for Sunday school and quiet time.",
 };
 
 export default function ResourceCollection({
@@ -57,6 +73,7 @@ export default function ResourceCollection({
       "Poster",
       "Lesson Pack",
       "Devotional",
+      "Sequencing Cards",
       "Bookmark",
       "Certificate",
     ],
@@ -67,6 +84,17 @@ export default function ResourceCollection({
     activeType === "All Resources"
       ? searchedResources
       : searchedResources.filter((resource) => resource.type === activeType);
+
+  const visibleSections = useMemo(() => {
+    return sectionOrder
+      .map((section) => ({
+        section,
+        resources: visibleResources.filter(
+          (resource) => resource.section === section
+        ),
+      }))
+      .filter((group) => group.resources.length > 0);
+  }, [visibleResources]);
 
   return (
     <>
@@ -111,12 +139,82 @@ export default function ResourceCollection({
         {visibleResources.length === 1 ? "printable" : "printables"}
       </p>
 
-      <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {visibleResources.map((resource, index) => (
-          <ResourceCard key={resource.title} resource={resource} index={index} />
+      <div className="mt-10 space-y-12 text-left">
+        {visibleSections.map(({ section, resources: sectionResources }) => (
+          <section key={section}>
+            <div className="mb-6 text-center">
+              <h2 className="font-display text-3xl font-extrabold text-chestnut">
+                {section}
+              </h2>
+
+              {sectionSubtitles[section] ? (
+                <p className="mx-auto mt-2 max-w-2xl text-base leading-relaxed text-chestnut-soft">
+                  {sectionSubtitles[section]}
+                </p>
+              ) : null}
+            </div>
+
+            <ResourceSectionGrid resources={sectionResources} />
+          </section>
         ))}
       </div>
     </>
+  );
+}
+
+function ResourceSectionGrid({ resources }: { resources: Resource[] }) {
+  const groupedResources = resources.reduce<
+    Array<{ label?: string; resources: Resource[] }>
+  >((groups, resource) => {
+    const lastGroup = groups[groups.length - 1];
+
+    if (lastGroup && lastGroup.label === resource.groupLabel) {
+      lastGroup.resources.push(resource);
+      return groups;
+    }
+
+    groups.push({
+      label: resource.groupLabel,
+      resources: [resource],
+    });
+
+    return groups;
+  }, []);
+
+  let cardIndex = 0;
+
+  return (
+    <div className="space-y-7">
+      {groupedResources.map((group, groupIndex) => (
+        <div
+          key={`${group.label ?? "resources"}-${groupIndex}`}
+          className="space-y-4"
+        >
+          {group.label ? (
+            <div className="text-center">
+              <span className="inline-flex rounded-full border border-terracotta/20 bg-white/65 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-terracotta shadow-sm backdrop-blur">
+                {group.label}
+              </span>
+            </div>
+          ) : null}
+
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {group.resources.map((resource) => {
+              const index = cardIndex;
+              cardIndex += 1;
+
+              return (
+                <ResourceCard
+                  key={resource.title}
+                  resource={resource}
+                  index={index}
+                />
+              );
+            })}
+          </div>
+        </div>
+      ))}
+    </div>
   );
 }
 
