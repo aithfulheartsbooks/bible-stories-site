@@ -24,6 +24,11 @@ export type Book = {
   biblicalOrder?: number;
   status: "available" | "coming-soon";
   coverImage?: string;
+  song?: {
+    title: string;
+    artist: string;
+    embedId: string;
+  };
   coverScene?:
     | "noah"
     | "david"
@@ -76,6 +81,11 @@ const publishedBooks: Book[] = [
     biblicalOrder: 20,
     status: "available",
     coverImage: "/covers/noah.png",
+    song: {
+      title: "Rise and Shine (Arky Arky)",
+      artist: "Cedarmont Kids",
+      embedId: "56QWeYtHW0k",
+    },
     coverScene: "noah",
   },
   {
@@ -92,6 +102,11 @@ const publishedBooks: Book[] = [
     biblicalOrder: 70,
     status: "available",
     coverImage: "/covers/david.png",
+    song: {
+      title: "Only a Boy Named David",
+      artist: "Bible Songs for Kids",
+      embedId: "9PFW94CnN5M",
+    },
     coverScene: "david",
   },
   {
@@ -108,6 +123,11 @@ const publishedBooks: Book[] = [
     biblicalOrder: 50,
     status: "available",
     coverImage: "/covers/moses.png",
+    song: {
+      title: "God Parts the Red Sea",
+      artist: "Bible Songs for Kids",
+      embedId: "LxRTl4v060g",
+    },
     coverScene: "moses",
   },
   {
@@ -124,6 +144,11 @@ const publishedBooks: Book[] = [
     biblicalOrder: 120,
     status: "available",
     coverImage: "/covers/jonah.png",
+    song: {
+      title: "Who Did Swallow Jonah?",
+      artist: "Sing Hosanna",
+      embedId: "3ze-RgXHYVE",
+    },
     coverScene: "default",
   },
   {
@@ -140,6 +165,11 @@ const publishedBooks: Book[] = [
     biblicalOrder: 110,
     status: "available",
     coverImage: "/covers/daniel.jpg",
+    song: {
+      title: "Dare to Be a Daniel",
+      artist: "Kids Bible Song",
+      embedId: "3k7wqHUpJOI",
+    },
     coverScene: "book-05",
   },
   {
@@ -156,6 +186,11 @@ const publishedBooks: Book[] = [
     biblicalOrder: 100,
     status: "available",
     coverImage: "/covers/esther.png",
+    song: {
+      title: "Esther Brave Queen",
+      artist: "GOKidzAsia",
+      embedId: "0cRs9Abigds",
+    },
     coverScene: "book-06",
   },
   {
@@ -172,6 +207,11 @@ const publishedBooks: Book[] = [
     biblicalOrder: 130,
     status: "available",
     coverImage: "/covers/christmas.png",
+    song: {
+      title: "Away in a Manger",
+      artist: "CJ and Friends",
+      embedId: "oWek4spZKog",
+    },
     coverScene: "book-07",
   },
   {
@@ -188,6 +228,11 @@ const publishedBooks: Book[] = [
     biblicalOrder: 30,
     status: "available",
     coverImage: "/covers/joseph.png",
+    song: {
+      title: "Coat of Many Colors",
+      artist: "Animated Bible Song",
+      embedId: "j5dkKAuPQ40",
+    },
     coverScene: "book-08",
   },
   {
@@ -204,6 +249,11 @@ const publishedBooks: Book[] = [
     biblicalOrder: 150,
     status: "available",
     coverImage: "/covers/easter.png",
+    song: {
+      title: "He Is Risen",
+      artist: "Kids Bible Song",
+      embedId: "9WAPwB-PEno",
+    },
     coverScene: "default",
   },
   {
@@ -220,6 +270,11 @@ const publishedBooks: Book[] = [
     biblicalOrder: 60,
     status: "available",
     coverImage: "/covers/ruth.png",
+    song: {
+      title: "A Song about Ruth and Naomi",
+      artist: "Children's Bible Songs",
+      embedId: "SKDaYeXlsEE",
+    },
     coverScene: "default",
   },
   {
@@ -236,6 +291,11 @@ const publishedBooks: Book[] = [
     biblicalOrder: 40,
     status: "available",
     coverImage: "/covers/birth-of-moses.jpg",
+    song: {
+      title: "Baby Moses in the Basket",
+      artist: "Kids Christian Song",
+      embedId: "mSEwseXkNtU",
+    },
     coverScene: "book-11",
   },
   {
@@ -252,6 +312,11 @@ const publishedBooks: Book[] = [
     biblicalOrder: 80,
     status: "available",
     coverImage: "/covers/solomon-and-wisdom.jpg",
+    song: {
+      title: "Solomon - Animated with Lyrics",
+      artist: "DG Bible Songs",
+      embedId: "9ms3BYHIHgI",
+    },
     coverScene: "book-12",
   },
   {
@@ -268,6 +333,11 @@ const publishedBooks: Book[] = [
     biblicalOrder: 90,
     status: "available",
     coverImage: "/covers/elijah-still-small-voice.jpg",
+    song: {
+      title: "Elijah and the Still Small Voice",
+      artist: "Latter Day Kids",
+      embedId: "Gcw36BTFzQQ",
+    },
     coverScene: "book-13",
   },
   {
@@ -284,6 +354,11 @@ const publishedBooks: Book[] = [
     biblicalOrder: 140,
     status: "available",
     coverImage: "/covers/jesus-calms-the-storm.jpg",
+    song: {
+      title: "Jesus Calms the Storm",
+      artist: "Children's Song",
+      embedId: "XIF9aREye6o",
+    },
     coverScene: "book-14",
   },
   {
@@ -300,6 +375,11 @@ const publishedBooks: Book[] = [
     biblicalOrder: 10,
     status: "available",
     coverImage: "/covers/the-creation-story.jpg",
+    song: {
+      title: "Days of Creation",
+      artist: "Christian Songs for Kids",
+      embedId: "9qG0-XB-I54",
+    },
     coverScene: "book-15",
   },
   {
@@ -316,6 +396,11 @@ const publishedBooks: Book[] = [
     biblicalOrder: 160,
     status: "available",
     coverImage: "/covers/armor-of-god.jpg",
+    song: {
+      title: "I'm in the Lord's Army",
+      artist: "Cedarmont Kids",
+      embedId: "nJoB5XCQ5gs",
+    },
     coverScene: "default",
   },
   {
@@ -332,6 +417,11 @@ const publishedBooks: Book[] = [
     biblicalOrder: 148,
     status: "available",
     coverImage: "/covers/zacchaeus.jpg",
+    song: {
+      title: "Zacchaeus - Animated Sing-Along",
+      artist: "Kids Bible Song",
+      embedId: "X0ABM9xh9eE",
+    },
     coverScene: "default",
   },
   {
@@ -348,6 +438,11 @@ const publishedBooks: Book[] = [
     biblicalOrder: 145,
     status: "available",
     coverImage: "/covers/the-good-samaritan.jpg",
+    song: {
+      title: "Love Your Neighbor",
+      artist: "DG Bible Songs",
+      embedId: "vtMRN4FV1fs",
+    },
     coverScene: "default",
   },
   {
@@ -364,6 +459,11 @@ const publishedBooks: Book[] = [
     biblicalOrder: 147,
     status: "available",
     coverImage: "/covers/the-lost-sheep.jpg",
+    song: {
+      title: "The Lost Sheep - Animated",
+      artist: "DG Bible Songs",
+      embedId: "Epxh68WKiiw",
+    },
     coverScene: "default",
   },
   {
@@ -381,6 +481,11 @@ const publishedBooks: Book[] = [
     biblicalOrder: 142,
     status: "available",
     coverImage: "/covers/feeding-the-5000.jpg",
+    song: {
+      title: "5 Loaves and 2 Fish - Animated",
+      artist: "DG Bible Songs",
+      embedId: "sqgVKfFoKVk",
+    },
     coverScene: "default",
   },
   {
@@ -397,6 +502,11 @@ const publishedBooks: Book[] = [
     biblicalOrder: 15,
     status: "available",
     coverImage: "/covers/adam-and-eve-in-the-garden.jpg",
+    song: {
+      title: "Adam and Eve",
+      artist: "Shawna Edwards",
+      embedId: "UWHrOWAeAHs",
+    },
     coverScene: "default",
   },
 ];

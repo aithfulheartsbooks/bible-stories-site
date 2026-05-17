@@ -1,4 +1,4 @@
-import { books } from "@/app/books";
+import { books, type Book } from "@/app/books";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import SoundButton from "@/components/SoundButton";
@@ -662,12 +662,12 @@ function MovingStoryCharacters({ slug }: { slug: string }) {
   return null;
 }
 
-function BookSongSection({ slug }: { slug: string }) {
-  if (slug !== "noah-and-gods-big-promise") return null;
+function BookSongSection({ book }: { book: Book }) {
+  if (!book.song) return null;
 
   return (
     <section
-      className="opacity-0 animate-fade-up relative mt-12 overflow-hidden rounded-[20px] px-5 py-5 shadow-[0_4px_24px_rgba(92,61,46,0.2)] sm:px-8 sm:py-6"
+      className="opacity-0 animate-fade-up relative mb-8 mt-12 overflow-hidden rounded-[20px] px-5 pb-[1.8rem] pt-5 shadow-[0_4px_24px_rgba(92,61,46,0.2)] sm:mb-12 sm:px-8 sm:pb-8 sm:pt-6"
       style={{
         animationDelay: "0.4s",
         background: "linear-gradient(135deg, #8a5238, #b86445)",
@@ -687,12 +687,12 @@ function BookSongSection({ slug }: { slug: string }) {
             {"\u266b"} Song for This Story
           </p>
           <h2 id="book-song-heading" className="mb-3 font-display text-3xl font-bold leading-tight text-[#FAF3E0] sm:text-4xl">
-            Rise and Shine (Arky Arky)
+            {book.song.title}
           </h2>
           <p className="max-w-xl text-base leading-relaxed text-[#FAF3E0]/70">
-            Sing along to this classic children&apos;s Bible song that pairs perfectly with Noah&apos;s story!
+            Sing along to this classic children&apos;s Bible song that pairs perfectly with this story!
           </p>
-          <p className="mt-5 hidden text-xs font-semibold text-[#FAF3E0]/40 lg:block">
+          <p className="mt-[0.8rem] hidden text-xs font-semibold text-[#FAF3E0]/40 lg:block">
             {"\u25b6"} Video plays on this page &middot; Powered by YouTube
           </p>
         </div>
@@ -700,14 +700,14 @@ function BookSongSection({ slug }: { slug: string }) {
         <div>
           <iframe
             width="100%"
-            src="https://www.youtube.com/embed/56QWeYtHW0k"
-            title="Rise and Shine (Arky Arky) - Cedarmont Kids"
+            src={`https://www.youtube.com/embed/${book.song.embedId}`}
+            title={`${book.song.title} - ${book.song.artist}`}
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             className="block aspect-video w-full rounded-[10px] bg-chestnut/40 shadow-lg"
           />
-          <p className="mt-3 text-center text-xs font-semibold text-[#FAF3E0]/40 lg:hidden">
+          <p className="mt-[0.8rem] text-center text-xs font-semibold text-[#FAF3E0]/40 lg:hidden">
             {"\u25b6"} Video plays on this page &middot; Powered by YouTube
           </p>
         </div>
@@ -792,7 +792,7 @@ export default function BookPage({ params }: { params: { slug: string } }) {
           </div>
         </div>
 
-        <BookSongSection slug={book.slug} />
+        <BookSongSection book={book} />
       </section>
     </main>
   );
