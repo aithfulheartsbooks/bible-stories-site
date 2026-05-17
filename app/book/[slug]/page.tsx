@@ -677,11 +677,11 @@ function BookSongSection({ slug }: { slug: string }) {
       <div className="absolute right-6 top-4 text-7xl text-cream opacity-[0.07]" aria-hidden="true">
         {"\u266b"}
       </div>
-      <div className="absolute -top-2.5 left-5 rounded-full bg-[#E8C07D] px-4 py-1 text-[0.62rem] font-extrabold uppercase tracking-[0.2em] text-[#5C3D2E] shadow-sm">
+      <div className="absolute left-5 top-4 rounded-full bg-[#E8C07D] px-4 py-1 text-[0.62rem] font-extrabold uppercase tracking-[0.2em] text-[#5C3D2E] shadow-sm">
         {"\u2726"} Sing Along
       </div>
 
-      <div className="relative z-10 grid items-center gap-6 pt-3 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="relative z-10 grid items-center gap-6 pt-9 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
           <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.22em] text-[#E8C07D]">
             {"\u266b"} Song for This Story
