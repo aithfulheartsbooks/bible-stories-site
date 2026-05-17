@@ -103,9 +103,9 @@ const publishedBooks: Book[] = [
     status: "available",
     coverImage: "/covers/david.png",
     song: {
-      title: "Only a Boy Named David",
+      title: "David and Goliath",
       artist: "Bible Songs for Kids",
-      embedId: "9PFW94CnN5M",
+      embedId: "m1SHCJ44fDo",
     },
     coverScene: "david",
   },
