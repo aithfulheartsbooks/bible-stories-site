@@ -662,6 +662,60 @@ function MovingStoryCharacters({ slug }: { slug: string }) {
   return null;
 }
 
+function BookSongSection({ slug }: { slug: string }) {
+  if (slug !== "noah-and-gods-big-promise") return null;
+
+  return (
+    <section
+      className="opacity-0 animate-fade-up relative mt-12 overflow-hidden rounded-[20px] px-5 py-5 shadow-[0_4px_24px_rgba(92,61,46,0.2)] sm:px-8 sm:py-6"
+      style={{
+        animationDelay: "0.4s",
+        background: "linear-gradient(135deg, #5C3D2E, #7a5040)",
+      }}
+      aria-labelledby="book-song-heading"
+    >
+      <div className="absolute right-6 top-4 text-7xl text-cream opacity-[0.07]" aria-hidden="true">
+        {"\u266b"}
+      </div>
+      <div className="absolute -top-2.5 left-5 rounded-full bg-[#E8C07D] px-4 py-1 text-[0.62rem] font-extrabold uppercase tracking-[0.2em] text-[#5C3D2E] shadow-sm">
+        {"\u2726"} Sing Along
+      </div>
+
+      <div className="relative z-10 grid items-center gap-6 pt-3 lg:grid-cols-[0.9fr_1.1fr]">
+        <div>
+          <p className="mb-3 text-xs font-extrabold uppercase tracking-[0.22em] text-[#E8C07D]">
+            {"\u266b"} Song for This Story
+          </p>
+          <h2 id="book-song-heading" className="mb-3 font-display text-3xl font-bold leading-tight text-[#FAF3E0] sm:text-4xl">
+            Rise and Shine (Arky Arky)
+          </h2>
+          <p className="max-w-xl text-base leading-relaxed text-[#FAF3E0]/70">
+            Sing along to this classic children&apos;s Bible song that pairs perfectly with Noah&apos;s story!
+          </p>
+          <p className="mt-5 hidden text-xs font-semibold text-[#FAF3E0]/40 lg:block">
+            {"\u25b6"} Video plays on this page &middot; Powered by YouTube
+          </p>
+        </div>
+
+        <div>
+          <iframe
+            width="100%"
+            src="https://www.youtube.com/embed/56QWeYtHW0k"
+            title="Rise and Shine (Arky Arky) - Cedarmont Kids"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="block aspect-video w-full rounded-[10px] bg-chestnut/40 shadow-lg"
+          />
+          <p className="mt-3 text-center text-xs font-semibold text-[#FAF3E0]/40 lg:hidden">
+            {"\u25b6"} Video plays on this page &middot; Powered by YouTube
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function BookPage({ params }: { params: { slug: string } }) {
   const book = books.find((b) => b.slug === params.slug);
   if (!book) return notFound();
@@ -737,6 +791,8 @@ export default function BookPage({ params }: { params: { slug: string } }) {
             )}
           </div>
         </div>
+
+        <BookSongSection slug={book.slug} />
       </section>
     </main>
   );
