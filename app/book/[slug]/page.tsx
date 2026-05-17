@@ -670,7 +670,7 @@ function BookSongSection({ slug }: { slug: string }) {
       className="opacity-0 animate-fade-up relative mt-12 overflow-hidden rounded-[20px] px-5 py-5 shadow-[0_4px_24px_rgba(92,61,46,0.2)] sm:px-8 sm:py-6"
       style={{
         animationDelay: "0.4s",
-        background: "linear-gradient(135deg, #5C3D2E, #7a5040)",
+        background: "linear-gradient(135deg, #8a5238, #b86445)",
       }}
       aria-labelledby="book-song-heading"
     >
