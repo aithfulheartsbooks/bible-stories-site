@@ -523,6 +523,11 @@ const publishedBooks: Book[] = [
     biblicalOrder: 55,
     status: "available",
     coverImage: "/covers/joshua-and-jericho.jpg",
+    song: {
+      title: "Joshua Fought the Battle of Jericho!",
+      artist: "Good News Guys",
+      embedId: "iznTwRZloQM",
+    },
     coverScene: "default",
   },
   {
@@ -539,6 +544,11 @@ const publishedBooks: Book[] = [
     biblicalOrder: 112,
     status: "available",
     coverImage: "/covers/the-fiery-furnace.jpg",
+    song: {
+      title: "Not Afraid of the Fire",
+      artist: "JoyfulJams TV",
+      embedId: "wTQVEnKX7LE",
+    },
     coverScene: "default",
   },
   {
@@ -555,6 +565,11 @@ const publishedBooks: Book[] = [
     biblicalOrder: 146,
     status: "available",
     coverImage: "/covers/the-prodigal-son.jpg",
+    song: {
+      title: "But Hey (Story of the Prodigal Son's Elder Brother)",
+      artist: "DG Bible Songs",
+      embedId: "SjdObquzlhA",
+    },
     coverScene: "default",
   },
   {
@@ -571,6 +586,11 @@ const publishedBooks: Book[] = [
     biblicalOrder: 143,
     status: "available",
     coverImage: "/covers/jesus-welcomes-children.jpg",
+    song: {
+      title: "Let The Little Children Come",
+      artist: "Twin Sisters - Songs & Stories For Kids",
+      embedId: "Mp23IHKKsSQ",
+    },
     coverScene: "default",
   },
 ];
