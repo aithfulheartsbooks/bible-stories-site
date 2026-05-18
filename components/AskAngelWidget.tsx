@@ -249,6 +249,9 @@ const widgetMarkup = String.raw`
 
 const widgetScript = String.raw`
 (function () {
+  if (window.__askAngelInitialized) return;
+  window.__askAngelInitialized = true;
+
   const WORKER_URL = 'https://ask-angel.ruhezhao.workers.dev';
   const SITE_URL = 'https://www.faithfulheartsbooks.com';
 
@@ -258,44 +261,75 @@ const widgetScript = String.raw`
   let history = [];
   let typingEl = null;
 
-  const panelEl = document.getElementById('ask-angel-panel');
-  const messagesEl = document.getElementById('angel-messages');
-  const inputEl = document.getElementById('angel-input');
-  const sendEl = document.getElementById('angel-send-btn');
-  const closeEl = document.getElementById('angel-close-btn');
-  const btnEl = document.getElementById('ask-angel-btn');
+  let panelEl;
+  let messagesEl;
+  let inputEl;
+  let sendEl;
+  let closeEl;
+  let btnEl;
 
-  if (!panelEl || !messagesEl || !inputEl || !sendEl || !closeEl || !btnEl) {
-    console.warn('Ask Angel could not initialize because required elements were not found.');
-    return;
+  function refreshElements() {
+    panelEl = document.getElementById('ask-angel-panel');
+    messagesEl = document.getElementById('angel-messages');
+    inputEl = document.getElementById('angel-input');
+    sendEl = document.getElementById('angel-send-btn');
+    closeEl = document.getElementById('angel-close-btn');
+    btnEl = document.getElementById('ask-angel-btn');
+
+    return !!(panelEl && messagesEl && inputEl && sendEl && closeEl && btnEl);
   }
 
-  btnEl.addEventListener('click', async function () {
-    isOpen = !isOpen;
-    panelEl.classList.toggle('open', isOpen);
-    if (isOpen) {
-      inputEl.focus();
-      if (!booksCache) await loadBooks();
-    }
-  });
+  refreshElements();
 
-  closeEl.addEventListener('click', function () {
-    isOpen = false;
-    panelEl.classList.remove('open');
-  });
+  document.addEventListener('click', async function (event) {
+    const target = event.target;
+    if (!target || !target.closest) return;
 
-  inputEl.addEventListener('keydown', function (event) {
-    if (event.key === 'Enter' && !event.shiftKey) {
+    if (target.closest('#ask-angel-btn')) {
       event.preventDefault();
+      if (!refreshElements()) return;
+      isOpen = !panelEl.classList.contains('open');
+      panelEl.classList.toggle('open', isOpen);
+      if (isOpen) {
+        inputEl.focus();
+        if (!booksCache) await loadBooks();
+      }
+      return;
+    }
+
+    if (target.closest('#angel-close-btn')) {
+      event.preventDefault();
+      if (!refreshElements()) return;
+      isOpen = false;
+      panelEl.classList.remove('open');
+      return;
+    }
+
+    if (target.closest('#angel-send-btn')) {
+      event.preventDefault();
+      if (!refreshElements()) return;
       sendMessage();
     }
   });
 
-  sendEl.addEventListener('click', sendMessage);
+  document.addEventListener('keydown', function (event) {
+    if (!event.target || event.target.id !== 'angel-input') return;
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      if (!refreshElements()) return;
+      sendMessage();
+    }
+  });
+
+  window.addEventListener('pageshow', function () {
+    refreshElements();
+    isOpen = !!(panelEl && panelEl.classList.contains('open'));
+  });
 
   async function loadBooks() {
+    refreshElements();
     try {
-      inputEl.placeholder = 'Loading all books...';
+      if (inputEl) inputEl.placeholder = 'Loading all books...';
       const response = await fetch(window.location.origin + '/api/ask-angel-books', {
         credentials: 'same-origin'
       });
@@ -308,7 +342,7 @@ const widgetScript = String.raw`
     } catch (error) {
       console.warn('Ask Angel could not load the book data endpoint.', error);
     } finally {
-      inputEl.placeholder = 'e.g. my 5 year old loves animals...';
+      if (inputEl) inputEl.placeholder = 'e.g. my 5 year old loves animals...';
     }
 
     booksCache = normalizeBooks(getBuiltInBooks());
@@ -476,10 +510,12 @@ const widgetScript = String.raw`
   }
 
   function avatarSVG() {
-    return document.querySelector('#ask-angel-btn svg').outerHTML;
+    const icon = document.querySelector('#ask-angel-btn svg');
+    return icon ? icon.outerHTML : '';
   }
 
   function appendMessage(text, role) {
+    if (!refreshElements()) return;
     const row = document.createElement('div');
     row.className = 'angel-msg-row' + (role === 'user' ? ' user' : '');
 
@@ -521,6 +557,7 @@ const widgetScript = String.raw`
   }
 
   function showTyping() {
+    if (!refreshElements()) return;
     typingEl = document.createElement('div');
     typingEl.className = 'angel-typing';
     const avatar = document.createElement('div');
@@ -571,6 +608,7 @@ const widgetScript = String.raw`
   }
 
   async function sendMessage() {
+    if (!refreshElements()) return;
     const text = inputEl.value.trim();
     if (!text || isLoading) return;
 
