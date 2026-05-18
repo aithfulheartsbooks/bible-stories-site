@@ -372,6 +372,15 @@ const widgetScript = String.raw`
         desc: longerText(existing.desc, book.desc),
         scriptureReference: existing.scriptureReference || book.scriptureReference || '',
         biblicalOrder: existing.biblicalOrder ?? book.biblicalOrder ?? null,
+        songTitle: existing.songTitle || book.songTitle || book.song?.title || '',
+        songArtist: existing.songArtist || book.songArtist || book.song?.artist || '',
+        songEmbedId: existing.songEmbedId || book.songEmbedId || book.song?.embedId || '',
+        songYoutubeUrl: existing.songYoutubeUrl || book.songYoutubeUrl || (
+          (book.songEmbedId || book.song?.embedId) ? 'https://www.youtube.com/watch?v=' + (book.songEmbedId || book.song.embedId) : ''
+        ),
+        songEmbedUrl: existing.songEmbedUrl || book.songEmbedUrl || (
+          (book.songEmbedId || book.song?.embedId) ? 'https://www.youtube.com/embed/' + (book.songEmbedId || book.song.embedId) : ''
+        ),
         bookUrl: existing.bookUrl || book.bookUrl || (book.slug ? SITE_URL + '/book/' + book.slug : ''),
         amazonUrl: bookHasAmazon && !existingHasAmazon
           ? book.amazonUrl
@@ -439,6 +448,9 @@ const widgetScript = String.raw`
         book.subtitle ? 'Subtitle: ' + book.subtitle : '',
         book.theme ? 'Theme: ' + book.theme : '',
         book.scriptureReference ? 'Scripture: ' + book.scriptureReference : '',
+        book.songTitle ? 'Sing Along video: "' + book.songTitle + '"' + (book.songArtist ? ' by ' + book.songArtist : '') : '',
+        book.songYoutubeUrl ? 'YouTube: ' + book.songYoutubeUrl : '',
+        book.songEmbedUrl ? 'YouTube embed: ' + book.songEmbedUrl : '',
         book.desc || '',
         book.bookUrl ? 'Book page: ' + book.bookUrl : '',
         book.amazonUrl ? 'Amazon: ' + book.amazonUrl : ''
@@ -465,6 +477,8 @@ const widgetScript = String.raw`
       '- Always include the Amazon link when recommending a book if one exists; otherwise include the book page link.',
       '- Keep responses short and friendly because parents are busy.',
       '- Answer questions about website navigation, Series Map, Free Resources, About, Contact, newsletter, and available books using WEBSITE KNOWLEDGE.',
+      '- Each book page may include a Sing Along YouTube video. If asked about songs, music, sing-along videos, or YouTube videos, answer from the Sing Along video fields in the live book list.',
+      '- If a user asks for a book video, include the YouTube link when it exists and mention that the video is also embedded on that book page.',
       '- If asked about the Series Map, explain that it is biblical chronological order and mention Old Testament/New Testament grouping.',
       '- If asked for the newest/latest/new book, answer using this live value: ' + (newestBook ? newestBook.number + ' "' + newestBook.title + '"' : 'highest available book number') + '.',
       '- If asked how many books are available, answer exactly: "There are ' + books.length + ' books currently available in the series."',
@@ -495,12 +509,15 @@ const widgetScript = String.raw`
       return 'The newest book is **' + newestBook.title + '**' + (newestBook.desc ? '. ' + newestBook.desc : '') + ' [Find it on Amazon](' + (newestBook.amazonUrl || newestBook.bookUrl) + ')';
     }
 
-    const themeMatch = books.find(function (book) {
-      const haystack = (book.title + ' ' + book.theme + ' ' + book.desc + ' ' + book.scriptureReference).toLowerCase();
-      return q.split(/\s+/).some(function (word) {
-        return word.length > 4 && haystack.includes(word);
-      });
-    });
+    if (/song|sing along|youtube|video|music/.test(q)) {
+      const songMatch = findBestBookMatch(books, q);
+      if (songMatch && songMatch.songTitle) {
+        return '**' + songMatch.title + '** has a Sing Along video: **' + songMatch.songTitle + '**' + (songMatch.songArtist ? ' by ' + songMatch.songArtist : '') + '.' + (songMatch.songYoutubeUrl ? ' [Watch on YouTube](' + songMatch.songYoutubeUrl + ')' : ' You can also find it embedded on the book page.');
+      }
+      return 'Many book pages include a **Sing Along** YouTube video. Tell me which book you mean, and I can help find the song for that story.';
+    }
+
+    const themeMatch = findBestBookMatch(books, q);
 
     if (themeMatch) {
       return 'I think **' + themeMatch.title + '** could be a lovely fit.' + (themeMatch.desc ? ' ' + themeMatch.desc : '') + ' [Find it on Amazon](' + (themeMatch.amazonUrl || themeMatch.bookUrl) + ')';
@@ -665,6 +682,52 @@ const widgetScript = String.raw`
 
   function normalizeTitle(title) {
     return cleanText(title).toLowerCase().replace(/[^a-z0-9]+/g, '');
+  }
+
+  function findBestBookMatch(books, question) {
+    const numberMatch = question.match(/\bbook\s*0?(\d{1,3})\b/i);
+    if (numberMatch) {
+      const requestedNumber = Number(numberMatch[1]);
+      const byNumber = books.find(function (book) {
+        return parseBookNumberValue(book) === requestedNumber;
+      });
+      if (byNumber) return byNumber;
+    }
+
+    const ignoredWords = new Set([
+      'book',
+      'song',
+      'sing',
+      'along',
+      'youtube',
+      'video',
+      'music',
+      'what',
+      'which',
+      'about',
+      'does',
+      'have',
+      'tell',
+      'show'
+    ]);
+
+    return books.find(function (book) {
+      const haystack = (
+        book.number + ' ' +
+        book.title + ' ' +
+        book.subtitle + ' ' +
+        book.theme + ' ' +
+        book.desc + ' ' +
+        book.scriptureReference + ' ' +
+        book.songTitle + ' ' +
+        book.songArtist
+      ).toLowerCase();
+
+      return question.split(/\s+/).some(function (word) {
+        const cleanWord = word.toLowerCase().replace(/[^a-z0-9]+/g, '');
+        return cleanWord.length > 3 && !ignoredWords.has(cleanWord) && haystack.includes(cleanWord);
+      });
+    });
   }
 
   function getBuiltInBooks() {

@@ -14,6 +14,15 @@ export function GET() {
       desc: book.blurb || "",
       scriptureReference: book.scriptureReference || "",
       biblicalOrder: book.biblicalOrder ?? null,
+      songTitle: book.song?.title || "",
+      songArtist: book.song?.artist || "",
+      songEmbedId: book.song?.embedId || "",
+      songYoutubeUrl: book.song?.embedId
+        ? `https://www.youtube.com/watch?v=${book.song.embedId}`
+        : "",
+      songEmbedUrl: book.song?.embedId
+        ? `https://www.youtube.com/embed/${book.song.embedId}`
+        : "",
       bookUrl: `https://www.faithfulheartsbooks.com/book/${book.slug}`,
       amazonUrl:
         book.amazonUrl || `https://www.faithfulheartsbooks.com/book/${book.slug}`,
