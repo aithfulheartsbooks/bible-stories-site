@@ -1,5 +1,3 @@
-import Script from "next/script";
-
 const widgetStyles = String.raw`
   #ask-angel-btn {
     position: fixed;
@@ -664,11 +662,7 @@ export default function AskAngelWidget() {
     <>
       <style dangerouslySetInnerHTML={{ __html: widgetStyles }} />
       <div dangerouslySetInnerHTML={{ __html: widgetMarkup }} />
-      <Script
-        id="ask-angel-widget"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{ __html: widgetScript }}
-      />
+      <script id="ask-angel-widget" dangerouslySetInnerHTML={{ __html: widgetScript }} />
     </>
   );
 }
