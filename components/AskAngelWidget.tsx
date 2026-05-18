@@ -179,9 +179,17 @@ const widgetStyles = String.raw`
     color: #c0a888; padding: 5px 0 8px;
     background: white; flex-shrink: 0;
   }
-  @media (max-width: 400px) {
-    #ask-angel-panel { width: calc(100vw - 24px); right: 12px; bottom: 100px; }
-    #ask-angel-btn { right: 16px; bottom: 16px; }
+  @media (max-width: 640px) {
+    #ask-angel-panel {
+      width: calc(100vw - 24px);
+      right: 12px;
+      bottom: calc(env(safe-area-inset-bottom, 0px) + 180px);
+      max-height: min(520px, calc(100vh - 154px));
+    }
+    #ask-angel-btn {
+      right: 16px;
+      bottom: calc(env(safe-area-inset-bottom, 0px) + 88px);
+    }
   }
 `;
 
@@ -258,6 +266,11 @@ const widgetScript = String.raw`
   const sendEl = document.getElementById('angel-send-btn');
   const closeEl = document.getElementById('angel-close-btn');
   const btnEl = document.getElementById('ask-angel-btn');
+
+  if (!panelEl || !messagesEl || !inputEl || !sendEl || !closeEl || !btnEl) {
+    console.warn('Ask Angel could not initialize because required elements were not found.');
+    return;
+  }
 
   btnEl.addEventListener('click', async function () {
     isOpen = !isOpen;
