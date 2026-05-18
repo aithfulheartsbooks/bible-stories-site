@@ -356,6 +356,12 @@ const defaultTheme: Theme = {
   ],
 };
 
+const iconCardClasses = [
+  "bg-gradient-to-br from-sky/55 via-cream/85 to-white/70 ring-sky/25",
+  "bg-gradient-to-br from-gold/35 via-cream/85 to-peach/30 ring-gold/25",
+  "bg-gradient-to-br from-sage/45 via-cream/85 to-lavender/25 ring-sage/25",
+];
+
 export function generateStaticParams() {
   return books.map((book) => ({ slug: book.slug }));
 }
@@ -771,8 +777,8 @@ export default function BookPage({ params }: { params: { slug: string } }) {
             <p className="mb-7 text-base leading-relaxed text-chestnut-soft sm:text-lg">{book.blurb}</p>
 
             <div className="mb-8 grid gap-4 sm:grid-cols-3">
-              {theme.icons.map((item) => (
-                <div key={item.label} className="rounded-2xl bg-cream/80 p-4 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+              {theme.icons.map((item, index) => (
+                <div key={item.label} className={`rounded-2xl p-4 text-center shadow-sm ring-1 transition hover:-translate-y-1 hover:shadow-md ${iconCardClasses[index % iconCardClasses.length]}`}>
                   <div className="mb-1 text-2xl">{item.emoji}</div>
                   <p className="text-xs font-bold uppercase tracking-wider text-chestnut-soft">{item.label}</p>
                 </div>
