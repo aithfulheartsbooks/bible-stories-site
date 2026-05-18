@@ -2,12 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { Book } from "@/app/books";
 import BookCard from "@/components/BookCard";
 
 const DESKTOP_BOOKS_PER_PAGE = 18;
 const MOBILE_BOOKS_PER_PAGE = 9;
+const BOOKS_PAGE_PARAM = "booksPage";
 
 const THEME_FILTERS = [
   "All Books",
@@ -171,6 +173,9 @@ function useBooksPerPage() {
 }
 
 export default function BookCollection({ books }: Props) {
+  const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [activeTheme, setActiveTheme] = useState<ThemeFilter>("All Books");
   const [sortMode, setSortMode] = useState<SortMode>("publication");
   const [currentPage, setCurrentPage] = useState(1);
@@ -194,8 +199,19 @@ export default function BookCollection({ books }: Props) {
   );
 
   useEffect(() => {
-    setCurrentPage((page) => Math.min(page, pageCount));
-  }, [pageCount]);
+    const requestedPage = Number(searchParams.get(BOOKS_PAGE_PARAM));
+    const nextPage =
+      Number.isInteger(requestedPage) && requestedPage > 0
+        ? Math.min(requestedPage, pageCount)
+        : 1;
+
+    setCurrentPage(nextPage);
+  }, [pageCount, searchParams]);
+
+  useEffect(() => {
+    if (currentPage <= pageCount) return;
+    setCurrentPage(pageCount);
+  }, [currentPage, pageCount]);
 
   useEffect(() => {
     if (!shouldScrollToBooks.current) return;
@@ -213,20 +229,35 @@ export default function BookCollection({ books }: Props) {
 
   function selectTheme(theme: ThemeFilter) {
     setActiveTheme(theme);
-    setCurrentPage(1);
+    setBooksPageParam(1);
     if (theme === "All Books") setSortMode("publication");
   }
 
   function selectSort(mode: SortMode) {
     setSortMode(mode);
-    setCurrentPage(1);
+    setBooksPageParam(1);
+  }
+
+  function setBooksPageParam(page: number) {
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (page <= 1) {
+      params.delete(BOOKS_PAGE_PARAM);
+    } else {
+      params.set(BOOKS_PAGE_PARAM, String(page));
+    }
+
+    const query = params.toString();
+    router.replace(query ? `${pathname}?${query}` : pathname, {
+      scroll: false,
+    });
   }
 
   function goToPage(page: number) {
     if (page === currentPage) return;
 
     shouldScrollToBooks.current = true;
-    setCurrentPage(page);
+    setBooksPageParam(page);
   }
 
   return (

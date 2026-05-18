@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { books } from "./books";
 import BookCollection from "@/components/BookCollection";
 import NewsletterSignup from "@/components/NewsletterSignup";
@@ -102,7 +103,9 @@ export default function Home() {
         </div>
       </header>
 
-      <BookCollection books={books} />
+      <Suspense fallback={null}>
+        <BookCollection books={books} />
+      </Suspense>
 
       <NewsletterSignup />
 
