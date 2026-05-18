@@ -744,7 +744,7 @@ export default function BookPage({ params }: { params: { slug: string } }) {
           <div className="opacity-0 animate-fade-up flex justify-center" style={{ animationDelay: "0.1s" }}>
             <div className="relative">
               <div className="absolute -inset-6 rounded-[2rem] bg-white/35 blur-xl" />
-              <div className="relative rounded-[2rem] bg-white/70 p-5 shadow-2xl backdrop-blur-md ring-1 ring-white/80">
+              <div className="relative rounded-[2rem] bg-cream/85 p-5 shadow-2xl backdrop-blur-md ring-1 ring-white/70">
                 {book.coverImage && (
                   <div className="relative h-[390px] w-[260px] sm:h-[480px] sm:w-[320px]">
                     <Image src={book.coverImage} alt={`${book.title} book cover`} fill priority className="rounded-2xl object-contain shadow-lg transition duration-500 hover:scale-[1.02]" />
@@ -755,7 +755,7 @@ export default function BookPage({ params }: { params: { slug: string } }) {
             </div>
           </div>
 
-          <div className="opacity-0 animate-fade-up rounded-[2rem] bg-white/75 p-8 shadow-xl backdrop-blur-md ring-1 ring-white/80 sm:p-10" style={{ animationDelay: "0.25s" }}>
+          <div className="opacity-0 animate-fade-up rounded-[2rem] bg-cream/90 p-8 shadow-xl backdrop-blur-md ring-1 ring-white/70 sm:p-10" style={{ animationDelay: "0.25s" }}>
             <div className="mb-5 flex flex-wrap gap-3">
               <span className="rounded-full bg-terracotta/15 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-terracotta">{book.number}</span>
               {book.ageRange && <span className="rounded-full bg-sky/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-chestnut-soft">{book.ageRange}</span>}
