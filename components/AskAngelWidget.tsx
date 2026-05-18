@@ -752,7 +752,11 @@ const widgetScript = String.raw`
       { number: 'Book 18', title: 'The Good Samaritan', theme: 'Love', desc: 'A story of compassion, courage, and care.', scriptureReference: 'Luke 10:25-37', biblicalOrder: 145, amazonUrl: 'https://www.amazon.com/dp/B0H1CPYC6T' },
       { number: 'Book 19', title: 'The Lost Sheep', theme: 'Love', desc: 'A tender story that Jesus knows each child by name.', scriptureReference: 'Luke 15:3-7; Matthew 18:12-14', biblicalOrder: 147, amazonUrl: 'https://www.amazon.com/dp/B0H1CTPVMV' },
       { number: 'Book 20', title: 'The Feeding of the 5,000', theme: 'Faith', desc: 'A miracle story about a small lunch and Jesus making more than enough.', scriptureReference: 'Mark 6:30-44; John 6:1-14', biblicalOrder: 142, amazonUrl: 'https://www.amazon.com/dp/B0H1D867ZJ' },
-      { number: 'Book 21', title: 'Adam and Eve in the Garden', theme: 'Wonder', desc: "A gentle garden story about God's beautiful beginning.", scriptureReference: 'Genesis 2-3', biblicalOrder: 15, amazonUrl: 'https://www.amazon.com/dp/B0H1JDBH3V' }
+      { number: 'Book 21', title: 'Adam and Eve in the Garden', theme: 'Wonder', desc: "A gentle garden story about God's beautiful beginning.", scriptureReference: 'Genesis 2-3', biblicalOrder: 15, amazonUrl: 'https://www.amazon.com/dp/B0H1JDBH3V' },
+      { number: 'Book 22', title: 'Joshua and Jericho', theme: 'Faith', desc: "A joyful story about Joshua, Jericho, and trusting God's instructions.", scriptureReference: 'Joshua 6', biblicalOrder: 55, amazonUrl: 'https://www.amazon.com/dp/B0H25YF2J6' },
+      { number: 'Book 23', title: 'The Fiery Furnace', theme: 'Courage', desc: 'A brave story about trusting God in the fire.', scriptureReference: 'Daniel 3', biblicalOrder: 112, amazonUrl: 'https://www.amazon.com/dp/B0H25KF241' },
+      { number: 'Book 24', title: 'The Prodigal Son', theme: 'Forgiveness', desc: 'A tender parable about coming home and being welcomed with love.', scriptureReference: 'Luke 15:11-32', biblicalOrder: 146, amazonUrl: 'https://www.amazon.com/dp/B0H25RMCJY' },
+      { number: 'Book 25', title: 'Jesus Welcomes Children', theme: 'Love', desc: 'A warm Gospel story reminding little hearts that Jesus welcomes children.', scriptureReference: 'Mark 10:13-16', biblicalOrder: 143, amazonUrl: 'https://www.amazon.com/dp/B0H25YPF38' }
     ];
   }
 })();

@@ -104,6 +104,10 @@ const coloringPageSlugsByBook: Record<string, string> = {
   "Book 19": "the-lost-sheep",
   "Book 20": "feeding-the-5000",
   "Book 21": "adam-and-eve",
+  "Book 22": "joshua-and-jericho",
+  "Book 23": "the-fiery-furnace",
+  "Book 24": "the-prodigal-son",
+  "Book 25": "jesus-welcomes-children",
 };
 
 const publishedBookResources: BookResourceMeta[] = books

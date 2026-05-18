@@ -45,7 +45,7 @@ export type Book = {
     | "default";
 };
 
-const PLANNED_BOOK_COUNT = 22;
+const PLANNED_BOOK_COUNT = 25;
 
 function formatBookNumber(number: number) {
   return `Book ${String(number).padStart(2, "0")}`;
@@ -507,6 +507,70 @@ const publishedBooks: Book[] = [
       artist: "Shawna Edwards",
       embedId: "UWHrOWAeAHs",
     },
+    coverScene: "default",
+  },
+  {
+    number: "Book 22",
+    slug: "joshua-and-jericho",
+    title: "Joshua and Jericho",
+    subtitle: "When God Makes the Walls Fall",
+    ageRange: "Ages 3-8",
+    theme: "Faith",
+    blurb:
+      "A joyful story of Joshua, a brave people, and the day God brought Jericho's walls down after they trusted and obeyed.",
+    amazonUrl: "https://www.amazon.com/dp/B0H25YF2J6",
+    scriptureReference: "Joshua 6",
+    biblicalOrder: 55,
+    status: "available",
+    coverImage: "/covers/joshua-and-jericho.jpg",
+    coverScene: "default",
+  },
+  {
+    number: "Book 23",
+    slug: "the-fiery-furnace",
+    title: "The Fiery Furnace",
+    subtitle: "God Is With Us in the Fire",
+    ageRange: "Ages 3-8",
+    theme: "Courage",
+    blurb:
+      "Shadrach, Meshach, and Abednego choose to trust God, even in the fiery furnace, and discover they are never alone.",
+    amazonUrl: "https://www.amazon.com/dp/B0H25KF241",
+    scriptureReference: "Daniel 3",
+    biblicalOrder: 112,
+    status: "available",
+    coverImage: "/covers/the-fiery-furnace.jpg",
+    coverScene: "default",
+  },
+  {
+    number: "Book 24",
+    slug: "the-prodigal-son",
+    title: "The Prodigal Son",
+    subtitle: "A Father Runs to Forgive",
+    ageRange: "Ages 3-8",
+    theme: "Forgiveness",
+    blurb:
+      "A tender parable about a son who comes home and a loving father who runs to welcome him with forgiveness and joy.",
+    amazonUrl: "https://www.amazon.com/dp/B0H25RMCJY",
+    scriptureReference: "Luke 15:11-32",
+    biblicalOrder: 146,
+    status: "available",
+    coverImage: "/covers/the-prodigal-son.jpg",
+    coverScene: "default",
+  },
+  {
+    number: "Book 25",
+    slug: "jesus-welcomes-children",
+    title: "Jesus Welcomes Children",
+    subtitle: "Let the Little Children Come",
+    ageRange: "Ages 3-8",
+    theme: "Love",
+    blurb:
+      "A warm Gospel story reminding little hearts that Jesus sees children, welcomes them close, and blesses them with love.",
+    amazonUrl: "https://www.amazon.com/dp/B0H25YPF38",
+    scriptureReference: "Mark 10:13-16",
+    biblicalOrder: 143,
+    status: "available",
+    coverImage: "/covers/jesus-welcomes-children.jpg",
     coverScene: "default",
   },
 ];

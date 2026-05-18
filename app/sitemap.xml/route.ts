@@ -1,7 +1,7 @@
 import { books } from "../books";
 
 const baseUrl = "https://www.faithfulheartsbooks.com";
-const lastmod = "2026-05-11";
+const lastmod = "2026-05-18";
 
 const urls = [
   { loc: `${baseUrl}/`, changefreq: "weekly", priority: "1.0" },
