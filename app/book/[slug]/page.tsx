@@ -717,6 +717,94 @@ function MovingStoryCharacters({ slug }: { slug: string }) {
     );
   }
 
+  if (slug === "joshua-and-jericho") {
+    return (
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Joshua and Jericho story">
+        <SoundButton className="story-character float-path-a left-[10%] top-[22%] text-3xl sm:text-5xl" label="Trumpet march" src="/sounds/bird.mp3">{"\u{1f3ba}"}</SoundButton>
+        <SoundButton className="story-character float-path-b right-[12%] top-[28%] text-3xl sm:text-5xl" label="Falling wall" src="/sounds/sheep.mp3" delay="0.8s">{"\u{1f9f1}"}</SoundButton>
+        <SoundButton className="story-character walk-path-a left-[12%] bottom-[18%] text-2xl sm:text-4xl" label="Faithful steps" src="/sounds/sheep.mp3" delay="0.4s">{"\u{1f463}"}</SoundButton>
+        <SoundButton className="story-character float-path-d right-[18%] bottom-[22%] text-2xl sm:text-4xl" label="Victory sparkle" src="/sounds/bird.mp3" delay="1s">{"\u2728"}</SoundButton>
+      </div>
+    );
+  }
+
+  if (slug === "the-fiery-furnace") {
+    return (
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Fiery Furnace story">
+        <SoundButton className="story-character float-path-a left-[10%] top-[24%] text-3xl sm:text-5xl" label="Warm flame" src="/sounds/bird.mp3">{"\u{1f525}"}</SoundButton>
+        <SoundButton className="story-character float-path-b right-[12%] top-[26%] text-3xl sm:text-5xl" label="God is near" src="/sounds/bird.mp3" delay="0.8s">{"\u2728"}</SoundButton>
+        <SoundButton className="story-character walk-path-a left-[14%] bottom-[18%] text-2xl sm:text-4xl" label="Brave friends" src="/sounds/sheep.mp3" delay="0.4s">{"\u{1f9cd}"}</SoundButton>
+        <SoundButton className="story-character float-path-d right-[18%] bottom-[22%] text-2xl sm:text-4xl" label="Courage heart" src="/sounds/bird.mp3" delay="1s">{"\u2764\ufe0f"}</SoundButton>
+      </div>
+    );
+  }
+
+  if (slug === "the-prodigal-son") {
+    return (
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Prodigal Son story">
+        <SoundButton className="story-character walk-path-a left-[8%] bottom-[18%] text-3xl sm:left-[12%] sm:text-5xl" label="Road home" src="/sounds/sheep.mp3">{"\u{1f6e4}\ufe0f"}</SoundButton>
+        <SoundButton className="story-character float-path-b right-[12%] top-[28%] text-3xl sm:text-5xl" label="Welcome home" src="/sounds/bird.mp3" delay="0.8s">{"\u{1f3e0}"}</SoundButton>
+        <SoundButton className="story-character float-path-c left-[18%] top-[24%] text-2xl sm:text-4xl" label="Forgiving heart" src="/sounds/bird.mp3" delay="0.4s">{"\u2764\ufe0f"}</SoundButton>
+        <SoundButton className="story-character float-path-d right-[18%] bottom-[22%] text-2xl sm:text-4xl" label="Joyful celebration" src="/sounds/bird.mp3" delay="1s">{"\u2728"}</SoundButton>
+      </div>
+    );
+  }
+
+  if (slug === "jesus-welcomes-children") {
+    return (
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Jesus welcomes children story">
+        <SoundButton className="story-character float-path-a left-[10%] top-[22%] text-3xl sm:text-5xl" label="Jesus loves children" src="/sounds/bird.mp3">{"\u2764\ufe0f"}</SoundButton>
+        <SoundButton className="story-character float-path-b right-[12%] top-[28%] text-3xl sm:text-5xl" label="Blessing sparkle" src="/sounds/bird.mp3" delay="0.8s">{"\u2728"}</SoundButton>
+        <SoundButton className="story-character walk-path-a left-[14%] bottom-[18%] text-2xl sm:text-4xl" label="Little footsteps" src="/sounds/sheep.mp3" delay="0.4s">{"\u{1f463}"}</SoundButton>
+        <SoundButton className="story-character float-path-d right-[18%] bottom-[22%] text-2xl sm:text-4xl" label="Welcome arms" src="/sounds/bird.mp3" delay="1s">{"\u{1faf6}"}</SoundButton>
+      </div>
+    );
+  }
+
+  if (slug === "the-wedding-at-cana") {
+    return (
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Wedding at Cana story">
+        <SoundButton className="story-character float-path-a left-[10%] top-[22%] text-3xl sm:text-5xl" label="Stone jar" src="/sounds/water.mp3">{"\u{1f3fa}"}</SoundButton>
+        <SoundButton className="story-character float-path-b right-[12%] top-[28%] text-3xl sm:text-5xl" label="Celebration joy" src="/sounds/bird.mp3" delay="0.8s">{"\u{1f389}"}</SoundButton>
+        <SoundButton className="story-character float-path-c left-[18%] bottom-[18%] text-2xl sm:text-4xl" label="Miracle sparkle" src="/sounds/bird.mp3" delay="0.4s">{"\u2728"}</SoundButton>
+        <SoundButton className="story-character swim-path-b right-[18%] bottom-[22%] text-2xl sm:text-4xl" label="Water filled jar" src="/sounds/water.mp3" delay="1s">{"\u{1f30a}"}</SoundButton>
+      </div>
+    );
+  }
+
+  if (slug === "hannahs-prayer-and-young-samuel") {
+    return (
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Hannah and Samuel story">
+        <SoundButton className="story-character float-path-a left-[10%] top-[22%] text-3xl sm:text-5xl" label="Prayer" src="/sounds/bird.mp3">{"\u{1f6e2}\ufe0f"}</SoundButton>
+        <SoundButton className="story-character float-path-b right-[12%] top-[28%] text-3xl sm:text-5xl" label="Temple lamp" src="/sounds/bird.mp3" delay="0.8s">{"\u{1fa94}"}</SoundButton>
+        <SoundButton className="story-character float-path-c left-[18%] bottom-[18%] text-2xl sm:text-4xl" label="Listening heart" src="/sounds/bird.mp3" delay="0.4s">{"\u{1f442}"}</SoundButton>
+        <SoundButton className="story-character float-path-d right-[18%] bottom-[22%] text-2xl sm:text-4xl" label="Answered prayer" src="/sounds/bird.mp3" delay="1s">{"\u2728"}</SoundButton>
+      </div>
+    );
+  }
+
+  if (slug === "saul-becomes-paul") {
+    return (
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Saul becomes Paul story">
+        <SoundButton className="story-character float-path-a left-[10%] top-[20%] text-3xl sm:text-5xl" label="Heavenly light" src="/sounds/bird.mp3">{"\u2600\ufe0f"}</SoundButton>
+        <SoundButton className="story-character walk-path-a right-[10%] bottom-[18%] text-3xl sm:text-5xl" label="Damascus road" src="/sounds/sheep.mp3" delay="0.8s">{"\u{1f6e4}\ufe0f"}</SoundButton>
+        <SoundButton className="story-character float-path-c left-[18%] bottom-[20%] text-2xl sm:text-4xl" label="New heart" src="/sounds/bird.mp3" delay="0.4s">{"\u2764\ufe0f"}</SoundButton>
+        <SoundButton className="story-character float-path-d right-[18%] top-[28%] text-2xl sm:text-4xl" label="Changed life" src="/sounds/bird.mp3" delay="1s">{"\u2728"}</SoundButton>
+      </div>
+    );
+  }
+
+  if (slug === "paul-and-silas-in-prison") {
+    return (
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Paul and Silas story">
+        <SoundButton className="story-character float-path-a left-[10%] top-[22%] text-3xl sm:text-5xl" label="Midnight song" src="/sounds/bird.mp3">{"\u{1f3b5}"}</SoundButton>
+        <SoundButton className="story-character float-path-b right-[12%] top-[28%] text-3xl sm:text-5xl" label="Open door" src="/sounds/sheep.mp3" delay="0.8s">{"\u{1f513}"}</SoundButton>
+        <SoundButton className="story-character float-path-c left-[18%] bottom-[18%] text-2xl sm:text-4xl" label="Joy in the dark" src="/sounds/bird.mp3" delay="0.4s">{"\u2728"}</SoundButton>
+        <SoundButton className="story-character walk-path-b right-[18%] bottom-[22%] text-2xl sm:text-4xl" label="Shaking chains" src="/sounds/sheep.mp3" delay="1s">{"\u26d3\ufe0f"}</SoundButton>
+      </div>
+    );
+  }
+
   return null;
 }
 
