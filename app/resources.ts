@@ -108,6 +108,10 @@ const coloringPageSlugsByBook: Record<string, string> = {
   "Book 23": "the-fiery-furnace",
   "Book 24": "the-prodigal-son",
   "Book 25": "jesus-welcomes-children",
+  "Book 26": "the-wedding-at-cana",
+  "Book 27": "hannahs-prayer-and-young-samuel",
+  "Book 28": "saul-becomes-paul",
+  "Book 29": "paul-and-silas-in-prison",
 };
 
 const publishedBookResources: BookResourceMeta[] = books

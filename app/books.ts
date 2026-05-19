@@ -45,7 +45,7 @@ export type Book = {
     | "default";
 };
 
-const PLANNED_BOOK_COUNT = 25;
+const PLANNED_BOOK_COUNT = 29;
 
 function formatBookNumber(number: number) {
   return `Book ${String(number).padStart(2, "0")}`;
@@ -590,6 +590,90 @@ const publishedBooks: Book[] = [
       title: "Let The Little Children Come",
       artist: "Twin Sisters - Songs & Stories For Kids",
       embedId: "Mp23IHKKsSQ",
+    },
+    coverScene: "default",
+  },
+  {
+    number: "Book 26",
+    slug: "the-wedding-at-cana",
+    title: "The Wedding at Cana",
+    subtitle: "When Jesus Brings the Best",
+    ageRange: "Ages 3-8",
+    theme: "Wonder",
+    blurb:
+      "A joyful first-miracle story where Jesus cares about an ordinary celebration and fills empty jars with the very best.",
+    amazonUrl: "https://www.amazon.com/dp/B0H26G965M",
+    scriptureReference: "John 2:1-11",
+    biblicalOrder: 135,
+    status: "available",
+    coverImage: "/covers/the-wedding-at-cana.jpg",
+    song: {
+      title: "I'm Gonna Jump Up and Down",
+      artist: "Long Crendon Baptist Church",
+      embedId: "juoTBFksrWY",
+    },
+    coverScene: "default",
+  },
+  {
+    number: "Book 27",
+    slug: "hannahs-prayer-and-young-samuel",
+    title: "Hannah's Prayer and Young Samuel",
+    subtitle: "God Hears the Smallest Voice",
+    ageRange: "Ages 3-8",
+    theme: "Prayer",
+    blurb:
+      "A tender story of honest prayer, a long-awaited gift, and young Samuel learning to listen when God calls his name.",
+    amazonUrl: "https://www.amazon.com/dp/B0H26QR9MJ",
+    scriptureReference: "1 Samuel 1:1-28; 2:1-11; 3:1-10",
+    biblicalOrder: 65,
+    status: "available",
+    coverImage: "/covers/hannahs-prayer-and-young-samuel.jpg",
+    song: {
+      title: "Here I Am, Lord",
+      artist: "KaraokeCatolica",
+      embedId: "e7IC8SpLk6k",
+    },
+    coverScene: "default",
+  },
+  {
+    number: "Book 28",
+    slug: "saul-becomes-paul",
+    title: "Saul Becomes Paul",
+    subtitle: "When Jesus Changes Everything",
+    ageRange: "Ages 3-8",
+    theme: "Forgiveness",
+    blurb:
+      "A bright Damascus-road story showing little hearts that Jesus can change anyone and make every heart new.",
+    amazonUrl: "https://www.amazon.com/dp/B0H26XYBCM",
+    scriptureReference: "Acts 9:1-19; 22:6-16; 26:12-18",
+    biblicalOrder: 155,
+    status: "available",
+    coverImage: "/covers/saul-becomes-paul.jpg",
+    song: {
+      title: "Paul's Ministry",
+      artist: "Saddleback Kids",
+      embedId: "IlXFy3zjJh4",
+    },
+    coverScene: "default",
+  },
+  {
+    number: "Book 29",
+    slug: "paul-and-silas-in-prison",
+    title: "Paul and Silas in Prison",
+    subtitle: "Songs in the Dark",
+    ageRange: "Ages 3-8",
+    theme: "Courage",
+    blurb:
+      "An exciting Acts story about choosing joy in hard places, singing at midnight, and seeing God open doors.",
+    amazonUrl: "https://www.amazon.com/dp/B0H274YJR4",
+    scriptureReference: "Acts 16:16-40",
+    biblicalOrder: 156,
+    status: "available",
+    coverImage: "/covers/paul-and-silas-in-prison.jpg",
+    song: {
+      title: "Paul & Silas' Joyful Faith",
+      artist: "Little Disciples",
+      embedId: "JAdf94ujIsI",
     },
     coverScene: "default",
   },

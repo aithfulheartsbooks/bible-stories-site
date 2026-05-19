@@ -756,7 +756,11 @@ const widgetScript = String.raw`
       { number: 'Book 22', title: 'Joshua and Jericho', theme: 'Faith', desc: "A joyful story about Joshua, Jericho, and trusting God's instructions.", scriptureReference: 'Joshua 6', biblicalOrder: 55, amazonUrl: 'https://www.amazon.com/dp/B0H25YF2J6' },
       { number: 'Book 23', title: 'The Fiery Furnace', theme: 'Courage', desc: 'A brave story about trusting God in the fire.', scriptureReference: 'Daniel 3', biblicalOrder: 112, amazonUrl: 'https://www.amazon.com/dp/B0H25KF241' },
       { number: 'Book 24', title: 'The Prodigal Son', theme: 'Forgiveness', desc: 'A tender parable about coming home and being welcomed with love.', scriptureReference: 'Luke 15:11-32', biblicalOrder: 146, amazonUrl: 'https://www.amazon.com/dp/B0H25RMCJY' },
-      { number: 'Book 25', title: 'Jesus Welcomes Children', theme: 'Love', desc: 'A warm Gospel story reminding little hearts that Jesus welcomes children.', scriptureReference: 'Mark 10:13-16', biblicalOrder: 143, amazonUrl: 'https://www.amazon.com/dp/B0H25YPF38' }
+      { number: 'Book 25', title: 'Jesus Welcomes Children', theme: 'Love', desc: 'A warm Gospel story reminding little hearts that Jesus welcomes children.', scriptureReference: 'Mark 10:13-16', biblicalOrder: 143, amazonUrl: 'https://www.amazon.com/dp/B0H25YPF38' },
+      { number: 'Book 26', title: 'The Wedding at Cana', theme: 'Wonder', desc: 'A joyful first-miracle story where Jesus fills empty jars with the very best.', scriptureReference: 'John 2:1-11', biblicalOrder: 135, amazonUrl: 'https://www.amazon.com/dp/B0H26G965M' },
+      { number: 'Book 27', title: "Hannah's Prayer and Young Samuel", theme: 'Prayer', desc: 'A tender story of honest prayer and young Samuel learning to listen when God calls.', scriptureReference: '1 Samuel 1:1-28; 2:1-11; 3:1-10', biblicalOrder: 65, amazonUrl: 'https://www.amazon.com/dp/B0H26QR9MJ' },
+      { number: 'Book 28', title: 'Saul Becomes Paul', theme: 'Forgiveness', desc: 'A bright Damascus-road story showing that Jesus can change anyone.', scriptureReference: 'Acts 9:1-19; 22:6-16; 26:12-18', biblicalOrder: 155, amazonUrl: 'https://www.amazon.com/dp/B0H26XYBCM' },
+      { number: 'Book 29', title: 'Paul and Silas in Prison', theme: 'Courage', desc: 'An exciting Acts story about choosing joy in hard places and singing at midnight.', scriptureReference: 'Acts 16:16-40', biblicalOrder: 156, amazonUrl: 'https://www.amazon.com/dp/B0H274YJR4' }
     ];
   }
 })();
