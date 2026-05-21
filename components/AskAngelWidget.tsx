@@ -760,7 +760,8 @@ const widgetScript = String.raw`
       { number: 'Book 26', title: 'The Wedding at Cana', theme: 'Wonder', desc: 'A joyful first-miracle story where Jesus fills empty jars with the very best.', scriptureReference: 'John 2:1-11', biblicalOrder: 135, amazonUrl: 'https://www.amazon.com/dp/B0H26G965M' },
       { number: 'Book 27', title: "Hannah's Prayer and Young Samuel", theme: 'Prayer', desc: 'A tender story of honest prayer and young Samuel learning to listen when God calls.', scriptureReference: '1 Samuel 1:1-28; 2:1-11; 3:1-10', biblicalOrder: 65, amazonUrl: 'https://www.amazon.com/dp/B0H26QR9MJ' },
       { number: 'Book 28', title: 'Saul Becomes Paul', theme: 'Forgiveness', desc: 'A bright Damascus-road story showing that Jesus can change anyone.', scriptureReference: 'Acts 9:1-19; 22:6-16; 26:12-18', biblicalOrder: 155, amazonUrl: 'https://www.amazon.com/dp/B0H26XYBCM' },
-      { number: 'Book 29', title: 'Paul and Silas in Prison', theme: 'Courage', desc: 'An exciting Acts story about choosing joy in hard places and singing at midnight.', scriptureReference: 'Acts 16:16-40', biblicalOrder: 156, amazonUrl: 'https://www.amazon.com/dp/B0H274YJR4' }
+      { number: 'Book 29', title: 'Paul and Silas in Prison', theme: 'Courage', desc: 'An exciting Acts story about choosing joy in hard places and singing at midnight.', scriptureReference: 'Acts 16:16-40', biblicalOrder: 156, amazonUrl: 'https://www.amazon.com/dp/B0H274YJR4' },
+      { number: 'Book 30', title: 'Pentecost: The Holy Spirit Comes', theme: 'Faith', desc: 'A joyful Pentecost story showing that Jesus sent the Holy Spirit, our Helper.', scriptureReference: 'Acts 1:4-8; 2:1-41', biblicalOrder: 152, amazonUrl: 'https://www.amazon.com/dp/B0H2F78SY9' }
     ];
   }
 })();

@@ -112,6 +112,7 @@ const coloringPageSlugsByBook: Record<string, string> = {
   "Book 27": "hannahs-prayer-and-young-samuel",
   "Book 28": "saul-becomes-paul",
   "Book 29": "paul-and-silas-in-prison",
+  "Book 30": "pentecost-the-holy-spirit-comes",
 };
 
 const publishedBookResources: BookResourceMeta[] = books

@@ -45,7 +45,7 @@ export type Book = {
     | "default";
 };
 
-const PLANNED_BOOK_COUNT = 29;
+const PLANNED_BOOK_COUNT = 30;
 
 function formatBookNumber(number: number) {
   return `Book ${String(number).padStart(2, "0")}`;
@@ -674,6 +674,27 @@ const publishedBooks: Book[] = [
       title: "Paul & Silas' Joyful Faith",
       artist: "Little Disciples",
       embedId: "JAdf94ujIsI",
+    },
+    coverScene: "default",
+  },
+  {
+    number: "Book 30",
+    slug: "pentecost-the-holy-spirit-comes",
+    title: "Pentecost: The Holy Spirit Comes",
+    subtitle: "Power and Joy and the Spirit of God",
+    ageRange: "Ages 3-8",
+    theme: "Faith",
+    blurb:
+      "A joyful Pentecost story showing little hearts that Jesus sent the Holy Spirit, our Helper, so we are never alone.",
+    amazonUrl: "https://www.amazon.com/dp/B0H2F78SY9",
+    scriptureReference: "Acts 1:4-8; 2:1-41",
+    biblicalOrder: 152,
+    status: "available",
+    coverImage: "/covers/pentecost-the-holy-spirit-comes.jpg",
+    song: {
+      title: "Holy Spirit, Give Us Power to Share Jesus Every Hour",
+      artist: "Trueway Kids",
+      embedId: "WEYX6V4achc",
     },
     coverScene: "default",
   },
