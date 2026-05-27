@@ -113,6 +113,7 @@ const coloringPageSlugsByBook: Record<string, string> = {
   "Book 28": "saul-becomes-paul",
   "Book 29": "paul-and-silas-in-prison",
   "Book 30": "pentecost-the-holy-spirit-comes",
+  "Book 31": "elisha-and-the-widows-oil",
 };
 
 const publishedBookResources: BookResourceMeta[] = books

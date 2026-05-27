@@ -45,7 +45,7 @@ export type Book = {
     | "default";
 };
 
-const PLANNED_BOOK_COUNT = 30;
+const PLANNED_BOOK_COUNT = 31;
 
 function formatBookNumber(number: number) {
   return `Book ${String(number).padStart(2, "0")}`;
@@ -695,6 +695,27 @@ const publishedBooks: Book[] = [
       title: "Holy Spirit, Give Us Power to Share Jesus Every Hour",
       artist: "Trueway Kids",
       embedId: "WEYX6V4achc",
+    },
+    coverScene: "default",
+  },
+  {
+    number: "Book 31",
+    slug: "elisha-and-the-widows-oil",
+    title: "Elisha and the Widow's Oil",
+    subtitle: "God Fills Every Empty Jar",
+    ageRange: "Ages 3-8",
+    theme: "Trust",
+    blurb:
+      "A warm story of God's provision, showing little hearts that when we bring what we have and trust Him, He can fill every empty place.",
+    amazonUrl: "https://www.amazon.com/dp/B0H2Z7SP3B",
+    scriptureReference: "2 Kings 4:1-7",
+    biblicalOrder: 92,
+    status: "available",
+    coverImage: "/covers/elisha-and-the-widows-oil.jpg",
+    song: {
+      title: "Elisha and the Widow's Oil",
+      artist: "Kids on the Move",
+      embedId: "eASKEdmxwf8",
     },
     coverScene: "default",
   },
