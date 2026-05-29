@@ -3,6 +3,13 @@ import SiteNav from "@/components/SiteNav";
 export const metadata = {
   title: "Thank You | Bible Stories for Little Hearts",
   description: "Thank you for contacting Bible Stories for Little Hearts.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+  alternates: {
+    canonical: "/contact/thank-you",
+  },
 };
 
 export default function ContactThankYouPage() {

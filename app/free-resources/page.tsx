@@ -3,11 +3,24 @@ import ResourceCollection from "@/components/ResourceCollection";
 import { resources } from "@/app/resources";
 
 export const metadata = {
-  title: "Free Resources | Bible Stories for Little Hearts",
+  title: "Free Bible Coloring Pages & Kids Printables | Bible Stories for Little Hearts",
   description:
-    "Free printable Bible story resources for children from Bible Stories for Little Hearts.",
+    "Download free Bible coloring pages, Sunday school printables, verse cards, activity sheets, and homeschool Bible resources for kids.",
   alternates: {
     canonical: "/free-resources",
+  },
+  openGraph: {
+    title: "Free Bible Coloring Pages & Kids Printables",
+    description:
+      "Free Bible story coloring pages, Sunday school printables, activity sheets, and homeschool Bible resources for children.",
+    url: "/free-resources",
+    type: "website",
+    images: [
+      {
+        url: "/Faith_Rivers.png",
+        alt: "Free Bible story printables for kids",
+      },
+    ],
   },
 };
 

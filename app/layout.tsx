@@ -35,6 +35,23 @@ export const metadata: Metadata = {
     description:
       "Beautifully illustrated Bible picture books for children ages 3 to 8.",
     type: "website",
+    url: "/",
+    siteName: "Bible Stories for Little Hearts",
+    images: [
+      {
+        url: "/Faith_Rivers.png",
+        width: 1024,
+        height: 1024,
+        alt: "Faith Rivers and Bible Stories for Little Hearts",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bible Stories for Little Hearts",
+    description:
+      "Beautifully illustrated Bible picture books for children ages 3 to 8.",
+    images: ["/Faith_Rivers.png"],
   },
   other: {
     "p:domain_verify": "00b7e44b7c949bfae0fdb2abb0184a82",

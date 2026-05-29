@@ -1,12 +1,13 @@
 import { books } from "../books";
 
 const baseUrl = "https://www.faithfulheartsbooks.com";
-const lastmod = "2026-05-18";
+const lastmod = "2026-05-29";
 
 const urls = [
   { loc: `${baseUrl}/`, changefreq: "weekly", priority: "1.0" },
   { loc: `${baseUrl}/about`, changefreq: "monthly", priority: "0.7" },
   { loc: `${baseUrl}/free-resources`, changefreq: "monthly", priority: "0.7" },
+  { loc: `${baseUrl}/contact`, changefreq: "monthly", priority: "0.5" },
   ...books
     .filter((book) => book.status === "available")
     .map((book) => ({

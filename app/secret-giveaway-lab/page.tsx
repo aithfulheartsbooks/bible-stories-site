@@ -9,6 +9,9 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
+  alternates: {
+    canonical: "/secret-giveaway-lab",
+  },
 };
 
 export default function SecretGiveawayLabPage() {

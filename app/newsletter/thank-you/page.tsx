@@ -1,5 +1,18 @@
 import SiteNav from "@/components/SiteNav";
 
+export const metadata = {
+  title: "Newsletter Confirmed | Bible Stories for Little Hearts",
+  description:
+    "Your Bible Stories for Little Hearts newsletter subscription has been confirmed.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+  alternates: {
+    canonical: "/newsletter/thank-you",
+  },
+};
+
 export default function NewsletterThankYouPage() {
   return (
     <main className="relative min-h-screen overflow-x-hidden font-body text-[#5C3D2E]">

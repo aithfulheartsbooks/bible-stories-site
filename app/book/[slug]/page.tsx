@@ -472,6 +472,20 @@ export function generateMetadata({
       description,
       type: "website",
       url: `/book/${book.slug}`,
+      images: book.coverImage
+        ? [
+            {
+              url: book.coverImage,
+              alt: `${book.title} book cover`,
+            },
+          ]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${book.title} | Bible Stories for Little Hearts`,
+      description,
+      images: book.coverImage ? [book.coverImage] : undefined,
     },
   };
 }
@@ -915,9 +929,53 @@ export default function BookPage({ params }: { params: { slug: string } }) {
   if (!book) return notFound();
 
   const theme = themes[book.slug] || defaultTheme;
+  const bookUrl = `https://www.faithfulheartsbooks.com/book/${book.slug}`;
+  const bookStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    name: book.title,
+    alternateName: book.subtitle,
+    description:
+      book.blurb ||
+      "A gentle Bible story made with love for little hearts ages 3 to 8.",
+    url: bookUrl,
+    image: book.coverImage
+      ? `https://www.faithfulheartsbooks.com${book.coverImage}`
+      : undefined,
+    author: {
+      "@type": "Person",
+      name: "Faith Rivers",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Bible Stories for Little Hearts",
+      url: "https://www.faithfulheartsbooks.com",
+    },
+    bookFormat: "https://schema.org/Paperback",
+    inLanguage: "en",
+    isFamilyFriendly: true,
+    audience: {
+      "@type": "PeopleAudience",
+      suggestedMinAge: 3,
+      suggestedMaxAge: 8,
+    },
+    genre: ["Christian children's books", "Bible stories for kids"],
+    offers: book.amazonUrl
+      ? {
+          "@type": "Offer",
+          url: book.amazonUrl,
+          availability: "https://schema.org/InStock",
+        }
+      : undefined,
+  };
 
   return (
-    <main className={`relative min-h-screen overflow-hidden ${theme.pageClass} text-chestnut`}>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(bookStructuredData) }}
+      />
+      <main className={`relative min-h-screen overflow-hidden ${theme.pageClass} text-chestnut`}>
       <div className="absolute inset-0 opacity-80">
         <div className="absolute -top-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-gold/30 blur-3xl" />
         <div className="absolute left-[-80px] top-24 h-44 w-44 rounded-full bg-white/60 blur-2xl animate-bob" />
@@ -988,6 +1046,7 @@ export default function BookPage({ params }: { params: { slug: string } }) {
 
         <BookSongSection book={book} />
       </section>
-    </main>
+      </main>
+    </>
   );
 }
