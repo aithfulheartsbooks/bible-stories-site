@@ -366,6 +366,71 @@ const themes: Record<string, Theme> = {
       { emoji: "\u2764\ufe0f", label: "Trust" },
     ],
   },
+  "tower-of-babel": {
+    pageClass: "bg-gradient-to-b from-sky/35 via-cream to-gold/35",
+    quoteClass: "bg-gradient-to-r from-sky/30 via-cream to-gold/35",
+    badgeClass: "bg-gold/35 text-chestnut-soft",
+    glowClass: "bg-sky/35",
+    quote: "Trust in the Lord with all your heart.",
+    art: "hills",
+    icons: [
+      { emoji: "\u{1f3d7}\ufe0f", label: "Tower" },
+      { emoji: "\u2601\ufe0f", label: "Clouds" },
+      { emoji: "\u2764\ufe0f", label: "Trust" },
+    ],
+  },
+  "gideons-tiny-army": {
+    pageClass: "bg-gradient-to-b from-gold/35 via-cream to-sage/45",
+    quoteClass: "bg-gradient-to-r from-gold/35 via-cream to-sage/35",
+    badgeClass: "bg-gold/35 text-chestnut-soft",
+    glowClass: "bg-gold/45",
+    quote: "With God on your side, you are enough.",
+    art: "hills",
+    icons: [
+      { emoji: "\u{1f525}", label: "Torch" },
+      { emoji: "\u{1f6e1}\ufe0f", label: "Courage" },
+      { emoji: "\u2728", label: "Mighty" },
+    ],
+  },
+  "nehemiah-builds-the-wall": {
+    pageClass: "bg-gradient-to-b from-peach/40 via-cream to-sage/45",
+    quoteClass: "bg-gradient-to-r from-peach/35 via-cream to-gold/30",
+    badgeClass: "bg-gold/35 text-chestnut-soft",
+    glowClass: "bg-peach/45",
+    quote: "Pray first, plan carefully, and don't give up.",
+    art: "hills",
+    icons: [
+      { emoji: "\u{1f9f1}", label: "Wall" },
+      { emoji: "\u{1f64f}", label: "Prayer" },
+      { emoji: "\u{1f4aa}", label: "Strength" },
+    ],
+  },
+  "jesus-walks-on-water": {
+    pageClass: "bg-gradient-to-b from-sky/45 via-cream to-twilight/35",
+    quoteClass: "bg-gradient-to-r from-sky/35 via-cream to-twilight/30",
+    badgeClass: "bg-sky/45 text-chestnut-soft",
+    glowClass: "bg-sky/45",
+    quote: "When you feel like you're sinking, call out to Jesus.",
+    art: "default",
+    icons: [
+      { emoji: "\u{1f30a}", label: "Water" },
+      { emoji: "\u{1f91d}", label: "Jesus Helps" },
+      { emoji: "\u2764\ufe0f", label: "Faith" },
+    ],
+  },
+  "lazarus-comes-out": {
+    pageClass: "bg-gradient-to-b from-sage/40 via-cream to-gold/30",
+    quoteClass: "bg-gradient-to-r from-sage/35 via-cream to-gold/30",
+    badgeClass: "bg-gold/35 text-chestnut-soft",
+    glowClass: "bg-sage/45",
+    quote: "With Jesus, it is never too late.",
+    art: "hills",
+    icons: [
+      { emoji: "\u{1faa8}", label: "Stone" },
+      { emoji: "\u2728", label: "Life" },
+      { emoji: "\u{1f33f}", label: "Hope" },
+    ],
+  },
   "book-05-coming-soon": {
     pageClass: "bg-gradient-to-b from-golden-hour via-cream to-sunset/30",
     quoteClass: "bg-gradient-to-r from-peach/70 via-cream to-gold/40",
@@ -863,6 +928,61 @@ function MovingStoryCharacters({ slug }: { slug: string }) {
         <SoundButton className="story-character swim-path-b right-[12%] top-[30%] text-3xl sm:text-5xl" label="Flowing oil" src="/sounds/water.mp3" delay="0.8s">{"\u{1f30a}"}</SoundButton>
         <SoundButton className="story-character float-path-c left-[18%] bottom-[18%] text-2xl sm:text-4xl" label="Provision sparkle" src="/sounds/bird.mp3" delay="0.4s">{"\u2728"}</SoundButton>
         <SoundButton className="story-character float-path-d right-[18%] bottom-[22%] text-2xl sm:text-4xl" label="Trusting heart" src="/sounds/bird.mp3" delay="1s">{"\u2764\ufe0f"}</SoundButton>
+      </div>
+    );
+  }
+
+  if (slug === "tower-of-babel") {
+    return (
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Tower of Babel story">
+        <SoundButton className="story-character float-path-a left-[10%] top-[20%] text-3xl sm:text-5xl" label="Tall tower" src="/sounds/sheep.mp3">{"\u{1f3d7}\ufe0f"}</SoundButton>
+        <SoundButton className="story-character float-path-b right-[12%] top-[26%] text-3xl sm:text-5xl" label="Swirling sky" src="/sounds/water.mp3" delay="0.8s">{"\u{1f300}"}</SoundButton>
+        <SoundButton className="story-character float-path-c left-[18%] bottom-[18%] text-2xl sm:text-4xl" label="Cloud" src="/sounds/bird.mp3" delay="0.4s">{"\u2601\ufe0f"}</SoundButton>
+        <SoundButton className="story-character walk-path-b right-[18%] bottom-[22%] text-2xl sm:text-4xl" label="Trust heart" src="/sounds/bird.mp3" delay="1s">{"\u2764\ufe0f"}</SoundButton>
+      </div>
+    );
+  }
+
+  if (slug === "gideons-tiny-army") {
+    return (
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Gideon's tiny army story">
+        <SoundButton className="story-character float-path-a left-[10%] top-[22%] text-3xl sm:text-5xl" label="Torch" src="/sounds/bird.mp3">{"\u{1f525}"}</SoundButton>
+        <SoundButton className="story-character walk-path-a right-[10%] bottom-[18%] text-3xl sm:text-5xl" label="Shield" src="/sounds/sheep.mp3" delay="0.8s">{"\u{1f6e1}\ufe0f"}</SoundButton>
+        <SoundButton className="story-character float-path-c left-[18%] bottom-[20%] text-2xl sm:text-4xl" label="Courage sparkle" src="/sounds/bird.mp3" delay="0.4s">{"\u2728"}</SoundButton>
+        <SoundButton className="story-character float-path-d right-[18%] top-[28%] text-2xl sm:text-4xl" label="Strong heart" src="/sounds/bird.mp3" delay="1s">{"\u2764\ufe0f"}</SoundButton>
+      </div>
+    );
+  }
+
+  if (slug === "nehemiah-builds-the-wall") {
+    return (
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Nehemiah builds the wall story">
+        <SoundButton className="story-character float-path-a left-[10%] top-[22%] text-3xl sm:text-5xl" label="Wall brick" src="/sounds/sheep.mp3">{"\u{1f9f1}"}</SoundButton>
+        <SoundButton className="story-character float-path-b right-[12%] top-[28%] text-3xl sm:text-5xl" label="Prayer" src="/sounds/bird.mp3" delay="0.8s">{"\u{1f64f}"}</SoundButton>
+        <SoundButton className="story-character walk-path-b left-[18%] bottom-[18%] text-2xl sm:text-4xl" label="Work with strength" src="/sounds/sheep.mp3" delay="0.4s">{"\u{1f4aa}"}</SoundButton>
+        <SoundButton className="story-character float-path-d right-[18%] bottom-[22%] text-2xl sm:text-4xl" label="Finished with joy" src="/sounds/bird.mp3" delay="1s">{"\u2728"}</SoundButton>
+      </div>
+    );
+  }
+
+  if (slug === "jesus-walks-on-water") {
+    return (
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Jesus walks on water story">
+        <SoundButton className="story-character swim-path-b left-[10%] top-[24%] text-3xl sm:text-5xl" label="Rolling water" src="/sounds/water.mp3">{"\u{1f30a}"}</SoundButton>
+        <SoundButton className="story-character float-path-b right-[12%] top-[28%] text-3xl sm:text-5xl" label="Storm cloud" src="/sounds/water.mp3" delay="0.8s">{"\u26c5"}</SoundButton>
+        <SoundButton className="story-character float-path-c left-[18%] bottom-[18%] text-2xl sm:text-4xl" label="Helping hand" src="/sounds/bird.mp3" delay="0.4s">{"\u{1f91d}"}</SoundButton>
+        <SoundButton className="story-character float-path-d right-[18%] bottom-[22%] text-2xl sm:text-4xl" label="Faith heart" src="/sounds/bird.mp3" delay="1s">{"\u2764\ufe0f"}</SoundButton>
+      </div>
+    );
+  }
+
+  if (slug === "lazarus-comes-out") {
+    return (
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-label="Interactive Lazarus comes out story">
+        <SoundButton className="story-character float-path-a left-[10%] top-[22%] text-3xl sm:text-5xl" label="Rolled stone" src="/sounds/sheep.mp3">{"\u{1faa8}"}</SoundButton>
+        <SoundButton className="story-character float-path-b right-[12%] top-[28%] text-3xl sm:text-5xl" label="New life" src="/sounds/bird.mp3" delay="0.8s">{"\u2728"}</SoundButton>
+        <SoundButton className="story-character float-path-c left-[18%] bottom-[18%] text-2xl sm:text-4xl" label="Hope growing" src="/sounds/bird.mp3" delay="0.4s">{"\u{1f33f}"}</SoundButton>
+        <SoundButton className="story-character walk-path-b right-[18%] bottom-[22%] text-2xl sm:text-4xl" label="Joyful heart" src="/sounds/bird.mp3" delay="1s">{"\u2764\ufe0f"}</SoundButton>
       </div>
     );
   }

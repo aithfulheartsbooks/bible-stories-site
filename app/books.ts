@@ -45,7 +45,7 @@ export type Book = {
     | "default";
 };
 
-const PLANNED_BOOK_COUNT = 31;
+const PLANNED_BOOK_COUNT = 36;
 
 function formatBookNumber(number: number) {
   return `Book ${String(number).padStart(2, "0")}`;
@@ -716,6 +716,111 @@ const publishedBooks: Book[] = [
       title: "Elisha and the Widow's Oil",
       artist: "Kids on the Move",
       embedId: "eASKEdmxwf8",
+    },
+    coverScene: "default",
+  },
+  {
+    number: "Book 32",
+    slug: "tower-of-babel",
+    title: "Tower of Babel",
+    subtitle: "God Knows Best, Even When We Don't Understand",
+    ageRange: "Ages 3-8",
+    theme: "Trust",
+    blurb:
+      "A thoughtful Genesis story reminding little hearts that when people forget God, plans can fall apart, but God still leads us with love.",
+    amazonUrl: "https://www.amazon.com/dp/B0H344KNV1",
+    scriptureReference: "Genesis 11:1-9",
+    biblicalOrder: 25,
+    status: "available",
+    coverImage: "/covers/tower-of-babel.jpg",
+    song: {
+      title: "The Tower of Babel",
+      artist: "Crawl Walk Shuffle",
+      embedId: "sHJKzUStohs",
+    },
+    coverScene: "default",
+  },
+  {
+    number: "Book 33",
+    slug: "gideons-tiny-army",
+    title: "Gideon's Tiny Army",
+    subtitle: "When God Is on Your Side, You Are Enough",
+    ageRange: "Ages 3-8",
+    theme: "Courage",
+    blurb:
+      "A brave Judges story showing little hearts that God can use the small and weak to do mighty things.",
+    amazonUrl: "https://www.amazon.com/dp/B0H373C86F",
+    scriptureReference: "Judges 6-7",
+    biblicalOrder: 58,
+    status: "available",
+    coverImage: "/covers/gideons-tiny-army.jpg",
+    song: {
+      title: "Gideon's Tiny Army?!",
+      artist: "Murphix Plus Kids",
+      embedId: "d-V6xhhQHQc",
+    },
+    coverScene: "default",
+  },
+  {
+    number: "Book 34",
+    slug: "nehemiah-builds-the-wall",
+    title: "Nehemiah Builds the Wall",
+    subtitle: "Pray, Plan, and Work",
+    ageRange: "Ages 3-8",
+    theme: "Faith",
+    blurb:
+      "A steady story about praying first, planning carefully, working with courage, and trusting God to help us finish what matters.",
+    amazonUrl: "https://www.amazon.com/dp/B0H3F92CBF",
+    scriptureReference: "Nehemiah 1-6",
+    biblicalOrder: 125,
+    status: "available",
+    coverImage: "/covers/nehemiah-builds-the-wall.jpg",
+    song: {
+      title: "Nehemiah Built the Wall",
+      artist: "Judah's Tribe",
+      embedId: "quCo46OFBe8",
+    },
+    coverScene: "default",
+  },
+  {
+    number: "Book 35",
+    slug: "jesus-walks-on-water",
+    title: "Jesus Walks on Water",
+    subtitle: "Keep Your Eyes on Jesus",
+    ageRange: "Ages 3-8",
+    theme: "Faith",
+    blurb:
+      "A faith-filled Gospel story reminding little hearts that when we feel like we are sinking, Jesus reaches out His hand.",
+    amazonUrl: "https://www.amazon.com/dp/B0H3FNVRM5",
+    scriptureReference: "Matthew 14:22-33",
+    biblicalOrder: 142.5,
+    status: "available",
+    coverImage: "/covers/jesus-walks-on-water.jpg",
+    song: {
+      title: "Jesus Walks on Water",
+      artist: "Kids Faith TV",
+      embedId: "q8HQGsAHfmg",
+    },
+    coverScene: "default",
+  },
+  {
+    number: "Book 36",
+    slug: "lazarus-comes-out",
+    title: "Lazarus Comes Out",
+    subtitle: "With Jesus, There Is Always Hope",
+    ageRange: "Ages 3-8",
+    theme: "Hope",
+    blurb:
+      "A tender John 11 story showing that Jesus cares about our tears and that with Him, there is always hope.",
+    amazonUrl: "https://www.amazon.com/dp/B0H3FKBSMF",
+    scriptureReference: "John 11:1-44",
+    biblicalOrder: 149,
+    status: "available",
+    coverImage: "/covers/lazarus-comes-out.jpg",
+    song: {
+      title: "Lazarus",
+      artist: "DG Bible Songs",
+      embedId: "3Fl3QaZUwSc",
     },
     coverScene: "default",
   },

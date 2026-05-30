@@ -114,6 +114,11 @@ const coloringPageSlugsByBook: Record<string, string> = {
   "Book 29": "paul-and-silas-in-prison",
   "Book 30": "pentecost-the-holy-spirit-comes",
   "Book 31": "elisha-and-the-widows-oil",
+  "Book 32": "tower-of-babel",
+  "Book 33": "gideons-tiny-army",
+  "Book 34": "nehemiah-builds-the-wall",
+  "Book 35": "jesus-walks-on-water",
+  "Book 36": "lazarus-comes-out",
 };
 
 const publishedBookResources: BookResourceMeta[] = books
