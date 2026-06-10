@@ -34,7 +34,7 @@ export default function PlayPage() {
 
       <header
         id="top"
-        className="relative overflow-hidden px-4 pb-2 pt-4 text-center sm:px-6 sm:pb-8 sm:pt-36"
+        className="relative overflow-hidden px-4 pb-2 pt-28 text-center sm:px-6 sm:pb-8 sm:pt-36"
       >
         <RainbowArc />
 
