@@ -1,4 +1,5 @@
 import { books } from "../books";
+import { PLAY_IS_LIVE } from "@/lib/play/config";
 
 const baseUrl = "https://www.faithfulheartsbooks.com";
 const lastmod = "2026-05-29";
@@ -16,6 +17,10 @@ const urls = [
       priority: "0.8",
     })),
 ];
+
+if (PLAY_IS_LIVE) {
+  urls.push({ loc: `${baseUrl}/play`, changefreq: "daily", priority: "0.7" });
+}
 
 export function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
