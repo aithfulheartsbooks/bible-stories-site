@@ -38,7 +38,6 @@ export default function DailyPuzzle() {
   );
   const [selected, setSelected] = useState<number | null>(null);
   const [solved, setSolved] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
   const [imageFailed, setImageFailed] = useState(false);
   const [peeking, setPeeking] = useState(false);
   const [showTutorial, setShowTutorial] = useState(false);
@@ -58,8 +57,19 @@ export default function DailyPuzzle() {
   }, []);
 
   useEffect(() => {
-    setImageLoaded(false);
+    const timer = window.setInterval(() => {
+      const nextDaily = getDailyPuzzle(new Date());
+      setDaily((currentDaily) => (currentDaily.dateKey === nextDaily.dateKey ? currentDaily : nextDaily));
+    }, 60000);
+
+    return () => window.clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const image = new window.Image();
     setImageFailed(false);
+    image.onerror = () => setImageFailed(true);
+    image.src = daily.puzzle.image;
   }, [daily.puzzle.image]);
 
   useEffect(() => {
@@ -228,30 +238,11 @@ export default function DailyPuzzle() {
         </div>
 
         <div className="relative mx-auto max-w-[560px]">
-          <Image
-            src={daily.puzzle.image}
-            alt=""
-            fill
-            priority
-            sizes="560px"
-            className="pointer-events-none opacity-0"
-            onLoad={() => setImageLoaded(true)}
-            onError={() => setImageFailed(true)}
-          />
           <div
-            className={
-              imageLoaded
-                ? "grid aspect-square overflow-hidden rounded-3xl border-4 border-cream bg-cream-deep shadow-lg"
-                : "grid aspect-square place-items-center overflow-hidden rounded-3xl border-4 border-cream bg-cream-deep shadow-lg"
-            }
+            className="grid aspect-square overflow-hidden rounded-3xl border-4 border-cream bg-cream-deep shadow-lg"
             style={{ gridTemplateColumns: `repeat(${grid}, minmax(0, 1fr))` }}
           >
-            {!imageLoaded && (
-              <div className="col-span-full px-6 text-center font-display text-lg font-bold text-chestnut-soft">
-                {imageFailed ? "Today's picture could not load." : "Loading today's picture..."}
-              </div>
-            )}
-            {imageLoaded && tiles.map((tile, index) => {
+            {tiles.map((tile, index) => {
               const row = Math.floor(tile / grid);
               const col = tile % grid;
               const correct = tile === index;
@@ -286,6 +277,12 @@ export default function DailyPuzzle() {
               );
             })}
           </div>
+
+          {imageFailed && (
+            <div className="absolute inset-0 grid place-items-center rounded-3xl bg-cream-deep/95 px-6 text-center font-display text-lg font-bold text-chestnut-soft">
+              Today&apos;s picture could not load.
+            </div>
+          )}
 
           {(peeking || solved) && (
             <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl border-4 border-cream bg-cream-deep">
