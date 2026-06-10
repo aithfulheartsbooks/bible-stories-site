@@ -449,7 +449,7 @@ export default function DailyPuzzle() {
           </p>
           <div className="relative">
             {showPeekTip && !boardSolved && (
-              <span className="absolute bottom-full right-0 mb-2 w-44 rounded-2xl bg-chestnut px-3 py-2 text-xs font-semibold text-cream shadow-md">
+              <span className="absolute bottom-full right-0 mb-2 hidden w-44 rounded-2xl bg-chestnut px-3 py-2 text-xs font-semibold text-cream shadow-md sm:block">
                 Hold to see the finished picture.
               </span>
             )}
