@@ -10,7 +10,10 @@ type Props = {
 };
 
 export default function StickerAlbum({ stickers, save }: Props) {
-  const earnedCount = stickers.filter((sticker) => save.earned[sticker.id]).length;
+  const storyStickers = stickers.filter((sticker) => sticker.rarity === "common");
+  const bonusStickers = stickers.filter((sticker) => sticker.rarity === "golden" && save.earned[sticker.id]);
+  const earnedCount = storyStickers.filter((sticker) => save.earned[sticker.id]).length;
+  const progress = storyStickers.length ? Math.round((earnedCount / storyStickers.length) * 100) : 0;
 
   return (
     <section className="rounded-3xl border border-white/80 bg-cream/85 p-5 shadow-md backdrop-blur-md sm:p-7">
@@ -22,14 +25,14 @@ export default function StickerAlbum({ stickers, save }: Props) {
           <h2 className="font-display text-2xl font-bold text-chestnut">Collected stickers</h2>
         </div>
         <p className="rounded-full bg-cream-deep px-4 py-2 text-sm font-semibold text-chestnut-soft">
-          {earnedCount} of {stickers.length} stickers
+          {earnedCount} of {storyStickers.length} books
         </p>
       </div>
 
       <div className="mb-6 h-3 overflow-hidden rounded-full bg-white/70">
         <div
           className="h-full rounded-full bg-gold transition-all duration-500"
-          style={{ width: `${Math.round((earnedCount / stickers.length) * 100)}%` }}
+          style={{ width: `${progress}%` }}
         />
       </div>
 
@@ -40,7 +43,7 @@ export default function StickerAlbum({ stickers, save }: Props) {
       )}
 
       <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-4">
-        {stickers.map((sticker) => {
+        {storyStickers.map((sticker) => {
           const earned = save.earned[sticker.id];
 
           return (
@@ -77,6 +80,33 @@ export default function StickerAlbum({ stickers, save }: Props) {
           );
         })}
       </div>
+
+      {bonusStickers.length > 0 && (
+        <>
+          <p className="mb-3 mt-7 text-xs font-semibold uppercase tracking-[0.22em] text-terracotta">
+            Bonus streak badges
+          </p>
+          <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-4">
+            {bonusStickers.map((sticker) => (
+              <div key={sticker.id} className="text-center">
+                <div className="relative mx-auto mb-2 aspect-square w-full max-w-[92px] overflow-hidden rounded-full border-4 border-cream bg-white shadow-md">
+                  <Image
+                    src={sticker.image}
+                    alt={sticker.name}
+                    fill
+                    sizes="92px"
+                    className="scale-150 object-cover"
+                  />
+                  <span className="absolute inset-1 rounded-full border-4 border-gold" aria-hidden="true" />
+                </div>
+                <p className="min-h-[2.5rem] text-xs font-semibold leading-tight text-chestnut-soft">
+                  {sticker.name}
+                </p>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
     </section>
   );
 }

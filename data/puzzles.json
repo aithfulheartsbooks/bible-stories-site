@@ -2,105 +2,585 @@
   "launchDate": "2026-06-10",
   "puzzles": [
     {
-      "id": "noah-01",
+      "id": "noah-and-gods-big-promise",
       "bookNumber": 1,
       "bookTitle": "Noah and God's Big Promise",
       "image": "/covers/noah.png",
       "amazonUrl": "https://www.amazon.com/dp/B0GYHZ8P9S",
-      "stickerId": "noah-rainbow",
-      "caption": "Noah remembers God's big promise under the rainbow."
+      "stickerId": "noah-and-gods-big-promise-sticker",
+      "caption": "When the rains came, Noah trusted God's plan. A warm story of faith, friendship with the animals, and the promise of the rainbow."
     },
     {
-      "id": "david-01",
+      "id": "david-and-the-giant",
       "bookNumber": 2,
       "bookTitle": "David and the Giant",
       "image": "/covers/david.png",
       "amazonUrl": "https://www.amazon.com/dp/B0GYNRCKQD",
-      "stickerId": "david-shepherd",
-      "caption": "David learns that faith can be bigger than fear."
+      "stickerId": "david-and-the-giant-sticker",
+      "caption": "A young shepherd boy discovers that even when we feel small, God is bigger than every giant we face."
     },
     {
-      "id": "moses-01",
+      "id": "moses-and-the-red-sea",
       "bookNumber": 3,
       "bookTitle": "Moses and the Red Sea",
       "image": "/covers/moses.png",
       "amazonUrl": "https://www.amazon.com/dp/B0GZ43TKCK",
-      "stickerId": "moses-sea",
-      "caption": "Moses watches God make a brave way through the sea."
+      "stickerId": "moses-and-the-red-sea-sticker",
+      "caption": "When the waters rise, Moses trusts God's plan. A brave story of faith, leadership, and the miracle that saved a nation."
     },
     {
-      "id": "jonah-01",
+      "id": "jonah-and-the-big-fish",
       "bookNumber": 4,
       "bookTitle": "Jonah and the Big Fish",
       "image": "/covers/jonah.png",
       "amazonUrl": "https://www.amazon.com/dp/B0GZDKNN5L",
-      "stickerId": "jonah-fish",
-      "caption": "Jonah discovers that God gives second chances."
+      "stickerId": "jonah-and-the-big-fish-sticker",
+      "caption": "When Jonah runs from God's plan, he ends up in a big adventure. A playful story about obedience, second chances, and how God never gives up on us."
     },
     {
-      "id": "daniel-01",
+      "id": "daniel-and-the-lions",
       "bookNumber": 5,
       "bookTitle": "Daniel and the Lions",
       "image": "/covers/daniel.jpg",
       "amazonUrl": "https://www.amazon.com/dp/B0GZGFJTSL",
-      "stickerId": "daniel-lion",
-      "caption": "Daniel prays with courage when God is near."
+      "stickerId": "daniel-and-the-lions-sticker",
+      "caption": "When Daniel keeps praying to God, he is sent into a den of lions. A brave story about faith, prayer, and trusting God when we feel afraid."
     },
     {
-      "id": "esther-01",
+      "id": "esther-the-brave-queen",
       "bookNumber": 6,
       "bookTitle": "Esther the Brave Queen",
       "image": "/covers/esther.png",
       "amazonUrl": "https://www.amazon.com/dp/B0GZK239VN",
-      "stickerId": "esther-crown",
-      "caption": "Esther uses her brave voice at just the right time."
+      "stickerId": "esther-the-brave-queen-sticker",
+      "caption": "Even when Esther felt small and afraid, she found the courage to speak up for others. A beautiful story about purpose, faith, and being chosen for."
+    },
+    {
+      "id": "the-christmas-story",
+      "bookNumber": 7,
+      "bookTitle": "The Christmas Story",
+      "image": "/covers/christmas.png",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZNQZQGX",
+      "stickerId": "the-christmas-story-sticker",
+      "caption": "A tender retelling of the night Jesus was born, filled with wonder, warmth, and the beautiful truth that God came close because He loves us."
+    },
+    {
+      "id": "josephs-colorful-coat",
+      "bookNumber": 8,
+      "bookTitle": "Joseph's Colorful Coat",
+      "image": "/covers/joseph.png",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZL3YG8L",
+      "stickerId": "josephs-colorful-coat-sticker",
+      "caption": "Joseph's story shows little hearts how God can work through hard days, surprising turns, and brave forgiveness to bring good in the end."
+    },
+    {
+      "id": "the-easter-story",
+      "bookNumber": 9,
+      "bookTitle": "The Easter Story",
+      "image": "/covers/easter.png",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZPY9RL1",
+      "stickerId": "the-easter-story-sticker",
+      "caption": "A joyful retelling of Jesus' death and resurrection, helping little hearts understand God's greatest rescue with warmth, wonder, and hope."
+    },
+    {
+      "id": "ruth-and-naomi",
+      "bookNumber": 10,
+      "bookTitle": "Ruth and Naomi",
+      "image": "/covers/ruth.png",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZQX7D3N",
+      "stickerId": "ruth-and-naomi-sticker",
+      "caption": "Walk with Ruth and Naomi through hard times and harvest fields as God weaves faithful love into His greatest plan, from Bethlehem to King David and."
+    },
+    {
+      "id": "the-birth-of-moses",
+      "bookNumber": 11,
+      "bookTitle": "The Birth of Moses",
+      "image": "/covers/birth-of-moses.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H15BN3RD",
+      "stickerId": "the-birth-of-moses-sticker",
+      "caption": "A mother's love, a brave big sister, and a tiny basket on the Nile show little hearts how God protects His children from the very beginning."
+    },
+    {
+      "id": "solomon-and-wisdom",
+      "bookNumber": 12,
+      "bookTitle": "Solomon and Wisdom",
+      "image": "/covers/solomon-and-wisdom.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H184LKSF",
+      "stickerId": "solomon-and-wisdom-sticker",
+      "caption": "When God told Solomon he could ask for anything, Solomon chose wisdom. A thoughtful story about listening hearts, wise choices, and asking God for."
+    },
+    {
+      "id": "elijah-and-the-still-small-voice",
+      "bookNumber": 13,
+      "bookTitle": "Elijah and the Still Small Voice",
+      "image": "/covers/elijah-still-small-voice.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H18JDFCW",
+      "stickerId": "elijah-and-the-still-small-voice-sticker",
+      "caption": "Elijah was brave and faithful, but even brave people can feel tired and afraid. A comforting story about hearing God's gentle voice in quiet moments."
+    },
+    {
+      "id": "jesus-calms-the-storm",
+      "bookNumber": 14,
+      "bookTitle": "Jesus Calms the Storm",
+      "image": "/covers/jesus-calms-the-storm.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H18WDG5P",
+      "stickerId": "jesus-calms-the-storm-sticker",
+      "caption": "When the wind howled and the waves rose high, Jesus was right there in the boat. A comforting story that reminds little hearts Jesus is near in eve."
+    },
+    {
+      "id": "the-creation-story",
+      "bookNumber": 15,
+      "bookTitle": "The Creation Story",
+      "image": "/covers/the-creation-story.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H18HQKWT",
+      "stickerId": "the-creation-story-sticker",
+      "caption": "A joyful retelling of Genesis 1 that helps little hearts see the beauty of God's world, from light and sky to animals, people, and rest."
+    },
+    {
+      "id": "the-armor-of-god",
+      "bookNumber": 16,
+      "bookTitle": "The Armor of God",
+      "image": "/covers/armor-of-god.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H1BQX3LP",
+      "stickerId": "the-armor-of-god-sticker",
+      "caption": "A joyful story from Ephesians 6 that helps little hearts remember God gives us truth, righteousness, peace, faith, salvation, and His Word for ever."
+    },
+    {
+      "id": "zacchaeus",
+      "bookNumber": 17,
+      "bookTitle": "Zacchaeus",
+      "image": "/covers/zacchaeus.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H1CG1P1X",
+      "stickerId": "zacchaeus-sticker",
+      "caption": "A warm, joyful retelling of the little man in the tree, reminding children that Jesus sees every heart and His love can change everything."
+    },
+    {
+      "id": "the-good-samaritan",
+      "bookNumber": 18,
+      "bookTitle": "The Good Samaritan",
+      "image": "/covers/the-good-samaritan.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H1CPYC6T",
+      "stickerId": "the-good-samaritan-sticker",
+      "caption": "Jesus' parable of a kind helper on the Jericho road teaches little hearts to love their neighbour with compassion, courage, and care."
+    },
+    {
+      "id": "the-lost-sheep",
+      "bookNumber": 19,
+      "bookTitle": "The Lost Sheep",
+      "image": "/covers/the-lost-sheep.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H1CTPVMV",
+      "stickerId": "the-lost-sheep-sticker",
+      "caption": "A tender story of the shepherd who searches until he finds the one lost sheep, reminding little hearts that Jesus knows them by name and never give."
+    },
+    {
+      "id": "the-feeding-of-the-5000",
+      "bookNumber": 20,
+      "bookTitle": "The Feeding of the 5,000",
+      "image": "/covers/feeding-the-5000.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H1D867ZJ",
+      "stickerId": "the-feeding-of-the-5000-sticker",
+      "caption": "A sunlit miracle story about a small lunch, a willing child, and Jesus making more than enough for everyone on the hillside."
+    },
+    {
+      "id": "adam-and-eve-in-the-garden",
+      "bookNumber": 21,
+      "bookTitle": "Adam and Eve in the Garden",
+      "image": "/covers/adam-and-eve-in-the-garden.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H1JDBH3V",
+      "stickerId": "adam-and-eve-in-the-garden-sticker",
+      "caption": "A gentle garden story about God's beautiful beginning, the first family, and the loving care He showed from the very start."
+    },
+    {
+      "id": "joshua-and-jericho",
+      "bookNumber": 22,
+      "bookTitle": "Joshua and Jericho",
+      "image": "/covers/joshua-and-jericho.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H25YF2J6",
+      "stickerId": "joshua-and-jericho-sticker",
+      "caption": "A joyful story of Joshua, a brave people, and the day God brought Jericho's walls down after they trusted and obeyed."
+    },
+    {
+      "id": "the-fiery-furnace",
+      "bookNumber": 23,
+      "bookTitle": "The Fiery Furnace",
+      "image": "/covers/the-fiery-furnace.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H25KF241",
+      "stickerId": "the-fiery-furnace-sticker",
+      "caption": "Shadrach, Meshach, and Abednego choose to trust God, even in the fiery furnace, and discover they are never alone."
+    },
+    {
+      "id": "the-prodigal-son",
+      "bookNumber": 24,
+      "bookTitle": "The Prodigal Son",
+      "image": "/covers/the-prodigal-son.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H25RMCJY",
+      "stickerId": "the-prodigal-son-sticker",
+      "caption": "A tender parable about a son who comes home and a loving father who runs to welcome him with forgiveness and joy."
+    },
+    {
+      "id": "jesus-welcomes-children",
+      "bookNumber": 25,
+      "bookTitle": "Jesus Welcomes Children",
+      "image": "/covers/jesus-welcomes-children.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H25YPF38",
+      "stickerId": "jesus-welcomes-children-sticker",
+      "caption": "A warm Gospel story reminding little hearts that Jesus sees children, welcomes them close, and blesses them with love."
+    },
+    {
+      "id": "the-wedding-at-cana",
+      "bookNumber": 26,
+      "bookTitle": "The Wedding at Cana",
+      "image": "/covers/the-wedding-at-cana.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H26G965M",
+      "stickerId": "the-wedding-at-cana-sticker",
+      "caption": "A joyful first-miracle story where Jesus cares about an ordinary celebration and fills empty jars with the very best."
+    },
+    {
+      "id": "hannahs-prayer-and-young-samuel",
+      "bookNumber": 27,
+      "bookTitle": "Hannah's Prayer and Young Samuel",
+      "image": "/covers/hannahs-prayer-and-young-samuel.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H26QR9MJ",
+      "stickerId": "hannahs-prayer-and-young-samuel-sticker",
+      "caption": "A tender story of honest prayer, a long-awaited gift, and young Samuel learning to listen when God calls his name."
+    },
+    {
+      "id": "saul-becomes-paul",
+      "bookNumber": 28,
+      "bookTitle": "Saul Becomes Paul",
+      "image": "/covers/saul-becomes-paul.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H26XYBCM",
+      "stickerId": "saul-becomes-paul-sticker",
+      "caption": "A bright Damascus-road story showing little hearts that Jesus can change anyone and make every heart new."
+    },
+    {
+      "id": "paul-and-silas-in-prison",
+      "bookNumber": 29,
+      "bookTitle": "Paul and Silas in Prison",
+      "image": "/covers/paul-and-silas-in-prison.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H274YJR4",
+      "stickerId": "paul-and-silas-in-prison-sticker",
+      "caption": "An exciting Acts story about choosing joy in hard places, singing at midnight, and seeing God open doors."
+    },
+    {
+      "id": "pentecost-the-holy-spirit-comes",
+      "bookNumber": 30,
+      "bookTitle": "Pentecost: The Holy Spirit Comes",
+      "image": "/covers/pentecost-the-holy-spirit-comes.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H2F78SY9",
+      "stickerId": "pentecost-the-holy-spirit-comes-sticker",
+      "caption": "A joyful Pentecost story showing little hearts that Jesus sent the Holy Spirit, our Helper, so we are never alone."
+    },
+    {
+      "id": "elisha-and-the-widows-oil",
+      "bookNumber": 31,
+      "bookTitle": "Elisha and the Widow's Oil",
+      "image": "/covers/elisha-and-the-widows-oil.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H2Z7SP3B",
+      "stickerId": "elisha-and-the-widows-oil-sticker",
+      "caption": "A warm story of God's provision, showing little hearts that when we bring what we have and trust Him, He can fill every empty place."
+    },
+    {
+      "id": "tower-of-babel",
+      "bookNumber": 32,
+      "bookTitle": "Tower of Babel",
+      "image": "/covers/tower-of-babel.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H344KNV1",
+      "stickerId": "tower-of-babel-sticker",
+      "caption": "A thoughtful Genesis story reminding little hearts that when people forget God, plans can fall apart, but God still leads us with love."
+    },
+    {
+      "id": "gideons-tiny-army",
+      "bookNumber": 33,
+      "bookTitle": "Gideon's Tiny Army",
+      "image": "/covers/gideons-tiny-army.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H373C86F",
+      "stickerId": "gideons-tiny-army-sticker",
+      "caption": "A brave Judges story showing little hearts that God can use the small and weak to do mighty things."
+    },
+    {
+      "id": "nehemiah-builds-the-wall",
+      "bookNumber": 34,
+      "bookTitle": "Nehemiah Builds the Wall",
+      "image": "/covers/nehemiah-builds-the-wall.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H3F92CBF",
+      "stickerId": "nehemiah-builds-the-wall-sticker",
+      "caption": "A steady story about praying first, planning carefully, working with courage, and trusting God to help us finish what matters."
+    },
+    {
+      "id": "jesus-walks-on-water",
+      "bookNumber": 35,
+      "bookTitle": "Jesus Walks on Water",
+      "image": "/covers/jesus-walks-on-water.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H3FNVRM5",
+      "stickerId": "jesus-walks-on-water-sticker",
+      "caption": "A faith-filled Gospel story reminding little hearts that when we feel like we are sinking, Jesus reaches out His hand."
+    },
+    {
+      "id": "lazarus-comes-out",
+      "bookNumber": 36,
+      "bookTitle": "Lazarus Comes Out",
+      "image": "/covers/lazarus-comes-out.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0H3FKBSMF",
+      "stickerId": "lazarus-comes-out-sticker",
+      "caption": "A tender John 11 story showing that Jesus cares about our tears and that with Him, there is always hope."
     }
   ],
   "dateOverrides": {
-    "12-24": "christmas-01",
-    "12-25": "christmas-01"
+    "12-24": "the-christmas-story",
+    "12-25": "the-christmas-story"
   },
   "stickers": [
     {
-      "id": "noah-rainbow",
+      "id": "noah-and-gods-big-promise-sticker",
       "name": "Rainbow Promise",
       "image": "/covers/noah.png",
       "bookNumber": 1,
       "rarity": "common"
     },
     {
-      "id": "david-shepherd",
+      "id": "david-and-the-giant-sticker",
       "name": "Brave Shepherd",
       "image": "/covers/david.png",
       "bookNumber": 2,
       "rarity": "common"
     },
     {
-      "id": "moses-sea",
+      "id": "moses-and-the-red-sea-sticker",
       "name": "Parted Sea",
       "image": "/covers/moses.png",
       "bookNumber": 3,
       "rarity": "common"
     },
     {
-      "id": "jonah-fish",
+      "id": "jonah-and-the-big-fish-sticker",
       "name": "Second Chance Fish",
       "image": "/covers/jonah.png",
       "bookNumber": 4,
       "rarity": "common"
     },
     {
-      "id": "daniel-lion",
+      "id": "daniel-and-the-lions-sticker",
       "name": "Prayer Lion",
       "image": "/covers/daniel.jpg",
       "bookNumber": 5,
       "rarity": "common"
     },
     {
-      "id": "esther-crown",
+      "id": "esther-the-brave-queen-sticker",
       "name": "Brave Crown",
       "image": "/covers/esther.png",
       "bookNumber": 6,
+      "rarity": "common"
+    },
+    {
+      "id": "the-christmas-story-sticker",
+      "name": "Christmas Story",
+      "image": "/covers/christmas.png",
+      "bookNumber": 7,
+      "rarity": "common"
+    },
+    {
+      "id": "josephs-colorful-coat-sticker",
+      "name": "Joseph's Colorful Coat",
+      "image": "/covers/joseph.png",
+      "bookNumber": 8,
+      "rarity": "common"
+    },
+    {
+      "id": "the-easter-story-sticker",
+      "name": "Easter Story",
+      "image": "/covers/easter.png",
+      "bookNumber": 9,
+      "rarity": "common"
+    },
+    {
+      "id": "ruth-and-naomi-sticker",
+      "name": "Ruth and Naomi",
+      "image": "/covers/ruth.png",
+      "bookNumber": 10,
+      "rarity": "common"
+    },
+    {
+      "id": "the-birth-of-moses-sticker",
+      "name": "Birth of Moses",
+      "image": "/covers/birth-of-moses.jpg",
+      "bookNumber": 11,
+      "rarity": "common"
+    },
+    {
+      "id": "solomon-and-wisdom-sticker",
+      "name": "Solomon and Wisdom",
+      "image": "/covers/solomon-and-wisdom.jpg",
+      "bookNumber": 12,
+      "rarity": "common"
+    },
+    {
+      "id": "elijah-and-the-still-small-voice-sticker",
+      "name": "Elijah and the Still Small Voice",
+      "image": "/covers/elijah-still-small-voice.jpg",
+      "bookNumber": 13,
+      "rarity": "common"
+    },
+    {
+      "id": "jesus-calms-the-storm-sticker",
+      "name": "Jesus Calms the Storm",
+      "image": "/covers/jesus-calms-the-storm.jpg",
+      "bookNumber": 14,
+      "rarity": "common"
+    },
+    {
+      "id": "the-creation-story-sticker",
+      "name": "Creation Story",
+      "image": "/covers/the-creation-story.jpg",
+      "bookNumber": 15,
+      "rarity": "common"
+    },
+    {
+      "id": "the-armor-of-god-sticker",
+      "name": "Armor of God",
+      "image": "/covers/armor-of-god.jpg",
+      "bookNumber": 16,
+      "rarity": "common"
+    },
+    {
+      "id": "zacchaeus-sticker",
+      "name": "Zacchaeus",
+      "image": "/covers/zacchaeus.jpg",
+      "bookNumber": 17,
+      "rarity": "common"
+    },
+    {
+      "id": "the-good-samaritan-sticker",
+      "name": "Good Samaritan",
+      "image": "/covers/the-good-samaritan.jpg",
+      "bookNumber": 18,
+      "rarity": "common"
+    },
+    {
+      "id": "the-lost-sheep-sticker",
+      "name": "Lost Sheep",
+      "image": "/covers/the-lost-sheep.jpg",
+      "bookNumber": 19,
+      "rarity": "common"
+    },
+    {
+      "id": "the-feeding-of-the-5000-sticker",
+      "name": "Feeding of the 5,000",
+      "image": "/covers/feeding-the-5000.jpg",
+      "bookNumber": 20,
+      "rarity": "common"
+    },
+    {
+      "id": "adam-and-eve-in-the-garden-sticker",
+      "name": "Adam and Eve in the Garden",
+      "image": "/covers/adam-and-eve-in-the-garden.jpg",
+      "bookNumber": 21,
+      "rarity": "common"
+    },
+    {
+      "id": "joshua-and-jericho-sticker",
+      "name": "Joshua and Jericho",
+      "image": "/covers/joshua-and-jericho.jpg",
+      "bookNumber": 22,
+      "rarity": "common"
+    },
+    {
+      "id": "the-fiery-furnace-sticker",
+      "name": "Fiery Furnace",
+      "image": "/covers/the-fiery-furnace.jpg",
+      "bookNumber": 23,
+      "rarity": "common"
+    },
+    {
+      "id": "the-prodigal-son-sticker",
+      "name": "Prodigal Son",
+      "image": "/covers/the-prodigal-son.jpg",
+      "bookNumber": 24,
+      "rarity": "common"
+    },
+    {
+      "id": "jesus-welcomes-children-sticker",
+      "name": "Jesus Welcomes Children",
+      "image": "/covers/jesus-welcomes-children.jpg",
+      "bookNumber": 25,
+      "rarity": "common"
+    },
+    {
+      "id": "the-wedding-at-cana-sticker",
+      "name": "Wedding at Cana",
+      "image": "/covers/the-wedding-at-cana.jpg",
+      "bookNumber": 26,
+      "rarity": "common"
+    },
+    {
+      "id": "hannahs-prayer-and-young-samuel-sticker",
+      "name": "Hannah's Prayer and Young Samuel",
+      "image": "/covers/hannahs-prayer-and-young-samuel.jpg",
+      "bookNumber": 27,
+      "rarity": "common"
+    },
+    {
+      "id": "saul-becomes-paul-sticker",
+      "name": "Saul Becomes Paul",
+      "image": "/covers/saul-becomes-paul.jpg",
+      "bookNumber": 28,
+      "rarity": "common"
+    },
+    {
+      "id": "paul-and-silas-in-prison-sticker",
+      "name": "Paul and Silas in Prison",
+      "image": "/covers/paul-and-silas-in-prison.jpg",
+      "bookNumber": 29,
+      "rarity": "common"
+    },
+    {
+      "id": "pentecost-the-holy-spirit-comes-sticker",
+      "name": "Pentecost: The Holy Spirit Comes",
+      "image": "/covers/pentecost-the-holy-spirit-comes.jpg",
+      "bookNumber": 30,
+      "rarity": "common"
+    },
+    {
+      "id": "elisha-and-the-widows-oil-sticker",
+      "name": "Elisha and the Widow's Oil",
+      "image": "/covers/elisha-and-the-widows-oil.jpg",
+      "bookNumber": 31,
+      "rarity": "common"
+    },
+    {
+      "id": "tower-of-babel-sticker",
+      "name": "Tower of Babel",
+      "image": "/covers/tower-of-babel.jpg",
+      "bookNumber": 32,
+      "rarity": "common"
+    },
+    {
+      "id": "gideons-tiny-army-sticker",
+      "name": "Gideon's Tiny Army",
+      "image": "/covers/gideons-tiny-army.jpg",
+      "bookNumber": 33,
+      "rarity": "common"
+    },
+    {
+      "id": "nehemiah-builds-the-wall-sticker",
+      "name": "Nehemiah Builds the Wall",
+      "image": "/covers/nehemiah-builds-the-wall.jpg",
+      "bookNumber": 34,
+      "rarity": "common"
+    },
+    {
+      "id": "jesus-walks-on-water-sticker",
+      "name": "Jesus Walks on Water",
+      "image": "/covers/jesus-walks-on-water.jpg",
+      "bookNumber": 35,
+      "rarity": "common"
+    },
+    {
+      "id": "lazarus-comes-out-sticker",
+      "name": "Lazarus Comes Out",
+      "image": "/covers/lazarus-comes-out.jpg",
+      "bookNumber": 36,
       "rarity": "common"
     },
     {
