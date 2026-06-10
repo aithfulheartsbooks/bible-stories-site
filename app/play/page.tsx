@@ -36,13 +36,13 @@ export default function PlayPage() {
         </div>
       )}
 
-      <header className="relative px-6 pb-5 pt-10 text-center sm:pb-6 sm:pt-16">
+      <header className="relative px-6 pb-12 pt-24 text-center sm:pt-28">
         <RainbowArc />
 
         <span className="mb-5 inline-block rounded-full border border-terracotta/20 bg-white/55 px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-terracotta backdrop-blur-sm">
           Free Daily Game
         </span>
-        <h1 className="font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-chestnut sm:text-6xl">
+        <h1 className="font-display text-5xl font-extrabold leading-[1.05] tracking-tight text-chestnut sm:text-6xl md:text-7xl">
           Play Corner
         </h1>
         <p className="mx-auto mt-4 max-w-2xl font-display text-base italic text-chestnut-soft sm:text-lg">
