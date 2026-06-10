@@ -479,6 +479,7 @@ const widgetScript = String.raw`
       '- Recommend 1-2 books maximum per response.',
       '- Always include the Amazon link when recommending a book if one exists; otherwise include the book page link.',
       '- Keep responses short and friendly because parents are busy.',
+      '- Do not use Markdown heading syntax such as "#", "##", or "###". If you need a title, write it as plain text or bold text.',
       '- Answer questions about website navigation, Series Map, Free Resources, Play, About, Contact, newsletter, and available books using WEBSITE KNOWLEDGE.',
       '- Each book page may include a Sing Along YouTube video. If asked about songs, music, sing-along videos, or YouTube videos, answer from the Sing Along video fields in the live book list.',
       '- If a user asks for a book video, include the YouTube link when it exists and mention that the video is also embedded on that book page.',
@@ -505,7 +506,7 @@ const widgetScript = String.raw`
     }
 
     if (/play|game|puzzle|sticker|album|practice|star|daily story/.test(q)) {
-      return 'The **Play** page is the free **Daily Story Puzzle** at **/play**. Each day has three Bible story puzzles from the books. Kids solve the picture, earn color stickers for their album, and after the daily three are finished they can play practice puzzles for stars. Stickers are saved on that device, with no account needed.';
+      return '**The Daily Story Puzzle** is the free Play page at **/play**. Each day has three Bible story puzzles from the books. Kids solve the picture, earn color stickers for their album, and after the daily three are finished they can play practice puzzles for stars. Stickers are saved on that device, with no account needed.';
     }
 
     if (/how many|count|total|number of books/.test(q)) {
@@ -553,6 +554,7 @@ const widgetScript = String.raw`
     const bubble = document.createElement('div');
     bubble.className = 'angel-bubble ' + (role === 'user' ? 'user' : 'bot');
     bubble.innerHTML = text
+      .replace(/(^|\n)#{1,6}\s+/g, '$1')
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.*?)\*/g, '<em>$1</em>')
       .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1 &rarr;</a>')
@@ -563,7 +565,7 @@ const widgetScript = String.raw`
         const href = url.startsWith('www.') ? 'https://' + url : 'https://www.' + url;
         return prefix + buildLink(href, url);
       })
-      .replace(/(^|[\s>])(\/(?:about|contact|free-resources|book\/[a-z0-9-]+|newsletter\/thank-you)(?:[^\s<]*)?)/gi, function (match, prefix, path) {
+      .replace(/(^|[\s>])(\/(?:play|about|contact|free-resources|book\/[a-z0-9-]+|newsletter\/thank-you)(?:[^\s<]*)?)/gi, function (match, prefix, path) {
         return prefix + buildLink(SITE_URL + path, path);
       })
       .replace(/\n/g, '<br>');
