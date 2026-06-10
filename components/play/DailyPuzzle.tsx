@@ -247,9 +247,7 @@ export default function DailyPuzzle() {
                   style={{
                     backgroundImage: `url(${daily.puzzle.image})`,
                     backgroundSize: `${grid * 100}% ${grid * 100}%`,
-                    backgroundPosition: `${grid === 1 ? 0 : (col / (grid - 1)) * 100}% ${
-                      grid === 1 ? 0 : (row / (grid - 1)) * 100
-                    }%`,
+                    backgroundPosition: `${(col / (grid - 1)) * 100}% ${(row / (grid - 1)) * 100}%`,
                   }}
                   aria-label={`Puzzle piece ${index + 1}`}
                 >
