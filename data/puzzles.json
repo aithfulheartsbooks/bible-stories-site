@@ -1,0 +1,121 @@
+{
+  "launchDate": "2026-06-15",
+  "puzzles": [
+    {
+      "id": "noah-01",
+      "bookNumber": 1,
+      "bookTitle": "Noah and God's Big Promise",
+      "image": "/covers/noah.png",
+      "amazonUrl": "https://www.amazon.com/dp/B0GYHZ8P9S",
+      "stickerId": "noah-rainbow",
+      "caption": "Noah remembers God's big promise under the rainbow."
+    },
+    {
+      "id": "david-01",
+      "bookNumber": 2,
+      "bookTitle": "David and the Giant",
+      "image": "/covers/david.png",
+      "amazonUrl": "https://www.amazon.com/dp/B0GYNRCKQD",
+      "stickerId": "david-shepherd",
+      "caption": "David learns that faith can be bigger than fear."
+    },
+    {
+      "id": "moses-01",
+      "bookNumber": 3,
+      "bookTitle": "Moses and the Red Sea",
+      "image": "/covers/moses.png",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZ43TKCK",
+      "stickerId": "moses-sea",
+      "caption": "Moses watches God make a brave way through the sea."
+    },
+    {
+      "id": "jonah-01",
+      "bookNumber": 4,
+      "bookTitle": "Jonah and the Big Fish",
+      "image": "/covers/jonah.png",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZDKNN5L",
+      "stickerId": "jonah-fish",
+      "caption": "Jonah discovers that God gives second chances."
+    },
+    {
+      "id": "daniel-01",
+      "bookNumber": 5,
+      "bookTitle": "Daniel and the Lions",
+      "image": "/covers/daniel.jpg",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZGFJTSL",
+      "stickerId": "daniel-lion",
+      "caption": "Daniel prays with courage when God is near."
+    },
+    {
+      "id": "esther-01",
+      "bookNumber": 6,
+      "bookTitle": "Esther the Brave Queen",
+      "image": "/covers/esther.png",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZK239VN",
+      "stickerId": "esther-crown",
+      "caption": "Esther uses her brave voice at just the right time."
+    }
+  ],
+  "dateOverrides": {
+    "12-24": "christmas-01",
+    "12-25": "christmas-01"
+  },
+  "stickers": [
+    {
+      "id": "noah-rainbow",
+      "name": "Rainbow Promise",
+      "image": "/covers/noah.png",
+      "bookNumber": 1,
+      "rarity": "common"
+    },
+    {
+      "id": "david-shepherd",
+      "name": "Brave Shepherd",
+      "image": "/covers/david.png",
+      "bookNumber": 2,
+      "rarity": "common"
+    },
+    {
+      "id": "moses-sea",
+      "name": "Parted Sea",
+      "image": "/covers/moses.png",
+      "bookNumber": 3,
+      "rarity": "common"
+    },
+    {
+      "id": "jonah-fish",
+      "name": "Second Chance Fish",
+      "image": "/covers/jonah.png",
+      "bookNumber": 4,
+      "rarity": "common"
+    },
+    {
+      "id": "daniel-lion",
+      "name": "Prayer Lion",
+      "image": "/covers/daniel.jpg",
+      "bookNumber": 5,
+      "rarity": "common"
+    },
+    {
+      "id": "esther-crown",
+      "name": "Brave Crown",
+      "image": "/covers/esther.png",
+      "bookNumber": 6,
+      "rarity": "common"
+    },
+    {
+      "id": "golden-star-3",
+      "name": "Three-Day Golden Star",
+      "image": "/covers/christmas.png",
+      "bookNumber": 0,
+      "rarity": "golden"
+    },
+    {
+      "id": "golden-star-7",
+      "name": "Seven-Day Golden Star",
+      "image": "/covers/easter.png",
+      "bookNumber": 0,
+      "rarity": "golden"
+    }
+  ]
+}

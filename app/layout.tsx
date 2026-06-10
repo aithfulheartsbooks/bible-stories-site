@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Quicksand } from "next/font/google";
+import AnalyticsScripts from "@/components/AnalyticsScripts";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -15,6 +16,7 @@ const quicksand = Quicksand({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.faithfulheartsbooks.com"),
   title: "Bible Stories for Little Hearts",
   description:
     "Warm, gentle retellings of the greatest Bible stories — beautifully illustrated picture books for children ages 3 to 8.",
@@ -34,6 +36,9 @@ export const metadata: Metadata = {
   other: {
     "p:domain_verify": "00b7e44b7c949bfae0fdb2abb0184a82",
   },
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({
@@ -43,7 +48,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${fraunces.variable} ${quicksand.variable}`}>
-      <body className="font-body">{children}</body>
+      <body className="font-body">
+        <AnalyticsScripts />
+        {children}
+      </body>
     </html>
   );
 }

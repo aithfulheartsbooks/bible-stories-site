@@ -218,3 +218,68 @@ body {
     animation: none !important;
   }
 }
+
+.play-demo-hand {
+  display: inline-flex;
+  min-height: 44px;
+  min-width: 64px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: rgba(232, 168, 84, 0.94);
+  color: #5a3d2b;
+  font-weight: 800;
+  box-shadow: 0 14px 30px rgba(90, 61, 43, 0.22);
+  animation: playDemoTap 2s ease-in-out 2;
+}
+
+.play-sparkles {
+  pointer-events: none;
+  position: absolute;
+  inset: -8px;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+.play-sparkles::before,
+.play-sparkles::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(232, 168, 84, 0.95) 0 4px, transparent 5px),
+    radial-gradient(circle, rgba(255, 200, 212, 0.95) 0 3px, transparent 4px),
+    radial-gradient(circle, rgba(203, 226, 242, 0.95) 0 4px, transparent 5px),
+    radial-gradient(circle, rgba(200, 220, 184, 0.95) 0 3px, transparent 4px);
+  background-position: 12% 20%, 78% 18%, 24% 82%, 88% 74%;
+  background-repeat: no-repeat;
+  animation: playSparkle 1.5s ease-out forwards;
+}
+
+.play-sparkles::after {
+  transform: rotate(18deg);
+  animation-delay: 0.15s;
+}
+
+@keyframes playDemoTap {
+  0%, 100% { transform: translate(-95px, -70px) scale(1); }
+  22% { transform: translate(-95px, -70px) scale(0.92); }
+  38% { transform: translate(-95px, -70px) scale(1); }
+  62% { transform: translate(95px, 70px) scale(1); }
+  78% { transform: translate(95px, 70px) scale(0.92); }
+  92% { transform: translate(95px, 70px) scale(1); }
+}
+
+@keyframes playSparkle {
+  0% { opacity: 0; transform: scale(0.8); }
+  25% { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.15); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .play-demo-hand,
+  .play-sparkles::before,
+  .play-sparkles::after {
+    animation: none !important;
+  }
+}

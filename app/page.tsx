@@ -96,7 +96,7 @@ export default function Home() {
       </header>
 
       {/* Books Grid */}
-      <section className="mx-auto max-w-7xl px-6 pb-16 pt-8">
+      <section id="books" className="mx-auto max-w-7xl px-6 pb-16 pt-8">
         <div className="opacity-0 animate-fade-up mb-12 text-center">
           <div className="mb-2 text-xl tracking-[0.5em] text-gold">✦ ✦ ✦</div>
           <h2 className="font-display text-3xl font-semibold text-chestnut">

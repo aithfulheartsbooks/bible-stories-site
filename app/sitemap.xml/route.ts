@@ -1,4 +1,6 @@
-const baseUrl = "https://faithfulheartsbooks.com";
+import { PLAY_IS_LIVE } from "@/lib/play/config";
+
+const baseUrl = "https://www.faithfulheartsbooks.com";
 
 const urls = [
   { loc: `${baseUrl}/`, lastmod: "2026-05-01", changefreq: "weekly", priority: "1.0" },
@@ -14,6 +16,10 @@ const urls = [
   { loc: `${baseUrl}/book/ruth-and-naomi`, lastmod: "2026-05-06", changefreq: "monthly", priority: "0.8" },
   { loc: `${baseUrl}/book/the-birth-of-moses`, lastmod: "2026-05-09", changefreq: "monthly", priority: "0.8" },
 ];
+
+if (PLAY_IS_LIVE) {
+  urls.push({ loc: `${baseUrl}/play`, lastmod: "2026-06-10", changefreq: "daily", priority: "0.7" });
+}
 
 export function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
