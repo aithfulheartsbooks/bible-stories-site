@@ -34,31 +34,31 @@ export default function PlayPage() {
       <SiteNav />
 
       {!PLAY_IS_LIVE && (
-        <div className="relative z-40 mt-[5.25rem] bg-chestnut px-4 py-2 text-center text-sm font-semibold text-cream sm:mt-[4.25rem]">
+        <div className="relative z-40 mt-[5.25rem] bg-chestnut px-4 py-1.5 text-center text-xs font-semibold text-cream sm:mt-[4.25rem] sm:py-2 sm:text-sm">
           Preview - this page is in testing.
         </div>
       )}
 
       <header
         id="top"
-        className="relative overflow-hidden px-6 pb-3 pt-20 text-center sm:pb-8 sm:pt-36"
+        className="relative overflow-hidden px-4 pb-2 pt-4 text-center sm:px-6 sm:pb-8 sm:pt-36"
       >
         <RainbowArc />
 
         <div className="relative z-10">
-          <span className="opacity-0 animate-fade-up mb-3 inline-block rounded-full border border-terracotta/20 bg-white/55 px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-terracotta backdrop-blur-sm sm:mb-6">
+          <span className="opacity-0 animate-fade-up mb-1 inline-block rounded-full border border-terracotta/20 bg-white/55 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-terracotta backdrop-blur-sm sm:mb-6 sm:px-5 sm:py-2 sm:text-xs sm:tracking-[0.25em]">
             Free Daily Game
           </span>
 
-          <h1 className="opacity-0 animate-fade-up mb-2 font-display text-4xl font-extrabold leading-[1.02] tracking-tight text-chestnut sm:mb-5 sm:text-6xl md:text-7xl">
+          <h1 className="opacity-0 animate-fade-up mb-1 font-display text-3xl font-extrabold leading-none tracking-tight text-chestnut sm:mb-5 sm:text-6xl md:text-7xl">
             Play Corner
           </h1>
 
-          <p className="opacity-0 animate-fade-up mx-auto max-w-2xl font-display text-[14px] italic leading-relaxed text-chestnut-soft sm:text-xl md:text-2xl">
+          <p className="opacity-0 animate-fade-up mx-auto max-w-2xl font-display text-xs italic leading-snug text-chestnut-soft sm:text-xl sm:leading-relaxed md:text-2xl">
             A new story puzzle every day - solve it and collect stickers from your favorite Bible stories.
           </p>
 
-          <div className="opacity-0 animate-fade-up mt-3 text-xl tracking-widest text-gold sm:mt-6">
+          <div className="hidden opacity-0 animate-fade-up text-xl tracking-widest text-gold sm:mt-6 sm:block">
             {"\u2726 \u2726 \u2726"}
           </div>
         </div>

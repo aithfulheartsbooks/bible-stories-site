@@ -38,6 +38,7 @@ export default function DailyPuzzle() {
   );
   const [selected, setSelected] = useState<number | null>(null);
   const [solved, setSolved] = useState(false);
+  const [imageReady, setImageReady] = useState(false);
   const [imageFailed, setImageFailed] = useState(false);
   const [peeking, setPeeking] = useState(false);
   const [showTutorial, setShowTutorial] = useState(false);
@@ -67,9 +68,25 @@ export default function DailyPuzzle() {
 
   useEffect(() => {
     const image = new window.Image();
+    let active = true;
+
+    setImageReady(false);
     setImageFailed(false);
-    image.onerror = () => setImageFailed(true);
+    image.onload = () => {
+      if (active) setImageReady(true);
+    };
+    image.onerror = () => {
+      if (active) setImageFailed(true);
+    };
     image.src = daily.puzzle.image;
+
+    if (image.complete && image.naturalWidth > 0) {
+      setImageReady(true);
+    }
+
+    return () => {
+      active = false;
+    };
   }, [daily.puzzle.image]);
 
   useEffect(() => {
@@ -188,30 +205,30 @@ export default function DailyPuzzle() {
   }
 
   return (
-    <div className="mx-auto grid max-w-7xl gap-6 px-4 pb-14 sm:px-6 lg:grid-cols-[minmax(0,1fr)_390px]">
-      <section className="rounded-3xl border border-white/80 bg-cream/85 p-4 shadow-md backdrop-blur-md sm:p-7">
-        <div className="mb-3 flex flex-col gap-3 sm:mb-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="rounded-full bg-cream-deep px-4 py-2 text-sm font-semibold text-chestnut-soft">
+    <div className="mx-auto grid max-w-7xl gap-5 px-3 pb-14 sm:px-6 lg:grid-cols-[minmax(0,1fr)_390px]">
+      <section className="rounded-3xl border border-white/80 bg-cream/85 p-3 shadow-md backdrop-blur-md sm:p-7">
+        <div className="mb-2 flex flex-col gap-2 sm:mb-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+            <span className="rounded-full bg-cream-deep px-3 py-1.5 text-xs font-semibold text-chestnut-soft sm:px-4 sm:py-2 sm:text-sm">
               Puzzle #{daily.dayIndex + 1}
             </span>
-            <span className="rounded-full bg-gold/20 px-4 py-2 text-sm font-semibold text-chestnut-soft">
+            <span className="rounded-full bg-gold/20 px-3 py-1.5 text-xs font-semibold text-chestnut-soft sm:px-4 sm:py-2 sm:text-sm">
               {daily.friendlyDate}
             </span>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             <button
               type="button"
               onClick={() => setShowTutorial(true)}
-              className="min-h-11 rounded-full bg-white/70 px-4 py-2 text-sm font-semibold text-chestnut-soft shadow-sm transition hover:bg-cream-deep focus:outline-none focus:ring-2 focus:ring-gold"
+              className="min-h-9 rounded-full bg-white/70 px-3 py-1.5 text-xs font-semibold text-chestnut-soft shadow-sm transition hover:bg-cream-deep focus:outline-none focus:ring-2 focus:ring-gold sm:min-h-11 sm:px-4 sm:py-2 sm:text-sm"
             >
               How to play
             </button>
             <button
               type="button"
               onClick={toggleSound}
-              className="min-h-11 rounded-full bg-white/70 px-4 py-2 text-sm font-semibold text-chestnut-soft shadow-sm transition hover:bg-cream-deep focus:outline-none focus:ring-2 focus:ring-gold"
+              className="min-h-9 rounded-full bg-white/70 px-3 py-1.5 text-xs font-semibold text-chestnut-soft shadow-sm transition hover:bg-cream-deep focus:outline-none focus:ring-2 focus:ring-gold sm:min-h-11 sm:px-4 sm:py-2 sm:text-sm"
               aria-pressed={save.sound}
             >
               {save.sound ? "Sound on" : "Sound off"}
@@ -219,7 +236,7 @@ export default function DailyPuzzle() {
           </div>
         </div>
 
-        <div className="mb-3 grid grid-cols-2 gap-2 rounded-2xl bg-white/45 p-1.5 sm:mb-4 sm:gap-3 sm:bg-transparent sm:p-0">
+        <div className="mb-2 grid grid-cols-2 gap-1 rounded-full bg-white/50 p-1 sm:mb-4 sm:gap-3 sm:rounded-2xl sm:bg-transparent sm:p-0">
           {difficultyOptions.map((option) => (
             <button
               key={option.value}
@@ -227,12 +244,12 @@ export default function DailyPuzzle() {
               onClick={() => chooseDifficulty(option.value)}
               className={
                 difficulty === option.value
-                  ? "min-h-11 rounded-xl border-2 border-gold bg-gold/20 px-3 py-2 text-center shadow-sm sm:min-h-14 sm:rounded-2xl sm:px-4 sm:py-3 sm:text-left"
-                  : "min-h-11 rounded-xl border border-white/80 bg-white/55 px-3 py-2 text-center transition hover:bg-white/80 sm:min-h-14 sm:rounded-2xl sm:px-4 sm:py-3 sm:text-left"
+                  ? "min-h-9 rounded-full border-2 border-gold bg-gold/20 px-2 py-1.5 text-center shadow-sm sm:min-h-14 sm:rounded-2xl sm:px-4 sm:py-3 sm:text-left"
+                  : "min-h-9 rounded-full border border-white/80 bg-white/55 px-2 py-1.5 text-center transition hover:bg-white/80 sm:min-h-14 sm:rounded-2xl sm:px-4 sm:py-3 sm:text-left"
               }
             >
               <span className="block font-display text-sm font-bold text-chestnut sm:text-lg">{option.label}</span>
-              <span className="block text-[11px] font-semibold text-chestnut-soft sm:text-sm">{option.sublabel}</span>
+              <span className="hidden text-[11px] font-semibold text-chestnut-soft sm:block sm:text-sm">{option.sublabel}</span>
             </button>
           ))}
         </div>
@@ -242,7 +259,21 @@ export default function DailyPuzzle() {
             className="grid aspect-square overflow-hidden rounded-3xl border-4 border-cream bg-cream-deep shadow-lg"
             style={{ gridTemplateColumns: `repeat(${grid}, minmax(0, 1fr))` }}
           >
-            {tiles.map((tile, index) => {
+            {!imageReady && (
+              <div className="col-span-full grid h-full w-full place-items-center bg-cream-deep px-6 text-center">
+                <div>
+                  <p className="font-display text-lg font-bold text-chestnut-soft">
+                    {imageFailed ? "Today's picture could not load." : "Loading today's picture..."}
+                  </p>
+                  {!imageFailed && (
+                    <div className="mx-auto mt-4 h-2 w-28 overflow-hidden rounded-full bg-white/70">
+                      <div className="h-full w-1/2 animate-pulse rounded-full bg-gold/80" />
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+            {imageReady && tiles.map((tile, index) => {
               const row = Math.floor(tile / grid);
               const col = tile % grid;
               const correct = tile === index;
@@ -278,19 +309,13 @@ export default function DailyPuzzle() {
             })}
           </div>
 
-          {imageFailed && (
-            <div className="absolute inset-0 grid place-items-center rounded-3xl bg-cream-deep/95 px-6 text-center font-display text-lg font-bold text-chestnut-soft">
-              Today&apos;s picture could not load.
-            </div>
-          )}
-
-          {(peeking || solved) && (
+          {imageReady && (peeking || solved) && (
             <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl border-4 border-cream bg-cream-deep">
               <Image src={daily.puzzle.image} alt="" fill sizes="560px" className="object-cover" />
             </div>
           )}
 
-          {showTutorial && !solved && (
+          {imageReady && showTutorial && !solved && (
             <button
               type="button"
               onClick={dismissTutorial}

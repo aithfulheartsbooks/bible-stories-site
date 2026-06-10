@@ -60,7 +60,7 @@ export default function StickerAlbum({ stickers, save }: Props) {
                   alt={earned ? sticker.name : "Locked sticker"}
                   fill
                   sizes="92px"
-                  className="scale-150 object-cover"
+                  className="object-cover"
                 />
                 {!earned && (
                   <span className="absolute inset-0 grid place-items-center bg-cream/45 text-lg font-bold text-chestnut">
@@ -95,7 +95,7 @@ export default function StickerAlbum({ stickers, save }: Props) {
                     alt={sticker.name}
                     fill
                     sizes="92px"
-                    className="scale-150 object-cover"
+                    className="object-cover"
                   />
                   <span className="absolute inset-1 rounded-full border-4 border-gold" aria-hidden="true" />
                 </div>
