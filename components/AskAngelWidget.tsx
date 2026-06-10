@@ -431,6 +431,7 @@ const widgetScript = String.raw`
       '- Newest available book: ' + (newestBook ? (newestBook.number + ' "' + newestBook.title + '"') : 'the available book with the highest book number in live book data') + '.',
       '- Always calculate newest/latest/new book from the highest available book number in the live book data. Do not rely on a manually written newest-book sentence.',
       '- Free Resources page: /free-resources. It includes printable resources such as coloring pages, memory verse posters, lesson packs, 5-day devotionals, bookmarks, and certificates when available.',
+      '- Play page: /play. It is the Daily Story Puzzle for kids. Each local calendar day has three Bible story puzzle activities from the books. Children solve picture puzzles, earn color sticker rewards, collect them in a sticker album saved on that device, and can play practice puzzles after finishing the daily set. Practice gives stars, not new stickers or streak progress. The page is free and uses no accounts.',
       '- About page: /about. It introduces Faith Rivers and the heart behind the series.',
       '- Contact page: /contact. Families can reach the site there or use info@faithfulheartsbooks.com.',
       '- Newsletter signup: on the homepage for updates about new books and free printables.',
@@ -478,7 +479,7 @@ const widgetScript = String.raw`
       '- Recommend 1-2 books maximum per response.',
       '- Always include the Amazon link when recommending a book if one exists; otherwise include the book page link.',
       '- Keep responses short and friendly because parents are busy.',
-      '- Answer questions about website navigation, Series Map, Free Resources, About, Contact, newsletter, and available books using WEBSITE KNOWLEDGE.',
+      '- Answer questions about website navigation, Series Map, Free Resources, Play, About, Contact, newsletter, and available books using WEBSITE KNOWLEDGE.',
       '- Each book page may include a Sing Along YouTube video. If asked about songs, music, sing-along videos, or YouTube videos, answer from the Sing Along video fields in the live book list.',
       '- If a user asks for a book video, include the YouTube link when it exists and mention that the video is also embedded on that book page.',
       '- If asked about the Series Map, explain that it is biblical chronological order and mention Old Testament/New Testament grouping.',
@@ -503,6 +504,10 @@ const widgetScript = String.raw`
       return 'The **Free Resources** page has printable resources like coloring pages, memory verse posters, lesson packs, 5-day devotionals, bookmarks, and certificates when available. You can visit **/free-resources**.';
     }
 
+    if (/play|game|puzzle|sticker|album|practice|star|daily story/.test(q)) {
+      return 'The **Play** page is the free **Daily Story Puzzle** at **/play**. Each day has three Bible story puzzles from the books. Kids solve the picture, earn color stickers for their album, and after the daily three are finished they can play practice puzzles for stars. Stickers are saved on that device, with no account needed.';
+    }
+
     if (/how many|count|total|number of books/.test(q)) {
       return 'There are **' + books.length + ' books** currently available in the series.';
     }
@@ -525,7 +530,7 @@ const widgetScript = String.raw`
       return 'I think **' + themeMatch.title + '** could be a lovely fit.' + (themeMatch.desc ? ' ' + themeMatch.desc : '') + ' [Find it on Amazon](' + (themeMatch.amazonUrl || themeMatch.bookUrl) + ')';
     }
 
-    return 'I can see **' + books.length + ' books** in the series. Ask me about a theme, the newest book, the Series Map, or the Free Resources page.';
+    return 'I can see **' + books.length + ' books** in the series. Ask me about a theme, the newest book, the Series Map, the Free Resources page, or the Play page.';
   }
 
   function avatarSVG() {
