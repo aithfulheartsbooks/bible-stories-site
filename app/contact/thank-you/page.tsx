@@ -1,3 +1,4 @@
+import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
 
 export const metadata = {
@@ -48,6 +49,7 @@ export default function ContactThankYouPage() {
           </div>
         </div>
       </section>
+      <SiteFooter />
     </main>
   );
 }

@@ -1,4 +1,5 @@
 import SiteNav from "@/components/SiteNav";
+import SiteFooter from "@/components/SiteFooter";
 import ResourceCollection from "@/components/ResourceCollection";
 import { resources } from "@/app/resources";
 
@@ -82,6 +83,7 @@ export default function FreeResourcesPage() {
           &larr; Back to Books
         </a>
       </section>
+      <SiteFooter />
     </main>
   );
 }

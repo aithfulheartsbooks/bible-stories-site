@@ -2,6 +2,8 @@ import { books, type Book } from "@/app/books";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import SoundButton from "@/components/SoundButton";
+import SiteFooter from "@/components/SiteFooter";
+import SiteNav from "@/components/SiteNav";
 import type { Metadata } from "next";
 
 type Theme = {
@@ -1106,8 +1108,9 @@ export default function BookPage({ params }: { params: { slug: string } }) {
 
       <StorybookArt art={theme.art} />
       <MovingStoryCharacters slug={book.slug} />
+      <SiteNav />
 
-      <section className="relative z-20 mx-auto max-w-6xl px-6 pb-20 pt-16 sm:pt-24">
+      <section className="relative z-20 mx-auto max-w-6xl px-6 pb-20 pt-32 sm:pt-36">
         <a href="/" className="mb-8 inline-flex rounded-full bg-white/70 px-4 py-2 text-sm font-semibold text-chestnut-soft shadow-sm backdrop-blur transition hover:bg-white">
           ← Back to all books
         </a>
@@ -1166,6 +1169,7 @@ export default function BookPage({ params }: { params: { slug: string } }) {
 
         <BookSongSection book={book} />
       </section>
+        <SiteFooter />
       </main>
     </>
   );

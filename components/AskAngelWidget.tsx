@@ -181,12 +181,14 @@ const widgetStyles = String.raw`
     #ask-angel-panel {
       width: calc(100vw - 24px);
       right: 12px;
-      bottom: calc(env(safe-area-inset-bottom, 0px) + 180px);
+      bottom: calc(env(safe-area-inset-bottom, 0px) + 88px);
       max-height: min(520px, calc(100vh - 154px));
     }
     #ask-angel-btn {
       right: 16px;
-      bottom: calc(env(safe-area-inset-bottom, 0px) + 88px);
+      bottom: calc(env(safe-area-inset-bottom, 0px) + 18px);
+      width: 58px;
+      height: 58px;
     }
   }
 `;

@@ -15,6 +15,9 @@ export default function SiteNav({ brandHref = "/" }: SiteNavProps) {
           Bible Stories for Little Hearts
         </a>
         <div className="flex items-center gap-1 text-[0.92rem] font-semibold text-chestnut-soft sm:gap-4 sm:text-sm">
+          <a className="whitespace-nowrap rounded-full px-2.5 py-1.5 hover:text-terracotta sm:px-3 sm:py-2" href="/">
+            Home
+          </a>
           <a className="whitespace-nowrap rounded-full px-2.5 py-1.5 hover:text-terracotta sm:px-3 sm:py-2" href="/#books">
             Books
           </a>

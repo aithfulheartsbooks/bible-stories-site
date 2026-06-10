@@ -1,4 +1,5 @@
 import Image from "next/image";
+import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
 
 export const metadata = {
@@ -112,6 +113,7 @@ export default function AboutPage() {
           </p>
         </div>
       </section>
+      <SiteFooter />
     </main>
   );
 }

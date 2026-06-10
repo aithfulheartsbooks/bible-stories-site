@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
 import DailyPuzzle from "@/components/play/DailyPuzzle";
 import RainbowArc from "@/components/RainbowArc";
+import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
-import { PLAY_IS_LIVE } from "@/lib/play/config";
 
 export const metadata: Metadata = {
-  title: "Play - Free Daily Bible Story Puzzle for Kids | Bible Stories for Little Hearts",
+  title: "Daily Bible Story Puzzle for Kids | Bible Stories for Little Hearts",
   description:
-    "Free daily jigsaw puzzles for ages 3-8 made from beautiful watercolor Bible story illustrations. Solve today's three stories and collect stickers!",
-  robots: PLAY_IS_LIVE ? undefined : { index: false, follow: false },
+    "Play free daily Bible story puzzles for kids ages 3-8. Solve today's three story puzzles, collect color stickers, and build a saved sticker album on this device.",
   openGraph: {
-    title: "Play - Free Daily Bible Story Puzzle for Kids",
+    title: "Daily Bible Story Puzzle for Kids",
     description:
-      "Solve today's three Bible story puzzles and collect stickers from Bible Stories for Little Hearts.",
+      "Solve today's three Bible story puzzles and collect color stickers from Bible Stories for Little Hearts.",
     type: "website",
   },
 };
@@ -32,12 +31,6 @@ export default function PlayPage() {
       />
 
       <SiteNav />
-
-      {!PLAY_IS_LIVE && (
-        <div className="relative z-40 mt-[5.25rem] bg-chestnut px-4 py-1.5 text-center text-xs font-semibold text-cream sm:mt-[4.25rem] sm:py-2 sm:text-sm">
-          Preview - this page is in testing.
-        </div>
-      )}
 
       <header
         id="top"
@@ -65,6 +58,7 @@ export default function PlayPage() {
       </header>
 
       <DailyPuzzle />
+      <SiteFooter />
     </main>
   );
 }

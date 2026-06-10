@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
 
 export default function ContactFormClient() {
@@ -97,6 +98,7 @@ export default function ContactFormClient() {
           </div>
         </div>
       </section>
+      <SiteFooter />
     </main>
   );
 }

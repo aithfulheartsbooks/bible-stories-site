@@ -140,6 +140,47 @@ export default function ResourceCollection({
       </p>
 
       <div className="mt-10 space-y-12 text-left">
+        <section>
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            <article className="opacity-0 animate-fade-up flex h-full flex-col rounded-3xl border border-gold/50 bg-cream/90 p-6 text-left shadow-md backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+              <div className="mb-4 flex flex-wrap items-center gap-2">
+                <span className="w-fit rounded-full border border-gold/40 bg-white/60 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-terracotta">
+                  Game
+                </span>
+              </div>
+
+              <div className="mb-5 overflow-hidden rounded-2xl border border-[#E8D9BB] bg-[#FAF3E0] shadow-inner">
+                <div className="aspect-[3/4] border-t-4 border-[#C1623F] bg-gradient-to-br from-[#FFFDF8] via-[#FAF3E0] to-[#FCE7D3] p-6">
+                  <div className="flex h-full flex-col items-center justify-center rounded-xl bg-white/40 p-6 text-center">
+                    <div className="mb-4 font-display text-5xl font-bold text-gold">***</div>
+                    <div className="font-display text-xl font-bold leading-snug text-[#5C3D2E]">
+                      Daily Story Puzzle
+                    </div>
+                    <div className="mt-4 text-xs font-semibold uppercase tracking-[0.22em] text-[#C1623F]/80">
+                      Game
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <h3 className="font-display text-2xl font-bold leading-tight text-chestnut">
+                Daily Story Puzzle
+              </h3>
+
+              <p className="mt-3 flex-1 text-base leading-relaxed text-chestnut-soft">
+                A new puzzle from the books every day. Solve it and collect a sticker for your album!
+              </p>
+
+              <a
+                href="/play"
+                className="mt-6 inline-flex items-center justify-center rounded-full bg-terracotta px-5 py-3 text-sm font-bold text-cream shadow-sm transition hover:bg-chestnut"
+              >
+                Play today&apos;s puzzle &rarr;
+              </a>
+            </article>
+          </div>
+        </section>
+
         {visibleSections.map(({ section, resources: sectionResources }) => (
           <section key={section}>
             <div className="mb-6 text-center">

@@ -1,4 +1,4 @@
-export const PLAY_IS_LIVE = false;
+export const PLAY_IS_LIVE = true;
 
 export const PLAY_STORAGE_KEY = "fhb_play_v1";
 export const PLAY_TUTORIAL_KEY = "fhb_play_seen_tutorial_v1";
