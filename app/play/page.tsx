@@ -41,24 +41,24 @@ export default function PlayPage() {
 
       <header
         id="top"
-        className="relative overflow-hidden px-6 pb-6 pt-32 text-center sm:pb-8 sm:pt-36"
+        className="relative overflow-hidden px-6 pb-3 pt-20 text-center sm:pb-8 sm:pt-36"
       >
         <RainbowArc />
 
         <div className="relative z-10">
-          <span className="opacity-0 animate-fade-up mb-6 inline-block rounded-full border border-terracotta/20 bg-white/55 px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-terracotta backdrop-blur-sm">
+          <span className="opacity-0 animate-fade-up mb-3 inline-block rounded-full border border-terracotta/20 bg-white/55 px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-terracotta backdrop-blur-sm sm:mb-6">
             Free Daily Game
           </span>
 
-          <h1 className="opacity-0 animate-fade-up mb-5 font-display text-5xl font-extrabold leading-[1.02] tracking-tight text-chestnut sm:text-6xl md:text-7xl">
+          <h1 className="opacity-0 animate-fade-up mb-2 font-display text-4xl font-extrabold leading-[1.02] tracking-tight text-chestnut sm:mb-5 sm:text-6xl md:text-7xl">
             Play Corner
           </h1>
 
-          <p className="opacity-0 animate-fade-up mx-auto max-w-2xl font-display text-[15px] italic leading-relaxed text-chestnut-soft sm:text-xl md:text-2xl">
+          <p className="opacity-0 animate-fade-up mx-auto max-w-2xl font-display text-[14px] italic leading-relaxed text-chestnut-soft sm:text-xl md:text-2xl">
             A new story puzzle every day - solve it and collect stickers from your favorite Bible stories.
           </p>
 
-          <div className="opacity-0 animate-fade-up mt-6 text-xl tracking-widest text-gold">
+          <div className="opacity-0 animate-fade-up mt-3 text-xl tracking-widest text-gold sm:mt-6">
             {"\u2726 \u2726 \u2726"}
           </div>
         </div>

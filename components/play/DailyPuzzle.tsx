@@ -33,9 +33,13 @@ export default function DailyPuzzle() {
   const [save, setSave] = useState<PlaySave>(defaultSave);
   const [hasLoadedSave, setHasLoadedSave] = useState(false);
   const [difficulty, setDifficulty] = useState<Difficulty>("2x2");
-  const [tiles, setTiles] = useState<number[]>([]);
+  const [tiles, setTiles] = useState<number[]>(() =>
+    createShuffledTiles(4, `${daily.puzzle.id}-${daily.dateKey}-2x2`)
+  );
   const [selected, setSelected] = useState<number | null>(null);
   const [solved, setSolved] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageFailed, setImageFailed] = useState(false);
   const [peeking, setPeeking] = useState(false);
   const [showTutorial, setShowTutorial] = useState(false);
   const [showPeekTip, setShowPeekTip] = useState(true);
@@ -52,6 +56,11 @@ export default function DailyPuzzle() {
   useEffect(() => {
     setDaily(getDailyPuzzle(new Date()));
   }, []);
+
+  useEffect(() => {
+    setImageLoaded(false);
+    setImageFailed(false);
+  }, [daily.puzzle.image]);
 
   useEffect(() => {
     const stored = readPlaySave();
@@ -171,7 +180,7 @@ export default function DailyPuzzle() {
   return (
     <div className="mx-auto grid max-w-7xl gap-6 px-4 pb-14 sm:px-6 lg:grid-cols-[minmax(0,1fr)_390px]">
       <section className="rounded-3xl border border-white/80 bg-cream/85 p-4 shadow-md backdrop-blur-md sm:p-7">
-        <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mb-3 flex flex-col gap-3 sm:mb-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded-full bg-cream-deep px-4 py-2 text-sm font-semibold text-chestnut-soft">
               Puzzle #{daily.dayIndex + 1}
@@ -200,7 +209,7 @@ export default function DailyPuzzle() {
           </div>
         </div>
 
-        <div className="mb-4 grid gap-3 sm:grid-cols-2">
+        <div className="mb-3 grid grid-cols-2 gap-2 rounded-2xl bg-white/45 p-1.5 sm:mb-4 sm:gap-3 sm:bg-transparent sm:p-0">
           {difficultyOptions.map((option) => (
             <button
               key={option.value}
@@ -208,22 +217,41 @@ export default function DailyPuzzle() {
               onClick={() => chooseDifficulty(option.value)}
               className={
                 difficulty === option.value
-                  ? "min-h-14 rounded-2xl border-2 border-gold bg-gold/20 px-4 py-3 text-left shadow-sm"
-                  : "min-h-14 rounded-2xl border border-white/80 bg-white/55 px-4 py-3 text-left transition hover:bg-white/80"
+                  ? "min-h-11 rounded-xl border-2 border-gold bg-gold/20 px-3 py-2 text-center shadow-sm sm:min-h-14 sm:rounded-2xl sm:px-4 sm:py-3 sm:text-left"
+                  : "min-h-11 rounded-xl border border-white/80 bg-white/55 px-3 py-2 text-center transition hover:bg-white/80 sm:min-h-14 sm:rounded-2xl sm:px-4 sm:py-3 sm:text-left"
               }
             >
-              <span className="block font-display text-lg font-bold text-chestnut">{option.label}</span>
-              <span className="block text-sm font-semibold text-chestnut-soft">{option.sublabel}</span>
+              <span className="block font-display text-sm font-bold text-chestnut sm:text-lg">{option.label}</span>
+              <span className="block text-[11px] font-semibold text-chestnut-soft sm:text-sm">{option.sublabel}</span>
             </button>
           ))}
         </div>
 
         <div className="relative mx-auto max-w-[560px]">
+          <Image
+            src={daily.puzzle.image}
+            alt=""
+            fill
+            priority
+            sizes="560px"
+            className="pointer-events-none opacity-0"
+            onLoad={() => setImageLoaded(true)}
+            onError={() => setImageFailed(true)}
+          />
           <div
-            className="grid aspect-square overflow-hidden rounded-3xl border-4 border-cream bg-cream-deep shadow-lg"
+            className={
+              imageLoaded
+                ? "grid aspect-square overflow-hidden rounded-3xl border-4 border-cream bg-cream-deep shadow-lg"
+                : "grid aspect-square place-items-center overflow-hidden rounded-3xl border-4 border-cream bg-cream-deep shadow-lg"
+            }
             style={{ gridTemplateColumns: `repeat(${grid}, minmax(0, 1fr))` }}
           >
-            {tiles.map((tile, index) => {
+            {!imageLoaded && (
+              <div className="col-span-full px-6 text-center font-display text-lg font-bold text-chestnut-soft">
+                {imageFailed ? "Today's picture could not load." : "Loading today's picture..."}
+              </div>
+            )}
+            {imageLoaded && tiles.map((tile, index) => {
               const row = Math.floor(tile / grid);
               const col = tile % grid;
               const correct = tile === index;
@@ -269,7 +297,7 @@ export default function DailyPuzzle() {
             <button
               type="button"
               onClick={dismissTutorial}
-              className="absolute inset-0 grid place-items-center rounded-3xl bg-cream/55 backdrop-blur-[1px]"
+              className="absolute inset-0 grid place-items-center rounded-3xl bg-transparent"
               aria-label="Dismiss puzzle tutorial"
             >
               <span className="play-demo-hand" aria-hidden="true">

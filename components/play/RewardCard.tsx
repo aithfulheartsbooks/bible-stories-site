@@ -17,7 +17,7 @@ export default function RewardCard({ puzzle, sticker, tomorrowSticker, golden }:
     <section className="rounded-3xl border border-white/80 bg-cream/90 p-5 shadow-md backdrop-blur-md sm:p-7">
       <div className="grid gap-5 sm:grid-cols-[110px_1fr] sm:items-center">
         <div className="relative mx-auto aspect-square w-28 overflow-hidden rounded-full border-4 border-cream bg-white shadow-lg">
-          <Image src={sticker.image} alt={sticker.name} fill sizes="112px" className="object-cover" />
+          <Image src={sticker.image} alt={sticker.name} fill sizes="112px" className="scale-150 object-cover" />
           {golden && <span className="absolute inset-1 rounded-full border-4 border-gold" aria-hidden="true" />}
         </div>
 
