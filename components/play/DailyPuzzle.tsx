@@ -93,7 +93,7 @@ export default function DailyPuzzle() {
     const stored = readPlaySave();
     setSave(stored);
     setDifficulty(stored.difficulty);
-    setSolved(stored.lastSolvedDate === daily.dateKey);
+    setSolved(false);
     setHasLoadedSave(true);
 
     try {
@@ -131,7 +131,7 @@ export default function DailyPuzzle() {
   function chooseDifficulty(nextDifficulty: Difficulty) {
     setDifficulty(nextDifficulty);
     updateSave({ ...save, difficulty: nextDifficulty });
-    setSolved(alreadySolvedToday);
+    setSolved(false);
   }
 
   function finishPuzzle(nextTiles: number[]) {
@@ -309,7 +309,7 @@ export default function DailyPuzzle() {
             })}
           </div>
 
-          {imageReady && (peeking || solved) && (
+          {imageReady && peeking && (
             <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl border-4 border-cream bg-cream-deep">
               <Image src={daily.puzzle.image} alt="" fill sizes="560px" className="object-cover" />
             </div>
