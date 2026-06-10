@@ -9,7 +9,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0GYHZ8P9S",
       "coloringPageUrl": "/resources/noah-and-gods-big-promise-coloring-page.pdf",
       "stickerId": "noah-and-gods-big-promise-sticker",
-      "caption": "When the rains came, Noah trusted God's plan. A warm story of faith, friendship with the animals, and the promise of the rainbow."
+      "caption": "When the rains came, Noah trusted God's plan. A warm story of faith, friendship with the animals, and the promise of the rainbow.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "noah-and-gods-big-promise-sticker",
+        "noah-and-gods-big-promise-sticker-2",
+        "noah-and-gods-big-promise-sticker-3"
+      ]
     },
     {
       "id": "david-and-the-giant",
@@ -19,7 +25,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0GYNRCKQD",
       "coloringPageUrl": "/resources/david-and-the-giant-coloring-page.pdf",
       "stickerId": "david-and-the-giant-sticker",
-      "caption": "A young shepherd boy discovers that even when we feel small, God is bigger than every giant we face."
+      "caption": "A young shepherd boy discovers that even when we feel small, God is bigger than every giant we face.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "david-and-the-giant-sticker",
+        "david-and-the-giant-sticker-2",
+        "david-and-the-giant-sticker-3"
+      ]
     },
     {
       "id": "moses-and-the-red-sea",
@@ -29,7 +41,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0GZ43TKCK",
       "coloringPageUrl": "/resources/moses-and-the-red-sea-coloring-page.pdf",
       "stickerId": "moses-and-the-red-sea-sticker",
-      "caption": "When the waters rise, Moses trusts God's plan. A brave story of faith, leadership, and the miracle that saved a nation."
+      "caption": "When the waters rise, Moses trusts God's plan. A brave story of faith, leadership, and the miracle that saved a nation.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "moses-and-the-red-sea-sticker",
+        "moses-and-the-red-sea-sticker-2",
+        "moses-and-the-red-sea-sticker-3"
+      ]
     },
     {
       "id": "jonah-and-the-big-fish",
@@ -39,7 +57,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0GZDKNN5L",
       "coloringPageUrl": "/resources/jonah-and-the-big-fish-coloring-page.pdf",
       "stickerId": "jonah-and-the-big-fish-sticker",
-      "caption": "When Jonah runs from God's plan, he ends up in a big adventure. A playful story about obedience, second chances, and how God never gives up on us."
+      "caption": "When Jonah runs from God's plan, he ends up in a big adventure. A playful story about obedience, second chances, and how God never gives up on us.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "jonah-and-the-big-fish-sticker",
+        "jonah-and-the-big-fish-sticker-2",
+        "jonah-and-the-big-fish-sticker-3"
+      ]
     },
     {
       "id": "daniel-and-the-lions",
@@ -49,7 +73,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0GZGFJTSL",
       "coloringPageUrl": "/resources/daniel-and-the-lions-coloring-page.pdf",
       "stickerId": "daniel-and-the-lions-sticker",
-      "caption": "When Daniel keeps praying to God, he is sent into a den of lions. A brave story about faith, prayer, and trusting God when we feel afraid."
+      "caption": "When Daniel keeps praying to God, he is sent into a den of lions. A brave story about faith, prayer, and trusting God when we feel afraid.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "daniel-and-the-lions-sticker",
+        "daniel-and-the-lions-sticker-2",
+        "daniel-and-the-lions-sticker-3"
+      ]
     },
     {
       "id": "esther-the-brave-queen",
@@ -59,7 +89,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0GZK239VN",
       "coloringPageUrl": "/resources/esther-the-brave-queen-coloring-page.pdf",
       "stickerId": "esther-the-brave-queen-sticker",
-      "caption": "Even when Esther felt small and afraid, she found the courage to speak up for others. A beautiful story about purpose, faith, and being chosen for."
+      "caption": "Even when Esther felt small and afraid, she found the courage to speak up for others. A beautiful story about purpose, faith, and being chosen for.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "esther-the-brave-queen-sticker",
+        "esther-the-brave-queen-sticker-2",
+        "esther-the-brave-queen-sticker-3"
+      ]
     },
     {
       "id": "the-christmas-story",
@@ -69,7 +105,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0GZNQZQGX",
       "coloringPageUrl": "/resources/the-christmas-story-coloring-page.pdf",
       "stickerId": "the-christmas-story-sticker",
-      "caption": "A tender retelling of the night Jesus was born, filled with wonder, warmth, and the beautiful truth that God came close because He loves us."
+      "caption": "A tender retelling of the night Jesus was born, filled with wonder, warmth, and the beautiful truth that God came close because He loves us.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "the-christmas-story-sticker",
+        "the-christmas-story-sticker-2",
+        "the-christmas-story-sticker-3"
+      ]
     },
     {
       "id": "josephs-colorful-coat",
@@ -79,7 +121,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0GZL3YG8L",
       "coloringPageUrl": "/resources/josephs-colorful-coat-coloring-page.pdf",
       "stickerId": "josephs-colorful-coat-sticker",
-      "caption": "Joseph's story shows little hearts how God can work through hard days, surprising turns, and brave forgiveness to bring good in the end."
+      "caption": "Joseph's story shows little hearts how God can work through hard days, surprising turns, and brave forgiveness to bring good in the end.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "josephs-colorful-coat-sticker",
+        "josephs-colorful-coat-sticker-2",
+        "josephs-colorful-coat-sticker-3"
+      ]
     },
     {
       "id": "the-easter-story",
@@ -89,7 +137,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0GZPY9RL1",
       "coloringPageUrl": "/resources/the-easter-story-coloring-page.pdf",
       "stickerId": "the-easter-story-sticker",
-      "caption": "A joyful retelling of Jesus' death and resurrection, helping little hearts understand God's greatest rescue with warmth, wonder, and hope."
+      "caption": "A joyful retelling of Jesus' death and resurrection, helping little hearts understand God's greatest rescue with warmth, wonder, and hope.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "the-easter-story-sticker",
+        "the-easter-story-sticker-2",
+        "the-easter-story-sticker-3"
+      ]
     },
     {
       "id": "ruth-and-naomi",
@@ -99,7 +153,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0GZQX7D3N",
       "coloringPageUrl": "/resources/ruth-and-naomi-coloring-page.pdf",
       "stickerId": "ruth-and-naomi-sticker",
-      "caption": "Walk with Ruth and Naomi through hard times and harvest fields as God weaves faithful love into His greatest plan, from Bethlehem to King David and."
+      "caption": "Walk with Ruth and Naomi through hard times and harvest fields as God weaves faithful love into His greatest plan, from Bethlehem to King David and.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "ruth-and-naomi-sticker",
+        "ruth-and-naomi-sticker-2",
+        "ruth-and-naomi-sticker-3"
+      ]
     },
     {
       "id": "the-birth-of-moses",
@@ -109,7 +169,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H15BN3RD",
       "coloringPageUrl": "/resources/the-birth-of-moses-coloring-page.pdf",
       "stickerId": "the-birth-of-moses-sticker",
-      "caption": "A mother's love, a brave big sister, and a tiny basket on the Nile show little hearts how God protects His children from the very beginning."
+      "caption": "A mother's love, a brave big sister, and a tiny basket on the Nile show little hearts how God protects His children from the very beginning.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "the-birth-of-moses-sticker",
+        "the-birth-of-moses-sticker-2",
+        "the-birth-of-moses-sticker-3"
+      ]
     },
     {
       "id": "solomon-and-wisdom",
@@ -119,7 +185,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H184LKSF",
       "coloringPageUrl": "/resources/solomon-and-wisdom-coloring-page.pdf",
       "stickerId": "solomon-and-wisdom-sticker",
-      "caption": "When God told Solomon he could ask for anything, Solomon chose wisdom. A thoughtful story about listening hearts, wise choices, and asking God for."
+      "caption": "When God told Solomon he could ask for anything, Solomon chose wisdom. A thoughtful story about listening hearts, wise choices, and asking God for.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "solomon-and-wisdom-sticker",
+        "solomon-and-wisdom-sticker-2",
+        "solomon-and-wisdom-sticker-3"
+      ]
     },
     {
       "id": "elijah-and-the-still-small-voice",
@@ -129,7 +201,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H18JDFCW",
       "coloringPageUrl": "/resources/elijah-and-the-still-small-voice-coloring-page.pdf",
       "stickerId": "elijah-and-the-still-small-voice-sticker",
-      "caption": "Elijah was brave and faithful, but even brave people can feel tired and afraid. A comforting story about hearing God's gentle voice in quiet moments."
+      "caption": "Elijah was brave and faithful, but even brave people can feel tired and afraid. A comforting story about hearing God's gentle voice in quiet moments.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "elijah-and-the-still-small-voice-sticker",
+        "elijah-and-the-still-small-voice-sticker-2",
+        "elijah-and-the-still-small-voice-sticker-3"
+      ]
     },
     {
       "id": "jesus-calms-the-storm",
@@ -139,7 +217,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H18WDG5P",
       "coloringPageUrl": "/resources/jesus-calms-the-storm-coloring-page.pdf",
       "stickerId": "jesus-calms-the-storm-sticker",
-      "caption": "When the wind howled and the waves rose high, Jesus was right there in the boat. A comforting story that reminds little hearts Jesus is near in eve."
+      "caption": "When the wind howled and the waves rose high, Jesus was right there in the boat. A comforting story that reminds little hearts Jesus is near in eve.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "jesus-calms-the-storm-sticker",
+        "jesus-calms-the-storm-sticker-2",
+        "jesus-calms-the-storm-sticker-3"
+      ]
     },
     {
       "id": "the-creation-story",
@@ -149,7 +233,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H18HQKWT",
       "coloringPageUrl": "/resources/the-creation-story-coloring-page.pdf",
       "stickerId": "the-creation-story-sticker",
-      "caption": "A joyful retelling of Genesis 1 that helps little hearts see the beauty of God's world, from light and sky to animals, people, and rest."
+      "caption": "A joyful retelling of Genesis 1 that helps little hearts see the beauty of God's world, from light and sky to animals, people, and rest.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "the-creation-story-sticker",
+        "the-creation-story-sticker-2",
+        "the-creation-story-sticker-3"
+      ]
     },
     {
       "id": "the-armor-of-god",
@@ -159,7 +249,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H1BQX3LP",
       "coloringPageUrl": "/resources/the-armor-of-god-coloring-page.pdf",
       "stickerId": "the-armor-of-god-sticker",
-      "caption": "A joyful story from Ephesians 6 that helps little hearts remember God gives us truth, righteousness, peace, faith, salvation, and His Word for ever."
+      "caption": "A joyful story from Ephesians 6 that helps little hearts remember God gives us truth, righteousness, peace, faith, salvation, and His Word for ever.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "the-armor-of-god-sticker",
+        "the-armor-of-god-sticker-2",
+        "the-armor-of-god-sticker-3"
+      ]
     },
     {
       "id": "zacchaeus",
@@ -169,7 +265,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H1CG1P1X",
       "coloringPageUrl": "/resources/zacchaeus-coloring-page.pdf",
       "stickerId": "zacchaeus-sticker",
-      "caption": "A warm, joyful retelling of the little man in the tree, reminding children that Jesus sees every heart and His love can change everything."
+      "caption": "A warm, joyful retelling of the little man in the tree, reminding children that Jesus sees every heart and His love can change everything.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "zacchaeus-sticker",
+        "zacchaeus-sticker-2",
+        "zacchaeus-sticker-3"
+      ]
     },
     {
       "id": "the-good-samaritan",
@@ -179,7 +281,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H1CPYC6T",
       "coloringPageUrl": "/resources/the-good-samaritan-coloring-page.pdf",
       "stickerId": "the-good-samaritan-sticker",
-      "caption": "Jesus' parable of a kind helper on the Jericho road teaches little hearts to love their neighbour with compassion, courage, and care."
+      "caption": "Jesus' parable of a kind helper on the Jericho road teaches little hearts to love their neighbour with compassion, courage, and care.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "the-good-samaritan-sticker",
+        "the-good-samaritan-sticker-2",
+        "the-good-samaritan-sticker-3"
+      ]
     },
     {
       "id": "the-lost-sheep",
@@ -189,7 +297,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H1CTPVMV",
       "coloringPageUrl": "/resources/the-lost-sheep-coloring-page.pdf",
       "stickerId": "the-lost-sheep-sticker",
-      "caption": "A tender story of the shepherd who searches until he finds the one lost sheep, reminding little hearts that Jesus knows them by name and never give."
+      "caption": "A tender story of the shepherd who searches until he finds the one lost sheep, reminding little hearts that Jesus knows them by name and never give.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "the-lost-sheep-sticker",
+        "the-lost-sheep-sticker-2",
+        "the-lost-sheep-sticker-3"
+      ]
     },
     {
       "id": "the-feeding-of-the-5000",
@@ -199,7 +313,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H1D867ZJ",
       "coloringPageUrl": "/resources/feeding-the-5000-coloring-page.pdf",
       "stickerId": "the-feeding-of-the-5000-sticker",
-      "caption": "A sunlit miracle story about a small lunch, a willing child, and Jesus making more than enough for everyone on the hillside."
+      "caption": "A sunlit miracle story about a small lunch, a willing child, and Jesus making more than enough for everyone on the hillside.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "the-feeding-of-the-5000-sticker",
+        "the-feeding-of-the-5000-sticker-2",
+        "the-feeding-of-the-5000-sticker-3"
+      ]
     },
     {
       "id": "adam-and-eve-in-the-garden",
@@ -209,7 +329,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H1JDBH3V",
       "coloringPageUrl": "/resources/adam-and-eve-coloring-page.pdf",
       "stickerId": "adam-and-eve-in-the-garden-sticker",
-      "caption": "A gentle garden story about God's beautiful beginning, the first family, and the loving care He showed from the very start."
+      "caption": "A gentle garden story about God's beautiful beginning, the first family, and the loving care He showed from the very start.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "adam-and-eve-in-the-garden-sticker",
+        "adam-and-eve-in-the-garden-sticker-2",
+        "adam-and-eve-in-the-garden-sticker-3"
+      ]
     },
     {
       "id": "joshua-and-jericho",
@@ -219,7 +345,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H25YF2J6",
       "coloringPageUrl": "/resources/joshua-and-jericho-coloring-page.pdf",
       "stickerId": "joshua-and-jericho-sticker",
-      "caption": "A joyful story of Joshua, a brave people, and the day God brought Jericho's walls down after they trusted and obeyed."
+      "caption": "A joyful story of Joshua, a brave people, and the day God brought Jericho's walls down after they trusted and obeyed.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "joshua-and-jericho-sticker",
+        "joshua-and-jericho-sticker-2",
+        "joshua-and-jericho-sticker-3"
+      ]
     },
     {
       "id": "the-fiery-furnace",
@@ -229,7 +361,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H25KF241",
       "coloringPageUrl": "/resources/the-fiery-furnace-coloring-page.pdf",
       "stickerId": "the-fiery-furnace-sticker",
-      "caption": "Shadrach, Meshach, and Abednego choose to trust God, even in the fiery furnace, and discover they are never alone."
+      "caption": "Shadrach, Meshach, and Abednego choose to trust God, even in the fiery furnace, and discover they are never alone.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "the-fiery-furnace-sticker",
+        "the-fiery-furnace-sticker-2",
+        "the-fiery-furnace-sticker-3"
+      ]
     },
     {
       "id": "the-prodigal-son",
@@ -239,7 +377,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H25RMCJY",
       "coloringPageUrl": "/resources/the-prodigal-son-coloring-page.pdf",
       "stickerId": "the-prodigal-son-sticker",
-      "caption": "A tender parable about a son who comes home and a loving father who runs to welcome him with forgiveness and joy."
+      "caption": "A tender parable about a son who comes home and a loving father who runs to welcome him with forgiveness and joy.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "the-prodigal-son-sticker",
+        "the-prodigal-son-sticker-2",
+        "the-prodigal-son-sticker-3"
+      ]
     },
     {
       "id": "jesus-welcomes-children",
@@ -249,7 +393,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H25YPF38",
       "coloringPageUrl": "/resources/jesus-welcomes-children-coloring-page.pdf",
       "stickerId": "jesus-welcomes-children-sticker",
-      "caption": "A warm Gospel story reminding little hearts that Jesus sees children, welcomes them close, and blesses them with love."
+      "caption": "A warm Gospel story reminding little hearts that Jesus sees children, welcomes them close, and blesses them with love.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "jesus-welcomes-children-sticker",
+        "jesus-welcomes-children-sticker-2",
+        "jesus-welcomes-children-sticker-3"
+      ]
     },
     {
       "id": "the-wedding-at-cana",
@@ -259,7 +409,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H26G965M",
       "coloringPageUrl": "/resources/the-wedding-at-cana-coloring-page.pdf",
       "stickerId": "the-wedding-at-cana-sticker",
-      "caption": "A joyful first-miracle story where Jesus cares about an ordinary celebration and fills empty jars with the very best."
+      "caption": "A joyful first-miracle story where Jesus cares about an ordinary celebration and fills empty jars with the very best.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "the-wedding-at-cana-sticker",
+        "the-wedding-at-cana-sticker-2",
+        "the-wedding-at-cana-sticker-3"
+      ]
     },
     {
       "id": "hannahs-prayer-and-young-samuel",
@@ -269,7 +425,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H26QR9MJ",
       "coloringPageUrl": "/resources/hannahs-prayer-and-young-samuel-coloring-page.pdf",
       "stickerId": "hannahs-prayer-and-young-samuel-sticker",
-      "caption": "A tender story of honest prayer, a long-awaited gift, and young Samuel learning to listen when God calls his name."
+      "caption": "A tender story of honest prayer, a long-awaited gift, and young Samuel learning to listen when God calls his name.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "hannahs-prayer-and-young-samuel-sticker",
+        "hannahs-prayer-and-young-samuel-sticker-2",
+        "hannahs-prayer-and-young-samuel-sticker-3"
+      ]
     },
     {
       "id": "saul-becomes-paul",
@@ -279,7 +441,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H26XYBCM",
       "coloringPageUrl": "/resources/saul-becomes-paul-coloring-page.pdf",
       "stickerId": "saul-becomes-paul-sticker",
-      "caption": "A bright Damascus-road story showing little hearts that Jesus can change anyone and make every heart new."
+      "caption": "A bright Damascus-road story showing little hearts that Jesus can change anyone and make every heart new.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "saul-becomes-paul-sticker",
+        "saul-becomes-paul-sticker-2",
+        "saul-becomes-paul-sticker-3"
+      ]
     },
     {
       "id": "paul-and-silas-in-prison",
@@ -289,7 +457,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H274YJR4",
       "coloringPageUrl": "/resources/paul-and-silas-in-prison-coloring-page.pdf",
       "stickerId": "paul-and-silas-in-prison-sticker",
-      "caption": "An exciting Acts story about choosing joy in hard places, singing at midnight, and seeing God open doors."
+      "caption": "An exciting Acts story about choosing joy in hard places, singing at midnight, and seeing God open doors.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "paul-and-silas-in-prison-sticker",
+        "paul-and-silas-in-prison-sticker-2",
+        "paul-and-silas-in-prison-sticker-3"
+      ]
     },
     {
       "id": "pentecost-the-holy-spirit-comes",
@@ -299,7 +473,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H2F78SY9",
       "coloringPageUrl": "/resources/pentecost-the-holy-spirit-comes-coloring-page.pdf",
       "stickerId": "pentecost-the-holy-spirit-comes-sticker",
-      "caption": "A joyful Pentecost story showing little hearts that Jesus sent the Holy Spirit, our Helper, so we are never alone."
+      "caption": "A joyful Pentecost story showing little hearts that Jesus sent the Holy Spirit, our Helper, so we are never alone.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "pentecost-the-holy-spirit-comes-sticker",
+        "pentecost-the-holy-spirit-comes-sticker-2",
+        "pentecost-the-holy-spirit-comes-sticker-3"
+      ]
     },
     {
       "id": "elisha-and-the-widows-oil",
@@ -309,7 +489,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H2Z7SP3B",
       "coloringPageUrl": "/resources/elisha-and-the-widows-oil-coloring-page.pdf",
       "stickerId": "elisha-and-the-widows-oil-sticker",
-      "caption": "A warm story of God's provision, showing little hearts that when we bring what we have and trust Him, He can fill every empty place."
+      "caption": "A warm story of God's provision, showing little hearts that when we bring what we have and trust Him, He can fill every empty place.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "elisha-and-the-widows-oil-sticker",
+        "elisha-and-the-widows-oil-sticker-2",
+        "elisha-and-the-widows-oil-sticker-3"
+      ]
     },
     {
       "id": "tower-of-babel",
@@ -319,7 +505,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H344KNV1",
       "coloringPageUrl": "/resources/tower-of-babel-coloring-page.pdf",
       "stickerId": "tower-of-babel-sticker",
-      "caption": "A thoughtful Genesis story reminding little hearts that when people forget God, plans can fall apart, but God still leads us with love."
+      "caption": "A thoughtful Genesis story reminding little hearts that when people forget God, plans can fall apart, but God still leads us with love.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "tower-of-babel-sticker",
+        "tower-of-babel-sticker-2",
+        "tower-of-babel-sticker-3"
+      ]
     },
     {
       "id": "gideons-tiny-army",
@@ -329,7 +521,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H373C86F",
       "coloringPageUrl": "/resources/gideons-tiny-army-coloring-page.pdf",
       "stickerId": "gideons-tiny-army-sticker",
-      "caption": "A brave Judges story showing little hearts that God can use the small and weak to do mighty things."
+      "caption": "A brave Judges story showing little hearts that God can use the small and weak to do mighty things.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "gideons-tiny-army-sticker",
+        "gideons-tiny-army-sticker-2",
+        "gideons-tiny-army-sticker-3"
+      ]
     },
     {
       "id": "nehemiah-builds-the-wall",
@@ -339,7 +537,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H3F92CBF",
       "coloringPageUrl": "/resources/nehemiah-builds-the-wall-coloring-page.pdf",
       "stickerId": "nehemiah-builds-the-wall-sticker",
-      "caption": "A steady story about praying first, planning carefully, working with courage, and trusting God to help us finish what matters."
+      "caption": "A steady story about praying first, planning carefully, working with courage, and trusting God to help us finish what matters.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "nehemiah-builds-the-wall-sticker",
+        "nehemiah-builds-the-wall-sticker-2",
+        "nehemiah-builds-the-wall-sticker-3"
+      ]
     },
     {
       "id": "jesus-walks-on-water",
@@ -349,7 +553,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H3FNVRM5",
       "coloringPageUrl": "/resources/jesus-walks-on-water-coloring-page.pdf",
       "stickerId": "jesus-walks-on-water-sticker",
-      "caption": "A faith-filled Gospel story reminding little hearts that when we feel like we are sinking, Jesus reaches out His hand."
+      "caption": "A faith-filled Gospel story reminding little hearts that when we feel like we are sinking, Jesus reaches out His hand.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "jesus-walks-on-water-sticker",
+        "jesus-walks-on-water-sticker-2",
+        "jesus-walks-on-water-sticker-3"
+      ]
     },
     {
       "id": "lazarus-comes-out",
@@ -359,7 +569,13 @@
       "amazonUrl": "https://www.amazon.com/dp/B0H3FKBSMF",
       "coloringPageUrl": "/resources/lazarus-comes-out-coloring-page.pdf",
       "stickerId": "lazarus-comes-out-sticker",
-      "caption": "A tender John 11 story showing that Jesus cares about our tears and that with Him, there is always hope."
+      "caption": "A tender John 11 story showing that Jesus cares about our tears and that with Him, there is always hope.",
+      "activityType": "puzzle",
+      "stickerIds": [
+        "lazarus-comes-out-sticker",
+        "lazarus-comes-out-sticker-2",
+        "lazarus-comes-out-sticker-3"
+      ]
     }
   ],
   "dateOverrides": {
@@ -369,254 +585,1190 @@
   "stickers": [
     {
       "id": "noah-and-gods-big-promise-sticker",
-      "name": "Promise Dove",
-      "image": "/play/stickers/noah-and-gods-big-promise.png",
+      "name": "Noah and God's Big Promise Story Friend",
+      "image": "/play/stickers/noah-and-gods-big-promise-sticker.png",
       "bookNumber": 1,
+      "bookTitle": "Noah and God's Big Promise",
+      "bookId": "noah-and-gods-big-promise",
+      "bookUrl": "/book/noah-and-gods-big-promise",
+      "amazonUrl": "https://www.amazon.com/dp/B0GYHZ8P9S",
+      "rarity": "common"
+    },
+    {
+      "id": "noah-and-gods-big-promise-sticker-2",
+      "name": "Noah and God's Big Promise Faith Moment",
+      "image": "/play/stickers/noah-and-gods-big-promise-sticker-2.png",
+      "bookNumber": 1,
+      "bookTitle": "Noah and God's Big Promise",
+      "bookId": "noah-and-gods-big-promise",
+      "bookUrl": "/book/noah-and-gods-big-promise",
+      "amazonUrl": "https://www.amazon.com/dp/B0GYHZ8P9S",
+      "rarity": "common"
+    },
+    {
+      "id": "noah-and-gods-big-promise-sticker-3",
+      "name": "Noah and God's Big Promise Bright Wonder",
+      "image": "/play/stickers/noah-and-gods-big-promise-sticker-3.png",
+      "bookNumber": 1,
+      "bookTitle": "Noah and God's Big Promise",
+      "bookId": "noah-and-gods-big-promise",
+      "bookUrl": "/book/noah-and-gods-big-promise",
+      "amazonUrl": "https://www.amazon.com/dp/B0GYHZ8P9S",
       "rarity": "common"
     },
     {
       "id": "david-and-the-giant-sticker",
-      "name": "Brave David",
-      "image": "/play/stickers/david-and-the-giant.png",
+      "name": "David and the Giant Story Friend",
+      "image": "/play/stickers/david-and-the-giant-sticker.png",
       "bookNumber": 2,
+      "bookTitle": "David and the Giant",
+      "bookId": "david-and-the-giant",
+      "bookUrl": "/book/david-and-the-giant",
+      "amazonUrl": "https://www.amazon.com/dp/B0GYNRCKQD",
+      "rarity": "common"
+    },
+    {
+      "id": "david-and-the-giant-sticker-2",
+      "name": "David and the Giant Faith Moment",
+      "image": "/play/stickers/david-and-the-giant-sticker-2.png",
+      "bookNumber": 2,
+      "bookTitle": "David and the Giant",
+      "bookId": "david-and-the-giant",
+      "bookUrl": "/book/david-and-the-giant",
+      "amazonUrl": "https://www.amazon.com/dp/B0GYNRCKQD",
+      "rarity": "common"
+    },
+    {
+      "id": "david-and-the-giant-sticker-3",
+      "name": "David and the Giant Bright Wonder",
+      "image": "/play/stickers/david-and-the-giant-sticker-3.png",
+      "bookNumber": 2,
+      "bookTitle": "David and the Giant",
+      "bookId": "david-and-the-giant",
+      "bookUrl": "/book/david-and-the-giant",
+      "amazonUrl": "https://www.amazon.com/dp/B0GYNRCKQD",
       "rarity": "common"
     },
     {
       "id": "moses-and-the-red-sea-sticker",
-      "name": "Parted Sea",
-      "image": "/play/stickers/moses-and-the-red-sea.png",
+      "name": "Moses and the Red Sea Story Friend",
+      "image": "/play/stickers/moses-and-the-red-sea-sticker.png",
       "bookNumber": 3,
+      "bookTitle": "Moses and the Red Sea",
+      "bookId": "moses-and-the-red-sea",
+      "bookUrl": "/book/moses-and-the-red-sea",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZ43TKCK",
+      "rarity": "common"
+    },
+    {
+      "id": "moses-and-the-red-sea-sticker-2",
+      "name": "Moses and the Red Sea Faith Moment",
+      "image": "/play/stickers/moses-and-the-red-sea-sticker-2.png",
+      "bookNumber": 3,
+      "bookTitle": "Moses and the Red Sea",
+      "bookId": "moses-and-the-red-sea",
+      "bookUrl": "/book/moses-and-the-red-sea",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZ43TKCK",
+      "rarity": "common"
+    },
+    {
+      "id": "moses-and-the-red-sea-sticker-3",
+      "name": "Moses and the Red Sea Bright Wonder",
+      "image": "/play/stickers/moses-and-the-red-sea-sticker-3.png",
+      "bookNumber": 3,
+      "bookTitle": "Moses and the Red Sea",
+      "bookId": "moses-and-the-red-sea",
+      "bookUrl": "/book/moses-and-the-red-sea",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZ43TKCK",
       "rarity": "common"
     },
     {
       "id": "jonah-and-the-big-fish-sticker",
-      "name": "Big Fish",
-      "image": "/play/stickers/jonah-and-the-big-fish.png",
+      "name": "Jonah and the Big Fish Story Friend",
+      "image": "/play/stickers/jonah-and-the-big-fish-sticker.png",
       "bookNumber": 4,
+      "bookTitle": "Jonah and the Big Fish",
+      "bookId": "jonah-and-the-big-fish",
+      "bookUrl": "/book/jonah-and-the-big-fish",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZDKNN5L",
+      "rarity": "common"
+    },
+    {
+      "id": "jonah-and-the-big-fish-sticker-2",
+      "name": "Jonah and the Big Fish Faith Moment",
+      "image": "/play/stickers/jonah-and-the-big-fish-sticker-2.png",
+      "bookNumber": 4,
+      "bookTitle": "Jonah and the Big Fish",
+      "bookId": "jonah-and-the-big-fish",
+      "bookUrl": "/book/jonah-and-the-big-fish",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZDKNN5L",
+      "rarity": "common"
+    },
+    {
+      "id": "jonah-and-the-big-fish-sticker-3",
+      "name": "Jonah and the Big Fish Bright Wonder",
+      "image": "/play/stickers/jonah-and-the-big-fish-sticker-3.png",
+      "bookNumber": 4,
+      "bookTitle": "Jonah and the Big Fish",
+      "bookId": "jonah-and-the-big-fish",
+      "bookUrl": "/book/jonah-and-the-big-fish",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZDKNN5L",
       "rarity": "common"
     },
     {
       "id": "daniel-and-the-lions-sticker",
-      "name": "Daniel Lion",
-      "image": "/play/stickers/daniel-and-the-lions.png",
+      "name": "Daniel and the Lions Story Friend",
+      "image": "/play/stickers/daniel-and-the-lions-sticker.png",
       "bookNumber": 5,
+      "bookTitle": "Daniel and the Lions",
+      "bookId": "daniel-and-the-lions",
+      "bookUrl": "/book/daniel-and-the-lions",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZGFJTSL",
+      "rarity": "common"
+    },
+    {
+      "id": "daniel-and-the-lions-sticker-2",
+      "name": "Daniel and the Lions Faith Moment",
+      "image": "/play/stickers/daniel-and-the-lions-sticker-2.png",
+      "bookNumber": 5,
+      "bookTitle": "Daniel and the Lions",
+      "bookId": "daniel-and-the-lions",
+      "bookUrl": "/book/daniel-and-the-lions",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZGFJTSL",
+      "rarity": "common"
+    },
+    {
+      "id": "daniel-and-the-lions-sticker-3",
+      "name": "Daniel and the Lions Bright Wonder",
+      "image": "/play/stickers/daniel-and-the-lions-sticker-3.png",
+      "bookNumber": 5,
+      "bookTitle": "Daniel and the Lions",
+      "bookId": "daniel-and-the-lions",
+      "bookUrl": "/book/daniel-and-the-lions",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZGFJTSL",
       "rarity": "common"
     },
     {
       "id": "esther-the-brave-queen-sticker",
-      "name": "Queen Esther",
-      "image": "/play/stickers/esther-the-brave-queen.png",
+      "name": "Esther the Brave Queen Story Friend",
+      "image": "/play/stickers/esther-the-brave-queen-sticker.png",
       "bookNumber": 6,
+      "bookTitle": "Esther the Brave Queen",
+      "bookId": "esther-the-brave-queen",
+      "bookUrl": "/book/esther-the-brave-queen",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZK239VN",
+      "rarity": "common"
+    },
+    {
+      "id": "esther-the-brave-queen-sticker-2",
+      "name": "Esther the Brave Queen Faith Moment",
+      "image": "/play/stickers/esther-the-brave-queen-sticker-2.png",
+      "bookNumber": 6,
+      "bookTitle": "Esther the Brave Queen",
+      "bookId": "esther-the-brave-queen",
+      "bookUrl": "/book/esther-the-brave-queen",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZK239VN",
+      "rarity": "common"
+    },
+    {
+      "id": "esther-the-brave-queen-sticker-3",
+      "name": "Esther the Brave Queen Bright Wonder",
+      "image": "/play/stickers/esther-the-brave-queen-sticker-3.png",
+      "bookNumber": 6,
+      "bookTitle": "Esther the Brave Queen",
+      "bookId": "esther-the-brave-queen",
+      "bookUrl": "/book/esther-the-brave-queen",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZK239VN",
       "rarity": "common"
     },
     {
       "id": "the-christmas-story-sticker",
-      "name": "Baby Jesus",
-      "image": "/play/stickers/the-christmas-story.png",
+      "name": "The Christmas Story Story Friend",
+      "image": "/play/stickers/the-christmas-story-sticker.png",
       "bookNumber": 7,
+      "bookTitle": "The Christmas Story",
+      "bookId": "the-christmas-story",
+      "bookUrl": "/book/the-christmas-story",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZNQZQGX",
+      "rarity": "common"
+    },
+    {
+      "id": "the-christmas-story-sticker-2",
+      "name": "The Christmas Story Faith Moment",
+      "image": "/play/stickers/the-christmas-story-sticker-2.png",
+      "bookNumber": 7,
+      "bookTitle": "The Christmas Story",
+      "bookId": "the-christmas-story",
+      "bookUrl": "/book/the-christmas-story",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZNQZQGX",
+      "rarity": "common"
+    },
+    {
+      "id": "the-christmas-story-sticker-3",
+      "name": "The Christmas Story Bright Wonder",
+      "image": "/play/stickers/the-christmas-story-sticker-3.png",
+      "bookNumber": 7,
+      "bookTitle": "The Christmas Story",
+      "bookId": "the-christmas-story",
+      "bookUrl": "/book/the-christmas-story",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZNQZQGX",
       "rarity": "common"
     },
     {
       "id": "josephs-colorful-coat-sticker",
-      "name": "Colorful Coat",
-      "image": "/play/stickers/josephs-colorful-coat.png",
+      "name": "Joseph's Colorful Coat Story Friend",
+      "image": "/play/stickers/josephs-colorful-coat-sticker.png",
       "bookNumber": 8,
+      "bookTitle": "Joseph's Colorful Coat",
+      "bookId": "josephs-colorful-coat",
+      "bookUrl": "/book/josephs-colorful-coat",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZL3YG8L",
+      "rarity": "common"
+    },
+    {
+      "id": "josephs-colorful-coat-sticker-2",
+      "name": "Joseph's Colorful Coat Faith Moment",
+      "image": "/play/stickers/josephs-colorful-coat-sticker-2.png",
+      "bookNumber": 8,
+      "bookTitle": "Joseph's Colorful Coat",
+      "bookId": "josephs-colorful-coat",
+      "bookUrl": "/book/josephs-colorful-coat",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZL3YG8L",
+      "rarity": "common"
+    },
+    {
+      "id": "josephs-colorful-coat-sticker-3",
+      "name": "Joseph's Colorful Coat Bright Wonder",
+      "image": "/play/stickers/josephs-colorful-coat-sticker-3.png",
+      "bookNumber": 8,
+      "bookTitle": "Joseph's Colorful Coat",
+      "bookId": "josephs-colorful-coat",
+      "bookUrl": "/book/josephs-colorful-coat",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZL3YG8L",
       "rarity": "common"
     },
     {
       "id": "the-easter-story-sticker",
-      "name": "Easter Hope",
-      "image": "/play/stickers/the-easter-story.png",
+      "name": "The Easter Story Story Friend",
+      "image": "/play/stickers/the-easter-story-sticker.png",
       "bookNumber": 9,
+      "bookTitle": "The Easter Story",
+      "bookId": "the-easter-story",
+      "bookUrl": "/book/the-easter-story",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZPY9RL1",
+      "rarity": "common"
+    },
+    {
+      "id": "the-easter-story-sticker-2",
+      "name": "The Easter Story Faith Moment",
+      "image": "/play/stickers/the-easter-story-sticker-2.png",
+      "bookNumber": 9,
+      "bookTitle": "The Easter Story",
+      "bookId": "the-easter-story",
+      "bookUrl": "/book/the-easter-story",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZPY9RL1",
+      "rarity": "common"
+    },
+    {
+      "id": "the-easter-story-sticker-3",
+      "name": "The Easter Story Bright Wonder",
+      "image": "/play/stickers/the-easter-story-sticker-3.png",
+      "bookNumber": 9,
+      "bookTitle": "The Easter Story",
+      "bookId": "the-easter-story",
+      "bookUrl": "/book/the-easter-story",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZPY9RL1",
       "rarity": "common"
     },
     {
       "id": "ruth-and-naomi-sticker",
-      "name": "Faithful Ruth",
-      "image": "/play/stickers/ruth-and-naomi.png",
+      "name": "Ruth and Naomi Story Friend",
+      "image": "/play/stickers/ruth-and-naomi-sticker.png",
       "bookNumber": 10,
+      "bookTitle": "Ruth and Naomi",
+      "bookId": "ruth-and-naomi",
+      "bookUrl": "/book/ruth-and-naomi",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZQX7D3N",
+      "rarity": "common"
+    },
+    {
+      "id": "ruth-and-naomi-sticker-2",
+      "name": "Ruth and Naomi Faith Moment",
+      "image": "/play/stickers/ruth-and-naomi-sticker-2.png",
+      "bookNumber": 10,
+      "bookTitle": "Ruth and Naomi",
+      "bookId": "ruth-and-naomi",
+      "bookUrl": "/book/ruth-and-naomi",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZQX7D3N",
+      "rarity": "common"
+    },
+    {
+      "id": "ruth-and-naomi-sticker-3",
+      "name": "Ruth and Naomi Bright Wonder",
+      "image": "/play/stickers/ruth-and-naomi-sticker-3.png",
+      "bookNumber": 10,
+      "bookTitle": "Ruth and Naomi",
+      "bookId": "ruth-and-naomi",
+      "bookUrl": "/book/ruth-and-naomi",
+      "amazonUrl": "https://www.amazon.com/dp/B0GZQX7D3N",
       "rarity": "common"
     },
     {
       "id": "the-birth-of-moses-sticker",
-      "name": "Baby Moses",
-      "image": "/play/stickers/the-birth-of-moses.png",
+      "name": "The Birth of Moses Story Friend",
+      "image": "/play/stickers/the-birth-of-moses-sticker.png",
       "bookNumber": 11,
+      "bookTitle": "The Birth of Moses",
+      "bookId": "the-birth-of-moses",
+      "bookUrl": "/book/the-birth-of-moses",
+      "amazonUrl": "https://www.amazon.com/dp/B0H15BN3RD",
+      "rarity": "common"
+    },
+    {
+      "id": "the-birth-of-moses-sticker-2",
+      "name": "The Birth of Moses Faith Moment",
+      "image": "/play/stickers/the-birth-of-moses-sticker-2.png",
+      "bookNumber": 11,
+      "bookTitle": "The Birth of Moses",
+      "bookId": "the-birth-of-moses",
+      "bookUrl": "/book/the-birth-of-moses",
+      "amazonUrl": "https://www.amazon.com/dp/B0H15BN3RD",
+      "rarity": "common"
+    },
+    {
+      "id": "the-birth-of-moses-sticker-3",
+      "name": "The Birth of Moses Bright Wonder",
+      "image": "/play/stickers/the-birth-of-moses-sticker-3.png",
+      "bookNumber": 11,
+      "bookTitle": "The Birth of Moses",
+      "bookId": "the-birth-of-moses",
+      "bookUrl": "/book/the-birth-of-moses",
+      "amazonUrl": "https://www.amazon.com/dp/B0H15BN3RD",
       "rarity": "common"
     },
     {
       "id": "solomon-and-wisdom-sticker",
-      "name": "Wise Solomon",
-      "image": "/play/stickers/solomon-and-wisdom.png",
+      "name": "Solomon and Wisdom Story Friend",
+      "image": "/play/stickers/solomon-and-wisdom-sticker.png",
       "bookNumber": 12,
+      "bookTitle": "Solomon and Wisdom",
+      "bookId": "solomon-and-wisdom",
+      "bookUrl": "/book/solomon-and-wisdom",
+      "amazonUrl": "https://www.amazon.com/dp/B0H184LKSF",
+      "rarity": "common"
+    },
+    {
+      "id": "solomon-and-wisdom-sticker-2",
+      "name": "Solomon and Wisdom Faith Moment",
+      "image": "/play/stickers/solomon-and-wisdom-sticker-2.png",
+      "bookNumber": 12,
+      "bookTitle": "Solomon and Wisdom",
+      "bookId": "solomon-and-wisdom",
+      "bookUrl": "/book/solomon-and-wisdom",
+      "amazonUrl": "https://www.amazon.com/dp/B0H184LKSF",
+      "rarity": "common"
+    },
+    {
+      "id": "solomon-and-wisdom-sticker-3",
+      "name": "Solomon and Wisdom Bright Wonder",
+      "image": "/play/stickers/solomon-and-wisdom-sticker-3.png",
+      "bookNumber": 12,
+      "bookTitle": "Solomon and Wisdom",
+      "bookId": "solomon-and-wisdom",
+      "bookUrl": "/book/solomon-and-wisdom",
+      "amazonUrl": "https://www.amazon.com/dp/B0H184LKSF",
       "rarity": "common"
     },
     {
       "id": "elijah-and-the-still-small-voice-sticker",
-      "name": "Quiet Elijah",
-      "image": "/play/stickers/elijah-and-the-still-small-voice.png",
+      "name": "Elijah and the Still Small Voice Story Friend",
+      "image": "/play/stickers/elijah-and-the-still-small-voice-sticker.png",
       "bookNumber": 13,
+      "bookTitle": "Elijah and the Still Small Voice",
+      "bookId": "elijah-and-the-still-small-voice",
+      "bookUrl": "/book/elijah-and-the-still-small-voice",
+      "amazonUrl": "https://www.amazon.com/dp/B0H18JDFCW",
+      "rarity": "common"
+    },
+    {
+      "id": "elijah-and-the-still-small-voice-sticker-2",
+      "name": "Elijah and the Still Small Voice Faith Moment",
+      "image": "/play/stickers/elijah-and-the-still-small-voice-sticker-2.png",
+      "bookNumber": 13,
+      "bookTitle": "Elijah and the Still Small Voice",
+      "bookId": "elijah-and-the-still-small-voice",
+      "bookUrl": "/book/elijah-and-the-still-small-voice",
+      "amazonUrl": "https://www.amazon.com/dp/B0H18JDFCW",
+      "rarity": "common"
+    },
+    {
+      "id": "elijah-and-the-still-small-voice-sticker-3",
+      "name": "Elijah and the Still Small Voice Bright Wonder",
+      "image": "/play/stickers/elijah-and-the-still-small-voice-sticker-3.png",
+      "bookNumber": 13,
+      "bookTitle": "Elijah and the Still Small Voice",
+      "bookId": "elijah-and-the-still-small-voice",
+      "bookUrl": "/book/elijah-and-the-still-small-voice",
+      "amazonUrl": "https://www.amazon.com/dp/B0H18JDFCW",
       "rarity": "common"
     },
     {
       "id": "jesus-calms-the-storm-sticker",
-      "name": "Peaceful Boat",
-      "image": "/play/stickers/jesus-calms-the-storm.png",
+      "name": "Jesus Calms the Storm Story Friend",
+      "image": "/play/stickers/jesus-calms-the-storm-sticker.png",
       "bookNumber": 14,
+      "bookTitle": "Jesus Calms the Storm",
+      "bookId": "jesus-calms-the-storm",
+      "bookUrl": "/book/jesus-calms-the-storm",
+      "amazonUrl": "https://www.amazon.com/dp/B0H18WDG5P",
+      "rarity": "common"
+    },
+    {
+      "id": "jesus-calms-the-storm-sticker-2",
+      "name": "Jesus Calms the Storm Faith Moment",
+      "image": "/play/stickers/jesus-calms-the-storm-sticker-2.png",
+      "bookNumber": 14,
+      "bookTitle": "Jesus Calms the Storm",
+      "bookId": "jesus-calms-the-storm",
+      "bookUrl": "/book/jesus-calms-the-storm",
+      "amazonUrl": "https://www.amazon.com/dp/B0H18WDG5P",
+      "rarity": "common"
+    },
+    {
+      "id": "jesus-calms-the-storm-sticker-3",
+      "name": "Jesus Calms the Storm Bright Wonder",
+      "image": "/play/stickers/jesus-calms-the-storm-sticker-3.png",
+      "bookNumber": 14,
+      "bookTitle": "Jesus Calms the Storm",
+      "bookId": "jesus-calms-the-storm",
+      "bookUrl": "/book/jesus-calms-the-storm",
+      "amazonUrl": "https://www.amazon.com/dp/B0H18WDG5P",
       "rarity": "common"
     },
     {
       "id": "the-creation-story-sticker",
-      "name": "Creation Wonder",
-      "image": "/play/stickers/the-creation-story.png",
+      "name": "The Creation Story Story Friend",
+      "image": "/play/stickers/the-creation-story-sticker.png",
       "bookNumber": 15,
+      "bookTitle": "The Creation Story",
+      "bookId": "the-creation-story",
+      "bookUrl": "/book/the-creation-story",
+      "amazonUrl": "https://www.amazon.com/dp/B0H18HQKWT",
+      "rarity": "common"
+    },
+    {
+      "id": "the-creation-story-sticker-2",
+      "name": "The Creation Story Faith Moment",
+      "image": "/play/stickers/the-creation-story-sticker-2.png",
+      "bookNumber": 15,
+      "bookTitle": "The Creation Story",
+      "bookId": "the-creation-story",
+      "bookUrl": "/book/the-creation-story",
+      "amazonUrl": "https://www.amazon.com/dp/B0H18HQKWT",
+      "rarity": "common"
+    },
+    {
+      "id": "the-creation-story-sticker-3",
+      "name": "The Creation Story Bright Wonder",
+      "image": "/play/stickers/the-creation-story-sticker-3.png",
+      "bookNumber": 15,
+      "bookTitle": "The Creation Story",
+      "bookId": "the-creation-story",
+      "bookUrl": "/book/the-creation-story",
+      "amazonUrl": "https://www.amazon.com/dp/B0H18HQKWT",
       "rarity": "common"
     },
     {
       "id": "the-armor-of-god-sticker",
-      "name": "Faith Armor",
-      "image": "/play/stickers/the-armor-of-god.png",
+      "name": "The Armor of God Story Friend",
+      "image": "/play/stickers/the-armor-of-god-sticker.png",
       "bookNumber": 16,
+      "bookTitle": "The Armor of God",
+      "bookId": "the-armor-of-god",
+      "bookUrl": "/book/the-armor-of-god",
+      "amazonUrl": "https://www.amazon.com/dp/B0H1BQX3LP",
+      "rarity": "common"
+    },
+    {
+      "id": "the-armor-of-god-sticker-2",
+      "name": "The Armor of God Faith Moment",
+      "image": "/play/stickers/the-armor-of-god-sticker-2.png",
+      "bookNumber": 16,
+      "bookTitle": "The Armor of God",
+      "bookId": "the-armor-of-god",
+      "bookUrl": "/book/the-armor-of-god",
+      "amazonUrl": "https://www.amazon.com/dp/B0H1BQX3LP",
+      "rarity": "common"
+    },
+    {
+      "id": "the-armor-of-god-sticker-3",
+      "name": "The Armor of God Bright Wonder",
+      "image": "/play/stickers/the-armor-of-god-sticker-3.png",
+      "bookNumber": 16,
+      "bookTitle": "The Armor of God",
+      "bookId": "the-armor-of-god",
+      "bookUrl": "/book/the-armor-of-god",
+      "amazonUrl": "https://www.amazon.com/dp/B0H1BQX3LP",
       "rarity": "common"
     },
     {
       "id": "zacchaeus-sticker",
-      "name": "Zacchaeus Tree",
-      "image": "/play/stickers/zacchaeus.png",
+      "name": "Zacchaeus Story Friend",
+      "image": "/play/stickers/zacchaeus-sticker.png",
       "bookNumber": 17,
+      "bookTitle": "Zacchaeus",
+      "bookId": "zacchaeus",
+      "bookUrl": "/book/zacchaeus",
+      "amazonUrl": "https://www.amazon.com/dp/B0H1CG1P1X",
+      "rarity": "common"
+    },
+    {
+      "id": "zacchaeus-sticker-2",
+      "name": "Zacchaeus Faith Moment",
+      "image": "/play/stickers/zacchaeus-sticker-2.png",
+      "bookNumber": 17,
+      "bookTitle": "Zacchaeus",
+      "bookId": "zacchaeus",
+      "bookUrl": "/book/zacchaeus",
+      "amazonUrl": "https://www.amazon.com/dp/B0H1CG1P1X",
+      "rarity": "common"
+    },
+    {
+      "id": "zacchaeus-sticker-3",
+      "name": "Zacchaeus Bright Wonder",
+      "image": "/play/stickers/zacchaeus-sticker-3.png",
+      "bookNumber": 17,
+      "bookTitle": "Zacchaeus",
+      "bookId": "zacchaeus",
+      "bookUrl": "/book/zacchaeus",
+      "amazonUrl": "https://www.amazon.com/dp/B0H1CG1P1X",
       "rarity": "common"
     },
     {
       "id": "the-good-samaritan-sticker",
-      "name": "Kind Helper",
-      "image": "/play/stickers/the-good-samaritan.png",
+      "name": "The Good Samaritan Story Friend",
+      "image": "/play/stickers/the-good-samaritan-sticker.png",
       "bookNumber": 18,
+      "bookTitle": "The Good Samaritan",
+      "bookId": "the-good-samaritan",
+      "bookUrl": "/book/the-good-samaritan",
+      "amazonUrl": "https://www.amazon.com/dp/B0H1CPYC6T",
+      "rarity": "common"
+    },
+    {
+      "id": "the-good-samaritan-sticker-2",
+      "name": "The Good Samaritan Faith Moment",
+      "image": "/play/stickers/the-good-samaritan-sticker-2.png",
+      "bookNumber": 18,
+      "bookTitle": "The Good Samaritan",
+      "bookId": "the-good-samaritan",
+      "bookUrl": "/book/the-good-samaritan",
+      "amazonUrl": "https://www.amazon.com/dp/B0H1CPYC6T",
+      "rarity": "common"
+    },
+    {
+      "id": "the-good-samaritan-sticker-3",
+      "name": "The Good Samaritan Bright Wonder",
+      "image": "/play/stickers/the-good-samaritan-sticker-3.png",
+      "bookNumber": 18,
+      "bookTitle": "The Good Samaritan",
+      "bookId": "the-good-samaritan",
+      "bookUrl": "/book/the-good-samaritan",
+      "amazonUrl": "https://www.amazon.com/dp/B0H1CPYC6T",
       "rarity": "common"
     },
     {
       "id": "the-lost-sheep-sticker",
-      "name": "Little Sheep",
-      "image": "/play/stickers/the-lost-sheep.png",
+      "name": "The Lost Sheep Story Friend",
+      "image": "/play/stickers/the-lost-sheep-sticker.png",
       "bookNumber": 19,
+      "bookTitle": "The Lost Sheep",
+      "bookId": "the-lost-sheep",
+      "bookUrl": "/book/the-lost-sheep",
+      "amazonUrl": "https://www.amazon.com/dp/B0H1CTPVMV",
+      "rarity": "common"
+    },
+    {
+      "id": "the-lost-sheep-sticker-2",
+      "name": "The Lost Sheep Faith Moment",
+      "image": "/play/stickers/the-lost-sheep-sticker-2.png",
+      "bookNumber": 19,
+      "bookTitle": "The Lost Sheep",
+      "bookId": "the-lost-sheep",
+      "bookUrl": "/book/the-lost-sheep",
+      "amazonUrl": "https://www.amazon.com/dp/B0H1CTPVMV",
+      "rarity": "common"
+    },
+    {
+      "id": "the-lost-sheep-sticker-3",
+      "name": "The Lost Sheep Bright Wonder",
+      "image": "/play/stickers/the-lost-sheep-sticker-3.png",
+      "bookNumber": 19,
+      "bookTitle": "The Lost Sheep",
+      "bookId": "the-lost-sheep",
+      "bookUrl": "/book/the-lost-sheep",
+      "amazonUrl": "https://www.amazon.com/dp/B0H1CTPVMV",
       "rarity": "common"
     },
     {
       "id": "the-feeding-of-the-5000-sticker",
-      "name": "Five Loaves",
-      "image": "/play/stickers/the-feeding-of-the-5000.png",
+      "name": "The Feeding of the 5,000 Story Friend",
+      "image": "/play/stickers/the-feeding-of-the-5000-sticker.png",
       "bookNumber": 20,
+      "bookTitle": "The Feeding of the 5,000",
+      "bookId": "the-feeding-of-the-5000",
+      "bookUrl": "/book/the-feeding-of-the-5000",
+      "amazonUrl": "https://www.amazon.com/dp/B0H1D867ZJ",
+      "rarity": "common"
+    },
+    {
+      "id": "the-feeding-of-the-5000-sticker-2",
+      "name": "The Feeding of the 5,000 Faith Moment",
+      "image": "/play/stickers/the-feeding-of-the-5000-sticker-2.png",
+      "bookNumber": 20,
+      "bookTitle": "The Feeding of the 5,000",
+      "bookId": "the-feeding-of-the-5000",
+      "bookUrl": "/book/the-feeding-of-the-5000",
+      "amazonUrl": "https://www.amazon.com/dp/B0H1D867ZJ",
+      "rarity": "common"
+    },
+    {
+      "id": "the-feeding-of-the-5000-sticker-3",
+      "name": "The Feeding of the 5,000 Bright Wonder",
+      "image": "/play/stickers/the-feeding-of-the-5000-sticker-3.png",
+      "bookNumber": 20,
+      "bookTitle": "The Feeding of the 5,000",
+      "bookId": "the-feeding-of-the-5000",
+      "bookUrl": "/book/the-feeding-of-the-5000",
+      "amazonUrl": "https://www.amazon.com/dp/B0H1D867ZJ",
       "rarity": "common"
     },
     {
       "id": "adam-and-eve-in-the-garden-sticker",
-      "name": "Garden Friends",
-      "image": "/play/stickers/adam-and-eve-in-the-garden.png",
+      "name": "Adam and Eve in the Garden Story Friend",
+      "image": "/play/stickers/adam-and-eve-in-the-garden-sticker.png",
       "bookNumber": 21,
+      "bookTitle": "Adam and Eve in the Garden",
+      "bookId": "adam-and-eve-in-the-garden",
+      "bookUrl": "/book/adam-and-eve-in-the-garden",
+      "amazonUrl": "https://www.amazon.com/dp/B0H1JDBH3V",
+      "rarity": "common"
+    },
+    {
+      "id": "adam-and-eve-in-the-garden-sticker-2",
+      "name": "Adam and Eve in the Garden Faith Moment",
+      "image": "/play/stickers/adam-and-eve-in-the-garden-sticker-2.png",
+      "bookNumber": 21,
+      "bookTitle": "Adam and Eve in the Garden",
+      "bookId": "adam-and-eve-in-the-garden",
+      "bookUrl": "/book/adam-and-eve-in-the-garden",
+      "amazonUrl": "https://www.amazon.com/dp/B0H1JDBH3V",
+      "rarity": "common"
+    },
+    {
+      "id": "adam-and-eve-in-the-garden-sticker-3",
+      "name": "Adam and Eve in the Garden Bright Wonder",
+      "image": "/play/stickers/adam-and-eve-in-the-garden-sticker-3.png",
+      "bookNumber": 21,
+      "bookTitle": "Adam and Eve in the Garden",
+      "bookId": "adam-and-eve-in-the-garden",
+      "bookUrl": "/book/adam-and-eve-in-the-garden",
+      "amazonUrl": "https://www.amazon.com/dp/B0H1JDBH3V",
       "rarity": "common"
     },
     {
       "id": "joshua-and-jericho-sticker",
-      "name": "Jericho Trumpet",
-      "image": "/play/stickers/joshua-and-jericho.png",
+      "name": "Joshua and Jericho Story Friend",
+      "image": "/play/stickers/joshua-and-jericho-sticker.png",
       "bookNumber": 22,
+      "bookTitle": "Joshua and Jericho",
+      "bookId": "joshua-and-jericho",
+      "bookUrl": "/book/joshua-and-jericho",
+      "amazonUrl": "https://www.amazon.com/dp/B0H25YF2J6",
+      "rarity": "common"
+    },
+    {
+      "id": "joshua-and-jericho-sticker-2",
+      "name": "Joshua and Jericho Faith Moment",
+      "image": "/play/stickers/joshua-and-jericho-sticker-2.png",
+      "bookNumber": 22,
+      "bookTitle": "Joshua and Jericho",
+      "bookId": "joshua-and-jericho",
+      "bookUrl": "/book/joshua-and-jericho",
+      "amazonUrl": "https://www.amazon.com/dp/B0H25YF2J6",
+      "rarity": "common"
+    },
+    {
+      "id": "joshua-and-jericho-sticker-3",
+      "name": "Joshua and Jericho Bright Wonder",
+      "image": "/play/stickers/joshua-and-jericho-sticker-3.png",
+      "bookNumber": 22,
+      "bookTitle": "Joshua and Jericho",
+      "bookId": "joshua-and-jericho",
+      "bookUrl": "/book/joshua-and-jericho",
+      "amazonUrl": "https://www.amazon.com/dp/B0H25YF2J6",
       "rarity": "common"
     },
     {
       "id": "the-fiery-furnace-sticker",
-      "name": "Faithful Friends",
-      "image": "/play/stickers/the-fiery-furnace.png",
+      "name": "The Fiery Furnace Story Friend",
+      "image": "/play/stickers/the-fiery-furnace-sticker.png",
       "bookNumber": 23,
+      "bookTitle": "The Fiery Furnace",
+      "bookId": "the-fiery-furnace",
+      "bookUrl": "/book/the-fiery-furnace",
+      "amazonUrl": "https://www.amazon.com/dp/B0H25KF241",
+      "rarity": "common"
+    },
+    {
+      "id": "the-fiery-furnace-sticker-2",
+      "name": "The Fiery Furnace Faith Moment",
+      "image": "/play/stickers/the-fiery-furnace-sticker-2.png",
+      "bookNumber": 23,
+      "bookTitle": "The Fiery Furnace",
+      "bookId": "the-fiery-furnace",
+      "bookUrl": "/book/the-fiery-furnace",
+      "amazonUrl": "https://www.amazon.com/dp/B0H25KF241",
+      "rarity": "common"
+    },
+    {
+      "id": "the-fiery-furnace-sticker-3",
+      "name": "The Fiery Furnace Bright Wonder",
+      "image": "/play/stickers/the-fiery-furnace-sticker-3.png",
+      "bookNumber": 23,
+      "bookTitle": "The Fiery Furnace",
+      "bookId": "the-fiery-furnace",
+      "bookUrl": "/book/the-fiery-furnace",
+      "amazonUrl": "https://www.amazon.com/dp/B0H25KF241",
       "rarity": "common"
     },
     {
       "id": "the-prodigal-son-sticker",
-      "name": "Welcome Home",
-      "image": "/play/stickers/the-prodigal-son.png",
+      "name": "The Prodigal Son Story Friend",
+      "image": "/play/stickers/the-prodigal-son-sticker.png",
       "bookNumber": 24,
+      "bookTitle": "The Prodigal Son",
+      "bookId": "the-prodigal-son",
+      "bookUrl": "/book/the-prodigal-son",
+      "amazonUrl": "https://www.amazon.com/dp/B0H25RMCJY",
+      "rarity": "common"
+    },
+    {
+      "id": "the-prodigal-son-sticker-2",
+      "name": "The Prodigal Son Faith Moment",
+      "image": "/play/stickers/the-prodigal-son-sticker-2.png",
+      "bookNumber": 24,
+      "bookTitle": "The Prodigal Son",
+      "bookId": "the-prodigal-son",
+      "bookUrl": "/book/the-prodigal-son",
+      "amazonUrl": "https://www.amazon.com/dp/B0H25RMCJY",
+      "rarity": "common"
+    },
+    {
+      "id": "the-prodigal-son-sticker-3",
+      "name": "The Prodigal Son Bright Wonder",
+      "image": "/play/stickers/the-prodigal-son-sticker-3.png",
+      "bookNumber": 24,
+      "bookTitle": "The Prodigal Son",
+      "bookId": "the-prodigal-son",
+      "bookUrl": "/book/the-prodigal-son",
+      "amazonUrl": "https://www.amazon.com/dp/B0H25RMCJY",
       "rarity": "common"
     },
     {
       "id": "jesus-welcomes-children-sticker",
-      "name": "Jesus Welcomes",
-      "image": "/play/stickers/jesus-welcomes-children.png",
+      "name": "Jesus Welcomes Children Story Friend",
+      "image": "/play/stickers/jesus-welcomes-children-sticker.png",
       "bookNumber": 25,
+      "bookTitle": "Jesus Welcomes Children",
+      "bookId": "jesus-welcomes-children",
+      "bookUrl": "/book/jesus-welcomes-children",
+      "amazonUrl": "https://www.amazon.com/dp/B0H25YPF38",
+      "rarity": "common"
+    },
+    {
+      "id": "jesus-welcomes-children-sticker-2",
+      "name": "Jesus Welcomes Children Faith Moment",
+      "image": "/play/stickers/jesus-welcomes-children-sticker-2.png",
+      "bookNumber": 25,
+      "bookTitle": "Jesus Welcomes Children",
+      "bookId": "jesus-welcomes-children",
+      "bookUrl": "/book/jesus-welcomes-children",
+      "amazonUrl": "https://www.amazon.com/dp/B0H25YPF38",
+      "rarity": "common"
+    },
+    {
+      "id": "jesus-welcomes-children-sticker-3",
+      "name": "Jesus Welcomes Children Bright Wonder",
+      "image": "/play/stickers/jesus-welcomes-children-sticker-3.png",
+      "bookNumber": 25,
+      "bookTitle": "Jesus Welcomes Children",
+      "bookId": "jesus-welcomes-children",
+      "bookUrl": "/book/jesus-welcomes-children",
+      "amazonUrl": "https://www.amazon.com/dp/B0H25YPF38",
       "rarity": "common"
     },
     {
       "id": "the-wedding-at-cana-sticker",
-      "name": "Cana Jar",
-      "image": "/play/stickers/the-wedding-at-cana.png",
+      "name": "The Wedding at Cana Story Friend",
+      "image": "/play/stickers/the-wedding-at-cana-sticker.png",
       "bookNumber": 26,
+      "bookTitle": "The Wedding at Cana",
+      "bookId": "the-wedding-at-cana",
+      "bookUrl": "/book/the-wedding-at-cana",
+      "amazonUrl": "https://www.amazon.com/dp/B0H26G965M",
+      "rarity": "common"
+    },
+    {
+      "id": "the-wedding-at-cana-sticker-2",
+      "name": "The Wedding at Cana Faith Moment",
+      "image": "/play/stickers/the-wedding-at-cana-sticker-2.png",
+      "bookNumber": 26,
+      "bookTitle": "The Wedding at Cana",
+      "bookId": "the-wedding-at-cana",
+      "bookUrl": "/book/the-wedding-at-cana",
+      "amazonUrl": "https://www.amazon.com/dp/B0H26G965M",
+      "rarity": "common"
+    },
+    {
+      "id": "the-wedding-at-cana-sticker-3",
+      "name": "The Wedding at Cana Bright Wonder",
+      "image": "/play/stickers/the-wedding-at-cana-sticker-3.png",
+      "bookNumber": 26,
+      "bookTitle": "The Wedding at Cana",
+      "bookId": "the-wedding-at-cana",
+      "bookUrl": "/book/the-wedding-at-cana",
+      "amazonUrl": "https://www.amazon.com/dp/B0H26G965M",
       "rarity": "common"
     },
     {
       "id": "hannahs-prayer-and-young-samuel-sticker",
-      "name": "Young Samuel",
-      "image": "/play/stickers/hannahs-prayer-and-young-samuel.png",
+      "name": "Hannah's Prayer and Young Samuel Story Friend",
+      "image": "/play/stickers/hannahs-prayer-and-young-samuel-sticker.png",
       "bookNumber": 27,
+      "bookTitle": "Hannah's Prayer and Young Samuel",
+      "bookId": "hannahs-prayer-and-young-samuel",
+      "bookUrl": "/book/hannahs-prayer-and-young-samuel",
+      "amazonUrl": "https://www.amazon.com/dp/B0H26QR9MJ",
+      "rarity": "common"
+    },
+    {
+      "id": "hannahs-prayer-and-young-samuel-sticker-2",
+      "name": "Hannah's Prayer and Young Samuel Faith Moment",
+      "image": "/play/stickers/hannahs-prayer-and-young-samuel-sticker-2.png",
+      "bookNumber": 27,
+      "bookTitle": "Hannah's Prayer and Young Samuel",
+      "bookId": "hannahs-prayer-and-young-samuel",
+      "bookUrl": "/book/hannahs-prayer-and-young-samuel",
+      "amazonUrl": "https://www.amazon.com/dp/B0H26QR9MJ",
+      "rarity": "common"
+    },
+    {
+      "id": "hannahs-prayer-and-young-samuel-sticker-3",
+      "name": "Hannah's Prayer and Young Samuel Bright Wonder",
+      "image": "/play/stickers/hannahs-prayer-and-young-samuel-sticker-3.png",
+      "bookNumber": 27,
+      "bookTitle": "Hannah's Prayer and Young Samuel",
+      "bookId": "hannahs-prayer-and-young-samuel",
+      "bookUrl": "/book/hannahs-prayer-and-young-samuel",
+      "amazonUrl": "https://www.amazon.com/dp/B0H26QR9MJ",
       "rarity": "common"
     },
     {
       "id": "saul-becomes-paul-sticker",
-      "name": "Changed Heart",
-      "image": "/play/stickers/saul-becomes-paul.png",
+      "name": "Saul Becomes Paul Story Friend",
+      "image": "/play/stickers/saul-becomes-paul-sticker.png",
       "bookNumber": 28,
+      "bookTitle": "Saul Becomes Paul",
+      "bookId": "saul-becomes-paul",
+      "bookUrl": "/book/saul-becomes-paul",
+      "amazonUrl": "https://www.amazon.com/dp/B0H26XYBCM",
+      "rarity": "common"
+    },
+    {
+      "id": "saul-becomes-paul-sticker-2",
+      "name": "Saul Becomes Paul Faith Moment",
+      "image": "/play/stickers/saul-becomes-paul-sticker-2.png",
+      "bookNumber": 28,
+      "bookTitle": "Saul Becomes Paul",
+      "bookId": "saul-becomes-paul",
+      "bookUrl": "/book/saul-becomes-paul",
+      "amazonUrl": "https://www.amazon.com/dp/B0H26XYBCM",
+      "rarity": "common"
+    },
+    {
+      "id": "saul-becomes-paul-sticker-3",
+      "name": "Saul Becomes Paul Bright Wonder",
+      "image": "/play/stickers/saul-becomes-paul-sticker-3.png",
+      "bookNumber": 28,
+      "bookTitle": "Saul Becomes Paul",
+      "bookId": "saul-becomes-paul",
+      "bookUrl": "/book/saul-becomes-paul",
+      "amazonUrl": "https://www.amazon.com/dp/B0H26XYBCM",
       "rarity": "common"
     },
     {
       "id": "paul-and-silas-in-prison-sticker",
-      "name": "Midnight Song",
-      "image": "/play/stickers/paul-and-silas-in-prison.png",
+      "name": "Paul and Silas in Prison Story Friend",
+      "image": "/play/stickers/paul-and-silas-in-prison-sticker.png",
       "bookNumber": 29,
+      "bookTitle": "Paul and Silas in Prison",
+      "bookId": "paul-and-silas-in-prison",
+      "bookUrl": "/book/paul-and-silas-in-prison",
+      "amazonUrl": "https://www.amazon.com/dp/B0H274YJR4",
+      "rarity": "common"
+    },
+    {
+      "id": "paul-and-silas-in-prison-sticker-2",
+      "name": "Paul and Silas in Prison Faith Moment",
+      "image": "/play/stickers/paul-and-silas-in-prison-sticker-2.png",
+      "bookNumber": 29,
+      "bookTitle": "Paul and Silas in Prison",
+      "bookId": "paul-and-silas-in-prison",
+      "bookUrl": "/book/paul-and-silas-in-prison",
+      "amazonUrl": "https://www.amazon.com/dp/B0H274YJR4",
+      "rarity": "common"
+    },
+    {
+      "id": "paul-and-silas-in-prison-sticker-3",
+      "name": "Paul and Silas in Prison Bright Wonder",
+      "image": "/play/stickers/paul-and-silas-in-prison-sticker-3.png",
+      "bookNumber": 29,
+      "bookTitle": "Paul and Silas in Prison",
+      "bookId": "paul-and-silas-in-prison",
+      "bookUrl": "/book/paul-and-silas-in-prison",
+      "amazonUrl": "https://www.amazon.com/dp/B0H274YJR4",
       "rarity": "common"
     },
     {
       "id": "pentecost-the-holy-spirit-comes-sticker",
-      "name": "Holy Spirit Flame",
-      "image": "/play/stickers/pentecost-the-holy-spirit-comes.png",
+      "name": "Pentecost: The Holy Spirit Comes Story Friend",
+      "image": "/play/stickers/pentecost-the-holy-spirit-comes-sticker.png",
       "bookNumber": 30,
+      "bookTitle": "Pentecost: The Holy Spirit Comes",
+      "bookId": "pentecost-the-holy-spirit-comes",
+      "bookUrl": "/book/pentecost-the-holy-spirit-comes",
+      "amazonUrl": "https://www.amazon.com/dp/B0H2F78SY9",
+      "rarity": "common"
+    },
+    {
+      "id": "pentecost-the-holy-spirit-comes-sticker-2",
+      "name": "Pentecost: The Holy Spirit Comes Faith Moment",
+      "image": "/play/stickers/pentecost-the-holy-spirit-comes-sticker-2.png",
+      "bookNumber": 30,
+      "bookTitle": "Pentecost: The Holy Spirit Comes",
+      "bookId": "pentecost-the-holy-spirit-comes",
+      "bookUrl": "/book/pentecost-the-holy-spirit-comes",
+      "amazonUrl": "https://www.amazon.com/dp/B0H2F78SY9",
+      "rarity": "common"
+    },
+    {
+      "id": "pentecost-the-holy-spirit-comes-sticker-3",
+      "name": "Pentecost: The Holy Spirit Comes Bright Wonder",
+      "image": "/play/stickers/pentecost-the-holy-spirit-comes-sticker-3.png",
+      "bookNumber": 30,
+      "bookTitle": "Pentecost: The Holy Spirit Comes",
+      "bookId": "pentecost-the-holy-spirit-comes",
+      "bookUrl": "/book/pentecost-the-holy-spirit-comes",
+      "amazonUrl": "https://www.amazon.com/dp/B0H2F78SY9",
       "rarity": "common"
     },
     {
       "id": "elisha-and-the-widows-oil-sticker",
-      "name": "Oil Jar",
-      "image": "/play/stickers/elisha-and-the-widows-oil.png",
+      "name": "Elisha and the Widow's Oil Story Friend",
+      "image": "/play/stickers/elisha-and-the-widows-oil-sticker.png",
       "bookNumber": 31,
+      "bookTitle": "Elisha and the Widow's Oil",
+      "bookId": "elisha-and-the-widows-oil",
+      "bookUrl": "/book/elisha-and-the-widows-oil",
+      "amazonUrl": "https://www.amazon.com/dp/B0H2Z7SP3B",
+      "rarity": "common"
+    },
+    {
+      "id": "elisha-and-the-widows-oil-sticker-2",
+      "name": "Elisha and the Widow's Oil Faith Moment",
+      "image": "/play/stickers/elisha-and-the-widows-oil-sticker-2.png",
+      "bookNumber": 31,
+      "bookTitle": "Elisha and the Widow's Oil",
+      "bookId": "elisha-and-the-widows-oil",
+      "bookUrl": "/book/elisha-and-the-widows-oil",
+      "amazonUrl": "https://www.amazon.com/dp/B0H2Z7SP3B",
+      "rarity": "common"
+    },
+    {
+      "id": "elisha-and-the-widows-oil-sticker-3",
+      "name": "Elisha and the Widow's Oil Bright Wonder",
+      "image": "/play/stickers/elisha-and-the-widows-oil-sticker-3.png",
+      "bookNumber": 31,
+      "bookTitle": "Elisha and the Widow's Oil",
+      "bookId": "elisha-and-the-widows-oil",
+      "bookUrl": "/book/elisha-and-the-widows-oil",
+      "amazonUrl": "https://www.amazon.com/dp/B0H2Z7SP3B",
       "rarity": "common"
     },
     {
       "id": "tower-of-babel-sticker",
-      "name": "Babel Tower",
-      "image": "/play/stickers/tower-of-babel.png",
+      "name": "Tower of Babel Story Friend",
+      "image": "/play/stickers/tower-of-babel-sticker.png",
       "bookNumber": 32,
+      "bookTitle": "Tower of Babel",
+      "bookId": "tower-of-babel",
+      "bookUrl": "/book/tower-of-babel",
+      "amazonUrl": "https://www.amazon.com/dp/B0H344KNV1",
+      "rarity": "common"
+    },
+    {
+      "id": "tower-of-babel-sticker-2",
+      "name": "Tower of Babel Faith Moment",
+      "image": "/play/stickers/tower-of-babel-sticker-2.png",
+      "bookNumber": 32,
+      "bookTitle": "Tower of Babel",
+      "bookId": "tower-of-babel",
+      "bookUrl": "/book/tower-of-babel",
+      "amazonUrl": "https://www.amazon.com/dp/B0H344KNV1",
+      "rarity": "common"
+    },
+    {
+      "id": "tower-of-babel-sticker-3",
+      "name": "Tower of Babel Bright Wonder",
+      "image": "/play/stickers/tower-of-babel-sticker-3.png",
+      "bookNumber": 32,
+      "bookTitle": "Tower of Babel",
+      "bookId": "tower-of-babel",
+      "bookUrl": "/book/tower-of-babel",
+      "amazonUrl": "https://www.amazon.com/dp/B0H344KNV1",
       "rarity": "common"
     },
     {
       "id": "gideons-tiny-army-sticker",
-      "name": "Gideon Torch",
-      "image": "/play/stickers/gideons-tiny-army.png",
+      "name": "Gideon's Tiny Army Story Friend",
+      "image": "/play/stickers/gideons-tiny-army-sticker.png",
       "bookNumber": 33,
+      "bookTitle": "Gideon's Tiny Army",
+      "bookId": "gideons-tiny-army",
+      "bookUrl": "/book/gideons-tiny-army",
+      "amazonUrl": "https://www.amazon.com/dp/B0H373C86F",
+      "rarity": "common"
+    },
+    {
+      "id": "gideons-tiny-army-sticker-2",
+      "name": "Gideon's Tiny Army Faith Moment",
+      "image": "/play/stickers/gideons-tiny-army-sticker-2.png",
+      "bookNumber": 33,
+      "bookTitle": "Gideon's Tiny Army",
+      "bookId": "gideons-tiny-army",
+      "bookUrl": "/book/gideons-tiny-army",
+      "amazonUrl": "https://www.amazon.com/dp/B0H373C86F",
+      "rarity": "common"
+    },
+    {
+      "id": "gideons-tiny-army-sticker-3",
+      "name": "Gideon's Tiny Army Bright Wonder",
+      "image": "/play/stickers/gideons-tiny-army-sticker-3.png",
+      "bookNumber": 33,
+      "bookTitle": "Gideon's Tiny Army",
+      "bookId": "gideons-tiny-army",
+      "bookUrl": "/book/gideons-tiny-army",
+      "amazonUrl": "https://www.amazon.com/dp/B0H373C86F",
       "rarity": "common"
     },
     {
       "id": "nehemiah-builds-the-wall-sticker",
-      "name": "Wall Builder",
-      "image": "/play/stickers/nehemiah-builds-the-wall.png",
+      "name": "Nehemiah Builds the Wall Story Friend",
+      "image": "/play/stickers/nehemiah-builds-the-wall-sticker.png",
       "bookNumber": 34,
+      "bookTitle": "Nehemiah Builds the Wall",
+      "bookId": "nehemiah-builds-the-wall",
+      "bookUrl": "/book/nehemiah-builds-the-wall",
+      "amazonUrl": "https://www.amazon.com/dp/B0H3F92CBF",
+      "rarity": "common"
+    },
+    {
+      "id": "nehemiah-builds-the-wall-sticker-2",
+      "name": "Nehemiah Builds the Wall Faith Moment",
+      "image": "/play/stickers/nehemiah-builds-the-wall-sticker-2.png",
+      "bookNumber": 34,
+      "bookTitle": "Nehemiah Builds the Wall",
+      "bookId": "nehemiah-builds-the-wall",
+      "bookUrl": "/book/nehemiah-builds-the-wall",
+      "amazonUrl": "https://www.amazon.com/dp/B0H3F92CBF",
+      "rarity": "common"
+    },
+    {
+      "id": "nehemiah-builds-the-wall-sticker-3",
+      "name": "Nehemiah Builds the Wall Bright Wonder",
+      "image": "/play/stickers/nehemiah-builds-the-wall-sticker-3.png",
+      "bookNumber": 34,
+      "bookTitle": "Nehemiah Builds the Wall",
+      "bookId": "nehemiah-builds-the-wall",
+      "bookUrl": "/book/nehemiah-builds-the-wall",
+      "amazonUrl": "https://www.amazon.com/dp/B0H3F92CBF",
       "rarity": "common"
     },
     {
       "id": "jesus-walks-on-water-sticker",
-      "name": "Water Walk",
-      "image": "/play/stickers/jesus-walks-on-water.png",
+      "name": "Jesus Walks on Water Story Friend",
+      "image": "/play/stickers/jesus-walks-on-water-sticker.png",
       "bookNumber": 35,
+      "bookTitle": "Jesus Walks on Water",
+      "bookId": "jesus-walks-on-water",
+      "bookUrl": "/book/jesus-walks-on-water",
+      "amazonUrl": "https://www.amazon.com/dp/B0H3FNVRM5",
+      "rarity": "common"
+    },
+    {
+      "id": "jesus-walks-on-water-sticker-2",
+      "name": "Jesus Walks on Water Faith Moment",
+      "image": "/play/stickers/jesus-walks-on-water-sticker-2.png",
+      "bookNumber": 35,
+      "bookTitle": "Jesus Walks on Water",
+      "bookId": "jesus-walks-on-water",
+      "bookUrl": "/book/jesus-walks-on-water",
+      "amazonUrl": "https://www.amazon.com/dp/B0H3FNVRM5",
+      "rarity": "common"
+    },
+    {
+      "id": "jesus-walks-on-water-sticker-3",
+      "name": "Jesus Walks on Water Bright Wonder",
+      "image": "/play/stickers/jesus-walks-on-water-sticker-3.png",
+      "bookNumber": 35,
+      "bookTitle": "Jesus Walks on Water",
+      "bookId": "jesus-walks-on-water",
+      "bookUrl": "/book/jesus-walks-on-water",
+      "amazonUrl": "https://www.amazon.com/dp/B0H3FNVRM5",
       "rarity": "common"
     },
     {
       "id": "lazarus-comes-out-sticker",
-      "name": "Lazarus Hope",
-      "image": "/play/stickers/lazarus-comes-out.png",
+      "name": "Lazarus Comes Out Story Friend",
+      "image": "/play/stickers/lazarus-comes-out-sticker.png",
       "bookNumber": 36,
+      "bookTitle": "Lazarus Comes Out",
+      "bookId": "lazarus-comes-out",
+      "bookUrl": "/book/lazarus-comes-out",
+      "amazonUrl": "https://www.amazon.com/dp/B0H3FKBSMF",
+      "rarity": "common"
+    },
+    {
+      "id": "lazarus-comes-out-sticker-2",
+      "name": "Lazarus Comes Out Faith Moment",
+      "image": "/play/stickers/lazarus-comes-out-sticker-2.png",
+      "bookNumber": 36,
+      "bookTitle": "Lazarus Comes Out",
+      "bookId": "lazarus-comes-out",
+      "bookUrl": "/book/lazarus-comes-out",
+      "amazonUrl": "https://www.amazon.com/dp/B0H3FKBSMF",
+      "rarity": "common"
+    },
+    {
+      "id": "lazarus-comes-out-sticker-3",
+      "name": "Lazarus Comes Out Bright Wonder",
+      "image": "/play/stickers/lazarus-comes-out-sticker-3.png",
+      "bookNumber": 36,
+      "bookTitle": "Lazarus Comes Out",
+      "bookId": "lazarus-comes-out",
+      "bookUrl": "/book/lazarus-comes-out",
+      "amazonUrl": "https://www.amazon.com/dp/B0H3FKBSMF",
       "rarity": "common"
     },
     {

@@ -6,16 +6,19 @@ import StickerAlbum from "./StickerAlbum";
 import RewardCard from "./RewardCard";
 import {
   createShuffledTiles,
-  getDailyPuzzle,
-  getSticker,
+  getDailyActivities,
+  getPracticeActivities,
   getTomorrowSticker,
   isSolved,
   puzzleManifest,
+  type DailyActivity,
   type Difficulty,
 } from "@/lib/play/rotation";
 import {
-  awardSolvedDay,
+  awardDailyActivity,
+  awardPracticeStar,
   defaultSave,
+  hasSolvedActivity,
   readPlaySave,
   resetPlaySave,
   writePlaySave,
@@ -28,13 +31,20 @@ const difficultyOptions: { value: Difficulty; label: string; sublabel: string }[
   { value: "3x3", label: "Big Hearts", sublabel: "Ages 6-8" },
 ];
 
+type PlayMode = "daily" | "practice";
+
 export default function DailyPuzzle() {
-  const [daily, setDaily] = useState(() => getDailyPuzzle(new Date()));
+  const [dailyActivities, setDailyActivities] = useState(() => getDailyActivities(new Date()));
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [mode, setMode] = useState<PlayMode>("daily");
+  const [practiceActivity, setPracticeActivity] = useState<DailyActivity | null>(null);
+  const [rewardActivity, setRewardActivity] = useState<DailyActivity | null>(null);
+  const [rewardMode, setRewardMode] = useState<PlayMode>("daily");
   const [save, setSave] = useState<PlaySave>(defaultSave);
   const [hasLoadedSave, setHasLoadedSave] = useState(false);
   const [difficulty, setDifficulty] = useState<Difficulty>("2x2");
   const [tiles, setTiles] = useState<number[]>(() =>
-    createShuffledTiles(4, `${daily.puzzle.id}-${daily.dateKey}-2x2`)
+    createShuffledTiles(4, `${dailyActivities[0].activityKey}-2x2`)
   );
   const [selected, setSelected] = useState<number | null>(null);
   const [solved, setSolved] = useState(false);
@@ -44,23 +54,39 @@ export default function DailyPuzzle() {
   const [showTutorial, setShowTutorial] = useState(false);
   const [showPeekTip, setShowPeekTip] = useState(true);
   const [sparkles, setSparkles] = useState(false);
+  const [flyingSticker, setFlyingSticker] = useState<{ image: string; name: string } | null>(null);
   const chimeRef = useRef<HTMLAudioElement | null>(null);
 
+  const activeDailyActivity = dailyActivities[activeIndex] || dailyActivities[0];
+  const currentActivity = mode === "practice" && practiceActivity ? practiceActivity : activeDailyActivity;
+  const puzzle = currentActivity.activity;
+  const currentSticker = mode === "daily" ? currentActivity.sticker : undefined;
   const grid = difficulty === "2x2" ? 2 : 3;
   const tileCount = grid * grid;
-  const sticker = getSticker(daily.puzzle.stickerId);
+  const alreadySolvedCurrent =
+    mode === "daily" && hasSolvedActivity(save, currentActivity.dateKey, currentActivity.activityKey);
+  const boardSolved = solved || alreadySolvedCurrent;
+  const allDailySolved = dailyActivities.every((activity) =>
+    hasSolvedActivity(save, activity.dateKey, activity.activityKey)
+  );
   const tomorrowSticker = getTomorrowSticker(new Date());
-  const alreadySolvedToday = save.lastSolvedDate === daily.dateKey;
   const showDots = SHOW_CORRECT_DOTS[difficulty];
 
   useEffect(() => {
-    setDaily(getDailyPuzzle(new Date()));
+    const nextActivities = getDailyActivities(new Date());
+    setDailyActivities(nextActivities);
+    setActiveIndex(0);
+    setMode("daily");
+    setPracticeActivity(null);
+    setRewardActivity(null);
   }, []);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
-      const nextDaily = getDailyPuzzle(new Date());
-      setDaily((currentDaily) => (currentDaily.dateKey === nextDaily.dateKey ? currentDaily : nextDaily));
+      const nextActivities = getDailyActivities(new Date());
+      setDailyActivities((currentActivities) =>
+        currentActivities[0]?.dateKey === nextActivities[0]?.dateKey ? currentActivities : nextActivities
+      );
     }, 60000);
 
     return () => window.clearInterval(timer);
@@ -78,7 +104,7 @@ export default function DailyPuzzle() {
     image.onerror = () => {
       if (active) setImageFailed(true);
     };
-    image.src = daily.puzzle.image;
+    image.src = puzzle.image;
 
     if (image.complete && image.naturalWidth > 0) {
       setImageReady(true);
@@ -87,7 +113,7 @@ export default function DailyPuzzle() {
     return () => {
       active = false;
     };
-  }, [daily.puzzle.image]);
+  }, [puzzle.image]);
 
   useEffect(() => {
     const stored = readPlaySave();
@@ -101,18 +127,18 @@ export default function DailyPuzzle() {
     } catch {
       setShowTutorial(true);
     }
-  }, [daily.dateKey]);
+  }, [activeDailyActivity.dateKey]);
 
   useEffect(() => {
     if (!hasLoadedSave) return;
 
     setTiles(
-      solved
+      boardSolved
         ? Array.from({ length: tileCount }, (_, index) => index)
-        : createShuffledTiles(tileCount, `${daily.puzzle.id}-${daily.dateKey}-${difficulty}`)
+        : createShuffledTiles(tileCount, `${currentActivity.activityKey}-${difficulty}`)
     );
     setSelected(null);
-  }, [daily.dateKey, daily.puzzle.id, difficulty, hasLoadedSave, solved, tileCount]);
+  }, [boardSolved, currentActivity.activityKey, difficulty, hasLoadedSave, tileCount]);
 
   function dismissTutorial() {
     setShowTutorial(false);
@@ -134,18 +160,54 @@ export default function DailyPuzzle() {
     setSolved(false);
   }
 
+  function chooseDailyActivity(index: number) {
+    setMode("daily");
+    setPracticeActivity(null);
+    setActiveIndex(index);
+    setSolved(false);
+    setRewardActivity(dailyActivities[index]);
+    setRewardMode("daily");
+  }
+
+  function startPractice() {
+    const practicePool = getPracticeActivities(new Date(), save.playedDates);
+    const nextPractice = practicePool[save.practiceStars % practicePool.length];
+    setMode("practice");
+    setPracticeActivity(nextPractice);
+    setRewardActivity(null);
+    setRewardMode("practice");
+    setSolved(false);
+  }
+
   function finishPuzzle(nextTiles: number[]) {
     setTiles(nextTiles);
     setSolved(true);
     setSparkles(true);
+    setRewardActivity(currentActivity);
+    setRewardMode(mode);
     window.setTimeout(() => setSparkles(false), 1800);
 
     if (save.sound) {
       chimeRef.current?.play().catch(() => {});
     }
 
-    if (!alreadySolvedToday) {
-      updateSave(awardSolvedDay(save, daily.puzzle.stickerId, daily.dateKey, daily.isSunday));
+    if (mode === "practice") {
+      updateSave(awardPracticeStar(save));
+      return;
+    }
+
+    if (currentSticker && !alreadySolvedCurrent) {
+      setFlyingSticker({ image: currentSticker.image, name: currentSticker.name });
+      window.setTimeout(() => setFlyingSticker(null), 1200);
+      updateSave(
+        awardDailyActivity(
+          save,
+          currentActivity.activityKey,
+          currentSticker.id,
+          currentActivity.dateKey,
+          currentActivity.isSunday
+        )
+      );
     }
   }
 
@@ -164,7 +226,7 @@ export default function DailyPuzzle() {
   function handleTilePress(index: number) {
     dismissTutorial();
 
-    if (solved || peeking) return;
+    if (boardSolved || peeking) return;
 
     if (selected === null) {
       setSelected(index);
@@ -186,7 +248,7 @@ export default function DailyPuzzle() {
   function handleDrop(event: DragEvent<HTMLButtonElement>, index: number) {
     event.preventDefault();
     const from = Number(event.dataTransfer.getData("text/plain"));
-    if (!Number.isNaN(from) && from !== index && !solved) {
+    if (!Number.isNaN(from) && from !== index && !boardSolved) {
       swapTiles(from, index);
     }
   }
@@ -201,20 +263,28 @@ export default function DailyPuzzle() {
     const fresh = { ...defaultSave, difficulty };
     setSave(fresh);
     setSolved(false);
-    setTiles(createShuffledTiles(tileCount, `${daily.puzzle.id}-${daily.dateKey}-${difficulty}-reset`));
+    setMode("daily");
+    setPracticeActivity(null);
+    setRewardActivity(null);
+    setTiles(createShuffledTiles(tileCount, `${currentActivity.activityKey}-${difficulty}-reset`));
   }
 
   return (
     <div className="mx-auto grid max-w-7xl gap-5 px-3 pb-14 sm:px-6 lg:grid-cols-[minmax(0,1fr)_390px]">
-      <section className="rounded-3xl border border-white/80 bg-cream/85 p-3 shadow-md backdrop-blur-md sm:p-7">
+      <section className="rounded-3xl border border-white/80 bg-cream/85 p-3 shadow-md backdrop-blur-md sm:p-6">
         <div className="mb-2 flex flex-col gap-2 sm:mb-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
             <span className="rounded-full bg-cream-deep px-3 py-1.5 text-xs font-semibold text-chestnut-soft sm:px-4 sm:py-2 sm:text-sm">
-              Puzzle #{daily.dayIndex + 1}
+              Today&apos;s three stories
             </span>
             <span className="rounded-full bg-gold/20 px-3 py-1.5 text-xs font-semibold text-chestnut-soft sm:px-4 sm:py-2 sm:text-sm">
-              {daily.friendlyDate}
+              {activeDailyActivity.friendlyDate}
             </span>
+            {allDailySolved && (
+              <span className="rounded-full bg-white/75 px-3 py-1.5 text-xs font-bold text-terracotta sm:px-4 sm:py-2 sm:text-sm">
+                {"\u2726 \u2726 \u2726"}
+              </span>
+            )}
           </div>
 
           <div className="flex items-center gap-1.5 sm:gap-2">
@@ -236,7 +306,44 @@ export default function DailyPuzzle() {
           </div>
         </div>
 
-        <div className="mb-2 grid grid-cols-2 gap-1 rounded-full bg-white/50 p-1 sm:mb-4 sm:gap-3 sm:rounded-2xl sm:bg-transparent sm:p-0">
+        <div className="mb-3 grid grid-cols-3 gap-2">
+          {dailyActivities.map((activity, index) => {
+            const isActive = mode === "daily" && activeIndex === index;
+            const isComplete = hasSolvedActivity(save, activity.dateKey, activity.activityKey);
+
+            return (
+              <button
+                key={activity.activityKey}
+                type="button"
+                onClick={() => chooseDailyActivity(index)}
+                className={
+                  isActive
+                    ? "relative min-h-[5.4rem] overflow-hidden rounded-2xl border-2 border-gold bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-gold"
+                    : "relative min-h-[5.4rem] overflow-hidden rounded-2xl border border-white/80 bg-white/60 shadow-sm transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-gold"
+                }
+              >
+                <Image
+                  src={isComplete && activity.sticker ? activity.sticker.image : activity.activity.image}
+                  alt=""
+                  fill
+                  sizes="160px"
+                  className={isComplete ? "object-cover" : "scale-110 object-cover blur-[2px] brightness-90"}
+                />
+                <span className="absolute inset-0 bg-gradient-to-t from-chestnut/55 via-chestnut/10 to-transparent" />
+                <span className="absolute inset-x-2 bottom-2 text-left text-[11px] font-bold leading-tight text-cream sm:text-xs">
+                  {isComplete ? "Done" : activity.activity.bookTitle}
+                </span>
+                {isComplete && (
+                  <span className="absolute right-2 top-2 grid h-7 w-7 place-items-center rounded-full bg-gold text-sm font-black text-chestnut">
+                    ✓
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="mb-2 grid grid-cols-2 gap-1 rounded-full bg-white/50 p-1 sm:mb-4">
           {difficultyOptions.map((option) => (
             <button
               key={option.value}
@@ -244,12 +351,12 @@ export default function DailyPuzzle() {
               onClick={() => chooseDifficulty(option.value)}
               className={
                 difficulty === option.value
-                  ? "min-h-9 rounded-full border-2 border-gold bg-gold/20 px-2 py-1.5 text-center shadow-sm sm:min-h-14 sm:rounded-2xl sm:px-4 sm:py-3 sm:text-left"
-                  : "min-h-9 rounded-full border border-white/80 bg-white/55 px-2 py-1.5 text-center transition hover:bg-white/80 sm:min-h-14 sm:rounded-2xl sm:px-4 sm:py-3 sm:text-left"
+                  ? "min-h-9 rounded-full border-2 border-gold bg-gold/20 px-2 py-1.5 text-center shadow-sm sm:min-h-12 sm:px-4 sm:py-2"
+                  : "min-h-9 rounded-full border border-white/80 bg-white/55 px-2 py-1.5 text-center transition hover:bg-white/80 sm:min-h-12 sm:px-4 sm:py-2"
               }
             >
-              <span className="block font-display text-sm font-bold text-chestnut sm:text-lg">{option.label}</span>
-              <span className="hidden text-[11px] font-semibold text-chestnut-soft sm:block sm:text-sm">{option.sublabel}</span>
+              <span className="block font-display text-sm font-bold text-chestnut sm:text-base">{option.label}</span>
+              <span className="hidden text-[11px] font-semibold text-chestnut-soft sm:block">{option.sublabel}</span>
             </button>
           ))}
         </div>
@@ -273,49 +380,50 @@ export default function DailyPuzzle() {
                 </div>
               </div>
             )}
-            {imageReady && tiles.map((tile, index) => {
-              const row = Math.floor(tile / grid);
-              const col = tile % grid;
-              const correct = tile === index;
+            {imageReady &&
+              tiles.map((tile, index) => {
+                const row = Math.floor(tile / grid);
+                const col = tile % grid;
+                const correct = tile === index;
 
-              return (
-                <button
-                  key={`${tile}-${index}`}
-                  type="button"
-                  draggable={!solved}
-                  onDragStart={(event) => handleDragStart(event, index)}
-                  onDragOver={(event) => event.preventDefault()}
-                  onDrop={(event) => handleDrop(event, index)}
-                  onClick={() => handleTilePress(index)}
-                  className={
-                    solved
-                      ? "relative min-h-11 border-0 bg-cover bg-no-repeat transition-all duration-500"
-                      : selected === index
-                        ? "relative min-h-11 border border-cream bg-cover bg-no-repeat outline outline-4 outline-gold outline-offset-[-5px] transition"
-                        : "relative min-h-11 border border-cream bg-cover bg-no-repeat transition hover:brightness-105 focus:outline-none focus:ring-4 focus:ring-gold"
-                  }
-                  style={{
-                    backgroundImage: `url(${daily.puzzle.image})`,
-                    backgroundSize: `${grid * 100}% ${grid * 100}%`,
-                    backgroundPosition: `${(col / (grid - 1)) * 100}% ${(row / (grid - 1)) * 100}%`,
-                  }}
-                  aria-label={`Puzzle piece ${index + 1}`}
-                >
-                  {showDots && correct && !solved && (
-                    <span className="absolute right-2 top-2 h-3 w-3 rounded-full bg-sage shadow-sm" />
-                  )}
-                </button>
-              );
-            })}
+                return (
+                  <button
+                    key={`${tile}-${index}`}
+                    type="button"
+                    draggable={!boardSolved}
+                    onDragStart={(event) => handleDragStart(event, index)}
+                    onDragOver={(event) => event.preventDefault()}
+                    onDrop={(event) => handleDrop(event, index)}
+                    onClick={() => handleTilePress(index)}
+                    className={
+                      boardSolved
+                        ? "relative min-h-11 border-0 bg-cover bg-no-repeat transition-all duration-500"
+                        : selected === index
+                          ? "relative min-h-11 border border-cream bg-cover bg-no-repeat outline outline-4 outline-gold outline-offset-[-5px] transition"
+                          : "relative min-h-11 border border-cream bg-cover bg-no-repeat transition hover:brightness-105 focus:outline-none focus:ring-4 focus:ring-gold"
+                    }
+                    style={{
+                      backgroundImage: `url(${puzzle.image})`,
+                      backgroundSize: `${grid * 100}% ${grid * 100}%`,
+                      backgroundPosition: `${(col / (grid - 1)) * 100}% ${(row / (grid - 1)) * 100}%`,
+                    }}
+                    aria-label={`Puzzle piece ${index + 1}`}
+                  >
+                    {showDots && correct && !boardSolved && (
+                      <span className="absolute right-2 top-2 h-3 w-3 rounded-full bg-sage shadow-sm" />
+                    )}
+                  </button>
+                );
+              })}
           </div>
 
           {imageReady && peeking && (
             <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl border-4 border-cream bg-cream-deep">
-              <Image src={daily.puzzle.image} alt="" fill sizes="560px" className="object-cover" />
+              <Image src={puzzle.image} alt="" fill sizes="560px" className="object-cover" />
             </div>
           )}
 
-          {imageReady && showTutorial && !solved && (
+          {imageReady && showTutorial && !boardSolved && (
             <button
               type="button"
               onClick={dismissTutorial}
@@ -333,18 +441,21 @@ export default function DailyPuzzle() {
 
         <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm font-semibold text-chestnut-soft">
-            {selected === null
-              ? "Tap two pieces to make them trade places. Finish the picture to win a sticker!"
-              : "Now tap where it should go!"}
+            {mode === "practice"
+              ? "Practice puzzles give stars. Daily puzzles give stickers."
+              : selected === null
+                ? "Tap two pieces to make them trade places. Finish the picture to win this sticker!"
+                : "Now tap where it should go!"}
           </p>
           <div className="relative">
-            {showPeekTip && (
+            {showPeekTip && !boardSolved && (
               <span className="absolute bottom-full right-0 mb-2 w-44 rounded-2xl bg-chestnut px-3 py-2 text-xs font-semibold text-cream shadow-md">
                 Hold to see the finished picture.
               </span>
             )}
             <button
               type="button"
+              disabled={boardSolved}
               onMouseDown={() => {
                 setPeeking(true);
                 setShowPeekTip(false);
@@ -356,7 +467,7 @@ export default function DailyPuzzle() {
                 setShowPeekTip(false);
               }}
               onTouchEnd={() => setPeeking(false)}
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-terracotta px-5 py-3 text-sm font-semibold text-cream shadow-md transition hover:bg-chestnut focus:outline-none focus:ring-2 focus:ring-gold"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-terracotta px-5 py-3 text-sm font-semibold text-cream shadow-md transition hover:bg-chestnut focus:outline-none focus:ring-2 focus:ring-gold disabled:cursor-not-allowed disabled:opacity-50"
             >
               <span className="relative h-4 w-6 rounded-full border-2 border-cream" aria-hidden="true">
                 <span className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cream" />
@@ -367,17 +478,25 @@ export default function DailyPuzzle() {
         </div>
 
         <p className="mt-5 rounded-2xl bg-white/50 px-4 py-3 text-sm leading-relaxed text-chestnut-soft">
-          Today&apos;s picture: {daily.puzzle.caption}
+          {mode === "practice" ? "Practice picture" : `Story ${currentActivity.slotNumber}`}: {puzzle.caption}
         </p>
       </section>
 
       <div className="space-y-6">
-        {(solved || alreadySolvedToday) && (
+        {(rewardActivity || alreadySolvedCurrent) && (
           <RewardCard
-            puzzle={daily.puzzle}
-            sticker={sticker}
+            puzzle={(rewardActivity || currentActivity).activity}
+            sticker={rewardMode === "daily" ? (rewardActivity || currentActivity).sticker : undefined}
             tomorrowSticker={tomorrowSticker}
-            golden={Boolean(save.earned[daily.puzzle.stickerId]?.golden || daily.isSunday)}
+            golden={Boolean(
+              rewardMode === "daily" &&
+                (rewardActivity || currentActivity).sticker &&
+                (save.earned[(rewardActivity || currentActivity).sticker!.id]?.golden ||
+                  (rewardActivity || currentActivity).isSunday)
+            )}
+            mode={rewardMode}
+            allDailySolved={allDailySolved}
+            onPractice={allDailySolved ? startPractice : undefined}
           />
         )}
         <StickerAlbum stickers={puzzleManifest.stickers} save={save} />
@@ -406,6 +525,12 @@ export default function DailyPuzzle() {
       </div>
 
       <audio ref={chimeRef} src="/sounds/bird.mp3" preload="none" />
+
+      {flyingSticker && (
+        <div className="play-sticker-flight fixed z-[60] h-20 w-20 overflow-hidden rounded-full border-4 border-cream bg-white shadow-xl">
+          <Image src={flyingSticker.image} alt={flyingSticker.name} fill sizes="80px" className="object-cover" />
+        </div>
+      )}
     </div>
   );
 }

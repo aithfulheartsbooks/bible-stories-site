@@ -7,8 +7,11 @@ export type EarnedSticker = {
 };
 
 export type PlaySave = {
-  version: 1;
+  version: 2;
   earned: Record<string, EarnedSticker>;
+  solvedActivities: Record<string, string[]>;
+  playedDates: string[];
+  practiceStars: number;
   lastSolvedDate?: string;
   currentStreak: number;
   bestStreak: number;
@@ -18,14 +21,21 @@ export type PlaySave = {
 };
 
 export const defaultSave: PlaySave = {
-  version: 1,
+  version: 2,
   earned: {},
+  solvedActivities: {},
+  playedDates: [],
+  practiceStars: 0,
   currentStreak: 0,
   bestStreak: 0,
   totalSolved: 0,
   difficulty: "2x2",
   sound: false,
 };
+
+function unique(items: string[]) {
+  return [...new Set(items)];
+}
 
 export function readPlaySave(): PlaySave {
   try {
@@ -36,8 +46,11 @@ export function readPlaySave(): PlaySave {
     return {
       ...defaultSave,
       ...parsed,
-      version: 1,
+      version: 2,
       earned: parsed.earned || {},
+      solvedActivities: parsed.solvedActivities || {},
+      playedDates: unique(parsed.playedDates || (parsed.lastSolvedDate ? [parsed.lastSolvedDate] : [])),
+      practiceStars: Number(parsed.practiceStars || 0),
       difficulty: parsed.difficulty === "3x3" ? "3x3" : "2x2",
       sound: Boolean(parsed.sound),
     };
@@ -71,19 +84,31 @@ export function addDays(dateKey: string, days: number) {
   return `${year}-${month}-${day}`;
 }
 
-export function awardSolvedDay(
+export function hasSolvedActivity(save: PlaySave, dateKey: string, activityKey: string) {
+  return Boolean(save.solvedActivities[dateKey]?.includes(activityKey));
+}
+
+export function hasSolvedAnyToday(save: PlaySave, dateKey: string) {
+  return Boolean(save.solvedActivities[dateKey]?.length || save.lastSolvedDate === dateKey);
+}
+
+export function awardDailyActivity(
   save: PlaySave,
+  activityKey: string,
   stickerId: string,
   dateKey: string,
   golden: boolean
 ): PlaySave {
-  const alreadySolvedToday = save.lastSolvedDate === dateKey;
+  const solvedForDay = save.solvedActivities[dateKey] || [];
+  if (solvedForDay.includes(activityKey)) return save;
+
+  const firstSolveForDay = !hasSolvedAnyToday(save, dateKey);
   const yesterday = addDays(dateKey, -1);
-  const nextStreak = alreadySolvedToday
-    ? save.currentStreak
-    : save.lastSolvedDate === yesterday
+  const nextStreak = firstSolveForDay
+    ? save.lastSolvedDate === yesterday
       ? save.currentStreak + 1
-      : 1;
+      : 1
+    : save.currentStreak;
 
   const earned = {
     ...save.earned,
@@ -103,9 +128,23 @@ export function awardSolvedDay(
   return {
     ...save,
     earned,
+    solvedActivities: {
+      ...save.solvedActivities,
+      [dateKey]: [...solvedForDay, activityKey],
+    },
+    playedDates: unique([...save.playedDates, dateKey]),
     lastSolvedDate: dateKey,
     currentStreak: nextStreak,
     bestStreak: Math.max(save.bestStreak, nextStreak),
-    totalSolved: alreadySolvedToday ? save.totalSolved : save.totalSolved + 1,
+    totalSolved: save.totalSolved + 1,
   };
 }
+
+export function awardPracticeStar(save: PlaySave): PlaySave {
+  return {
+    ...save,
+    practiceStars: save.practiceStars + 1,
+  };
+}
+
+// TODO(v2): Add "Save my album" export/import codes for earned stickers with no personal data.
