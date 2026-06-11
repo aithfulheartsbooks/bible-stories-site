@@ -30,6 +30,7 @@ export default function StickerImage({ src, alt, sizes, className = "object-cove
       src={src}
       alt={alt}
       fill
+      unoptimized
       sizes={sizes}
       className={className}
       onError={() => setFailed(true)}
