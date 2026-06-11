@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type DragEvent } from "react";
 import Image from "next/image";
 import StickerAlbum from "./StickerAlbum";
 import RewardCard from "./RewardCard";
+import StickerImage from "./StickerImage";
 import {
   createShuffledTiles,
   getDailyActivities,
@@ -421,17 +422,21 @@ export default function DailyPuzzle() {
                     : "relative min-h-[5.4rem] overflow-hidden rounded-2xl border border-white/80 bg-white/60 shadow-sm transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-gold"
                 }
               >
-                <Image
-                  src={
-                    isComplete && activity.sticker
-                      ? activity.sticker.image
-                      : getPuzzleThumbnailSrc(activity.activity.image)
-                  }
-                  alt=""
-                  fill
-                  sizes="(max-width: 640px) 33vw, 160px"
-                  className={isComplete ? "object-cover" : "scale-110 object-cover blur-[2px] brightness-90"}
-                />
+                {isComplete && activity.sticker ? (
+                  <StickerImage
+                    src={activity.sticker.image}
+                    alt=""
+                    sizes="(max-width: 640px) 33vw, 160px"
+                  />
+                ) : (
+                  <Image
+                    src={getPuzzleThumbnailSrc(activity.activity.image)}
+                    alt=""
+                    fill
+                    sizes="(max-width: 640px) 33vw, 160px"
+                    className="scale-110 object-cover blur-[2px] brightness-90"
+                  />
+                )}
                 <span className="absolute inset-0 bg-gradient-to-t from-chestnut/55 via-chestnut/10 to-transparent" />
                 <span className="absolute inset-x-2 bottom-2 text-left text-[11px] font-bold leading-tight text-cream sm:text-xs">
                   {isComplete ? "Done" : activity.activity.bookTitle}
@@ -636,7 +641,7 @@ export default function DailyPuzzle() {
 
       {flyingSticker && (
         <div className="play-sticker-flight fixed z-[60] h-20 w-20 overflow-hidden rounded-full border-4 border-cream bg-white shadow-xl">
-          <Image src={flyingSticker.image} alt={flyingSticker.name} fill sizes="80px" className="object-cover" />
+          <StickerImage src={flyingSticker.image} alt={flyingSticker.name} sizes="80px" />
         </div>
       )}
     </div>

@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import Image from "next/image";
 import type { Puzzle, Sticker } from "@/lib/play/rotation";
+import StickerImage from "./StickerImage";
 
 type Props = {
   puzzle: Puzzle;
@@ -79,7 +79,7 @@ export default function RewardCard({
       <div className={sticker ? "grid gap-5 sm:grid-cols-[110px_1fr] sm:items-center" : "grid gap-4"}>
         {sticker && giftOpened && (
           <div className="play-sticker-pop relative mx-auto aspect-square w-28 overflow-hidden rounded-full border-4 border-cream bg-white shadow-lg">
-            <Image src={sticker.image} alt={sticker.name} fill sizes="112px" className="object-cover" />
+            <StickerImage src={sticker.image} alt={sticker.name} sizes="112px" />
             {golden && <span className="absolute inset-1 rounded-full border-4 border-gold" aria-hidden="true" />}
           </div>
         )}

@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import type { Sticker } from "@/lib/play/rotation";
 import type { PlaySave } from "@/lib/play/storage";
+import StickerImage from "./StickerImage";
 
 type Props = {
   stickers: Sticker[];
@@ -123,13 +123,7 @@ export default function StickerAlbum({ stickers, save }: Props) {
                 aria-label={earned ? `Open ${sticker.name}` : "Mystery sticker"}
               >
                 {earned ? (
-                  <Image
-                    src={sticker.image}
-                    alt={sticker.name}
-                    fill
-                    sizes="92px"
-                    className="object-cover"
-                  />
+                  <StickerImage src={sticker.image} alt={sticker.name} sizes="92px" />
                 ) : (
                   <span className="absolute inset-0 grid place-items-center bg-[radial-gradient(circle_at_35%_30%,rgba(255,255,255,0.6),rgba(138,91,67,0.28)_46%,rgba(82,50,39,0.42))] text-xl font-bold text-chestnut">
                     ?
@@ -182,13 +176,7 @@ export default function StickerAlbum({ stickers, save }: Props) {
                   onClick={() => setSelectedSticker(sticker)}
                   className="relative mx-auto mb-2 aspect-square w-full max-w-[92px] overflow-hidden rounded-full border-4 border-cream bg-white shadow-md transition hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gold"
                 >
-                  <Image
-                    src={sticker.image}
-                    alt={sticker.name}
-                    fill
-                    sizes="92px"
-                    className="object-cover"
-                  />
+                  <StickerImage src={sticker.image} alt={sticker.name} sizes="92px" />
                   <span className="absolute inset-1 rounded-full border-4 border-gold" aria-hidden="true" />
                 </button>
                 <p className="min-h-[2.5rem] text-xs font-semibold leading-tight text-chestnut-soft">
@@ -208,13 +196,7 @@ export default function StickerAlbum({ stickers, save }: Props) {
         >
           <div className="w-full max-w-sm rounded-3xl border border-white/80 bg-cream p-6 text-center shadow-xl">
             <div className="relative mx-auto aspect-square w-36 overflow-hidden rounded-full border-4 border-cream-deep bg-white shadow-md">
-              <Image
-                src={selectedSticker.image}
-                alt={selectedSticker.name}
-                fill
-                sizes="144px"
-                className="object-cover"
-              />
+              <StickerImage src={selectedSticker.image} alt={selectedSticker.name} sizes="144px" />
             </div>
             <h3 className="mt-4 font-display text-2xl font-bold text-chestnut">{selectedSticker.name}</h3>
             <p className="mt-2 text-sm font-semibold leading-relaxed text-chestnut-soft">
