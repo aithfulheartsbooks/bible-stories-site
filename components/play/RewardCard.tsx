@@ -50,19 +50,19 @@ export default function RewardCard({
             {puzzle.bookNumber}. Read the whole story together tonight.
           </p>
 
-          <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-5 grid gap-3 sm:grid-cols-2">
             <a
               href={puzzle.amazonUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center justify-center rounded-full bg-terracotta px-6 py-3 text-sm font-semibold text-cream shadow-md transition hover:scale-[1.02] hover:bg-chestnut"
+              className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-terracotta px-6 py-3.5 text-center text-sm font-semibold leading-snug text-cream shadow-md transition hover:scale-[1.02] hover:bg-chestnut"
             >
               Find the book on Amazon
             </a>
             {puzzle.coloringPageUrl && (
               <a
                 href={puzzle.coloringPageUrl}
-                className="inline-flex min-h-11 items-center justify-center rounded-full bg-cream-deep px-6 py-3 text-sm font-semibold text-chestnut-soft transition hover:bg-gold/25"
+                className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-cream-deep px-6 py-3.5 text-center text-sm font-semibold leading-snug text-chestnut-soft transition hover:bg-gold/25"
               >
                 Print the coloring page
               </a>
