@@ -40,11 +40,11 @@ type AudioWindow = Window &
   };
 
 const angelSpots = [
-  "left-4 top-24 sm:left-8 sm:top-28",
-  "right-5 top-28 sm:right-10 sm:top-32",
-  "left-5 top-[34rem] sm:left-8 sm:top-[33rem]",
-  "right-6 top-[31rem] sm:right-12 sm:top-[34rem]",
-  "left-1/2 top-20 -translate-x-1/2",
+  "left-4 top-[21rem] sm:left-8 sm:top-[23rem]",
+  "right-4 top-[24rem] sm:right-10 sm:top-[25rem]",
+  "left-5 top-[42rem] sm:left-8 sm:top-[41rem]",
+  "right-6 top-[39rem] sm:right-12 sm:top-[42rem]",
+  "left-1/2 top-[22rem] -translate-x-1/2 sm:top-[24rem]",
   "left-4 bottom-28 sm:left-10 sm:bottom-32",
   "right-4 bottom-36 sm:right-10 sm:bottom-40",
   "left-1/2 bottom-24 -translate-x-1/2",
@@ -363,12 +363,17 @@ export default function DailyPuzzle() {
       <button
         type="button"
         onClick={tapAngel}
-        className={`play-hidden-angel absolute z-20 h-12 w-12 overflow-hidden rounded-full border-2 border-cream bg-white/85 shadow-md transition hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gold sm:h-14 sm:w-14 ${hiddenAngelSpot} ${
+        className={`play-hidden-angel absolute z-20 grid h-12 w-12 place-items-center rounded-full border-2 border-cream bg-white/85 text-lg font-black text-terracotta shadow-md transition hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gold sm:h-14 sm:w-14 sm:text-xl ${hiddenAngelSpot} ${
           angelWiggle ? "play-angel-wiggle" : ""
         }`}
         aria-label="Hidden Angel"
       >
-        <Image src="/Faith_Rivers.png" alt="" fill sizes="56px" className="scale-[2.7] object-cover object-top" />
+        <span className="absolute -top-1 h-2.5 w-6 rounded-full border-2 border-gold/80" aria-hidden="true" />
+        <span className="absolute left-0 h-5 w-4 rounded-full bg-cream-deep/80" aria-hidden="true" />
+        <span className="absolute right-0 h-5 w-4 rounded-full bg-cream-deep/80" aria-hidden="true" />
+        <span className="relative font-display" aria-hidden="true">
+          A
+        </span>
       </button>
 
       <section className="rounded-3xl border border-white/80 bg-cream/85 p-3 shadow-md backdrop-blur-md sm:p-6">
