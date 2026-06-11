@@ -33,6 +33,22 @@ const difficultyOptions: { value: Difficulty; label: string; sublabel: string }[
 
 type PlayMode = "daily" | "practice";
 
+function getPuzzleThumbnailSrc(src: string) {
+  return src.replace("/play/puzzles/drive/", "/play/puzzles/thumbs/");
+}
+
+function getNewStoriesCountdown(now = new Date()) {
+  const midnight = new Date(now);
+  midnight.setDate(now.getDate() + 1);
+  midnight.setHours(0, 0, 0, 0);
+
+  const remainingMinutes = Math.max(0, Math.ceil((midnight.getTime() - now.getTime()) / 60000));
+  const hours = Math.floor(remainingMinutes / 60);
+  const minutes = remainingMinutes % 60;
+
+  return `${hours}h ${minutes}m`;
+}
+
 export default function DailyPuzzle() {
   const [dailyActivities, setDailyActivities] = useState(() => getDailyActivities(new Date()));
   const [activeIndex, setActiveIndex] = useState(0);
@@ -55,6 +71,7 @@ export default function DailyPuzzle() {
   const [showPeekTip, setShowPeekTip] = useState(true);
   const [sparkles, setSparkles] = useState(false);
   const [flyingSticker, setFlyingSticker] = useState<{ image: string; name: string } | null>(null);
+  const [newStoriesIn, setNewStoriesIn] = useState(() => getNewStoriesCountdown());
   const chimeRef = useRef<HTMLAudioElement | null>(null);
 
   const activeDailyActivity = dailyActivities[activeIndex] || dailyActivities[0];
@@ -87,8 +104,10 @@ export default function DailyPuzzle() {
       setDailyActivities((currentActivities) =>
         currentActivities[0]?.dateKey === nextActivities[0]?.dateKey ? currentActivities : nextActivities
       );
+      setNewStoriesIn(getNewStoriesCountdown());
     }, 60000);
 
+    setNewStoriesIn(getNewStoriesCountdown());
     return () => window.clearInterval(timer);
   }, []);
 
@@ -323,10 +342,14 @@ export default function DailyPuzzle() {
                 }
               >
                 <Image
-                  src={isComplete && activity.sticker ? activity.sticker.image : activity.activity.image}
+                  src={
+                    isComplete && activity.sticker
+                      ? activity.sticker.image
+                      : getPuzzleThumbnailSrc(activity.activity.image)
+                  }
                   alt=""
                   fill
-                  sizes="160px"
+                  sizes="(max-width: 640px) 33vw, 160px"
                   className={isComplete ? "object-cover" : "scale-110 object-cover blur-[2px] brightness-90"}
                 />
                 <span className="absolute inset-0 bg-gradient-to-t from-chestnut/55 via-chestnut/10 to-transparent" />
@@ -496,6 +519,7 @@ export default function DailyPuzzle() {
             )}
             mode={rewardMode}
             allDailySolved={allDailySolved}
+            newStoriesIn={newStoriesIn}
             onPractice={allDailySolved ? startPractice : undefined}
           />
         )}

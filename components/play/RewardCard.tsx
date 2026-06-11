@@ -10,6 +10,7 @@ type Props = {
   golden: boolean;
   mode?: "daily" | "practice";
   allDailySolved?: boolean;
+  newStoriesIn?: string;
   onPractice?: () => void;
 };
 
@@ -20,6 +21,7 @@ export default function RewardCard({
   golden,
   mode = "daily",
   allDailySolved = false,
+  newStoriesIn,
   onPractice,
 }: Props) {
   const isPractice = mode === "practice";
@@ -75,6 +77,9 @@ export default function RewardCard({
         <div className="mt-6 rounded-2xl bg-gold/20 p-4 text-center">
           <p className="font-display text-2xl font-bold text-chestnut">{"\u2726 \u2726 \u2726"}</p>
           <p className="mt-1 text-sm font-semibold text-chestnut-soft">Today&apos;s three stories are complete.</p>
+          {newStoriesIn && (
+            <p className="mt-2 text-sm font-bold text-terracotta">New stories in {newStoriesIn}</p>
+          )}
           {onPractice && (
             <button
               type="button"

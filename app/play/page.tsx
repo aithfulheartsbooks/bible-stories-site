@@ -13,6 +13,10 @@ export const metadata: Metadata = {
     description:
       "Solve today's three Bible story puzzles and collect color stickers from Bible Stories for Little Hearts.",
     type: "website",
+    url: "/play",
+  },
+  alternates: {
+    canonical: "/play",
   },
 };
 

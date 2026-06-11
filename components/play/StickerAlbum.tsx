@@ -13,9 +13,15 @@ type Props = {
 export default function StickerAlbum({ stickers, save }: Props) {
   const [selectedSticker, setSelectedSticker] = useState<Sticker | null>(null);
   const [wiggleId, setWiggleId] = useState<string | null>(null);
+  const [showAll, setShowAll] = useState(false);
   const storyStickers = stickers.filter((sticker) => sticker.rarity === "common");
   const bonusStickers = stickers.filter((sticker) => sticker.rarity === "golden" && save.earned[sticker.id]);
   const earnedCount = storyStickers.filter((sticker) => save.earned[sticker.id]).length;
+  const earnedStoryStickers = storyStickers.filter((sticker) => save.earned[sticker.id]);
+  const lockedStoryStickers = storyStickers.filter((sticker) => !save.earned[sticker.id]);
+  const visibleStoryStickers = showAll
+    ? storyStickers
+    : [...earnedStoryStickers, ...lockedStoryStickers.slice(0, 12)];
   const progress = storyStickers.length ? Math.round((earnedCount / storyStickers.length) * 100) : 0;
 
   function tapLocked(stickerId: string) {
@@ -56,7 +62,7 @@ export default function StickerAlbum({ stickers, save }: Props) {
       )}
 
       <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-4">
-        {storyStickers.map((sticker) => {
+        {visibleStoryStickers.map((sticker) => {
           const earned = save.earned[sticker.id];
 
           return (
@@ -99,6 +105,26 @@ export default function StickerAlbum({ stickers, save }: Props) {
           );
         })}
       </div>
+
+      {storyStickers.length > visibleStoryStickers.length && (
+        <button
+          type="button"
+          onClick={() => setShowAll(true)}
+          className="mt-6 inline-flex min-h-11 w-full items-center justify-center rounded-full bg-white/75 px-5 py-3 text-sm font-semibold text-chestnut-soft shadow-sm transition hover:bg-cream-deep"
+        >
+          Show all stickers
+        </button>
+      )}
+
+      {showAll && storyStickers.length > earnedStoryStickers.length + 12 && (
+        <button
+          type="button"
+          onClick={() => setShowAll(false)}
+          className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-full bg-cream-deep px-5 py-3 text-sm font-semibold text-chestnut-soft transition hover:bg-gold/25"
+        >
+          Show fewer stickers
+        </button>
+      )}
 
       {bonusStickers.length > 0 && (
         <>

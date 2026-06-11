@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fraunces, Quicksand } from "next/font/google";
 import AnalyticsScripts from "@/components/AnalyticsScripts";
 import "./globals.css";
@@ -53,9 +53,23 @@ export const metadata: Metadata = {
   other: {
     "p:domain_verify": "00b7e44b7c949bfae0fdb2abb0184a82",
   },
+  manifest: "/manifest.webmanifest",
+  icons: {
+    icon: "/icon.png",
+    apple: "/icons/play-corner-192.png",
+  },
+  appleWebApp: {
+    capable: true,
+    title: "Play Corner",
+    statusBarStyle: "default",
+  },
   alternates: {
     canonical: "/",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#FAF3E0",
 };
 
 export default function RootLayout({

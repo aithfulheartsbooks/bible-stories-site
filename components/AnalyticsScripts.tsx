@@ -9,9 +9,13 @@ const GA_MEASUREMENT_ID = "G-56F5YQWQE9";
 export default function AnalyticsScripts() {
   const pathname = usePathname();
   const showAnalytics = !(pathname === "/play" || pathname.startsWith("/play/"));
+  const showVercelAnalytics = pathname === "/play" || pathname.startsWith("/play/");
 
   return (
     <>
+      {showVercelAnalytics && (
+        <Script src="/_vercel/insights/script.js" strategy="afterInteractive" />
+      )}
       {showAnalytics && (
         <>
           <Script

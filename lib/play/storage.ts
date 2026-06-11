@@ -37,13 +37,31 @@ function unique(items: string[]) {
   return [...new Set(items)];
 }
 
+function todayDateKey() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function normalizeCurrentStreak(save: PlaySave) {
+  if (!save.lastSolvedDate || save.currentStreak <= 0) return save;
+
+  const today = todayDateKey();
+  const yesterday = addDays(today, -1);
+  if (save.lastSolvedDate === today || save.lastSolvedDate === yesterday) return save;
+
+  return { ...save, currentStreak: 0 };
+}
+
 export function readPlaySave(): PlaySave {
   try {
     const raw = window.localStorage.getItem(PLAY_STORAGE_KEY);
     if (!raw) return defaultSave;
 
     const parsed = JSON.parse(raw) as Partial<PlaySave>;
-    return {
+    return normalizeCurrentStreak({
       ...defaultSave,
       ...parsed,
       version: 2,
@@ -53,7 +71,7 @@ export function readPlaySave(): PlaySave {
       practiceStars: Number(parsed.practiceStars || 0),
       difficulty: parsed.difficulty === "3x3" ? "3x3" : "2x2",
       sound: Boolean(parsed.sound),
-    };
+    });
   } catch {
     return defaultSave;
   }
