@@ -55,8 +55,8 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.webmanifest",
   icons: {
-    icon: "/icon.png",
-    apple: "/icons/play-corner-192.png",
+    icon: "/icons/play-corner-192-v2.png",
+    apple: "/icons/apple-touch-icon-v2.png",
   },
   appleWebApp: {
     capable: true,
