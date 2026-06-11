@@ -15,6 +15,7 @@ export type Puzzle = {
   stickerId: string;
   stickerIds?: string[];
   caption: string;
+  memoryVerse?: string;
 };
 
 export type Sticker = {

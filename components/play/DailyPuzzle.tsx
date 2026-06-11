@@ -33,6 +33,22 @@ const difficultyOptions: { value: Difficulty; label: string; sublabel: string }[
 
 type PlayMode = "daily" | "practice";
 
+type AudioWindow = Window &
+  typeof globalThis & {
+    webkitAudioContext?: typeof AudioContext;
+  };
+
+const angelSpots = [
+  "left-4 top-24 sm:left-8 sm:top-28",
+  "right-5 top-28 sm:right-10 sm:top-32",
+  "left-5 top-[34rem] sm:left-8 sm:top-[33rem]",
+  "right-6 top-[31rem] sm:right-12 sm:top-[34rem]",
+  "left-1/2 top-20 -translate-x-1/2",
+  "left-4 bottom-28 sm:left-10 sm:bottom-32",
+  "right-4 bottom-36 sm:right-10 sm:bottom-40",
+  "left-1/2 bottom-24 -translate-x-1/2",
+];
+
 function getPuzzleThumbnailSrc(src: string) {
   return src.replace("/play/puzzles/drive/", "/play/puzzles/thumbs/");
 }
@@ -72,6 +88,7 @@ export default function DailyPuzzle() {
   const [sparkles, setSparkles] = useState(false);
   const [flyingSticker, setFlyingSticker] = useState<{ image: string; name: string } | null>(null);
   const [newStoriesIn, setNewStoriesIn] = useState(() => getNewStoriesCountdown());
+  const [angelWiggle, setAngelWiggle] = useState(false);
   const chimeRef = useRef<HTMLAudioElement | null>(null);
 
   const activeDailyActivity = dailyActivities[activeIndex] || dailyActivities[0];
@@ -88,6 +105,10 @@ export default function DailyPuzzle() {
   );
   const tomorrowSticker = getTomorrowSticker(new Date());
   const showDots = SHOW_CORRECT_DOTS[difficulty];
+  const hiddenAngelSpot = angelSpots[activeDailyActivity.dayIndex % angelSpots.length];
+  const dailyMemoryVerse =
+    dailyActivities.find((activity) => activity.activity.memoryVerse)?.activity.memoryVerse ||
+    "The Lord is good to all. - Psalm 145:9";
 
   useEffect(() => {
     const nextActivities = getDailyActivities(new Date());
@@ -173,6 +194,38 @@ export default function DailyPuzzle() {
     writePlaySave(nextSave);
   }
 
+  function playTone(kind: "pop" | "ding" | "giggle") {
+    if (!save.sound || typeof window === "undefined") return;
+
+    const audioWindow = window as AudioWindow;
+    const AudioContextClass = audioWindow.AudioContext || audioWindow.webkitAudioContext;
+    if (!AudioContextClass) return;
+
+    const context = new AudioContextClass();
+    const gain = context.createGain();
+    gain.connect(context.destination);
+
+    const tones =
+      kind === "giggle"
+        ? [620, 780, 660]
+        : kind === "ding"
+          ? [760, 980]
+          : [240];
+
+    tones.forEach((frequency, index) => {
+      const oscillator = context.createOscillator();
+      oscillator.type = kind === "pop" ? "triangle" : "sine";
+      oscillator.frequency.setValueAtTime(frequency, context.currentTime + index * 0.075);
+      oscillator.connect(gain);
+      oscillator.start(context.currentTime + index * 0.075);
+      oscillator.stop(context.currentTime + index * 0.075 + (kind === "pop" ? 0.08 : 0.12));
+    });
+
+    gain.gain.setValueAtTime(kind === "pop" ? 0.045 : 0.035, context.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 0.36);
+    window.setTimeout(() => context.close().catch(() => {}), 520);
+  }
+
   function chooseDifficulty(nextDifficulty: Difficulty) {
     setDifficulty(nextDifficulty);
     updateSave({ ...save, difficulty: nextDifficulty });
@@ -216,8 +269,6 @@ export default function DailyPuzzle() {
     }
 
     if (currentSticker && !alreadySolvedCurrent) {
-      setFlyingSticker({ image: currentSticker.image, name: currentSticker.name });
-      window.setTimeout(() => setFlyingSticker(null), 1200);
       updateSave(
         awardDailyActivity(
           save,
@@ -234,6 +285,12 @@ export default function DailyPuzzle() {
     const nextTiles = [...tiles];
     [nextTiles[first], nextTiles[second]] = [nextTiles[second], nextTiles[first]];
     setSelected(null);
+    playTone("pop");
+
+    const landedCorrectly = nextTiles[first] === first || nextTiles[second] === second;
+    if (landedCorrectly) {
+      window.setTimeout(() => playTone("ding"), 95);
+    }
 
     if (isSolved(nextTiles)) {
       finishPuzzle(nextTiles);
@@ -276,6 +333,18 @@ export default function DailyPuzzle() {
     updateSave({ ...save, sound: !save.sound });
   }
 
+  function tapAngel() {
+    setAngelWiggle(true);
+    playTone("giggle");
+    window.setTimeout(() => setAngelWiggle(false), 650);
+  }
+
+  function revealFlyingSticker(sticker?: { image: string; name: string }) {
+    if (!sticker) return;
+    setFlyingSticker({ image: sticker.image, name: sticker.name });
+    window.setTimeout(() => setFlyingSticker(null), 1200);
+  }
+
   function resetProgress() {
     if (!window.confirm("Start over and clear this sticker album on this device?")) return;
     resetPlaySave();
@@ -289,7 +358,18 @@ export default function DailyPuzzle() {
   }
 
   return (
-    <div className="mx-auto grid max-w-7xl gap-5 px-3 pb-14 sm:px-6 lg:grid-cols-[minmax(0,1fr)_390px]">
+    <div className="relative mx-auto grid max-w-7xl gap-5 px-3 pb-14 sm:px-6 lg:grid-cols-[minmax(0,1fr)_390px]">
+      <button
+        type="button"
+        onClick={tapAngel}
+        className={`play-hidden-angel absolute z-20 h-12 w-12 overflow-hidden rounded-full border-2 border-cream bg-white/85 shadow-md transition hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gold sm:h-14 sm:w-14 ${hiddenAngelSpot} ${
+          angelWiggle ? "play-angel-wiggle" : ""
+        }`}
+        aria-label="Hidden Angel"
+      >
+        <Image src="/Faith_Rivers.png" alt="" fill sizes="56px" className="scale-[2.7] object-cover object-top" />
+      </button>
+
       <section className="rounded-3xl border border-white/80 bg-cream/85 p-3 shadow-md backdrop-blur-md sm:p-6">
         <div className="mb-2 flex flex-col gap-2 sm:mb-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
@@ -520,7 +600,11 @@ export default function DailyPuzzle() {
             mode={rewardMode}
             allDailySolved={allDailySolved}
             newStoriesIn={newStoriesIn}
+            memoryVerse={dailyMemoryVerse}
             onPractice={allDailySolved ? startPractice : undefined}
+            onStickerReveal={() =>
+              revealFlyingSticker(rewardMode === "daily" ? (rewardActivity || currentActivity).sticker : undefined)
+            }
           />
         )}
         <StickerAlbum stickers={puzzleManifest.stickers} save={save} />
