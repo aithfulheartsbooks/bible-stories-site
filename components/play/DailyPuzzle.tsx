@@ -39,17 +39,6 @@ type AudioWindow = Window &
     webkitAudioContext?: typeof AudioContext;
   };
 
-const angelSpots = [
-  "left-4 top-[21rem] sm:left-8 sm:top-[23rem]",
-  "right-4 top-[24rem] sm:right-10 sm:top-[25rem]",
-  "left-5 top-[42rem] sm:left-8 sm:top-[41rem]",
-  "right-6 top-[39rem] sm:right-12 sm:top-[42rem]",
-  "left-1/2 top-[22rem] -translate-x-1/2 sm:top-[24rem]",
-  "left-4 bottom-28 sm:left-10 sm:bottom-32",
-  "right-4 bottom-36 sm:right-10 sm:bottom-40",
-  "left-1/2 bottom-24 -translate-x-1/2",
-];
-
 function getPuzzleThumbnailSrc(src: string) {
   return src.replace("/play/puzzles/drive/", "/play/puzzles/thumbs/");
 }
@@ -89,7 +78,6 @@ export default function DailyPuzzle() {
   const [sparkles, setSparkles] = useState(false);
   const [flyingSticker, setFlyingSticker] = useState<{ image: string; name: string } | null>(null);
   const [newStoriesIn, setNewStoriesIn] = useState(() => getNewStoriesCountdown());
-  const [angelWiggle, setAngelWiggle] = useState(false);
   const chimeRef = useRef<HTMLAudioElement | null>(null);
 
   const activeDailyActivity = dailyActivities[activeIndex] || dailyActivities[0];
@@ -106,7 +94,6 @@ export default function DailyPuzzle() {
   );
   const tomorrowSticker = getTomorrowSticker(new Date());
   const showDots = SHOW_CORRECT_DOTS[difficulty];
-  const hiddenAngelSpot = angelSpots[activeDailyActivity.dayIndex % angelSpots.length];
   const dailyMemoryVerse =
     dailyActivities.find((activity) => activity.activity.memoryVerse)?.activity.memoryVerse ||
     "The Lord is good to all. - Psalm 145:9";
@@ -334,12 +321,6 @@ export default function DailyPuzzle() {
     updateSave({ ...save, sound: !save.sound });
   }
 
-  function tapAngel() {
-    setAngelWiggle(true);
-    playTone("giggle");
-    window.setTimeout(() => setAngelWiggle(false), 650);
-  }
-
   function revealFlyingSticker(sticker?: { image: string; name: string }) {
     if (!sticker) return;
     setFlyingSticker({ image: sticker.image, name: sticker.name });
@@ -360,22 +341,6 @@ export default function DailyPuzzle() {
 
   return (
     <div className="relative mx-auto grid max-w-7xl gap-5 px-3 pb-14 sm:px-6 lg:grid-cols-[minmax(0,1fr)_390px]">
-      <button
-        type="button"
-        onClick={tapAngel}
-        className={`play-hidden-angel absolute z-20 grid h-12 w-12 place-items-center rounded-full border-2 border-cream bg-white/85 text-lg font-black text-terracotta shadow-md transition hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gold sm:h-14 sm:w-14 sm:text-xl ${hiddenAngelSpot} ${
-          angelWiggle ? "play-angel-wiggle" : ""
-        }`}
-        aria-label="Hidden Angel"
-      >
-        <span className="absolute -top-1 h-2.5 w-6 rounded-full border-2 border-gold/80" aria-hidden="true" />
-        <span className="absolute left-0 h-5 w-4 rounded-full bg-cream-deep/80" aria-hidden="true" />
-        <span className="absolute right-0 h-5 w-4 rounded-full bg-cream-deep/80" aria-hidden="true" />
-        <span className="relative font-display" aria-hidden="true">
-          A
-        </span>
-      </button>
-
       <section className="rounded-3xl border border-white/80 bg-cream/85 p-3 shadow-md backdrop-blur-md sm:p-6">
         <div className="mb-2 flex flex-col gap-2 sm:mb-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
