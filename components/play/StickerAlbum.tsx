@@ -22,7 +22,7 @@ const albumAvatars = [
 ];
 
 export default function StickerAlbum({ stickers, save }: Props) {
-  const [selectedSticker, setSelectedSticker] = useState<Sticker | null>(null);
+  const [selectedStickerId, setSelectedStickerId] = useState<string | null>(null);
   const [wiggleId, setWiggleId] = useState<string | null>(null);
   const [showAll, setShowAll] = useState(false);
   const [albumAvatar, setAlbumAvatar] = useState<string | null | undefined>(undefined);
@@ -36,6 +36,10 @@ export default function StickerAlbum({ stickers, save }: Props) {
     : [...earnedStoryStickers, ...lockedStoryStickers.slice(0, 12)];
   const progress = storyStickers.length ? Math.round((earnedCount / storyStickers.length) * 100) : 0;
   const selectedAvatar = albumAvatars.find((avatar) => avatar.id === albumAvatar);
+  const selectedSticker = selectedStickerId
+    ? stickers.find((sticker) => sticker.id === selectedStickerId) || null
+    : null;
+  const currentStreakLabel = `${save.currentStreak} ${save.currentStreak === 1 ? "day" : "days"} in a row`;
 
   useEffect(() => {
     try {
@@ -100,7 +104,7 @@ export default function StickerAlbum({ stickers, save }: Props) {
 
       {save.currentStreak > 0 && (
         <p className="mb-5 rounded-2xl bg-gold/20 px-4 py-3 text-sm font-semibold text-chestnut-soft">
-          {save.currentStreak} days in a row. Best streak: {save.bestStreak}.
+          {currentStreakLabel}. Best streak: {save.bestStreak}.
         </p>
       )}
 
@@ -112,7 +116,7 @@ export default function StickerAlbum({ stickers, save }: Props) {
             <div key={sticker.id} className="text-center">
               <button
                 type="button"
-                onClick={() => (earned ? setSelectedSticker(sticker) : tapLocked(sticker.id))}
+                onClick={() => (earned ? setSelectedStickerId(sticker.id) : tapLocked(sticker.id))}
                 className={
                   earned
                     ? "relative mx-auto mb-2 aspect-square w-full max-w-[92px] overflow-hidden rounded-full border-4 border-cream bg-white shadow-md transition hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gold"
@@ -173,7 +177,7 @@ export default function StickerAlbum({ stickers, save }: Props) {
               <div key={sticker.id} className="text-center">
                 <button
                   type="button"
-                  onClick={() => setSelectedSticker(sticker)}
+                  onClick={() => setSelectedStickerId(sticker.id)}
                   className="relative mx-auto mb-2 aspect-square w-full max-w-[92px] overflow-hidden rounded-full border-4 border-cream bg-white shadow-md transition hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gold"
                 >
                   <StickerImage src={sticker.image} alt={sticker.name} sizes="92px" />
@@ -224,7 +228,7 @@ export default function StickerAlbum({ stickers, save }: Props) {
               )}
               <button
                 type="button"
-                onClick={() => setSelectedSticker(null)}
+                onClick={() => setSelectedStickerId(null)}
                 className="inline-flex min-h-11 items-center justify-center rounded-full bg-white/75 px-5 py-3 text-sm font-semibold text-chestnut-soft transition hover:bg-white"
               >
                 Close

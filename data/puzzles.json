@@ -621,7 +621,7 @@
   "stickers": [
     {
       "id": "noah-and-gods-big-promise-sticker",
-      "name": "Noah and God's Big Promise Story Friend",
+      "name": "Ark Animal Friends",
       "image": "/play/stickers/noah-and-gods-big-promise-sticker.png",
       "bookNumber": 1,
       "bookTitle": "Noah and God's Big Promise",
@@ -654,7 +654,7 @@
     },
     {
       "id": "david-and-the-giant-sticker",
-      "name": "David and the Giant Story Friend",
+      "name": "Young David",
       "image": "/play/stickers/david-and-the-giant-sticker.png",
       "bookNumber": 2,
       "bookTitle": "David and the Giant",
@@ -687,7 +687,7 @@
     },
     {
       "id": "moses-and-the-red-sea-sticker",
-      "name": "Moses and the Red Sea Story Friend",
+      "name": "Red Sea Crossing",
       "image": "/play/stickers/moses-and-the-red-sea-sticker.png",
       "bookNumber": 3,
       "bookTitle": "Moses and the Red Sea",
@@ -720,7 +720,7 @@
     },
     {
       "id": "jonah-and-the-big-fish-sticker",
-      "name": "Jonah and the Big Fish Story Friend",
+      "name": "Big Fish Helper",
       "image": "/play/stickers/jonah-and-the-big-fish-sticker.png",
       "bookNumber": 4,
       "bookTitle": "Jonah and the Big Fish",
@@ -753,7 +753,7 @@
     },
     {
       "id": "daniel-and-the-lions-sticker",
-      "name": "Daniel and the Lions Story Friend",
+      "name": "Daniel's Lion",
       "image": "/play/stickers/daniel-and-the-lions-sticker.png",
       "bookNumber": 5,
       "bookTitle": "Daniel and the Lions",
@@ -786,7 +786,7 @@
     },
     {
       "id": "esther-the-brave-queen-sticker",
-      "name": "Esther the Brave Queen Story Friend",
+      "name": "Queen Esther",
       "image": "/play/stickers/esther-the-brave-queen-sticker.png",
       "bookNumber": 6,
       "bookTitle": "Esther the Brave Queen",
@@ -819,7 +819,7 @@
     },
     {
       "id": "the-christmas-story-sticker",
-      "name": "The Christmas Story Story Friend",
+      "name": "Bethlehem Travelers",
       "image": "/play/stickers/the-christmas-story-sticker.png",
       "bookNumber": 7,
       "bookTitle": "The Christmas Story",
@@ -852,7 +852,7 @@
     },
     {
       "id": "josephs-colorful-coat-sticker",
-      "name": "Joseph's Colorful Coat Story Friend",
+      "name": "Joseph's New Coat",
       "image": "/play/stickers/josephs-colorful-coat-sticker.png",
       "bookNumber": 8,
       "bookTitle": "Joseph's Colorful Coat",
@@ -885,7 +885,7 @@
     },
     {
       "id": "the-easter-story-sticker",
-      "name": "The Easter Story Story Friend",
+      "name": "Empty Tomb Friends",
       "image": "/play/stickers/the-easter-story-sticker.png",
       "bookNumber": 9,
       "bookTitle": "The Easter Story",
@@ -918,7 +918,7 @@
     },
     {
       "id": "ruth-and-naomi-sticker",
-      "name": "Ruth and Naomi Story Friend",
+      "name": "Ruth and Naomi",
       "image": "/play/stickers/ruth-and-naomi-sticker.png",
       "bookNumber": 10,
       "bookTitle": "Ruth and Naomi",
@@ -951,7 +951,7 @@
     },
     {
       "id": "the-birth-of-moses-sticker",
-      "name": "The Birth of Moses Story Friend",
+      "name": "Baby Moses' Family",
       "image": "/play/stickers/the-birth-of-moses-sticker.png",
       "bookNumber": 11,
       "bookTitle": "The Birth of Moses",
@@ -984,7 +984,7 @@
     },
     {
       "id": "solomon-and-wisdom-sticker",
-      "name": "Solomon and Wisdom Story Friend",
+      "name": "Wisdom Light",
       "image": "/play/stickers/solomon-and-wisdom-sticker.png",
       "bookNumber": 12,
       "bookTitle": "Solomon and Wisdom",
@@ -1017,7 +1017,7 @@
     },
     {
       "id": "elijah-and-the-still-small-voice-sticker",
-      "name": "Elijah and the Still Small Voice Story Friend",
+      "name": "Cave Messenger",
       "image": "/play/stickers/elijah-and-the-still-small-voice-sticker.png",
       "bookNumber": 13,
       "bookTitle": "Elijah and the Still Small Voice",
@@ -1050,7 +1050,7 @@
     },
     {
       "id": "jesus-calms-the-storm-sticker",
-      "name": "Jesus Calms the Storm Story Friend",
+      "name": "Storm-Calming Jesus",
       "image": "/play/stickers/jesus-calms-the-storm-sticker.png",
       "bookNumber": 14,
       "bookTitle": "Jesus Calms the Storm",
@@ -1083,7 +1083,7 @@
     },
     {
       "id": "the-creation-story-sticker",
-      "name": "The Creation Story Story Friend",
+      "name": "Sea Friends",
       "image": "/play/stickers/the-creation-story-sticker.png",
       "bookNumber": 15,
       "bookTitle": "The Creation Story",
@@ -1116,7 +1116,7 @@
     },
     {
       "id": "the-armor-of-god-sticker",
-      "name": "The Armor of God Story Friend",
+      "name": "Little Armor Bearer",
       "image": "/play/stickers/the-armor-of-god-sticker.png",
       "bookNumber": 16,
       "bookTitle": "The Armor of God",
@@ -1149,7 +1149,7 @@
     },
     {
       "id": "zacchaeus-sticker",
-      "name": "Zacchaeus Story Friend",
+      "name": "Sycamore Surprise",
       "image": "/play/stickers/zacchaeus-sticker.png",
       "bookNumber": 17,
       "bookTitle": "Zacchaeus",
@@ -1182,7 +1182,7 @@
     },
     {
       "id": "the-good-samaritan-sticker",
-      "name": "The Good Samaritan Story Friend",
+      "name": "Kind Traveler",
       "image": "/play/stickers/the-good-samaritan-sticker.png",
       "bookNumber": 18,
       "bookTitle": "The Good Samaritan",
@@ -1215,7 +1215,7 @@
     },
     {
       "id": "the-lost-sheep-sticker",
-      "name": "The Lost Sheep Story Friend",
+      "name": "Found Lamb",
       "image": "/play/stickers/the-lost-sheep-sticker.png",
       "bookNumber": 19,
       "bookTitle": "The Lost Sheep",
@@ -1248,7 +1248,7 @@
     },
     {
       "id": "the-feeding-of-the-5000-sticker",
-      "name": "The Feeding of the 5,000 Story Friend",
+      "name": "Lunch Basket Blessing",
       "image": "/play/stickers/the-feeding-of-the-5000-sticker.png",
       "bookNumber": 20,
       "bookTitle": "The Feeding of the 5,000",
@@ -1281,7 +1281,7 @@
     },
     {
       "id": "adam-and-eve-in-the-garden-sticker",
-      "name": "Adam and Eve in the Garden Story Friend",
+      "name": "Garden Children",
       "image": "/play/stickers/adam-and-eve-in-the-garden-sticker.png",
       "bookNumber": 21,
       "bookTitle": "Adam and Eve in the Garden",
@@ -1314,7 +1314,7 @@
     },
     {
       "id": "joshua-and-jericho-sticker",
-      "name": "Joshua and Jericho Story Friend",
+      "name": "Jericho Marchers",
       "image": "/play/stickers/joshua-and-jericho-sticker.png",
       "bookNumber": 22,
       "bookTitle": "Joshua and Jericho",
@@ -1347,7 +1347,7 @@
     },
     {
       "id": "the-fiery-furnace-sticker",
-      "name": "The Fiery Furnace Story Friend",
+      "name": "Brave Friends",
       "image": "/play/stickers/the-fiery-furnace-sticker.png",
       "bookNumber": 23,
       "bookTitle": "The Fiery Furnace",
@@ -1380,7 +1380,7 @@
     },
     {
       "id": "the-prodigal-son-sticker",
-      "name": "The Prodigal Son Story Friend",
+      "name": "Returning Son",
       "image": "/play/stickers/the-prodigal-son-sticker.png",
       "bookNumber": 24,
       "bookTitle": "The Prodigal Son",
@@ -1413,7 +1413,7 @@
     },
     {
       "id": "jesus-welcomes-children-sticker",
-      "name": "Jesus Welcomes Children Story Friend",
+      "name": "Children with Jesus",
       "image": "/play/stickers/jesus-welcomes-children-sticker.png",
       "bookNumber": 25,
       "bookTitle": "Jesus Welcomes Children",
@@ -1446,7 +1446,7 @@
     },
     {
       "id": "the-wedding-at-cana-sticker",
-      "name": "The Wedding at Cana Story Friend",
+      "name": "Cana Cup",
       "image": "/play/stickers/the-wedding-at-cana-sticker.png",
       "bookNumber": 26,
       "bookTitle": "The Wedding at Cana",
@@ -1479,7 +1479,7 @@
     },
     {
       "id": "hannahs-prayer-and-young-samuel-sticker",
-      "name": "Hannah's Prayer and Young Samuel Story Friend",
+      "name": "Young Samuel",
       "image": "/play/stickers/hannahs-prayer-and-young-samuel-sticker.png",
       "bookNumber": 27,
       "bookTitle": "Hannah's Prayer and Young Samuel",
@@ -1512,7 +1512,7 @@
     },
     {
       "id": "saul-becomes-paul-sticker",
-      "name": "Saul Becomes Paul Story Friend",
+      "name": "Paul the Messenger",
       "image": "/play/stickers/saul-becomes-paul-sticker.png",
       "bookNumber": 28,
       "bookTitle": "Saul Becomes Paul",
@@ -1545,7 +1545,7 @@
     },
     {
       "id": "paul-and-silas-in-prison-sticker",
-      "name": "Paul and Silas in Prison Story Friend",
+      "name": "Prison Praise",
       "image": "/play/stickers/paul-and-silas-in-prison-sticker.png",
       "bookNumber": 29,
       "bookTitle": "Paul and Silas in Prison",
@@ -1578,7 +1578,7 @@
     },
     {
       "id": "pentecost-the-holy-spirit-comes-sticker",
-      "name": "Pentecost: The Holy Spirit Comes Story Friend",
+      "name": "Praying Child",
       "image": "/play/stickers/pentecost-the-holy-spirit-comes-sticker.png",
       "bookNumber": 30,
       "bookTitle": "Pentecost: The Holy Spirit Comes",
@@ -1611,7 +1611,7 @@
     },
     {
       "id": "elisha-and-the-widows-oil-sticker",
-      "name": "Elisha and the Widow's Oil Story Friend",
+      "name": "Oil Jar Family",
       "image": "/play/stickers/elisha-and-the-widows-oil-sticker.png",
       "bookNumber": 31,
       "bookTitle": "Elisha and the Widow's Oil",
@@ -1644,7 +1644,7 @@
     },
     {
       "id": "tower-of-babel-sticker",
-      "name": "Tower of Babel Story Friend",
+      "name": "Scattered Builders",
       "image": "/play/stickers/tower-of-babel-sticker.png",
       "bookNumber": 32,
       "bookTitle": "Tower of Babel",
@@ -1677,7 +1677,7 @@
     },
     {
       "id": "gideons-tiny-army-sticker",
-      "name": "Gideon's Tiny Army Story Friend",
+      "name": "Quiet Hills",
       "image": "/play/stickers/gideons-tiny-army-sticker.png",
       "bookNumber": 33,
       "bookTitle": "Gideon's Tiny Army",
@@ -1710,7 +1710,7 @@
     },
     {
       "id": "nehemiah-builds-the-wall-sticker",
-      "name": "Nehemiah Builds the Wall Story Friend",
+      "name": "Wall Builder",
       "image": "/play/stickers/nehemiah-builds-the-wall-sticker.png",
       "bookNumber": 34,
       "bookTitle": "Nehemiah Builds the Wall",
@@ -1743,7 +1743,7 @@
     },
     {
       "id": "jesus-walks-on-water-sticker",
-      "name": "Jesus Walks on Water Story Friend",
+      "name": "Helping Hand",
       "image": "/play/stickers/jesus-walks-on-water-sticker.png",
       "bookNumber": 35,
       "bookTitle": "Jesus Walks on Water",
@@ -1776,7 +1776,7 @@
     },
     {
       "id": "lazarus-comes-out-sticker",
-      "name": "Lazarus Comes Out Story Friend",
+      "name": "Empty Tomb",
       "image": "/play/stickers/lazarus-comes-out-sticker.png",
       "bookNumber": 36,
       "bookTitle": "Lazarus Comes Out",
