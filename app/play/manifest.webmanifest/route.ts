@@ -1,7 +1,5 @@
-import type { MetadataRoute } from "next";
-
-export default function manifest(): MetadataRoute.Manifest {
-  return {
+export function GET() {
+  return Response.json({
     name: "Play Corner - Bible Stories for Little Hearts",
     short_name: "Play Corner",
     description: "Daily Bible story puzzles for kids from Bible Stories for Little Hearts.",
@@ -30,5 +28,5 @@ export default function manifest(): MetadataRoute.Manifest {
         purpose: "maskable",
       },
     ],
-  };
+  });
 }
