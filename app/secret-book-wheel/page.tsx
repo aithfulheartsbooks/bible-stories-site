@@ -9,6 +9,22 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
+  icons: {
+    icon: [
+      {
+        url: "/icons/play-corner-192-v2.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+    ],
+    apple: [
+      {
+        url: "/icons/play-corner-192-v2.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+    ],
+  },
   alternates: {
     canonical: "/secret-book-wheel",
   },

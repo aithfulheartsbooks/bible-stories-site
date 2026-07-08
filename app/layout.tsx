@@ -20,6 +20,22 @@ export const metadata: Metadata = {
   title: "Bible Stories for Little Hearts",
   description:
     "Warm, gentle retellings of the greatest Bible stories — beautifully illustrated picture books for children ages 3 to 8.",
+  icons: {
+    icon: [
+      {
+        url: "/icons/rainbow-favicon-192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+    ],
+    apple: [
+      {
+        url: "/icons/rainbow-favicon-192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+    ],
+  },
   keywords: [
     "Christian children's books",
     "Bible stories for kids",
@@ -52,16 +68,6 @@ export const metadata: Metadata = {
   },
   other: {
     "p:domain_verify": "00b7e44b7c949bfae0fdb2abb0184a82",
-  },
-  manifest: "/manifest.webmanifest",
-  icons: {
-    icon: "/icons/play-corner-192-v2.png",
-    apple: "/icons/apple-touch-icon-v2.png",
-  },
-  appleWebApp: {
-    capable: true,
-    title: "Play Corner",
-    statusBarStyle: "default",
   },
   alternates: {
     canonical: "/",
