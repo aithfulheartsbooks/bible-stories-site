@@ -10,22 +10,10 @@ export function GET() {
     theme_color: "#C1623F",
     icons: [
       {
-        src: "/icons/play-corner-192-v2.png",
+        src: "/icons/rainbow-favicon-192.png",
         sizes: "192x192",
         type: "image/png",
         purpose: "any",
-      },
-      {
-        src: "/icons/play-corner-512-v2.png",
-        sizes: "512x512",
-        type: "image/png",
-        purpose: "any",
-      },
-      {
-        src: "/icons/play-corner-maskable-512-v2.png",
-        sizes: "512x512",
-        type: "image/png",
-        purpose: "maskable",
       },
     ],
   });

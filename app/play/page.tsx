@@ -15,28 +15,6 @@ export const metadata: Metadata = {
     type: "website",
     url: "/play",
   },
-  manifest: "/play/manifest.webmanifest",
-  icons: {
-    icon: [
-      {
-        url: "/icons/play-corner-192-v2.png",
-        sizes: "192x192",
-        type: "image/png",
-      },
-    ],
-    apple: [
-      {
-        url: "/icons/apple-touch-icon-v2.png",
-        sizes: "192x192",
-        type: "image/png",
-      },
-    ],
-  },
-  appleWebApp: {
-    capable: true,
-    title: "Play Corner",
-    statusBarStyle: "default",
-  },
   alternates: {
     canonical: "/play",
   },
