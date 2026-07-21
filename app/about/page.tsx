@@ -99,6 +99,14 @@ export default function AboutPage() {
             >
               Find us on Pinterest
             </a>
+            <a
+              href="https://x.com/FaithfulHearts_"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full border border-terracotta/25 bg-cream/80 px-5 py-2.5 text-sm font-semibold text-chestnut-soft shadow-sm transition hover:border-terracotta hover:bg-terracotta hover:text-cream"
+            >
+              Follow on X
+            </a>
           </div>
 
           <a
