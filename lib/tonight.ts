@@ -71,4 +71,28 @@ export const BOOK_THEMES = Array.from(
   ),
 );
 
+export function kitForTheme(theme: string, limit = 3) {
+  const primary = availableBooks().filter((book) => book.theme === theme);
+  const rest = availableBooks().filter((book) => book.theme !== theme);
+  return [...primary, ...rest].slice(0, limit);
+}
+
+export function thisWeeksTheme(now = new Date()) {
+  const themes = BOOK_THEMES;
+  if (themes.length === 0) return "Love";
+  const start = new Date(now.getFullYear(), 0, 1);
+  const week = Math.floor((now.getTime() - start.getTime()) / (7 * 86_400_000));
+  return themes[((week % themes.length) + themes.length) % themes.length];
+}
+
+export function weekRangeLabel(now = new Date()) {
+  const start = new Date(now);
+  start.setHours(0, 0, 0, 0);
+  start.setDate(start.getDate() - start.getDay());
+  const end = new Date(start);
+  end.setDate(start.getDate() + 6);
+  const fmt = new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric" });
+  return `${fmt.format(start)} – ${fmt.format(end)}`;
+}
+
 export type { Book };

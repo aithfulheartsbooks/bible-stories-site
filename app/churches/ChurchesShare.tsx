@@ -2,9 +2,15 @@
 
 import { useState } from "react";
 
-export default function ChurchesShare({ theme }: { theme: string }) {
+export default function ChurchesShare({
+  theme,
+  weekLabel,
+}: {
+  theme: string;
+  weekLabel?: string;
+}) {
   const [copied, setCopied] = useState(false);
-  const caption = `Sunday school this week: ${theme}.\nA picture book kit for little hearts — paperbacks on Amazon.\nBible Stories for Little Hearts by Faith Rivers.\n#SundaySchool #ChristianChildrensBooks\nhttps://www.faithfulheartsbooks.com/churches?theme=${encodeURIComponent(theme)}`;
+  const caption = `This week's Sunday school kit${weekLabel ? ` (${weekLabel})` : ""}: ${theme}.\nThree picture books for little hearts — paperbacks on Amazon.\nBible Stories for Little Hearts by Faith Rivers.\n#SundaySchool #ChristianChildrensBooks\nhttps://www.faithfulheartsbooks.com/churches`;
 
   async function copyCaption() {
     try {
