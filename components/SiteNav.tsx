@@ -21,9 +21,6 @@ export default function SiteNav({ brandHref = "/" }: SiteNavProps) {
           <a className={linkClass} href="/">
             Home
           </a>
-          <a className={linkClass} href="/#books">
-            Books
-          </a>
           <a className={linkClass} href="/tonight">
             Tonight
           </a>
