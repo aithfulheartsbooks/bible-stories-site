@@ -2,6 +2,7 @@ import { books, type Book } from "@/app/books";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import SoundButton from "@/components/SoundButton";
+import BookPeek from "@/components/BookPeek";
 import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
 import type { Metadata } from "next";
@@ -1144,6 +1145,14 @@ export default function BookPage({ params }: { params: { slug: string } }) {
             </div>
 
             <p className="mb-7 text-base leading-relaxed text-chestnut-soft sm:text-lg">{book.blurb}</p>
+
+            <BookPeek
+              slug={book.slug}
+              title={book.title}
+              blurb={book.blurb}
+              amazonUrl={book.amazonUrl}
+              coverImage={book.coverImage}
+            />
 
             <div className="mb-8 grid gap-4 sm:grid-cols-3">
               {theme.icons.map((item, index) => (
