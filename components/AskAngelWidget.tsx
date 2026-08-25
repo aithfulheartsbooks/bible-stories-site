@@ -233,6 +233,7 @@ const widgetMarkup = String.raw`
         <div class="angel-msg-avatar">${angelIcon}</div>
         <div class="angel-bubble bot">
           Hello! I am Angel, your guide to <em>Bible Stories for Little Hearts</em>.<br><br>
+          Need a bedtime book? Open <strong>Tonight</strong>. Teaching Sunday school? Open <strong>Churches</strong>.<br><br>
           Tell me about your child, a Bible story, a theme, or something on the website, and I will help.
         </div>
       </div>
@@ -432,6 +433,8 @@ const widgetScript = String.raw`
       '- Always calculate newest/latest/new book from the highest available book number in the live book data. Do not rely on a manually written newest-book sentence.',
       '- Free Resources page: /free-resources. It includes printable resources such as coloring pages, memory verse posters, lesson packs, 5-day devotionals, bookmarks, and certificates when available.',
       '- Play page: /play. It is the Daily Story Puzzle for kids. Each local calendar day has three Bible story puzzle activities from the books. Children solve picture puzzles, earn color sticker rewards, collect them in a sticker album saved on that device, and can play practice puzzles after finishing the daily set. Practice gives stars, not new stickers or streak progress. The page is free and uses no accounts.',
+      '- Tonight page: /tonight. A new Bible picture book is featured every night after midnight in the visitor\'s local time. Families can read a 4-page bedtime peek, then buy the paperback on Amazon. If tonight\'s book is not the right mood, they can pick brave, cozy, curious, or needs a hug and get three matching books with sample pages. There is a Copy caption button for posting. Send bedtime / what-should-we-read-tonight questions here.',
+      '- Churches page: /churches. A weekly Sunday school and homeschool kit. Three picture books for this week\'s theme. The kit changes every Sunday. Teachers and families should order the paperbacks on Amazon, not by email. There is a Copy caption for sharing the kit. Send Sunday school, church, classroom, and homeschool questions here.',
       '- About page: /about. It introduces Faith Rivers and the heart behind the series.',
       '- Contact page: /contact. Families can reach the site there or use info@faithfulheartsbooks.com.',
       '- Newsletter signup: on the homepage for updates about new books and free printables.',
@@ -480,7 +483,9 @@ const widgetScript = String.raw`
       '- Always include the Amazon link when recommending a book if one exists; otherwise include the book page link.',
       '- Keep responses short and friendly because parents are busy.',
       '- Do not use Markdown heading syntax such as "#", "##", or "###". If you need a title, write it as plain text or bold text.',
-      '- Answer questions about website navigation, Series Map, Free Resources, Play, About, Contact, newsletter, and available books using WEBSITE KNOWLEDGE.',
+      '- Answer questions about website navigation, Series Map, Tonight, Churches, Free Resources, Play, About, Contact, newsletter, and available books using WEBSITE KNOWLEDGE.',
+      '- If a parent asks what to read tonight, at bedtime, or for a nightly story, send them to /tonight. Mention they can read a few sample pages, then buy the paperback on Amazon.',
+      '- If a teacher, church, Sunday school, or homeschool asks for a lesson or kit, send them to /churches and tell them to order the paperbacks on Amazon. Do not tell them to email for bulk orders.',
       '- Each book page may include a Sing Along YouTube video. If asked about songs, music, sing-along videos, or YouTube videos, answer from the Sing Along video fields in the live book list.',
       '- If a user asks for a book video, include the YouTube link when it exists and mention that the video is also embedded on that book page.',
       '- If asked about the Series Map, explain that it is biblical chronological order and mention Old Testament/New Testament grouping.',
@@ -503,6 +508,14 @@ const widgetScript = String.raw`
 
     if (/free resources|printable|coloring|lesson|devotional|bookmark|certificate/.test(q)) {
       return 'The **Free Resources** page has printable resources like coloring pages, memory verse posters, lesson packs, 5-day devotionals, bookmarks, and certificates when available. You can visit **/free-resources**.';
+    }
+
+    if (/tonight|bedtime|bed time|what to read|nightly story/.test(q)) {
+      return "**Tonight's story** is a new picture book every night. Open **/tonight**, read a few sample pages together, then buy the paperback on Amazon. After midnight a new book takes a turn.";
+    }
+
+    if (/church|sunday school|homeschool|home school|lesson kit|this week's kit/.test(q)) {
+      return "**Churches** has this week's Sunday school kit: three picture books for one theme. Open **/churches** and order the paperbacks on Amazon.";
     }
 
     if (/play|game|puzzle|sticker|album|practice|star|daily story/.test(q)) {
@@ -531,7 +544,7 @@ const widgetScript = String.raw`
       return 'I think **' + themeMatch.title + '** could be a lovely fit.' + (themeMatch.desc ? ' ' + themeMatch.desc : '') + ' [Find it on Amazon](' + (themeMatch.amazonUrl || themeMatch.bookUrl) + ')';
     }
 
-    return 'I can see **' + books.length + ' books** in the series. Ask me about a theme, the newest book, the Series Map, the Free Resources page, or the Play page.';
+    return 'I can see **' + books.length + ' books** in the series. Ask me about a theme, bedtime on **/tonight**, Sunday school on **/churches**, the newest book, the Series Map, Free Resources, or Play.';
   }
 
   function avatarSVG() {
@@ -565,7 +578,7 @@ const widgetScript = String.raw`
         const href = url.startsWith('www.') ? 'https://' + url : 'https://www.' + url;
         return prefix + buildLink(href, url);
       })
-      .replace(/(^|[\s>])(\/(?:play|about|contact|free-resources|book\/[a-z0-9-]+|newsletter\/thank-you)(?:[^\s<]*)?)/gi, function (match, prefix, path) {
+      .replace(/(^|[\s>])(\/(?:play|tonight|churches|about|contact|free-resources|book\/[a-z0-9-]+|newsletter\/thank-you)(?:[^\s<]*)?)/gi, function (match, prefix, path) {
         return prefix + buildLink(SITE_URL + path, path);
       })
       .replace(/\n/g, '<br>');
