@@ -3,10 +3,12 @@ import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
 import TonightClient from "./TonightClient";
 
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Tonight's Story | Bible Stories for Little Hearts",
   description:
-    "A new Bible picture book every night for ages 3–8. Open at bedtime, then buy the paperback on Amazon.",
+    "A new Bible picture book every night for ages 3–8. Read a few story pages, then buy the paperback on Amazon.",
   alternates: { canonical: "/tonight" },
 };
 
