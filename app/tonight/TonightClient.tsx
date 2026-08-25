@@ -17,7 +17,7 @@ import { peekFor } from "@/lib/peeks";
 const MOODS: { id: TonightMood; title: string; blurb: string }[] = [
   { id: "brave", title: "Brave and ready", blurb: "Giants, lions, and small people who trust God." },
   { id: "cozy", title: "Quiet and cozy", blurb: "Soft voices, still waters, stories that settle the room." },
-  { id: "curious", title: "Curious and wiggly", blurb: "Wonder, miracles, and \u201chow did God do that?\u201d" },
+  { id: "curious", title: "Curious and wiggly", blurb: "Wonder, miracles, and how did God do that?" },
   { id: "hug", title: "Needs a hug", blurb: "Lost sheep, welcome home, Jesus who does not give up." },
 ];
 
@@ -60,7 +60,7 @@ export default function TonightClient() {
   const peekPages = active ? peekFor(active.slug, active.blurb) : undefined;
 
   const caption = nightly
-    ? `Tonight's story: \u201c${nightly.title}.\u201d\nA new Bible picture book every night \u2014 ages 3\u20138.\nBible Stories for Little Hearts by Faith Rivers.\n#BibleStoriesForLittleHearts #ChristianChildrensBooks\nhttps://www.faithfulheartsbooks.com/tonight`
+    ? `Tonight's story: "${nightly.title}."\nA new Bible picture book every night - ages 3-8.\nBible Stories for Little Hearts by Faith Rivers.\n#BibleStoriesForLittleHearts #ChristianChildrensBooks\nhttps://www.faithfulheartsbooks.com/tonight`
     : `It's bedtime and nobody knows what to read.\nA new picture book every night.\nhttps://www.faithfulheartsbooks.com/tonight`;
 
   async function copyCaption() {
@@ -97,7 +97,7 @@ export default function TonightClient() {
             </div>
           ) : null}
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
-            Tonight \u00b7 {nightLabel}
+            Tonight - {nightLabel}
           </p>
           <h2 className="mt-3 font-display text-3xl font-bold text-chestnut sm:text-4xl">
             {nightly.title}
@@ -118,7 +118,7 @@ export default function TonightClient() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-full bg-terracotta px-6 py-3.5 text-sm font-semibold text-cream shadow-md transition hover:scale-105 hover:bg-chestnut"
               >
-                Find on Amazon \u2192
+                Find on Amazon
               </a>
             ) : null}
             <button
