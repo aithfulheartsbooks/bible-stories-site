@@ -11,6 +11,8 @@ import {
   type TonightMood,
 } from "@/lib/tonight";
 import BookCard from "@/components/BookCard";
+import PeekReader from "@/components/PeekReader";
+import { peekFor } from "@/lib/peeks";
 
 const MOODS: { id: TonightMood; title: string; blurb: string }[] = [
   { id: "brave", title: "Brave and ready", blurb: "Giants, lions, and small people who trust God." },
@@ -52,6 +54,8 @@ export default function TonightClient() {
     if (!mood || !lens) return [];
     return findTonight(mood, lens);
   }, [mood, lens]);
+
+  const peekPages = nightly ? peekFor(nightly.slug, nightly.blurb) : undefined;
 
   const caption = nightly
     ? `Tonight's story: \u201c${nightly.title}.\u201d\nA new Bible picture book every night \u2014 ages 3\u20138.\nBible Stories for Little Hearts by Faith Rivers.\n#BibleStoriesForLittleHearts #ChristianChildrensBooks\nhttps://www.faithfulheartsbooks.com/tonight`
@@ -108,6 +112,12 @@ export default function TonightClient() {
                 Find on Amazon \u2192
               </a>
             ) : null}
+            <a
+              href="#peek"
+              className="inline-flex items-center justify-center rounded-full border border-terracotta/25 bg-cream px-6 py-3.5 text-sm font-semibold text-chestnut-soft transition hover:border-terracotta hover:text-terracotta"
+            >
+              Read a few pages
+            </a>
             <Link
               href={`/book/${nightly.slug}`}
               className="inline-flex items-center justify-center rounded-full border border-terracotta/25 bg-cream px-6 py-3.5 text-sm font-semibold text-chestnut-soft transition hover:border-terracotta hover:text-terracotta"
@@ -116,13 +126,24 @@ export default function TonightClient() {
             </Link>
           </div>
           <p className="mt-4 text-sm text-chestnut-soft">
-            Tomorrow this page will hold a different story \u2014 every book takes a
+            This story is for {nightLabel}. After midnight, a new book takes a
             turn.
           </p>
         </section>
       ) : (
         <div className="h-80 rounded-3xl bg-cream/70" />
       )}
+
+      {nightly && peekPages ? (
+        <div className="mt-8">
+          <PeekReader
+            pages={peekPages}
+            title={nightly.title}
+            amazonUrl={nightly.amazonUrl}
+            image={nightly.coverImage}
+          />
+        </div>
+      ) : null}
 
       <div className="mt-8">
         {choosing ? (
