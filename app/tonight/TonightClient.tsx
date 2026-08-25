@@ -31,6 +31,7 @@ const LENSES: { id: TonightLens; title: string }[] = [
 
 export default function TonightClient() {
   const [nightly, setNightly] = useState<Book | null>(null);
+  const [reading, setReading] = useState<Book | null>(null);
   const [nightLabel, setNightLabel] = useState("");
   const [choosing, setChoosing] = useState(false);
   const [step, setStep] = useState(1);
@@ -55,7 +56,8 @@ export default function TonightClient() {
     return findTonight(mood, lens);
   }, [mood, lens]);
 
-  const peekPages = nightly ? peekFor(nightly.slug, nightly.blurb) : undefined;
+  const active = reading ?? nightly;
+  const peekPages = active ? peekFor(active.slug, active.blurb) : undefined;
 
   const caption = nightly
     ? `Tonight's story: \u201c${nightly.title}.\u201d\nA new Bible picture book every night \u2014 ages 3\u20138.\nBible Stories for Little Hearts by Faith Rivers.\n#BibleStoriesForLittleHearts #ChristianChildrensBooks\nhttps://www.faithfulheartsbooks.com/tonight`
@@ -69,6 +71,13 @@ export default function TonightClient() {
     } catch {
       setCopied(false);
     }
+  }
+
+  function readBook(book: Book) {
+    setReading(book);
+    window.requestAnimationFrame(() => {
+      document.getElementById("peek")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
   }
 
   return (
@@ -112,12 +121,13 @@ export default function TonightClient() {
                 Find on Amazon \u2192
               </a>
             ) : null}
-            <a
-              href="#peek"
+            <button
+              type="button"
+              onClick={() => readBook(nightly)}
               className="inline-flex items-center justify-center rounded-full border border-terracotta/25 bg-cream px-6 py-3.5 text-sm font-semibold text-chestnut-soft transition hover:border-terracotta hover:text-terracotta"
             >
               Read a few pages
-            </a>
+            </button>
             <Link
               href={`/book/${nightly.slug}`}
               className="inline-flex items-center justify-center rounded-full border border-terracotta/25 bg-cream px-6 py-3.5 text-sm font-semibold text-chestnut-soft transition hover:border-terracotta hover:text-terracotta"
@@ -134,13 +144,19 @@ export default function TonightClient() {
         <div className="h-80 rounded-3xl bg-cream/70" />
       )}
 
-      {nightly && peekPages ? (
+      {active && peekPages ? (
         <div className="mt-8">
+          {reading && nightly && reading.slug !== nightly.slug ? (
+            <p className="mb-3 text-sm font-semibold text-terracotta">
+              Sample pages from {reading.title}
+            </p>
+          ) : null}
           <PeekReader
+            key={active.slug}
             pages={peekPages}
-            title={nightly.title}
-            amazonUrl={nightly.amazonUrl}
-            image={nightly.coverImage}
+            title={active.title}
+            amazonUrl={active.amazonUrl}
+            image={active.coverImage}
           />
         </div>
       ) : null}
@@ -154,6 +170,7 @@ export default function TonightClient() {
               setMood(null);
               setLens(null);
               setStep(1);
+              setReading(null);
             }}
             className="rounded-full px-4 py-2 text-sm font-semibold text-chestnut-soft hover:text-terracotta"
           >
@@ -232,9 +249,21 @@ export default function TonightClient() {
               <h2 className="font-display text-3xl font-bold text-chestnut">
                 Three books for this mood
               </h2>
+              <p className="mt-2 text-sm text-chestnut-soft">
+                Tap Read a few pages to open that book's sample.
+              </p>
               <div className="mt-6 grid gap-5 sm:grid-cols-3">
                 {picks.map((book, index) => (
-                  <BookCard key={book.slug} book={book} index={index} />
+                  <div key={book.slug} className="flex flex-col">
+                    <BookCard book={book} index={index} />
+                    <button
+                      type="button"
+                      onClick={() => readBook(book)}
+                      className="mt-3 rounded-full border border-terracotta/25 bg-cream px-4 py-2.5 text-sm font-semibold text-chestnut-soft hover:border-terracotta hover:text-terracotta"
+                    >
+                      Read a few pages
+                    </button>
+                  </div>
                 ))}
               </div>
             </div>
