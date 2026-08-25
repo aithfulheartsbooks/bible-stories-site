@@ -103,12 +103,21 @@ export default function Home() {
           </div>
 
           <a
-            href="/play"
-            className="opacity-0 animate-fade-up mt-5 inline-flex rounded-full border border-gold/50 bg-cream/80 px-5 py-2.5 text-sm font-bold text-terracotta shadow-sm backdrop-blur transition hover:bg-terracotta hover:text-cream"
+            href="/tonight"
+            className="opacity-0 animate-fade-up mt-5 inline-flex rounded-full bg-terracotta px-6 py-3 text-sm font-bold text-cream shadow-md backdrop-blur transition hover:bg-chestnut"
             style={{ animationDelay: "0.65s" }}
           >
-            New! Play today&apos;s story puzzle &rarr;
+            Not sure what to read tonight?
           </a>
+          <div>
+            <a
+              href="/play"
+              className="opacity-0 animate-fade-up mt-4 inline-flex rounded-full border border-gold/50 bg-cream/80 px-5 py-2.5 text-sm font-bold text-terracotta shadow-sm backdrop-blur transition hover:bg-terracotta hover:text-cream"
+              style={{ animationDelay: "0.75s" }}
+            >
+              New! Play today's story puzzle &rarr;
+            </a>
+          </div>
         </div>
       </header>
 

@@ -23,6 +23,18 @@ export default function SiteNav({ brandHref = "/" }: SiteNavProps) {
           </a>
           <a
             className="whitespace-nowrap rounded-full px-2.5 py-1.5 hover:text-terracotta sm:px-3 sm:py-2"
+            href="/tonight"
+          >
+            Tonight
+          </a>
+          <a
+            className="whitespace-nowrap rounded-full px-2.5 py-1.5 hover:text-terracotta sm:px-3 sm:py-2"
+            href="/churches"
+          >
+            Churches
+          </a>
+          <a
+            className="whitespace-nowrap rounded-full px-2.5 py-1.5 hover:text-terracotta sm:px-3 sm:py-2"
             href="/free-resources"
           >
             Free Resources
