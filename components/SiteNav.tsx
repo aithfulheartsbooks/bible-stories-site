@@ -17,15 +17,12 @@ export default function SiteNav({ brandHref = "/" }: SiteNavProps) {
         >
           Bible Stories for Little Hearts
         </a>
-        <div className="flex flex-wrap items-center justify-center gap-x-0.5 gap-y-0">
+        <div className="flex flex-wrap items-center justify-center gap-x-0.5 gap-y-0 sm:justify-end">
           <a className={linkClass} href="/">
             Home
           </a>
           <a className={linkClass} href="/#books">
             Books
-          </a>
-          <a className={linkClass} href="/about">
-            About
           </a>
           <a className={linkClass} href="/tonight">
             Tonight
@@ -41,6 +38,9 @@ export default function SiteNav({ brandHref = "/" }: SiteNavProps) {
               Play
             </a>
           )}
+          <a className={linkClass} href="/about">
+            About
+          </a>
         </div>
       </div>
     </nav>
