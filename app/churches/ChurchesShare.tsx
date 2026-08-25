@@ -25,11 +25,14 @@ export default function ChurchesShare({
   return (
     <section className="mt-10 rounded-3xl border border-white/80 bg-cream/85 p-5 text-left shadow-sm sm:p-6">
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
-        For posting
+        Share with a teacher
       </p>
       <h2 className="mt-2 font-display text-2xl font-bold text-chestnut">
         Share this week's kit
       </h2>
+      <p className="mt-2 text-sm text-chestnut-soft">
+        Send this to a teacher, friend, or homeschool group.
+      </p>
       <p className="mt-3 whitespace-pre-wrap rounded-2xl bg-cream-deep/80 px-4 py-3 text-sm leading-relaxed text-chestnut-soft">
         {caption}
       </p>
