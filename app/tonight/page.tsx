@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
 import TonightClient from "./TonightClient";
@@ -39,6 +40,16 @@ export default function TonightPage() {
           Open this page at bedtime and a picture book is already waiting. It
           changes at midnight. Buy the paperback on Amazon.
         </p>
+        <div className="relative mx-auto mt-8 w-full max-w-xl overflow-hidden rounded-3xl border border-white/80 shadow-md">
+          <Image
+            src="/art/hero.jpg"
+            alt="A parent and child reading a picture book together at bedtime"
+            width={1792}
+            height={1008}
+            className="h-auto w-full object-cover"
+            priority
+          />
+        </div>
       </section>
 
       <div className="relative z-10">
