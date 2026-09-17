@@ -1,0 +1,6 @@
+- paragraph: A bedtime peek · 2 of 4
+- heading "Joseph's Colorful Coat" [level=2]
+- paragraph: Far from home
+- paragraph: They sent Joseph far away. The coat was gone. The home he knew was gone. But God had not gone.
+- button "← Back"
+- button "Next page →"

@@ -1,0 +1,42 @@
+{
+  "ok": true,
+  "checks": [
+    {
+      "name": "pid-alive",
+      "ok": true,
+      "detail": "pid 3660 is running"
+    },
+    {
+      "name": "home-html",
+      "ok": true,
+      "detail": "GET / -> 200"
+    },
+    {
+      "name": "tonight-html",
+      "ok": true,
+      "detail": "GET /tonight -> 200"
+    },
+    {
+      "name": "ask-angel-books",
+      "ok": true,
+      "detail": "count=36"
+    },
+    {
+      "name": "port-owner",
+      "ok": true,
+      "detail": "port 4173 answers HTTP 200 for launched pid 3660; ss/lsof did not report a listener"
+    }
+  ],
+  "instance": {
+    "pid": 3660,
+    "groupPid": 3660,
+    "port": 4173,
+    "host": "127.0.0.1",
+    "baseUrl": "http://127.0.0.1:4173",
+    "cwd": "/workspace",
+    "logPath": "/workspace/.cursor/skills/verify-bible-stories-site/.run/next.log",
+    "startedAt": "2026-09-17T20:51:24.677Z",
+    "command": "PORT=4173 npm run dev -- -H 127.0.0.1 -p 4173"
+  },
+  "baseUrl": "http://127.0.0.1:4173"
+}
