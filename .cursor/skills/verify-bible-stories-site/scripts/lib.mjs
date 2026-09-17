@@ -2,6 +2,7 @@ import { execFileSync, spawn } from "node:child_process";
 import {
   existsSync,
   mkdirSync,
+  openSync,
   readFileSync,
   rmSync,
   writeFileSync,
@@ -144,6 +145,7 @@ export function sameProcessGroup(pid, groupPid) {
 export function spawnDevServer({ port, host }) {
   ensureDir(RUN_DIR);
   writeFileSync(LOG_PATH, "");
+  const logFd = openSync(LOG_PATH, "a");
   const child = spawn("npm", ["run", "dev", "--", "-H", host, "-p", String(port)], {
     cwd: REPO_ROOT,
     env: {
@@ -153,18 +155,8 @@ export function spawnDevServer({ port, host }) {
       HOSTNAME: host,
     },
     detached: true,
-    stdio: ["ignore", "pipe", "pipe"],
+    stdio: ["ignore", logFd, logFd],
   });
-
-  const append = (chunk) => {
-    try {
-      writeFileSync(LOG_PATH, chunk, { flag: "a" });
-    } catch {
-      // ignore log write races during teardown
-    }
-  };
-  child.stdout?.on("data", append);
-  child.stderr?.on("data", append);
   child.unref();
 
   return {
@@ -300,19 +292,24 @@ export async function doctorChecks(instance = readInstance()) {
   }
 
   const listeners = listeningPids(instance.port);
-  if (listeners.length === 0) {
-    fail("port-owner", `nothing listening on ${instance.port}`);
-  } else if (
-    listeners.some(
-      (pid) => pid === instance.pid || pid === instance.groupPid || sameProcessGroup(pid, instance.groupPid),
-    )
-  ) {
-    pass("port-owner", `port ${instance.port} pids=${listeners.join(",")}`);
-  } else {
+  const ours = listeners.filter(
+    (pid) => pid === instance.pid || pid === instance.groupPid || sameProcessGroup(pid, instance.groupPid),
+  );
+  const homeOk = checks.some((check) => check.name === "home-html" && check.ok);
+  if (ours.length) {
+    pass("port-owner", `port ${instance.port} pids=${ours.join(",")}`);
+  } else if (listeners.length) {
     fail(
       "port-owner",
       `port ${instance.port} owned by pids ${listeners.join(",")}, not group ${instance.groupPid}`,
     );
+  } else if (homeOk && pidAlive(instance.pid)) {
+    pass(
+      "port-owner",
+      `port ${instance.port} answers HTTP 200 for launched pid ${instance.pid}; ss/lsof did not report a listener`,
+    );
+  } else {
+    fail("port-owner", `nothing listening on ${instance.port}`);
   }
 
   return {

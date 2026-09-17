@@ -29,12 +29,14 @@ export async function driveTonight({ baseUrl, evidenceDir, doctor }) {
     }
 
     await page.getByText(/Tonight -/).first().waitFor();
+    await featured.scrollIntoViewIfNeeded();
     await screenshot(page, evidenceDir, "02-tonight-featured.png");
 
     await page.getByRole("button", { name: "Read a few pages", exact: true }).click();
     const peek = page.locator("#peek");
     await peek.waitFor({ state: "visible" });
     await peek.getByText(/A bedtime peek · 1 of/).waitFor();
+    await peek.scrollIntoViewIfNeeded();
     await screenshot(page, evidenceDir, "03-peek-page-1.png");
 
     await page.getByRole("button", { name: "Next page →", exact: true }).click();
