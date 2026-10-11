@@ -16,6 +16,14 @@ export default function SiteFooter() {
           Follow on Instagram
         </a>
         <a
+          href="https://www.facebook.com/faithfulheartsbooks"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center rounded-full border border-terracotta/25 bg-cream/80 px-5 py-2.5 text-sm font-semibold text-chestnut-soft shadow-sm transition hover:border-terracotta hover:bg-terracotta hover:text-cream"
+        >
+          Follow on Facebook
+        </a>
+        <a
           href="https://www.pinterest.com/faithfulheartsbooks/"
           target="_blank"
           rel="noopener noreferrer"
