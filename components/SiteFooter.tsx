@@ -37,6 +37,12 @@ export default function SiteFooter() {
         >
           Contact Us
         </a>
+        <a
+          href="/privacy"
+          className="inline-flex items-center justify-center rounded-full border border-terracotta/25 bg-cream/80 px-5 py-2.5 text-sm font-semibold text-chestnut-soft shadow-sm transition hover:border-terracotta hover:bg-terracotta hover:text-cream"
+        >
+          Privacy Policy
+        </a>
       </div>
       <p className="mt-6 text-sm opacity-70">
         &copy; {new Date().getFullYear()} Bible Stories for Little Hearts. All
