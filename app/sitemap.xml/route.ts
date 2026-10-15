@@ -9,6 +9,7 @@ const urls = [
   { loc: `${baseUrl}/tonight`, changefreq: "daily", priority: "0.9" },
   { loc: `${baseUrl}/churches`, changefreq: "weekly", priority: "0.8" },
   { loc: `${baseUrl}/about`, changefreq: "monthly", priority: "0.7" },
+  { loc: `${baseUrl}/shop`, changefreq: "monthly", priority: "0.7" },
   { loc: `${baseUrl}/free-resources`, changefreq: "monthly", priority: "0.7" },
   { loc: `${baseUrl}/contact`, changefreq: "monthly", priority: "0.5" },
   ...books
