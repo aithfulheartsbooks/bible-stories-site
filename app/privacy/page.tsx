@@ -89,8 +89,9 @@ export default function PrivacyPage() {
                 Links to other sites
               </h2>
               <p>
-                Our book pages link to Amazon, which has its own privacy
-                policy.
+                Our book pages and Little Hearts Tees link to Amazon. We also
+                link to Instagram, Facebook, X (Twitter), and Pinterest. Those
+                sites are off-site, and each one has its own privacy policy.
               </p>
             </section>
 
