@@ -528,6 +528,10 @@ const widgetScript = String.raw`
       return '**Little Hearts Tees** by Faith Rivers are gentle Bible verse tees for little ones, sold on Amazon. Open **/shop** to see which designs are live.';
     }
 
+    if (/privacy|instagram|facebook|pinterest|twitter|social link|social media/.test(q)) {
+      return 'The **Privacy Policy** is at **/privacy**. It explains what this site collects. Social links are covered there too: Amazon, Instagram, Facebook, X (Twitter), and Pinterest are off-site, and each has its own privacy policy.';
+    }
+
     if (/how many|count|total|number of books/.test(q)) {
       return 'There are **' + books.length + ' books** currently available in the series.';
     }
