@@ -436,7 +436,9 @@ const widgetScript = String.raw`
       '- Tonight page: /tonight. A new Bible picture book is featured every night after midnight in the visitor\'s local time. Families can read a 4-page bedtime peek, then buy the paperback on Amazon. If tonight\'s book is not the right mood, they can pick brave, cozy, curious, or needs a hug and get three matching books with sample pages. There is a Copy caption button for posting. Send bedtime / what-should-we-read-tonight questions here.',
       '- Churches page: /churches. A weekly Sunday school and homeschool kit. Three picture books for this week\'s theme. The kit changes every Sunday. Teachers and families should order the paperbacks on Amazon, not by email. There is a Copy caption for sharing the kit. Send Sunday school, church, classroom, and homeschool questions here.',
       '- About page: /about. It introduces Faith Rivers and the heart behind the series.',
+      '- Shop page: /shop (Little Hearts Tees by Faith Rivers). Gentle Bible verse tees for little ones. Sold on Amazon. As of Oct 2026, Little Lamb of God (John 1:29) and God Keeps His Promises (Genesis 9:13) are live with Shop on Amazon buttons; other designs show Coming soon and go live over the following days. Some tees have a quiet Pair it with link to a matching book page. Send merch, tee, shirt, and apparel questions to /shop.',
       '- Contact page: /contact. Families can reach the site there or use info@faithfulheartsbooks.com.',
+      '- Privacy Policy page: /privacy. It explains what this site collects. Social links are covered there too: Amazon, Instagram, Facebook, X (Twitter), and Pinterest are off-site, and each has its own privacy policy.',
       '- Newsletter signup: on the homepage for updates about new books and free printables.',
       '',
       'SERIES MAP ORDER FROM LIVE BOOK DATA:',
@@ -483,7 +485,7 @@ const widgetScript = String.raw`
       '- Always include the Amazon link when recommending a book if one exists; otherwise include the book page link.',
       '- Keep responses short and friendly because parents are busy.',
       '- Do not use Markdown heading syntax such as "#", "##", or "###". If you need a title, write it as plain text or bold text.',
-      '- Answer questions about website navigation, Series Map, Tonight, Churches, Free Resources, Play, About, Contact, newsletter, and available books using WEBSITE KNOWLEDGE.',
+      '- Answer questions about website navigation, Series Map, Tonight, Churches, Free Resources, Play, Shop, About, Contact, Privacy, newsletter, and available books using WEBSITE KNOWLEDGE.',
       '- If a parent asks what to read tonight, at bedtime, or for a nightly story, send them to /tonight. Mention they can read a few sample pages, then buy the paperback on Amazon.',
       '- If a teacher, church, Sunday school, or homeschool asks for a lesson or kit, send them to /churches and tell them to order the paperbacks on Amazon. Do not tell them to email for bulk orders.',
       '- Each book page may include a Sing Along YouTube video. If asked about songs, music, sing-along videos, or YouTube videos, answer from the Sing Along video fields in the live book list.',
@@ -522,6 +524,14 @@ const widgetScript = String.raw`
       return '**The Daily Story Puzzle** is the free Play page at **/play**. Each day has three Bible story puzzles from the books. Kids solve the picture, earn color stickers for their album, and after the daily three are finished they can play practice puzzles for stars. Stickers are saved on that device, with no account needed.';
     }
 
+    if (/\b(?:shop|tees?|shirts?|merch(?:andise)?|apparel|clothing)\b/.test(q)) {
+      return '**Little Hearts Tees** by Faith Rivers are gentle Bible verse tees for little ones, sold on Amazon. Open **/shop** to see which designs are live.';
+    }
+
+    if (/privacy|instagram|facebook|pinterest|twitter|social link|social media/.test(q)) {
+      return 'The **Privacy Policy** is at **/privacy**. It explains what this site collects. Social links are covered there too: Amazon, Instagram, Facebook, X (Twitter), and Pinterest are off-site, and each has its own privacy policy.';
+    }
+
     if (/how many|count|total|number of books/.test(q)) {
       return 'There are **' + books.length + ' books** currently available in the series.';
     }
@@ -544,7 +554,7 @@ const widgetScript = String.raw`
       return 'I think **' + themeMatch.title + '** could be a lovely fit.' + (themeMatch.desc ? ' ' + themeMatch.desc : '') + ' [Find it on Amazon](' + (themeMatch.amazonUrl || themeMatch.bookUrl) + ')';
     }
 
-    return 'I can see **' + books.length + ' books** in the series. Ask me about a theme, bedtime on **/tonight**, Sunday school on **/churches**, the newest book, the Series Map, Free Resources, or Play.';
+    return 'I can see **' + books.length + ' books** in the series. Ask me about a theme, bedtime on **/tonight**, Sunday school on **/churches**, tees on **/shop**, the newest book, the Series Map, Free Resources, or Play.';
   }
 
   function avatarSVG() {
@@ -578,7 +588,7 @@ const widgetScript = String.raw`
         const href = url.startsWith('www.') ? 'https://' + url : 'https://www.' + url;
         return prefix + buildLink(href, url);
       })
-      .replace(/(^|[\s>])(\/(?:play|tonight|churches|about|contact|free-resources|book\/[a-z0-9-]+|newsletter\/thank-you)(?:[^\s<]*)?)/gi, function (match, prefix, path) {
+      .replace(/(^|[\s>])(\/(?:play|tonight|churches|shop|about|contact|privacy|free-resources|book\/[a-z0-9-]+|newsletter\/thank-you)(?:[^\s<]*)?)/gi, function (match, prefix, path) {
         return prefix + buildLink(SITE_URL + path, path);
       })
       .replace(/\n/g, '<br>');
