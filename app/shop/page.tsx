@@ -180,7 +180,7 @@ export default function ShopPage() {
                   </p>
                 ) : null}
 
-                <div className="mt-auto pt-5">
+                <div className="mt-auto flex justify-center pt-5 text-center">
                   {tee.amazonUrl ? (
                     <a
                       href={tee.amazonUrl}
