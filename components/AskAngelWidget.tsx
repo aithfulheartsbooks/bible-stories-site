@@ -1,3 +1,5 @@
+import { formatLiveTeeList } from "@/lib/shop-tees";
+
 const widgetStyles = String.raw`
   #ask-angel-btn {
     position: fixed;
@@ -436,7 +438,7 @@ const widgetScript = String.raw`
       '- Tonight page: /tonight. A new Bible picture book is featured every night after midnight in the visitor\'s local time. Families can read a 4-page bedtime peek, then buy the paperback on Amazon. If tonight\'s book is not the right mood, they can pick brave, cozy, curious, or needs a hug and get three matching books with sample pages. There is a Copy caption button for posting. Send bedtime / what-should-we-read-tonight questions here.',
       '- Churches page: /churches. A weekly Sunday school and homeschool kit. Three picture books for this week\'s theme. The kit changes every Sunday. Teachers and families should order the paperbacks on Amazon, not by email. There is a Copy caption for sharing the kit. Send Sunday school, church, classroom, and homeschool questions here.',
       '- About page: /about. It introduces Faith Rivers and the heart behind the series.',
-      '- Shop page: /shop (Little Hearts Tees by Faith Rivers). Gentle Bible verse tees for little ones. Sold on Amazon. As of Oct 2026, Little Lamb of God (John 1:29) and God Keeps His Promises (Genesis 9:13) are live with Shop on Amazon buttons; other designs show Coming soon and go live over the following days. Some tees have a quiet Pair it with link to a matching book page. Send merch, tee, shirt, and apparel questions to /shop.',
+      '- Shop page: /shop (Little Hearts Tees by Faith Rivers). Gentle Bible verse tees for little ones. Sold on Amazon. As of Oct 2026, __LIVE_TEES__ are live with Shop on Amazon buttons; other designs show Coming soon and go live over the following days. Some tees have a quiet Pair it with link to a matching book page. Send merch, tee, shirt, and apparel questions to /shop.',
       '- Contact page: /contact. Families can reach the site there or use info@faithfulheartsbooks.com.',
       '- Privacy Policy page: /privacy. It explains what this site collects. Social links are covered there too: Amazon, Instagram, Facebook, X (Twitter), and Pinterest are off-site, and each has its own privacy policy.',
       '- Newsletter signup: on the homepage for updates about new books and free printables.',
@@ -803,7 +805,7 @@ const widgetScript = String.raw`
     ];
   }
 })();
-`;
+`.replace("__LIVE_TEES__", formatLiveTeeList().replace(/\\/g, "\\\\").replace(/'/g, "\\'"));
 
 export default function AskAngelWidget() {
   return (
