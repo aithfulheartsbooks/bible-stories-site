@@ -37,6 +37,13 @@ export const tees: Tee[] = [
     amazonUrl: "https://amzn.to/3UvEoAQ",
   },
   {
+    name: "Born This Day a Saviour",
+    verse: "Luke 2:11",
+    image: "/shop/born-this-day-a-saviour.jpg",
+    alt: "Heather grey children's tee with a smiling lamb, a smiling star, and the words Born This Day a Saviour, Luke 2:11",
+    amazonUrl: "https://amzn.to/4z5orAr",
+  },
+  {
     name: "Jesus Loves Me",
     verse: "John 15:9",
     image: "/shop/03-bunny.png",
