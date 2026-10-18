@@ -40,7 +40,7 @@ export const tees: Tee[] = [
     name: "Born This Day a Saviour",
     verse: "Luke 2:11",
     image: "/shop/born-this-day-a-saviour.jpg",
-    alt: "Heather grey children's tee with a smiling lamb, a smiling star, and the words Born This Day a Saviour, Luke 2:11",
+    alt: "Heather grey children's tee with baby Jesus sleeping in a manger under a star and the words Born This Day a Saviour, Luke 2:11",
     amazonUrl: "https://amzn.to/4z5orAr",
   },
   {
