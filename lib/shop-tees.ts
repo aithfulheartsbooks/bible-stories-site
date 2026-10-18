@@ -44,6 +44,13 @@ export const tees: Tee[] = [
     amazonUrl: "https://amzn.to/4z5orAr",
   },
   {
+    name: "O Come Let Us Adore Him",
+    verse: "Luke 2:15",
+    image: "/shop/o-come-let-us-adore-him.jpg",
+    alt: "Light blue children's tee with a smiling lamb under a star and the words O Come Let Us Adore Him, Luke 2:15",
+    amazonUrl: "https://amzn.to/4dKggkq",
+  },
+  {
     name: "Jesus Loves Me",
     verse: "John 15:9",
     image: "/shop/03-bunny.png",
