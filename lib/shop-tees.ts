@@ -53,8 +53,9 @@ export const tees: Tee[] = [
   {
     name: "Jesus Loves Me",
     verse: "John 15:9",
-    image: "/shop/03-bunny.png",
-    alt: "Design preview of a children's tee with a bunny and the words Jesus Loves Me, John 15:9",
+    image: "/shop/jesus-loves-me.jpg",
+    alt: "White children's tee with a smiling lamb hugging a pink heart and the words Jesus Loves Me, John 15:9",
+    amazonUrl: "https://amzn.to/4eiFJ4E",
   },
   {
     name: "Fearfully and Wonderfully Made",
