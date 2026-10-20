@@ -60,8 +60,9 @@ export const tees: Tee[] = [
   {
     name: "Fearfully and Wonderfully Made",
     verse: "Psalm 139:14",
-    image: "/shop/04-bear.png",
-    alt: "Design preview of a children's tee with a bear and the words Fearfully and Wonderfully Made, Psalm 139:14",
+    image: "/shop/fearfully-and-wonderfully-made.jpg",
+    alt: "Yellow children's tee with a smiling teddy bear among flowers and the words Fearfully and Wonderfully Made, Psalm 139:14",
+    amazonUrl: "https://amzn.to/4jyy45U",
   },
   {
     name: "The Lord Is My Shepherd",
