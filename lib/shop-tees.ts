@@ -65,14 +65,11 @@ export const tees: Tee[] = [
     amazonUrl: "https://amzn.to/4jyy45U",
   },
   {
-    name: "The Lord Is My Shepherd",
-    verse: "Psalm 23:1",
-    image: "/shop/05-shepherd.png",
-    alt: "Design preview of a children's tee with a shepherd and the words The Lord Is My Shepherd, Psalm 23:1",
-    pair: {
-      href: "/book/david-and-the-giant",
-      title: "David and the Giant",
-    },
+    name: "Jesus Is My Shepherd",
+    verse: "John 10:14",
+    image: "/shop/jesus-is-my-shepherd.jpg",
+    alt: "Heather navy children's tee with a smiling lamb resting beside a shepherd's crook among flowers and the words Jesus Is My Shepherd, John 10:14",
+    amazonUrl: "https://link.amazon/B0g3PpEP1",
   },
   {
     name: "Two by Two",
