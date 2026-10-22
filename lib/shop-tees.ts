@@ -74,12 +74,9 @@ export const tees: Tee[] = [
   {
     name: "Two by Two",
     verse: "Genesis 7:9",
-    image: "/shop/06-ark.png",
-    alt: "Design preview of a children's tee with an ark and the words Two by Two, Genesis 7:9",
-    pair: {
-      href: "/book/noah-and-gods-big-promise",
-      title: "Noah and God's Big Promise",
-    },
+    image: "/shop/two-by-two.jpg",
+    alt: "White children's tee with two smiling giraffes and two smiling elephants in Noah's ark on the water and the words Two by Two, Genesis 7:9",
+    amazonUrl: "https://link.amazon/B05MZp2CI",
   },
   {
     name: "God Is With Me",
