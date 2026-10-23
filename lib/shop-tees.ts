@@ -79,6 +79,13 @@ export const tees: Tee[] = [
     amazonUrl: "https://link.amazon/B05MZp2CI",
   },
   {
+    name: "Joyful Heart",
+    verse: "Proverbs 17:22",
+    image: "/shop/joyful-heart.jpg",
+    alt: "Light blue children's tee with a smiling sunflower among little flowers and the words Joyful Heart, Proverbs 17:22",
+    amazonUrl: "https://link.amazon/B03PzlPmo",
+  },
+  {
     name: "God Is With Me",
     verse: "Joshua 1:9",
     image: "/shop/07-lion.png",
@@ -87,12 +94,6 @@ export const tees: Tee[] = [
       href: "/book/joshua-and-jericho",
       title: "Joshua and Jericho",
     },
-  },
-  {
-    name: "Joyful Heart",
-    verse: "Proverbs 17:22",
-    image: "/shop/08-sunflower.png",
-    alt: "Design preview of a children's tee with a sunflower and the words Joyful Heart, Proverbs 17:22",
   },
   {
     name: "Be Kind",
