@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Quicksand } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import AnalyticsScripts from "@/components/AnalyticsScripts";
 import "./globals.css";
 
@@ -88,6 +89,7 @@ export default function RootLayout({
       <body className="font-body">
         {children}
         <AnalyticsScripts />
+        <Analytics />
       </body>
     </html>
   );
