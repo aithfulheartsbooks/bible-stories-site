@@ -33,12 +33,12 @@ export default function AnalyticsScripts() {
           <Script id="amazon-click-tracking" strategy="afterInteractive">
             {`
               document.addEventListener('click', function (event) {
-                var link = event.target.closest && event.target.closest('a[href*="amazon.com"]');
+                var link = event.target.closest && event.target.closest('a[href*="amazon.com"], a[href*="amzn.to"], a[href*="link.amazon"]');
                 if (!link || typeof window.gtag !== 'function') return;
 
                 var params = new URLSearchParams(window.location.search);
                 var bookTitle =
-                  link.closest('article')?.querySelector('h3')?.textContent?.trim() ||
+                  link.closest('article')?.querySelector('h2, h3')?.textContent?.trim() ||
                   document.querySelector('h1')?.textContent?.trim() ||
                   document.title;
 
