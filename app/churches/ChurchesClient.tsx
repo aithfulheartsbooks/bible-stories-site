@@ -9,6 +9,7 @@ import {
   thisWeeksTheme,
   weekRangeLabel,
 } from "@/lib/tonight";
+import { ETSY_SHOP_URL } from "@/lib/etsy";
 import ChurchesShare from "./ChurchesShare";
 
 const AMAZON_AUTHOR = "https://www.amazon.com/stores/author/B0GYBZMYD2";
@@ -131,6 +132,23 @@ export default function ChurchesClient() {
           See the full series
         </Link>
       </p>
+
+      <section className="mt-10 rounded-3xl border border-white/80 bg-cream/85 p-5 text-center shadow-sm sm:p-6">
+        <h2 className="font-display text-2xl font-bold text-chestnut">
+          Printable lessons for your classroom
+        </h2>
+        <p className="mx-auto mt-3 max-w-lg text-chestnut-soft">
+          Ready-to-print Bible lessons and activity pages for Sunday school and home, from Faith Rivers.
+        </p>
+        <a
+          href={ETSY_SHOP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-6 inline-flex rounded-full bg-terracotta px-6 py-3.5 text-sm font-semibold text-cream shadow-md transition hover:bg-chestnut"
+        >
+          Visit our Etsy shop
+        </a>
+      </section>
     </div>
   );
 }
