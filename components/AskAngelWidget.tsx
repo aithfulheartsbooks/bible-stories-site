@@ -1,3 +1,4 @@
+import { ETSY_SHOP_URL } from "@/lib/etsy";
 import { formatLiveTeeList } from "@/lib/shop-tees";
 
 const widgetStyles = String.raw`
@@ -259,6 +260,7 @@ const widgetScript = String.raw`
 
   const WORKER_URL = 'https://ask-angel.ruhezhao.workers.dev';
   const SITE_URL = 'https://www.faithfulheartsbooks.com';
+  const ETSY_SHOP_URL = '${ETSY_SHOP_URL}';
 
   let booksCache = null;
   let isOpen = false;
@@ -437,6 +439,7 @@ const widgetScript = String.raw`
       '- Play page: /play. It is the Daily Story Puzzle for kids. Each local calendar day has three Bible story puzzle activities from the books. Children solve picture puzzles, earn color sticker rewards, collect them in a sticker album saved on that device, and can play practice puzzles after finishing the daily set. Practice gives stars, not new stickers or streak progress. The page is free and uses no accounts.',
       '- Tonight page: /tonight. A new Bible picture book is featured every night after midnight in the visitor\'s local time. Families can read a 4-page bedtime peek, then buy the paperback on Amazon. If tonight\'s book is not the right mood, they can pick brave, cozy, curious, or needs a hug and get three matching books with sample pages. There is a Copy caption button for posting. Send bedtime / what-should-we-read-tonight questions here.',
       '- Churches page: /churches. A weekly Sunday school and homeschool kit. Three picture books for this week\'s theme. The kit changes every Sunday. Teachers and families should order the paperbacks on Amazon, not by email. There is a Copy caption for sharing the kit. Send Sunday school, church, classroom, and homeschool questions here.',
+      '- Etsy shop (Faith Rivers Studio): ' + ETSY_SHOP_URL + '. Ready-to-print Bible lessons and activity pages for Sunday school and home. Mention this shop only when a visitor asks about printables, Sunday-school or classroom lessons, activity pages, or what else you sell. Then add one warm, plain sentence with the link. Example: We also have ready-to-print Bible lessons and activity pages on our Etsy shop: ' + ETSY_SHOP_URL + '. Do not mention this shop in unrelated answers. Do not quote prices, sales, or urgency. Do not say that anything on Etsy is free.',
       '- About page: /about. It introduces Faith Rivers and the heart behind the series.',
       '- Shop page: /shop (Little Hearts Tees by Faith Rivers). Gentle Bible verse tees for little ones. Sold on Amazon. As of Oct 2026, __LIVE_TEES__ are live with Shop on Amazon buttons; other designs show Coming soon and go live over the following days. Some tees have a quiet Pair it with link to a matching book page. Send merch, tee, shirt, and apparel questions to /shop.',
       '- Contact page: /contact. Families can reach the site there or use info@faithfulheartsbooks.com.',
@@ -490,6 +493,7 @@ const widgetScript = String.raw`
       '- Answer questions about website navigation, Series Map, Tonight, Churches, Free Resources, Play, Shop, About, Contact, Privacy, newsletter, and available books using WEBSITE KNOWLEDGE.',
       '- If a parent asks what to read tonight, at bedtime, or for a nightly story, send them to /tonight. Mention they can read a few sample pages, then buy the paperback on Amazon.',
       '- If a teacher, church, Sunday school, or homeschool asks for a lesson or kit, send them to /churches and tell them to order the paperbacks on Amazon. Do not tell them to email for bulk orders.',
+      '- Mention the Faith Rivers Studio Etsy shop only when the visitor asks about printables, Sunday-school or classroom lessons, activity pages, or what else you sell. In that case add one warm plain sentence and this markdown link: [Etsy shop](' + ETSY_SHOP_URL + '). Use this sentence: "We also have ready-to-print Bible lessons and activity pages on our Etsy shop." You may mention the Churches kit and Amazon paperbacks first when they asked about Sunday school, then that one Etsy sentence. Do not mention Etsy, Faith Rivers Studio, or that link on bedtime, tonight, which-book, theme, or any other unrelated answer. Those answers stay pointed at the books and Amazon, /tonight, or /churches. Never quote a price or a sale, and never call an Etsy item free.',
       '- Each book page may include a Sing Along YouTube video. If asked about songs, music, sing-along videos, or YouTube videos, answer from the Sing Along video fields in the live book list.',
       '- If a user asks for a book video, include the YouTube link when it exists and mention that the video is also embedded on that book page.',
       '- If asked about the Series Map, explain that it is biblical chronological order and mention Old Testament/New Testament grouping.',
@@ -501,6 +505,16 @@ const widgetScript = String.raw`
     ].join('\n');
   }
 
+  function asksAboutEtsyShop(q) {
+    return /printables?/.test(q) ||
+      /activity pages?/.test(q) ||
+      /classroom lessons?/.test(q) ||
+      /sunday[- ]school lessons?/.test(q) ||
+      /what else do you sell/.test(q) ||
+      /what else do you offer/.test(q) ||
+      /what else can i buy/.test(q);
+  }
+
   function localFallbackReply(question) {
     const books = normalizeBooks(booksCache || getBuiltInBooks());
     const newestBook = getNewestBook(books);
@@ -508,6 +522,20 @@ const widgetScript = String.raw`
 
     if (/series map|timeline|biblical order|chronological/.test(q)) {
       return 'The **Series Map** shows the books in biblical timeline order, grouped into Old Testament and New Testament. It uses each book reference, so new books can slot into the right Bible-story position automatically.';
+    }
+
+    if (asksAboutEtsyShop(q)) {
+      const etsySentence = 'We also have ready-to-print Bible lessons and activity pages on our [Etsy shop](' + ETSY_SHOP_URL + ').';
+      if (/church|sunday school|sunday-school|homeschool|home school|classroom/.test(q)) {
+        return "**Churches** has this week's Sunday school kit: three picture books for one theme. Open **/churches** and order the paperbacks on Amazon. " + etsySentence;
+      }
+      if (/what else/.test(q)) {
+        return 'Picture books in this series are on Amazon, and gentle Bible verse tees are on **/shop**. ' + etsySentence;
+      }
+      if (/free resources|coloring|devotional|bookmark|certificate/.test(q)) {
+        return 'The **Free Resources** page has printable resources like coloring pages, memory verse posters, lesson packs, 5-day devotionals, bookmarks, and certificates when available. You can visit **/free-resources**. ' + etsySentence;
+      }
+      return etsySentence;
     }
 
     if (/free resources|printable|coloring|lesson|devotional|bookmark|certificate/.test(q)) {
