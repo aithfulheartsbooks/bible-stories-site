@@ -1,3 +1,5 @@
+const { bookAliasRedirects } = require("./lib/book-aliases");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -25,6 +27,7 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      ...bookAliasRedirects(),
       {
         source: "/:path*",
         has: [
