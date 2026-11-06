@@ -218,6 +218,10 @@ function ResourceSectionGrid({ resources }: { resources: Resource[] }) {
   );
 }
 
+function isBookCoverPreview(src?: string) {
+  return Boolean(src?.startsWith("/covers/"));
+}
+
 function ResourceCard({
   resource,
   index,
@@ -226,6 +230,9 @@ function ResourceCard({
   index: number;
 }) {
   const icon = resource.icon ?? resourceIcons[resource.type] ?? "📄";
+  const coverSrc = isBookCoverPreview(resource.previewSrc)
+    ? resource.previewSrc
+    : undefined;
 
   return (
     <article
@@ -244,21 +251,11 @@ function ResourceCard({
         ) : null}
       </div>
 
-      <div className="mb-5 overflow-hidden rounded-2xl border border-[#E8D9BB] bg-[#FAF3E0] shadow-inner">
-        <div className="aspect-[3/4] border-t-4 border-[#C1623F] bg-gradient-to-br from-[#FFFDF8] via-[#FAF3E0] to-[#FCE7D3] p-6">
-          <div className="flex h-full flex-col items-center justify-center rounded-xl bg-white/40 p-6 text-center">
-            <ResourceThumbnail resource={resource} icon={icon} />
-
-            <div className="font-display text-xl font-bold leading-snug text-[#5C3D2E]">
-              {resource.title}
-            </div>
-
-            <div className="mt-4 text-xs font-semibold uppercase tracking-[0.22em] text-[#C1623F]/80">
-              {resource.type}
-            </div>
-          </div>
-        </div>
-      </div>
+      {coverSrc ? (
+        <BookCoverThumbnail resource={resource} icon={icon} src={coverSrc} />
+      ) : (
+        <PrintableMock resource={resource} icon={icon} />
+      )}
 
       <h3 className="font-display text-2xl font-bold leading-tight text-chestnut">
         {resource.title}
@@ -276,6 +273,66 @@ function ResourceCard({
         Download PDF
       </a>
     </article>
+  );
+}
+
+function PrintableMock({
+  resource,
+  icon,
+}: {
+  resource: Resource;
+  icon: string;
+}) {
+  return (
+    <div className="mb-5 overflow-hidden rounded-2xl border border-[#E8D9BB] bg-[#FAF3E0] shadow-inner">
+      <div className="aspect-[3/4] border-t-4 border-[#C1623F] bg-gradient-to-br from-[#FFFDF8] via-[#FAF3E0] to-[#FCE7D3] p-6">
+        <div className="flex h-full flex-col items-center justify-center rounded-xl bg-white/40 p-6 text-center">
+          <ResourceThumbnail resource={resource} icon={icon} />
+
+          <div className="font-display text-xl font-bold leading-snug text-[#5C3D2E]">
+            {resource.title}
+          </div>
+
+          <div className="mt-4 text-xs font-semibold uppercase tracking-[0.22em] text-[#C1623F]/80">
+            {resource.type}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function BookCoverThumbnail({
+  resource,
+  icon,
+  src,
+}: {
+  resource: Resource;
+  icon: string;
+  src: string;
+}) {
+  const [imageFailed, setImageFailed] = useState(false);
+
+  if (imageFailed) {
+    return (
+      <PrintableMock
+        resource={{ ...resource, previewSrc: undefined, previewAlt: undefined }}
+        icon={icon}
+      />
+    );
+  }
+
+  return (
+    <div className="mb-5 overflow-hidden rounded-2xl border border-[#E8D9BB] bg-[#FAF3E0] shadow-inner">
+      <div className="relative aspect-[3/4] overflow-hidden border-t-4 border-[#C1623F]">
+        <img
+          src={src}
+          alt={resource.previewAlt ?? resource.title}
+          onError={() => setImageFailed(true)}
+          className="absolute inset-0 h-full w-full object-cover object-top"
+        />
+      </div>
+    </div>
   );
 }
 
