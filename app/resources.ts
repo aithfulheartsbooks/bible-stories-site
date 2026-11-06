@@ -17,6 +17,7 @@ type BookResourceMeta = {
   number: string;
   title: string;
   resourceSlug: string;
+  coverImage?: string;
 };
 
 type PerBookResourceType = {
@@ -25,6 +26,7 @@ type PerBookResourceType = {
   suffix: string;
   previewSuffix?: string;
   previewFolder?: string;
+  useBookCover?: boolean;
   section: string;
   groupLabel?: string;
   titleTemplate: string;
@@ -126,6 +128,7 @@ const publishedBookResources: BookResourceMeta[] = books
   .map((book) => ({
     number: book.number,
     title: book.title,
+    coverImage: book.coverImage,
     resourceSlug:
       coloringPageSlugsByBook[book.number] ??
       book.slug.replace(/^the-feeding-of-the-/, "feeding-the-"),
@@ -136,6 +139,7 @@ const perBookResourceTypes: PerBookResourceType[] = [
     type: "Activity Sheet",
     icon: "✏️",
     suffix: "activity-sheet",
+    useBookCover: true,
     section: "Family Printables",
     groupLabel: "Per-Story Activity Sheets",
     titleTemplate: "{title} Activity Sheet",
@@ -146,6 +150,7 @@ const perBookResourceTypes: PerBookResourceType[] = [
     type: "Poster",
     icon: "🖼️",
     suffix: "verse-poster",
+    useBookCover: true,
     section: "Memory Verse Posters",
     titleTemplate: "{title} Memory Verse Poster",
     descriptionTemplate:
@@ -155,6 +160,7 @@ const perBookResourceTypes: PerBookResourceType[] = [
     type: "Lesson Pack",
     icon: "📋",
     suffix: "lesson-pack",
+    useBookCover: true,
     section: "Sunday School Lesson Packs",
     titleTemplate: "{title} Lesson Pack",
     descriptionTemplate:
@@ -164,6 +170,7 @@ const perBookResourceTypes: PerBookResourceType[] = [
     type: "Devotional",
     icon: "❤️",
     suffix: "devotional",
+    useBookCover: true,
     section: "5-Day Family Devotionals",
     titleTemplate: "{title} 5-Day Devotional",
     descriptionTemplate:
@@ -173,6 +180,7 @@ const perBookResourceTypes: PerBookResourceType[] = [
     type: "Sequencing Cards",
     icon: "🃏",
     suffix: "sequencing-cards",
+    useBookCover: true,
     section: "Story Sequencing Cards",
     titleTemplate: "{title} Sequencing Cards",
     descriptionTemplate:
@@ -194,25 +202,38 @@ function fillTemplate(template: string, book: BookResourceMeta) {
   return template.replace(/{title}/g, book.title);
 }
 
-function generatePerBookResources(resourceType: PerBookResourceType) {
-  return publishedBookResources.map((book) => ({
-    title: fillTemplate(resourceType.titleTemplate, book),
-    type: resourceType.type,
-    icon: resourceType.icon,
-    book: book.number,
-    section: resourceType.section,
-    groupLabel: resourceType.groupLabel,
-    description: fillTemplate(resourceType.descriptionTemplate, book),
-    href: `/resources/${book.resourceSlug}-${resourceType.suffix}.pdf`,
-    previewSrc:
-      resourceType.previewFolder && resourceType.previewSuffix
-        ? `${resourceType.previewFolder}${book.resourceSlug}-${resourceType.previewSuffix}.png`
-        : undefined,
-    previewAlt:
-      resourceType.previewFolder && resourceType.previewSuffix
+function printablePreviewSrc(
+  resourceType: PerBookResourceType,
+  book: BookResourceMeta
+) {
+  if (!resourceType.previewFolder || !resourceType.previewSuffix) return undefined;
+  return `${resourceType.previewFolder}${book.resourceSlug}-${resourceType.previewSuffix}.png`;
+}
+
+function generatePerBookResources(resourceType: PerBookResourceType): Resource[] {
+  return publishedBookResources.map((book) => {
+    const title = fillTemplate(resourceType.titleTemplate, book);
+    const pagePreview = printablePreviewSrc(resourceType, book);
+    const coverPreview =
+      !pagePreview && resourceType.useBookCover ? book.coverImage : undefined;
+
+    return {
+      title,
+      type: resourceType.type,
+      icon: resourceType.icon,
+      book: book.number,
+      section: resourceType.section,
+      groupLabel: resourceType.groupLabel,
+      description: fillTemplate(resourceType.descriptionTemplate, book),
+      href: `/resources/${book.resourceSlug}-${resourceType.suffix}.pdf`,
+      previewSrc: pagePreview ?? coverPreview,
+      previewAlt: pagePreview
         ? `Preview of ${book.title} coloring page`
-        : undefined,
-  }));
+        : coverPreview
+          ? `Book cover for the ${title}`
+          : undefined,
+    };
+  });
 }
 
 const perBookResourcesByType = Object.fromEntries(
