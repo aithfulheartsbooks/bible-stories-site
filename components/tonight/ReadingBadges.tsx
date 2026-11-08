@@ -18,13 +18,82 @@ const messages = {
   "write-failed": "This browser didn't keep the badge. It was not collected.",
   "unknown-book": "This story has no badge on the chart.",
   localOnly: "Badges stay in this browser. Clearing site data, or another phone, starts over.",
+  "print-failed": "The chart could not be printed.",
+  "print-not-ready": "The chart pictures were not ready, so it was not printed.",
 };
+
+const CHART_DECODE_MS = 8000;
+
+function whenImageReady(img: HTMLImageElement) {
+  return new Promise<void>((resolve, reject) => {
+    if (img.complete && img.naturalWidth > 0) {
+      resolve();
+      return;
+    }
+    const ok = () => {
+      img.removeEventListener("load", ok);
+      img.removeEventListener("error", bad);
+      resolve();
+    };
+    const bad = () => {
+      img.removeEventListener("load", ok);
+      img.removeEventListener("error", bad);
+      reject(new Error("load"));
+    };
+    img.addEventListener("load", ok);
+    img.addEventListener("error", bad);
+  });
+}
+
+function withTimeout(work: Promise<void>, ms: number) {
+  return new Promise<void>((resolve, reject) => {
+    const timer = window.setTimeout(() => reject(new Error("timeout")), ms);
+    work.then(
+      () => {
+        window.clearTimeout(timer);
+        resolve();
+      },
+      (error: unknown) => {
+        window.clearTimeout(timer);
+        reject(error);
+      },
+    );
+  });
+}
+
+async function decodeChartImage(img: HTMLImageElement) {
+  img.loading = "eager";
+  img.decoding = "sync";
+  const src = img.currentSrc || img.src;
+  if (!src) throw new Error("missing");
+  if (!img.complete || img.naturalWidth === 0) img.src = src;
+  await whenImageReady(img);
+  if (img.naturalWidth === 0) throw new Error("empty");
+  if (typeof img.decode === "function") await img.decode();
+}
+
+async function countUndecoded(images: HTMLImageElement[]) {
+  const deadline = Date.now() + CHART_DECODE_MS;
+  const results = await Promise.all(
+    images.map(async (img) => {
+      try {
+        await withTimeout(decodeChartImage(img), Math.max(0, deadline - Date.now()));
+        return true;
+      } catch {
+        return false;
+      }
+    }),
+  );
+  return results.filter((ok) => !ok).length;
+}
 
 export default function ReadingBadges({ slug }: { slug: string }) {
   const [state, setState] = useState<CollectionState | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
+  const [preparing, setPreparing] = useState(false);
   const slugsRef = useRef<string[]>([]);
+  const printGeneration = useRef(0);
 
   useEffect(() => {
     const initial = readCollectionFrom(() => window.localStorage);
@@ -72,14 +141,44 @@ export default function ReadingBadges({ slug }: { slug: string }) {
       ? `${collected.size} of ${seriesBadges.length} collected.${tonightCollected ? " Tonight is on the chart." : ""}`
       : messages[state.status];
 
-  function printChart() {
-    document.body.classList.add("printing-tonight-chart");
-    const cleanup = () => {
-      document.body.classList.remove("printing-tonight-chart");
-      window.removeEventListener("afterprint", cleanup);
-    };
-    window.addEventListener("afterprint", cleanup);
-    window.print();
+  async function printChart() {
+    if (preparing) return;
+    const generation = printGeneration.current + 1;
+    printGeneration.current = generation;
+    setPreparing(true);
+    setNotice(null);
+    try {
+      const images = [...document.querySelectorAll<HTMLImageElement>("#tonight-badge-grid img")];
+      if (images.length !== seriesBadges.length) {
+        setNotice(messages["print-not-ready"]);
+        return;
+      }
+      const failed = await countUndecoded(images);
+      if (printGeneration.current !== generation) return;
+      if (failed > 0) {
+        setNotice(
+          `${failed} badge ${failed === 1 ? "picture" : "pictures"} did not load, so the chart was not printed.`,
+        );
+        return;
+      }
+      document.body.classList.add("printing-tonight-chart");
+      let cleaned = false;
+      const cleanup = () => {
+        if (cleaned) return;
+        cleaned = true;
+        document.body.classList.remove("printing-tonight-chart");
+        window.removeEventListener("afterprint", cleanup);
+      };
+      window.addEventListener("afterprint", cleanup);
+      try {
+        window.print();
+      } catch {
+        cleanup();
+        setNotice(messages["print-failed"]);
+      }
+    } finally {
+      if (printGeneration.current === generation) setPreparing(false);
+    }
   }
 
   return (
@@ -125,10 +224,12 @@ export default function ReadingBadges({ slug }: { slug: string }) {
             </button>
             <button
               type="button"
-              onClick={printChart}
-              className="inline-flex min-h-11 items-center justify-center rounded-full border border-terracotta/25 bg-cream px-4 py-3 text-sm font-semibold text-chestnut-soft"
+              onClick={() => void printChart()}
+              disabled={preparing}
+              aria-busy={preparing}
+              className="inline-flex min-h-11 items-center justify-center rounded-full border border-terracotta/25 bg-cream px-4 py-3 text-sm font-semibold text-chestnut-soft disabled:opacity-70"
             >
-              Print chart
+              {preparing ? "Preparing chart" : "Print chart"}
             </button>
           </div>
         </div>

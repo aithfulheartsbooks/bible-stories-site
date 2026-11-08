@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import zlib from "node:zlib";
 import { chromium } from "playwright-core";
 import { tonightPrintables, seriesBadges } from "../lib/tonight-catalog.ts";
 
@@ -37,6 +38,19 @@ function pdfPageCount(file) {
   const data = fs.readFileSync(file);
   const matches = data.toString("latin1").match(/\/Type\s*\/Page(?![s])/g);
   return matches ? matches.length : 0;
+}
+
+function pdfImageCount(file) {
+  const data = fs.readFileSync(file);
+  const parts = [data.toString("latin1")];
+  for (const match of data.toString("latin1").matchAll(/stream\r?\n([\s\S]*?)endstream/g)) {
+    try {
+      parts.push(zlib.inflateSync(Buffer.from(match[1], "latin1")).toString("latin1"));
+    } catch {
+      // Uncompressed streams stay in the raw PDF text.
+    }
+  }
+  return parts.join("\n").match(/\/Subtype\s*\/Image/g)?.length ?? 0;
 }
 
 async function launch() {
@@ -429,26 +443,138 @@ try {
     };
   });
   await printPage.getByRole("button", { name: "Print chart" }).click();
+  await printPage.waitForFunction(() => window.__chartPrint === true);
   check(
     "print button marks the chart for printing",
     await printPage.evaluate(() => window.__chartPrint === true),
     "class missing during print",
   );
-  await printPage.evaluate(() => document.body.classList.add("printing-tonight-chart"));
+  await printContext.close();
+
+  const slow = await browser.newContext({ ...mobile, timezoneId: "America/Los_Angeles" });
+  await slow.clock.install({ time: new Date("2026-01-15T07:30:00Z") });
+  const slowPage = await slow.newPage();
+  await slowPage.goto(`${base}/tonight`, { waitUntil: "networkidle" });
+  await waitForStory(slowPage);
+  check(
+    "chart starts collapsed",
+    await slowPage.getByRole("button", { name: "Show all 36 badges" }).count() === 1,
+    "chart was already open",
+  );
+  let delayedCovers = 0;
+  await slowPage.route("**/_next/image**", async (route) => {
+    delayedCovers += 1;
+    await new Promise((resolve) => setTimeout(resolve, 900));
+    await route.continue();
+  });
+  await slowPage.evaluate(() => {
+    window.print = () => {
+      const images = [...document.querySelectorAll("#tonight-badge-grid img")];
+      window.__chartPrint = document.body.classList.contains("printing-tonight-chart");
+      window.__decodedCovers = images.filter((img) => img.naturalWidth > 0).length;
+      window.__chartImages = images.length;
+      window.__chartTitles = [...document.querySelectorAll(".tonight-badge-title")].map((node) =>
+        node.textContent.trim(),
+      );
+    };
+  });
+  const slowStarted = Date.now();
+  await slowPage.getByRole("button", { name: "Print chart" }).click();
+  check(
+    "print does not open before slow covers decode",
+    await slowPage.evaluate(() => window.__chartPrint !== true),
+    "print opened immediately",
+  );
+  await slowPage.waitForFunction(() => window.__chartPrint === true, null, { timeout: 20000 });
+  const decoded = await slowPage.evaluate(() => ({
+    covers: window.__decodedCovers,
+    images: window.__chartImages,
+    waited: true,
+  }));
+  check(
+    "immediate print waits and decodes all 36 covers",
+    Date.now() - slowStarted >= 800 && decoded.covers === 36 && decoded.images === 36 && delayedCovers > 0,
+    `waited ${Date.now() - slowStarted}ms decoded ${decoded.covers}/${decoded.images} delayed ${delayedCovers}`,
+  );
+  await slowPage.emulateMedia({ media: "print" });
+  const angelDisplay = await slowPage.evaluate(() => {
+    const button = document.getElementById("ask-angel-btn");
+    return button ? getComputedStyle(button).display : "absent";
+  });
+  check("ask angel is hidden only while the chart prints", angelDisplay === "none", angelDisplay);
   const pdfPath = path.join(artifacts, "tonight-badge-chart.pdf");
-  await printPage.pdf({
+  await slowPage.pdf({
     path: pdfPath,
     format: "Letter",
     printBackground: true,
     margin: { top: "0.4in", bottom: "0.4in", left: "0.4in", right: "0.4in" },
   });
   const pages = pdfPageCount(pdfPath);
-  check("badge chart pdf is one page", pages === 1, `${pages} pages`);
-  await printPage.screenshot({
+  const imagesInPdf = pdfImageCount(pdfPath);
+  const titles = await slowPage.evaluate(() => window.__chartTitles);
+  const requiredTitles = ["Joshua and Jericho", "Tower of Babel", "Nehemiah Builds the Wall", "Lazarus Comes Out"];
+  const missingTitles = requiredTitles.filter(
+    (title) => !titles.some((label) => label.includes(title)),
+  );
+  check(
+    "slow-image chart pdf is one page with all 36 covers and titles",
+    pages === 1 && imagesInPdf >= 36 && titles.length === 36 && missingTitles.length === 0,
+    `${pages} pages, ${imagesInPdf} pdf images, ${titles.length} titles, missing ${missingTitles.join(", ") || "none"}`,
+  );
+  await slowPage.screenshot({
     path: path.join(artifacts, "tonight-print-chart.png"),
     fullPage: true,
   });
-  await printContext.close();
+  await slowPage.evaluate(() => window.dispatchEvent(new Event("afterprint")));
+  check(
+    "afterprint clears chart print mode",
+    (await slowPage.evaluate(() => document.body.classList.contains("printing-tonight-chart"))) === false,
+    "print class remained",
+  );
+  await slow.close();
+
+  const broken = await browser.newContext({ ...mobile, timezoneId: "America/Los_Angeles" });
+  await broken.clock.install({ time: new Date("2026-01-15T07:30:00Z") });
+  const brokenPage = await broken.newPage();
+  await brokenPage.goto(`${base}/tonight`, { waitUntil: "networkidle" });
+  await waitForStory(brokenPage);
+  await brokenPage.route("**/*lazarus-comes-out*", (route) => route.abort());
+  await brokenPage.evaluate(() => {
+    window.print = () => {
+      window.__chartPrint = true;
+    };
+  });
+  await brokenPage.getByRole("button", { name: "Print chart" }).click();
+  await brokenPage.getByText("did not load, so the chart was not printed").waitFor();
+  check(
+    "a failed cover skips the print dialog",
+    (await brokenPage.evaluate(() => window.__chartPrint === true)) === false &&
+      (await brokenPage.evaluate(() => document.body.classList.contains("printing-tonight-chart"))) ===
+        false,
+    "print opened or class stuck",
+  );
+  await broken.close();
+
+  const cancelled = await browser.newContext({ ...mobile, timezoneId: "America/Los_Angeles" });
+  await cancelled.clock.install({ time: new Date("2026-01-15T07:30:00Z") });
+  const cancelledPage = await cancelled.newPage();
+  await cancelledPage.goto(`${base}/tonight`, { waitUntil: "networkidle" });
+  await waitForStory(cancelledPage);
+  await cancelledPage.evaluate(() => {
+    window.print = () => {
+      throw new Error("cancelled");
+    };
+  });
+  await cancelledPage.getByRole("button", { name: "Print chart" }).click();
+  await cancelledPage.getByText("The chart could not be printed.").waitFor();
+  check(
+    "a print error clears print mode and leaves the story up",
+    (await cancelledPage.evaluate(() => document.body.classList.contains("printing-tonight-chart"))) ===
+      false &&
+      (await cancelledPage.getByRole("heading", { name: "Jesus Calms the Storm" }).count()) > 0,
+    "print mode stuck or story missing",
+  );
+  await cancelled.close();
 
   const theme = await browser.newContext({
     viewport: { width: 390, height: 844 },
@@ -456,6 +582,13 @@ try {
   });
   const themePage = await theme.newPage();
   await themePage.goto(`${base}/`, { waitUntil: "networkidle" });
+  await themePage.locator("#ask-angel-btn").waitFor();
+  const homeAngel = await themePage.evaluate(() => getComputedStyle(document.getElementById("ask-angel-btn")).display);
+  check(
+    "ask angel stays visible on the homepage",
+    homeAngel !== "none",
+    homeAngel,
+  );
   await themePage.screenshot({ path: path.join(artifacts, "theme-home-mobile.png") });
   await themePage.goto(`${base}/book/noah-and-gods-big-promise`, { waitUntil: "networkidle" });
   await themePage.screenshot({ path: path.join(artifacts, "theme-book-mobile.png") });
