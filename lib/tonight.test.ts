@@ -13,9 +13,12 @@ import {
 import {
   TONIGHT_BADGE_STORAGE_KEY,
   collectBook,
+  collectBookFrom,
+  commitRemoteCollection,
   countedSlugs,
   parseCollection,
   readCollection,
+  readCollectionFrom,
   reconcileStorageEvent,
   serializeCollection,
   type BadgeStore,
@@ -46,55 +49,79 @@ function memoryStore(seed?: string | null): BadgeStore & { writes: number } {
   };
 }
 
-test("rotation still steps by 86400000 ms from local January 1", () => {
+test("the book follows the local calendar day from January 1", () => {
   assert.equal(new Date(2026, 0, 15).getTimezoneOffset(), 480);
   assert.equal(new Date(2026, 6, 15).getTimezoneOffset(), 420);
   assert.equal(availableBooks().length, 36);
-  const samples = [
-    new Date(2026, 0, 1, 0, 0, 0),
-    new Date(2026, 0, 14, 23, 59, 59),
-    new Date(2026, 0, 15, 0, 0, 0),
-    new Date(2026, 2, 8, 1, 30, 0),
-    new Date(2026, 6, 14, 23, 30, 0),
-    new Date(2026, 6, 15, 0, 30, 0),
-    new Date(2026, 6, 15, 1, 0, 0),
-    new Date(2026, 10, 1, 0, 30, 0),
-    new Date(2026, 11, 31, 23, 30, 0),
-    new Date(2027, 0, 1, 0, 0, 0),
-  ];
-  const list = availableBooks();
-  for (const now of samples) {
-    const start = new Date(now.getFullYear(), 0, 1);
-    const reference = Math.floor((now.getTime() - start.getTime()) / 86_400_000);
-    assert.equal(tonightDayIndex(now), reference);
-    assert.equal(TONIGHT_DAY_MS, 86_400_000);
-    const index = ((reference % list.length) + list.length) % list.length;
-    assert.equal(todaysBook(now).slug, list[index].slug);
-  }
-});
+  assert.equal(todaysBook(new Date(2026, 0, 1, 0, 0, 0)).slug, availableBooks()[0].slug);
+  assert.equal(todaysBook(new Date(2026, 0, 1, 0, 0, 0)).slug, "noah-and-gods-big-promise");
+  assert.equal(todaysBook(new Date(2026, 0, 2, 12, 0, 0)).slug, "david-and-the-giant");
+  assert.equal(TONIGHT_DAY_MS, 86_400_000);
 
-test("standard-time boundary is local midnight and daylight time is not", () => {
-  const winterBefore = todaysBook(new Date(2026, 0, 14, 23, 59, 0));
-  const winterAfter = todaysBook(new Date(2026, 0, 15, 0, 0, 0));
-  assert.notEqual(winterBefore.slug, winterAfter.slug);
-  assert.equal(winterBefore.slug, "jesus-calms-the-storm");
-  assert.equal(winterAfter.slug, "the-creation-story");
+  const sameEvening = todaysBook(new Date(2026, 0, 14, 23, 59, 0));
+  const sameAfternoon = todaysBook(new Date(2026, 0, 14, 15, 0, 0));
+  assert.equal(sameEvening.slug, sameAfternoon.slug);
+  assert.equal(sameEvening.slug, "jesus-calms-the-storm");
+  assert.equal(todaysBook(new Date(2026, 0, 15, 0, 0, 0)).slug, "the-creation-story");
   assert.equal(
     nextTonightBoundary(new Date(2026, 0, 14, 23, 59, 0)).toString(),
     new Date(2026, 0, 15, 0, 0, 0).toString(),
   );
+  assert.equal(
+    nextTonightBoundary(new Date(2026, 0, 15, 0, 0, 0)).getTime() -
+      new Date(2026, 0, 15, 0, 0, 0).getTime(),
+    24 * 3_600_000,
+  );
+});
 
-  const evening = todaysBook(new Date(2026, 6, 14, 23, 30, 0));
-  const afterMidnight = todaysBook(new Date(2026, 6, 15, 0, 30, 0));
-  const atOne = todaysBook(new Date(2026, 6, 15, 1, 0, 0));
-  assert.equal(evening.slug, afterMidnight.slug);
-  assert.equal(afterMidnight.slug, "the-creation-story");
-  assert.equal(atOne.slug, "the-armor-of-god");
-  assert.notEqual(afterMidnight.slug, atOne.slug);
+test("daylight saving still changes the book at local midnight", () => {
+  const before = todaysBook(new Date(2026, 6, 14, 23, 59, 0));
+  const midnight = todaysBook(new Date(2026, 6, 15, 0, 0, 0));
+  const halfPast = todaysBook(new Date(2026, 6, 15, 0, 30, 0));
+  const oneAm = todaysBook(new Date(2026, 6, 15, 1, 0, 0));
+  assert.equal(before.slug, "the-creation-story");
+  assert.equal(midnight.slug, "the-armor-of-god");
+  assert.equal(halfPast.slug, midnight.slug);
+  assert.equal(oneAm.slug, midnight.slug);
+  assert.notEqual(before.slug, midnight.slug);
+  assert.equal(
+    nextTonightBoundary(new Date(2026, 6, 14, 23, 30, 0)).toString(),
+    new Date(2026, 6, 15, 0, 0, 0).toString(),
+  );
   assert.equal(
     nextTonightBoundary(new Date(2026, 6, 15, 0, 30, 0)).toString(),
-    new Date(2026, 6, 15, 1, 0, 0).toString(),
+    new Date(2026, 6, 16, 0, 0, 0).toString(),
   );
+});
+
+test("spring-forward and fall-back days keep one calendar index", () => {
+  assert.equal(new Date(2026, 2, 8, 1, 30).getTimezoneOffset(), 480);
+  assert.equal(new Date(2026, 2, 8, 3, 30).getTimezoneOffset(), 420);
+  const march7 = todaysBook(new Date(2026, 2, 7, 23, 59, 0));
+  const march8Early = todaysBook(new Date(2026, 2, 8, 0, 30, 0));
+  const march8Late = todaysBook(new Date(2026, 2, 8, 3, 30, 0));
+  const march9 = todaysBook(new Date(2026, 2, 9, 0, 0, 0));
+  assert.equal(march7.slug, "pentecost-the-holy-spirit-comes");
+  assert.equal(march8Early.slug, "elisha-and-the-widows-oil");
+  assert.equal(march8Late.slug, march8Early.slug);
+  assert.equal(march9.slug, "tower-of-babel");
+  const springStart = new Date(2026, 2, 8, 0, 0, 0);
+  assert.equal(nextTonightBoundary(springStart).getTime() - springStart.getTime(), 23 * 3_600_000);
+
+  assert.equal(new Date(2026, 10, 1, 0, 30).getTimezoneOffset(), 420);
+  assert.equal(new Date(2026, 10, 1, 3, 30).getTimezoneOffset(), 480);
+  const firstOneThirty = new Date("2026-11-01T08:30:00Z");
+  const secondOneThirty = new Date("2026-11-01T09:30:00Z");
+  const november1 = todaysBook(new Date(2026, 10, 1, 0, 30, 0));
+  assert.equal(todaysBook(new Date(2026, 9, 31, 23, 59, 0)).slug, "the-armor-of-god");
+  assert.equal(november1.slug, "zacchaeus");
+  assert.equal(todaysBook(firstOneThirty).slug, november1.slug);
+  assert.equal(todaysBook(secondOneThirty).slug, november1.slug);
+  assert.equal(todaysBook(new Date(2026, 10, 1, 3, 30, 0)).slug, november1.slug);
+  assert.equal(todaysBook(new Date(2026, 10, 2, 0, 0, 0)).slug, "the-good-samaritan");
+  const fallStart = new Date(2026, 10, 1, 0, 0, 0);
+  assert.equal(nextTonightBoundary(fallStart).getTime() - fallStart.getTime(), 25 * 3_600_000);
+  assert.equal(nextTonightBoundary(firstOneThirty).toString(), new Date(2026, 10, 2, 0, 0, 0).toString());
 });
 
 test("new year uses the new local January 1 epoch", () => {
@@ -233,6 +260,58 @@ test("malformed and throwing storage are not reported as saved", () => {
   assert.deepEqual(collectBook(memoryStore(), "not-a-book", seriesSlugSet), {
     status: "not-saved",
     reason: "unknown-book",
+  });
+});
+
+test("acquiring storage is inside the guard", () => {
+  const acquire = () => {
+    throw new DOMException("The operation is insecure.", "SecurityError");
+  };
+  assert.equal(readCollectionFrom(acquire).status, "unavailable");
+  assert.deepEqual(collectBookFrom(acquire, "noah-and-gods-big-promise", seriesSlugSet), {
+    status: "not-saved",
+    reason: "unavailable",
+  });
+  assert.deepEqual(
+    commitRemoteCollection(acquire, ["noah-and-gods-big-promise"], serializeCollection(["david-and-the-giant"])),
+    { action: "ready", slugs: ["david-and-the-giant"], notice: "write-failed" },
+  );
+});
+
+test("unconfirmed write-back does not claim the local-only slug", () => {
+  const blocked = memoryStore(serializeCollection(["david-and-the-giant"]));
+  blocked.setItem = () => {
+    throw new Error("quota");
+  };
+  assert.deepEqual(
+    commitRemoteCollection(
+      () => blocked,
+      ["noah-and-gods-big-promise"],
+      serializeCollection(["david-and-the-giant"]),
+    ),
+    { action: "ready", slugs: ["david-and-the-giant"], notice: "write-failed" },
+  );
+
+  const lying = memoryStore(serializeCollection(["david-and-the-giant"]));
+  lying.setItem = () => {};
+  assert.deepEqual(
+    commitRemoteCollection(
+      () => lying,
+      ["noah-and-gods-big-promise"],
+      serializeCollection(["david-and-the-giant"]),
+    ),
+    { action: "ready", slugs: ["david-and-the-giant"], notice: "write-failed" },
+  );
+
+  const confirmed = commitRemoteCollection(
+    () => memoryStore(serializeCollection(["david-and-the-giant"])),
+    ["noah-and-gods-big-promise"],
+    serializeCollection(["david-and-the-giant"]),
+  );
+  assert.deepEqual(confirmed, {
+    action: "ready",
+    slugs: ["noah-and-gods-big-promise", "david-and-the-giant"],
+    notice: null,
   });
 });
 

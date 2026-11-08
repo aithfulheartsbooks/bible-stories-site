@@ -4,19 +4,18 @@ export function availableBooks() {
   return books.filter((book) => book.status === "available" && book.amazonUrl);
 }
 
-/** Exact step used by `todaysBook`. Not a calendar date, and not wall-clock midnight during daylight saving. */
+/** Length of one calendar date when counted from UTC year-month-day stamps. Not elapsed local time. */
 export const TONIGHT_DAY_MS = 86_400_000;
 
 export function tonightDayIndex(now: Date) {
-  const start = new Date(now.getFullYear(), 0, 1);
-  return Math.floor((now.getTime() - start.getTime()) / TONIGHT_DAY_MS);
+  const yearStart = Date.UTC(now.getFullYear(), 0, 1);
+  const today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  return Math.floor((today - yearStart) / TONIGHT_DAY_MS);
 }
 
-/** Next instant `tonightDayIndex` changes. Same epoch as `todaysBook`. */
+/** Next local midnight. That is when `tonightDayIndex` changes, including across daylight saving. */
 export function nextTonightBoundary(now: Date) {
-  const start = new Date(now.getFullYear(), 0, 1);
-  const nextIndex = tonightDayIndex(now) + 1;
-  return new Date(start.getTime() + nextIndex * TONIGHT_DAY_MS);
+  return new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0, 0);
 }
 
 export function todaysBook(now = new Date()) {

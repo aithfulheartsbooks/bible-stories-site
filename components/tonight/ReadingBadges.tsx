@@ -4,10 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import {
   countedSlugs,
-  collectBook,
-  readCollection,
-  reconcileStorageEvent,
-  serializeCollection,
+  collectBookFrom,
+  commitRemoteCollection,
+  readCollectionFrom,
   TONIGHT_BADGE_STORAGE_KEY,
   type CollectionState,
 } from "@/lib/tonight-collection";
@@ -28,26 +27,21 @@ export default function ReadingBadges({ slug }: { slug: string }) {
   const slugsRef = useRef<string[]>([]);
 
   useEffect(() => {
-    const initial = readCollection(window.localStorage);
+    const initial = readCollectionFrom(() => window.localStorage);
     if (initial.status === "ready") slugsRef.current = initial.slugs;
     setState(initial);
 
     function onStorage(event: StorageEvent) {
       if (event.key !== TONIGHT_BADGE_STORAGE_KEY && event.key !== null) return;
-      const reconciled = reconcileStorageEvent(slugsRef.current, event.newValue);
-      if (reconciled.action === "keep") return;
-      slugsRef.current = reconciled.slugs;
-      setState({ status: "ready", slugs: reconciled.slugs });
-      if (reconciled.action === "merge" && reconciled.writeBack) {
-        try {
-          window.localStorage.setItem(
-            TONIGHT_BADGE_STORAGE_KEY,
-            serializeCollection(reconciled.slugs),
-          );
-        } catch {
-          setNotice(messages["write-failed"]);
-        }
-      }
+      const committed = commitRemoteCollection(
+        () => window.localStorage,
+        slugsRef.current,
+        event.newValue,
+      );
+      if (committed.action === "keep") return;
+      slugsRef.current = committed.slugs;
+      setState({ status: "ready", slugs: committed.slugs });
+      setNotice(committed.notice ? messages[committed.notice] : null);
     }
 
     window.addEventListener("storage", onStorage);
@@ -55,7 +49,7 @@ export default function ReadingBadges({ slug }: { slug: string }) {
   }, []);
 
   function onCollect() {
-    const result = collectBook(window.localStorage, slug, seriesSlugSet);
+    const result = collectBookFrom(() => window.localStorage, slug, seriesSlugSet);
     if (result.status === "saved") {
       slugsRef.current = result.slugs;
       setState({ status: "ready", slugs: result.slugs });

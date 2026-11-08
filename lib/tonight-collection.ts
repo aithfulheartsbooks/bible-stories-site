@@ -59,6 +59,26 @@ export function readCollection(store: BadgeStore): CollectionState {
   }
 }
 
+export function readCollectionFrom(acquire: () => BadgeStore): CollectionState {
+  try {
+    return readCollection(acquire());
+  } catch {
+    return { status: "unavailable" };
+  }
+}
+
+export function collectBookFrom(
+  acquire: () => BadgeStore,
+  slug: string,
+  known: ReadonlySet<string>,
+): CollectOutcome {
+  try {
+    return collectBook(acquire(), slug, known);
+  } catch {
+    return { status: "not-saved", reason: "unavailable" };
+  }
+}
+
 export function countedSlugs(slugs: readonly string[], known: ReadonlySet<string>) {
   return slugs.filter((slug) => known.has(slug));
 }
@@ -95,6 +115,42 @@ export function collectBook(
     return { status: "not-saved", reason: "write-failed" };
   }
   return { status: "saved", already: false, slugs: confirmed.slugs };
+}
+
+export type RemoteCommit =
+  | { action: "keep" }
+  | { action: "ready"; slugs: string[]; notice: "write-failed" | null };
+
+function persistedRemote(remoteRaw: string | null) {
+  const remote = parseCollection(remoteRaw);
+  return remote.status === "ready" ? remote.slugs : [];
+}
+
+/** Applies another tab's write. A slug is returned only when this call confirmed it is stored. */
+export function commitRemoteCollection(
+  acquire: () => BadgeStore,
+  memorySlugs: readonly string[],
+  remoteRaw: string | null,
+): RemoteCommit {
+  const reconciled = reconcileStorageEvent(memorySlugs, remoteRaw);
+  if (reconciled.action === "keep") return { action: "keep" };
+  if (reconciled.action === "replace" || !reconciled.writeBack) {
+    return { action: "ready", slugs: reconciled.slugs, notice: null };
+  }
+  try {
+    const store = acquire();
+    store.setItem(TONIGHT_BADGE_STORAGE_KEY, serializeCollection(reconciled.slugs));
+    const confirmed = parseCollection(store.getItem(TONIGHT_BADGE_STORAGE_KEY));
+    if (
+      confirmed.status === "ready" &&
+      reconciled.slugs.every((slug) => confirmed.slugs.includes(slug))
+    ) {
+      return { action: "ready", slugs: confirmed.slugs, notice: null };
+    }
+  } catch {
+    // The union was not confirmed. Fall through to the remote payload, which the event already stored.
+  }
+  return { action: "ready", slugs: persistedRemote(remoteRaw), notice: "write-failed" };
 }
 
 export function reconcileStorageEvent(

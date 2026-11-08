@@ -91,10 +91,16 @@ try {
     beforeMidnight,
   );
   const afterMidnight = await waitForStory(winterPage);
+  const amazonAfter = await winterPage.getByRole("link", { name: "Find on Amazon" }).first().getAttribute("href");
   check(
     "standard-time open tab rolls at local midnight",
-    beforeMidnight !== afterMidnight,
-    `${beforeMidnight} -> ${afterMidnight}`,
+    beforeMidnight !== afterMidnight && Boolean(amazonAfter?.includes("amazon.com")),
+    `${beforeMidnight} -> ${afterMidnight} amazon ${amazonAfter}`,
+  );
+  check(
+    "share block remains after midnight",
+    (await winterPage.getByRole("heading", { name: "Share tonight's story" }).count()) === 1,
+    "share heading missing",
   );
 
   await winterPage.clock.setFixedTime(new Date("2026-01-15T08:00:00Z"));
@@ -118,26 +124,110 @@ try {
   const summerPage = await summer.newPage();
   await summerPage.goto(`${base}/tonight`, { waitUntil: "networkidle" });
   const summerEvening = await waitForStory(summerPage);
-  await summerPage.clock.fastForward(60 * 60 * 1000);
-  await summerPage.waitForTimeout(300);
-  const summerAfterMidnight = await waitForStory(summerPage);
-  check(
-    "daylight midnight does not change the book",
-    summerEvening === summerAfterMidnight,
-    `${summerEvening} -> ${summerAfterMidnight}`,
-  );
   await summerPage.clock.fastForward(30 * 60 * 1000);
   await summerPage.waitForFunction(
     (previous) =>
       document.querySelector("[data-tonight-slug]")?.getAttribute("data-tonight-slug") !== previous,
     summerEvening,
   );
+  const summerMidnight = await waitForStory(summerPage);
   check(
-    "daylight boundary is 1:00 local",
-    (await waitForStory(summerPage)) !== summerEvening,
-    `${summerEvening} -> ${await waitForStory(summerPage)}`,
+    "daylight midnight changes the book",
+    summerEvening !== summerMidnight,
+    `${summerEvening} -> ${summerMidnight}`,
+  );
+  await summerPage.clock.fastForward(30 * 60 * 1000);
+  await summerPage.waitForTimeout(300);
+  check(
+    "1:00 local stays on the midnight book",
+    (await waitForStory(summerPage)) === summerMidnight,
+    await waitForStory(summerPage),
   );
   await summer.close();
+
+  const spring = await browser.newContext(mobile);
+  await spring.clock.install({ time: new Date("2026-03-08T07:30:00Z") });
+  const springPage = await spring.newPage();
+  await springPage.goto(`${base}/tonight`, { waitUntil: "networkidle" });
+  const beforeSpring = await waitForStory(springPage);
+  await springPage.clock.setFixedTime(new Date("2026-03-08T08:30:00Z"));
+  await springPage.evaluate(() => document.dispatchEvent(new Event("visibilitychange")));
+  await springPage.waitForFunction(
+    (previous) =>
+      document.querySelector("[data-tonight-slug]")?.getAttribute("data-tonight-slug") !== previous,
+    beforeSpring,
+  );
+  const springResumed = await waitForStory(springPage);
+  check(
+    "resume on the spring-forward night keeps story printable and badge together",
+    springResumed !== beforeSpring,
+    `${beforeSpring} -> ${springResumed}`,
+  );
+  await spring.close();
+
+  const springOpen = await browser.newContext(mobile);
+  await springOpen.clock.install({ time: new Date("2026-03-08T07:30:00Z") });
+  const springOpenPage = await springOpen.newPage();
+  await springOpenPage.goto(`${base}/tonight`, { waitUntil: "networkidle" });
+  const springHeld = await waitForStory(springOpenPage);
+  await springOpenPage.clock.fastForward(30 * 60 * 1000);
+  await springOpenPage.waitForFunction(
+    (previous) =>
+      document.querySelector("[data-tonight-slug]")?.getAttribute("data-tonight-slug") !== previous,
+    springHeld,
+  );
+  const shortDay = await waitForStory(springOpenPage);
+  await springOpenPage.clock.fastForward(22 * 60 * 60 * 1000);
+  await springOpenPage.waitForTimeout(300);
+  check(
+    "open tab stays on the 23-hour spring-forward day",
+    (await waitForStory(springOpenPage)) === shortDay && shortDay !== springHeld,
+    `${springHeld} -> ${shortDay} -> ${await waitForStory(springOpenPage)}`,
+  );
+  await springOpenPage.clock.fastForward(60 * 60 * 1000);
+  await springOpenPage.waitForFunction(
+    (previous) =>
+      document.querySelector("[data-tonight-slug]")?.getAttribute("data-tonight-slug") !== previous,
+    shortDay,
+  );
+  check(
+    "next local midnight after spring-forward changes all three",
+    (await waitForStory(springOpenPage)) !== shortDay,
+    `${shortDay} -> ${await waitForStory(springOpenPage)}`,
+  );
+  await springOpen.close();
+
+  const fall = await browser.newContext(mobile);
+  await fall.clock.install({ time: new Date("2026-11-01T06:30:00Z") });
+  const fallPage = await fall.newPage();
+  await fallPage.goto(`${base}/tonight`, { waitUntil: "networkidle" });
+  const beforeFall = await waitForStory(fallPage);
+  await fallPage.clock.fastForward(30 * 60 * 1000);
+  await fallPage.waitForFunction(
+    (previous) =>
+      document.querySelector("[data-tonight-slug]")?.getAttribute("data-tonight-slug") !== previous,
+    beforeFall,
+  );
+  const longDay = await waitForStory(fallPage);
+  await fallPage.clock.fastForward(24 * 60 * 60 * 1000);
+  await fallPage.waitForTimeout(300);
+  check(
+    "open tab stays on the 25-hour fall-back day",
+    (await waitForStory(fallPage)) === longDay && longDay !== beforeFall,
+    `${beforeFall} -> ${longDay} -> ${await waitForStory(fallPage)}`,
+  );
+  await fallPage.clock.fastForward(60 * 60 * 1000);
+  await fallPage.waitForFunction(
+    (previous) =>
+      document.querySelector("[data-tonight-slug]")?.getAttribute("data-tonight-slug") !== previous,
+    longDay,
+  );
+  check(
+    "next local midnight after fall-back changes all three",
+    (await waitForStory(fallPage)) !== longDay,
+    `${longDay} -> ${await waitForStory(fallPage)}`,
+  );
+  await fall.close();
 
   const collect = await browser.newContext(mobile);
   await collect.clock.install({ time: new Date("2026-01-15T07:30:00Z") });
@@ -251,6 +341,69 @@ try {
   const quotaLabel = await quotaPage.getByRole("button", { name: "Collect this story" }).count();
   check("failed write leaves the collect button uncollected", quotaLabel === 1, `buttons ${quotaLabel}`);
   await quota.close();
+
+  const secureErrors = [];
+  const secure = await browser.newContext(mobile);
+  await secure.addInitScript(() => {
+    Object.defineProperty(window, "localStorage", {
+      configurable: true,
+      get() {
+        throw new DOMException("The operation is insecure.", "SecurityError");
+      },
+    });
+  });
+  await secure.clock.install({ time: new Date("2026-01-15T07:30:00Z") });
+  const securePage = await secure.newPage();
+  securePage.on("pageerror", (error) => secureErrors.push(String(error)));
+  await securePage.goto(`${base}/tonight`, { waitUntil: "networkidle" });
+  await securePage.getByRole("heading", { name: "Jesus Calms the Storm" }).first().waitFor();
+  await securePage.getByRole("link", { name: "Find on Amazon" }).waitFor();
+  await securePage.getByRole("link", { name: "Download coloring page" }).waitFor();
+  await securePage.getByRole("heading", { name: "Share tonight's story" }).waitFor();
+  await securePage.getByRole("status").getByText("couldn't open saved badges").waitFor();
+  await securePage.getByRole("button", { name: "Collect this story" }).click();
+  const secureStatus = await securePage.locator("#reading-badges-heading + p").innerText();
+  check(
+    "localStorage getter throw leaves tonight usable",
+    secureErrors.length === 0 &&
+      secureStatus.includes("couldn't open saved badges") &&
+      !secureStatus.includes("1 of 36") &&
+      (await securePage.getByRole("button", { name: "Copy caption" }).count()) === 1,
+    secureErrors.join(" | ") || secureStatus,
+  );
+  await secure.close();
+
+  const mergeFail = await browser.newContext(mobile);
+  await mergeFail.clock.install({ time: new Date("2026-01-15T07:30:00Z") });
+  const keeper = await mergeFail.newPage();
+  await keeper.goto(`${base}/tonight`, { waitUntil: "networkidle" });
+  await waitForStory(keeper);
+  await keeper.getByRole("button", { name: "Collect this story" }).click();
+  await keeper.locator("#reading-badges-heading + p").getByText("Tonight is on the chart").waitFor();
+  await keeper.evaluate((key) => {
+    const original = Storage.prototype.setItem;
+    Storage.prototype.setItem = function (name, value) {
+      if (name === key) throw new Error("quota");
+      return original.call(this, name, value);
+    };
+  }, storageKey);
+  const writer = await mergeFail.newPage();
+  await writer.goto(`${base}/tonight`, { waitUntil: "networkidle" });
+  await writer.evaluate(
+    ({ key, slug }) => {
+      localStorage.setItem(key, JSON.stringify({ version: 1, slugs: [slug] }));
+    },
+    { key: storageKey, slug: "david-and-the-giant" },
+  );
+  await keeper.getByRole("status").getByText("didn't keep the badge").waitFor();
+  const keeperStatus = await keeper.locator("#reading-badges-heading + p").innerText();
+  check(
+    "failed merge does not leave tonight collected",
+    (await keeper.getByRole("button", { name: "Collect this story" }).count()) === 1 &&
+      !keeperStatus.includes("Tonight is on the chart"),
+    keeperStatus,
+  );
+  await mergeFail.close();
 
   const files = await browser.newContext();
   let served = 0;
