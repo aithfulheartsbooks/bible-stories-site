@@ -342,6 +342,48 @@ main[class*="bg-gradient-to-b"][class*="via-cream"] [class*="bg-white"]:not(nav)
   }
 }
 
+@media print {
+  body.printing-tonight-chart .tonight-hide-when-chart-prints,
+  body.printing-tonight-chart .tonight-screen-controls {
+    display: none !important;
+  }
+
+  body.printing-tonight-chart .tonight-print-header,
+  body.printing-tonight-chart .tonight-badge-title {
+    display: block !important;
+  }
+
+  body.printing-tonight-chart .tonight-badge-chart {
+    margin: 0;
+    border: 0;
+    background: white;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  body.printing-tonight-chart .tonight-badge-grid {
+    display: grid !important;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  body.printing-tonight-chart .tonight-badge-title {
+    font-size: 8px;
+    line-height: 1.15;
+  }
+
+  body.printing-tonight-chart .tonight-badge-cell {
+    break-inside: avoid;
+  }
+
+  body.printing-tonight-chart .tonight-badge-face {
+    width: 0.68in;
+    height: 0.68in;
+    margin-inline: auto;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .story-character,
   .play-demo-hand,

@@ -1,17 +1,19 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Book } from "@/app/books";
 import {
   findTonight,
-  todaysBook,
   type TonightLens,
   type TonightMood,
 } from "@/lib/tonight";
 import BookCard from "@/components/BookCard";
 import PeekReader from "@/components/PeekReader";
+import ReadingBadges from "@/components/tonight/ReadingBadges";
+import TonightPrintable from "@/components/tonight/TonightPrintable";
+import { useTonightBook } from "@/components/tonight/useTonightBook";
 import { peekFor } from "@/lib/peeks";
 
 const MOODS: { id: TonightMood; title: string; blurb: string }[] = [
@@ -30,26 +32,13 @@ const LENSES: { id: TonightLens; title: string }[] = [
 ];
 
 export default function TonightClient() {
-  const [nightly, setNightly] = useState<Book | null>(null);
+  const { book: nightly, nightLabel } = useTonightBook();
   const [reading, setReading] = useState<Book | null>(null);
-  const [nightLabel, setNightLabel] = useState("");
   const [choosing, setChoosing] = useState(false);
   const [step, setStep] = useState(1);
   const [mood, setMood] = useState<TonightMood | null>(null);
   const [lens, setLens] = useState<TonightLens | null>(null);
   const [copied, setCopied] = useState(false);
-
-  useEffect(() => {
-    const now = new Date();
-    setNightly(todaysBook(now));
-    setNightLabel(
-      now.toLocaleDateString("en-US", {
-        weekday: "long",
-        month: "long",
-        day: "numeric",
-      }),
-    );
-  }, []);
 
   const picks = useMemo(() => {
     if (!mood || !lens) return [];
@@ -83,7 +72,10 @@ export default function TonightClient() {
   return (
     <div className="mx-auto max-w-3xl px-6 pb-16">
       {nightly ? (
-        <section className="rounded-3xl border border-white/80 bg-cream/85 p-5 shadow-md backdrop-blur-md sm:p-8">
+        <section
+          className="tonight-hide-when-chart-prints rounded-3xl border border-white/80 bg-cream/85 p-5 shadow-md backdrop-blur-md sm:p-8"
+          data-tonight-slug={nightly.slug}
+        >
           {nightly.coverImage ? (
             <div className="relative mx-auto mb-6 aspect-[2/3] w-full max-w-[280px]">
               <Image
@@ -144,8 +136,17 @@ export default function TonightClient() {
         <div className="h-80 rounded-3xl bg-cream/70" />
       )}
 
+      {nightly ? (
+        <>
+          <TonightPrintable slug={nightly.slug} />
+          <ReadingBadges slug={nightly.slug} />
+        </>
+      ) : (
+        <div className="mt-8 h-40 rounded-3xl bg-cream/70" aria-hidden />
+      )}
+
       {active && peekPages ? (
-        <div className="mt-8">
+        <div className="tonight-hide-when-chart-prints mt-8">
           {reading && nightly && reading.slug !== nightly.slug ? (
             <p className="mb-3 text-sm font-semibold text-terracotta">
               Sample pages from {reading.title}
@@ -161,7 +162,7 @@ export default function TonightClient() {
         </div>
       ) : null}
 
-      <div className="mt-8">
+      <div className="tonight-hide-when-chart-prints mt-8">
         {choosing ? (
           <button
             type="button"
@@ -188,7 +189,7 @@ export default function TonightClient() {
       </div>
 
       {choosing ? (
-        <div className="mt-6">
+        <div className="tonight-hide-when-chart-prints mt-6">
           {step === 1 ? (
             <fieldset>
               <legend className="font-display text-2xl font-bold text-chestnut">
@@ -271,7 +272,7 @@ export default function TonightClient() {
         </div>
       ) : null}
 
-      <section className="mt-12 rounded-3xl border border-white/80 bg-cream/85 p-5 shadow-sm sm:p-6">
+      <section className="tonight-hide-when-chart-prints mt-12 rounded-3xl border border-white/80 bg-cream/85 p-5 shadow-sm sm:p-6">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta">
           Share with a friend
         </p>
