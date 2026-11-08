@@ -16,20 +16,22 @@ export const metadata: Metadata = {
 export default function TonightPage() {
   return (
     <main className="relative min-h-screen overflow-x-hidden font-body text-chestnut">
-      <div className="scenery" />
-      <div className="cloud animate-drift-slow h-[60px] w-[180px] top-[8%] left-[-200px]" />
+      <div className="scenery tonight-hide-when-chart-prints" />
+      <div className="cloud tonight-hide-when-chart-prints animate-drift-slow h-[60px] w-[180px] top-[8%] left-[-200px]" />
       <div
-        className="cloud animate-drift-long h-[45px] w-[140px] top-[18%] left-[-200px]"
+        className="cloud tonight-hide-when-chart-prints animate-drift-long h-[45px] w-[140px] top-[18%] left-[-200px]"
         style={{ animationDelay: "-30s" }}
       />
       <div
-        className="cloud animate-drift-medium h-[70px] w-[220px] top-[4%] left-[-200px]"
+        className="cloud tonight-hide-when-chart-prints animate-drift-medium h-[70px] w-[220px] top-[4%] left-[-200px]"
         style={{ animationDelay: "-60s" }}
       />
 
-      <SiteNav />
+      <div className="tonight-hide-when-chart-prints">
+        <SiteNav />
+      </div>
 
-      <section className="relative z-10 mx-auto max-w-3xl px-6 pb-8 pt-32 text-center">
+      <section className="tonight-hide-when-chart-prints relative z-10 mx-auto max-w-3xl px-6 pb-8 pt-32 text-center">
         <span className="mb-4 inline-block rounded-full border border-terracotta/20 bg-white/55 px-5 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-terracotta backdrop-blur-sm">
           A new book every night
         </span>
@@ -56,7 +58,9 @@ export default function TonightPage() {
         <TonightClient />
       </div>
 
-      <SiteFooter />
+      <div className="tonight-hide-when-chart-prints">
+        <SiteFooter />
+      </div>
     </main>
   );
 }
