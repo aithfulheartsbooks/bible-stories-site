@@ -21,10 +21,10 @@ export const metadata: Metadata = {
     siteName: "Bible Stories for Little Hearts",
     images: [
       {
-        url: "/art/hero.jpg",
-        width: 1792,
-        height: 1008,
-        alt: "A parent and child reading a picture book together at bedtime",
+        url: "/art/songs-kids-singing.webp",
+        width: 1920,
+        height: 1280,
+        alt: "Watercolor illustration of young children singing together on a grassy hill, one playing a guitar, with a small white church in the distance.",
       },
     ],
   },
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["/art/hero.jpg"],
+    images: ["/art/songs-kids-singing.webp"],
   },
 };
 
@@ -92,7 +92,7 @@ export default function SongsPage({
         style={{ animationDelay: "-60s" }}
       />
 
-      <SiteNav activeHref="/songs" />
+      <SiteNav />
 
       <header className="relative z-10 mx-auto max-w-3xl px-4 pb-6 pt-28 text-center sm:px-6 sm:pt-32">
         <span className="mb-4 inline-block max-w-full whitespace-nowrap rounded-full border border-terracotta/20 bg-white/55 px-3 py-2 text-[0.58rem] font-semibold uppercase tracking-[0.08em] text-terracotta backdrop-blur-sm sm:px-5 sm:text-xs sm:tracking-[0.22em]">
@@ -106,12 +106,13 @@ export default function SongsPage({
         </p>
         <div className="relative mx-auto mt-8 w-full overflow-hidden rounded-3xl border border-white/80 shadow-md">
           <Image
-            src="/art/hero.jpg"
-            alt="A parent and child reading a picture book together at bedtime"
-            width={1792}
-            height={1008}
+            src="/art/songs-kids-singing.webp"
+            alt="Watercolor illustration of young children singing together on a grassy hill, one playing a guitar, with a small white church in the distance."
+            width={1920}
+            height={1280}
             priority
-            className="h-44 w-full object-cover sm:h-auto"
+            sizes="(max-width: 639px) calc(100vw - 2rem), (max-width: 768px) calc(100vw - 3rem), 720px"
+            className="h-44 w-full object-cover object-[center_58%] sm:h-auto"
           />
         </div>
         <p className="mx-auto mt-4 max-w-xl text-sm text-chestnut-soft">
