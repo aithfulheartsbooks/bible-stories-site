@@ -4,27 +4,34 @@ import { useMemo, useState } from "react";
 import {
   SONG_GROUPS,
   findSong,
+  groupCount,
   lyricPlainText,
   songSearchText,
   songs,
-  songsInGroup,
   type Song,
   type SongGroupId,
 } from "@/lib/songs";
 
 type GroupFilter = "all" | SongGroupId;
 
-const GROUP_DOT: Record<SongGroupId, string> = {
-  action: "bg-terracotta",
-  gentle: "bg-chestnut",
-  story: "bg-gold",
-};
+/** Soft rotations of the site's gold, terracotta, pink, sky, lavender, and sage. */
+const BADGES = [
+  { bg: "#e0a84a", ring: "#f6e3b8" },
+  { bg: "#e08a68", ring: "#f6d2c4" },
+  { bg: "#e7a3b5", ring: "#f8dce4" },
+  { bg: "#7aa3bf", ring: "#d5e6f2" },
+  { bg: "#b59bcb", ring: "#e6daf2" },
+  { bg: "#8fb48c", ring: "#d7ead4" },
+] as const;
 
-const NOTE_STYLE: Record<SongGroupId, string> = {
-  action: "bg-terracotta text-cream",
-  gentle: "bg-sky text-chestnut",
-  story: "bg-gold text-chestnut",
-};
+function badgeFor(slug: string) {
+  const index = Math.max(0, songs.findIndex((song) => song.slug === slug));
+  return BADGES[index % BADGES.length];
+}
+
+function countLabel(count: number) {
+  return `${count} ${count === 1 ? "song" : "songs"}`;
+}
 
 function groupLabel(group: SongGroupId) {
   return SONG_GROUPS.find((item) => item.id === group)?.title ?? "Songs";
@@ -61,7 +68,7 @@ export default function SongsClient({ initialSlug }: { initialSlug?: string }) {
 
   function choose(nextSlug: string, play: boolean) {
     setSlug(nextSlug);
-    setActiveLine(play ? 0 : null);
+    setActiveLine(null);
     setCopied(false);
     if (play) {
       setVideoOn(true);
@@ -101,13 +108,8 @@ export default function SongsClient({ initialSlug }: { initialSlug?: string }) {
             aria-live="polite"
           >
             <div className="flex items-start gap-3">
-              <span
-                className={`mt-0.5 grid h-12 w-12 shrink-0 place-items-center rounded-full text-lg ${NOTE_STYLE[current.group]}`}
-                aria-hidden
-              >
-                ♪
-              </span>
-              <div>
+              <NoteBadge slug={current.slug} size="lg" />
+              <div className="min-w-0">
                 <p className="text-[0.68rem] font-bold uppercase tracking-[0.16em] text-terracotta">
                   Now playing · {groupLabel(current.group)}
                 </p>
@@ -160,9 +162,9 @@ export default function SongsClient({ initialSlug }: { initialSlug?: string }) {
                 {upcoming.title}
               </button>
             </p>
-            <p className="mt-3 rounded-2xl bg-cream-deep/80 px-3 py-2 text-sm text-chestnut-soft">
-              <span aria-hidden>💡 </span>
-              {current.tip}
+            <p className="mt-3 flex gap-2 rounded-2xl bg-[#fbf6df] px-3 py-2.5 text-sm leading-snug text-chestnut-soft">
+              <span aria-hidden>💡</span>
+              <span>{current.tip}</span>
             </p>
           </article>
 
@@ -185,11 +187,12 @@ export default function SongsClient({ initialSlug }: { initialSlug?: string }) {
               ) : null}
             </div>
             {current.lyricsStatus === "lyrics-ok" ? (
-              <LyricLines
-                song={current}
-                activeLine={videoOn ? activeLine : null}
-                onPick={setActiveLine}
-              />
+              <>
+                <LyricLines song={current} activeLine={activeLine} />
+                <p className="mt-3 text-xs leading-relaxed text-chestnut-soft/80">
+                  Traditional words — in the public domain.
+                </p>
+              </>
             ) : (
               <p className="mt-4 text-sm text-chestnut-soft">Sing along with the video.</p>
             )}
@@ -234,16 +237,17 @@ export default function SongsClient({ initialSlug }: { initialSlug?: string }) {
           {SONG_GROUPS.map((group) => {
             const inGroup = visible.filter((song) => song.group === group.id);
             if (inGroup.length === 0) return null;
-            const total = songsInGroup(group.id).length;
+            const total = groupCount(group.id);
+            const dot = badgeFor(songs.find((song) => song.group === group.id)?.slug ?? inGroup[0].slug);
             return (
               <section key={group.id} className="mt-6" aria-labelledby={`group-${group.id}`}>
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className={`h-2.5 w-2.5 rounded-full ${GROUP_DOT[group.id]}`} aria-hidden />
+                  <span className="h-2.5 w-2.5 rounded-full" style={{ background: dot.bg }} aria-hidden />
                   <h2 id={`group-${group.id}`} className="font-display text-2xl font-bold text-chestnut">
                     {group.title}
                   </h2>
-                  <span className="rounded-full bg-cream px-2.5 py-0.5 text-xs font-semibold text-chestnut-soft shadow-sm">
-                    {total} songs
+                  <span className="rounded-full bg-cream-deep px-2.5 py-0.5 text-xs font-semibold text-chestnut-soft">
+                    {countLabel(total)}
                   </span>
                 </div>
                 <p className="mt-1 text-sm text-chestnut-soft">{group.blurb}</p>
@@ -253,8 +257,10 @@ export default function SongsClient({ initialSlug }: { initialSlug?: string }) {
                     return (
                       <li key={song.slug}>
                         <article
-                          className={`rounded-3xl border bg-cream p-3 shadow-sm transition ${
-                            selected ? "border-terracotta shadow-md" : "border-white/80"
+                          className={`rounded-[1.35rem] border p-3 shadow-sm transition ${
+                            selected
+                              ? "border-terracotta bg-[#fff6f1] shadow-md"
+                              : "border-[#f0e6d6] bg-cream"
                           }`}
                           data-song={song.slug}
                         >
@@ -264,24 +270,26 @@ export default function SongsClient({ initialSlug }: { initialSlug?: string }) {
                               onClick={() => choose(song.slug, true)}
                               className="flex min-w-0 flex-1 items-center gap-3 text-left"
                             >
-                              <span
-                                className={`grid h-11 w-11 shrink-0 place-items-center rounded-full text-lg ${NOTE_STYLE[song.group]}`}
-                                aria-hidden
-                              >
-                                ♪
-                              </span>
+                              <NoteBadge slug={song.slug} />
                               <span className="min-w-0">
-                                <span className="block font-display text-lg font-bold leading-tight text-chestnut">
+                                <span className="block font-display text-base font-bold leading-tight text-chestnut sm:text-lg">
                                   {song.title}
                                 </span>
-                                <span className="mt-0.5 block text-sm text-chestnut-soft">{song.tip}</span>
+                                <span className="mt-0.5 block text-sm leading-snug text-chestnut-soft">
+                                  {song.tip}
+                                </span>
                               </span>
                             </button>
                             <button
                               type="button"
                               onClick={() => choose(song.slug, true)}
-                              className="shrink-0 rounded-full border border-terracotta/30 px-3 py-1.5 text-sm font-semibold text-terracotta transition hover:bg-terracotta hover:text-cream"
+                              className={`inline-flex shrink-0 items-center gap-1 rounded-full px-3 py-1.5 text-sm font-semibold transition ${
+                                selected
+                                  ? "bg-terracotta text-cream"
+                                  : "bg-terracotta/15 text-terracotta hover:bg-terracotta/25"
+                              }`}
                             >
+                              <PlayArrow />
                               Play
                             </button>
                           </div>
@@ -324,13 +332,25 @@ function FilterPill({
       type="button"
       aria-pressed={pressed}
       onClick={onClick}
-      className={`rounded-full px-3 py-1.5 text-sm font-semibold shadow-sm transition ${
-        pressed ? "bg-chestnut text-cream" : "border border-white/80 bg-cream text-chestnut-soft hover:text-terracotta"
+      className={`rounded-full px-3.5 py-1.5 text-sm font-semibold transition ${
+        pressed
+          ? "bg-[#24455c] text-cream shadow-sm"
+          : "border border-[#eadfce] bg-cream text-chestnut-soft hover:text-terracotta"
       }`}
     >
       {children}
     </button>
   );
+}
+
+function embedSrc(videoId: string) {
+  const origin = window.location.origin;
+  const params = new URLSearchParams({
+    rel: "0",
+    enablejsapi: "1",
+    origin,
+  });
+  return `https://www.youtube-nocookie.com/embed/${videoId}?${params.toString()}`;
 }
 
 function SingAlongVideo({
@@ -347,10 +367,11 @@ function SingAlongVideo({
       {playing ? (
         <iframe
           key={song.videoId}
+          id="sing-along-player"
           className="absolute inset-0 h-full w-full"
-          src={`https://www.youtube-nocookie.com/embed/${song.videoId}?autoplay=1&rel=0`}
+          src={embedSrc(song.videoId)}
           title={`${song.title} sing-along video`}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
         />
@@ -374,48 +395,71 @@ function SingAlongVideo({
   );
 }
 
+function NoteBadge({ slug, size = "md" }: { slug: string; size?: "md" | "lg" }) {
+  const badge = badgeFor(slug);
+  const box = size === "lg" ? "h-12 w-12" : "h-11 w-11";
+  return (
+    <span
+      className={`grid ${box} shrink-0 place-items-center rounded-full`}
+      style={{ background: badge.bg, boxShadow: `0 0 0 3px ${badge.ring}` }}
+      aria-hidden
+    >
+      <MusicNote />
+    </span>
+  );
+}
+
+function MusicNote() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-5 w-5 fill-white" aria-hidden>
+      <path d="M9 17.5a2.5 2.5 0 1 1-2-2.45V6.2l10-1.8v8.15a2.5 2.5 0 1 1-2-2.45V7.1l-6 1.1v9.3z" />
+    </svg>
+  );
+}
+
+function PlayArrow() {
+  return (
+    <svg viewBox="0 0 12 12" className="h-3 w-3 fill-current" aria-hidden>
+      <path d="M3 1.5v9l8-4.5-8-4.5z" />
+    </svg>
+  );
+}
+
 function LyricLines({
   song,
   activeLine,
-  onPick,
 }: {
   song: Extract<Song, { lyricsStatus: "lyrics-ok" }>;
   activeLine: number | null;
-  onPick?: (line: number) => void;
 }) {
   let lineIndex = -1;
   return (
-    <div className="mt-3 space-y-1 text-[0.98rem] leading-relaxed text-chestnut-soft">
+    <div className="mt-3 max-h-64 space-y-1 overflow-y-auto pr-2 text-[0.98rem] leading-relaxed sm:max-h-80">
       {song.lyrics.map((part, index) => {
         if (part.kind === "label") {
           return (
-            <p key={`${part.text}-${index}`} className="pt-2 text-xs font-bold uppercase tracking-[0.16em] text-terracotta">
+            <p
+              key={`${part.text}-${index}`}
+              className="pt-3 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-terracotta"
+            >
               {part.text}
             </p>
           );
         }
         lineIndex += 1;
         const currentIndex = lineIndex;
-        const highlighted = activeLine === currentIndex;
-        if (!onPick) {
-          return (
-            <p key={`${part.text}-${index}`} className="px-2 py-0.5">
-              {part.text}
-            </p>
-          );
-        }
+        const tone =
+          activeLine == null
+            ? "text-chestnut-soft"
+            : currentIndex < activeLine
+              ? "text-chestnut-soft/40"
+              : currentIndex === activeLine
+                ? "font-semibold text-chestnut"
+                : "text-chestnut-soft/55";
         return (
-          <button
-            key={`${part.text}-${index}`}
-            type="button"
-            onClick={() => onPick(currentIndex)}
-            className={`block w-full rounded-lg px-2 py-0.5 text-left transition ${
-              highlighted ? "bg-terracotta/15 font-semibold text-chestnut" : "hover:bg-cream-deep"
-            }`}
-            aria-pressed={highlighted}
-          >
+          <p key={`${part.text}-${index}`} className={`px-1 py-0.5 ${tone}`}>
             {part.text}
-          </button>
+          </p>
         );
       })}
     </div>

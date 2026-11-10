@@ -9,6 +9,12 @@ export type LyricPart =
   | { kind: "line"; text: string }
   | { kind: "label"; text: string };
 
+/** A printed line, timed to this song's videoId. The same line index may repeat. */
+export type LyricCue = {
+  line: number;
+  start: number;
+};
+
 export type BookLink =
   | { kind: "book"; slug: string; href: string; anchor: string }
   | { kind: "all-books"; href: "/"; anchor: string };
@@ -34,6 +40,14 @@ type SongBase = {
 export type LyricsOkSong = SongBase & {
   lyricsStatus: "lyrics-ok";
   lyrics: LyricPart[];
+  /**
+   * Optional timing for videoId. Leave it off when captions or alignment
+   * could not be derived — the words stay readable and are not highlighted.
+   * Add cues with `node scripts/song-cues.mjs <videoId>`.
+   */
+  cues?: LyricCue[];
+  /** Seconds. Required whenever cues are present. */
+  videoDuration?: number;
 };
 
 export type VideoOnlySong = SongBase & {
@@ -223,7 +237,7 @@ export const songs: Song[] = [
       { kind: "line", text: "Praise ye the Lord!" },
     ],
   }),
-  lyricsOk({
+  videoOnly({
     slug: "the-wise-man-built-his-house",
     title: "The Wise Man Built His House Upon the Rock",
     group: "action",
@@ -232,33 +246,7 @@ export const songs: Song[] = [
     videoId: "3HVdbULOVHA",
     ...vevo("The Wise Man and the Foolish Man"),
     lyricsSource:
-      "Ann Omley, 1948. Timeless Truths and R.J. Stevens Music both label this text Public Domain. https://library.timelesstruths.org/music/The_Wise_Man_and_the_Foolish_Man/ and https://www.rjstevensmusic.com/product/the-wise-man/",
-    lyrics: [
-      { kind: "line", text: "The wise man built his house upon the Rock," },
-      { kind: "line", text: "The wise man built his house upon the Rock," },
-      { kind: "line", text: "The wise man built his house upon the Rock," },
-      { kind: "line", text: "And the rains came tumbling down." },
-      { kind: "line", text: "The rains came down and the floods came up," },
-      { kind: "line", text: "The rains came down and the floods came up," },
-      { kind: "line", text: "The rains came down and the floods came up," },
-      { kind: "line", text: "But the house on the Rock stood firm." },
-      { kind: "line", text: "The foolish man built his house upon the sand," },
-      { kind: "line", text: "The foolish man built his house upon the sand," },
-      { kind: "line", text: "The foolish man built his house upon the sand," },
-      { kind: "line", text: "And the rains came tumbling down." },
-      { kind: "line", text: "The rains came down and the floods came up," },
-      { kind: "line", text: "The rains came down and the floods came up," },
-      { kind: "line", text: "The rains came down and the floods came up," },
-      { kind: "line", text: "And the house on the sand fell flat." },
-      { kind: "line", text: "So build your life on the Lord Jesus Christ," },
-      { kind: "line", text: "So build your life on the Lord Jesus Christ," },
-      { kind: "line", text: "So build your life on the Lord Jesus Christ," },
-      { kind: "line", text: "And the blessings will come down." },
-      { kind: "line", text: "The blessings come down as your prayers go up," },
-      { kind: "line", text: "The blessings come down as your prayers go up," },
-      { kind: "line", text: "The blessings come down as your prayers go up," },
-      { kind: "line", text: "So build your life on the Lord." },
-    ],
+      "Ann Omley, 1948. Timeless Truths and R.J. Stevens Music label the text public domain, but a 1948 copyright renewal was not verified, so the words are not printed. https://library.timelesstruths.org/music/The_Wise_Man_and_the_Foolish_Man/",
   }),
   lyricsOk({
     slug: "jesus-loves-me",
@@ -291,7 +279,7 @@ export const songs: Song[] = [
       { kind: "line", text: "The Bible tells me so." },
     ],
   }),
-  lyricsOk({
+  videoOnly({
     slug: "jesus-loves-the-little-children",
     title: "Jesus Loves the Little Children",
     group: "gentle",
@@ -300,14 +288,7 @@ export const songs: Song[] = [
     videoId: "p5LCvWddQHw",
     ...vevo("Jesus Loves the Little Children"),
     lyricsSource:
-      "C. H. Woolston, 1912, to George F. Root's 1864 tune. Hymnary.org marks the refrain and the full song Public Domain. Traditional refrain only. https://hymnary.org/text/jesus_loves_the_little_children_all_the",
-    lyrics: [
-      { kind: "line", text: "Jesus loves the little children," },
-      { kind: "line", text: "All the children of the world." },
-      { kind: "line", text: "Red and yellow, black and white," },
-      { kind: "line", text: "They are precious in His sight." },
-      { kind: "line", text: "Jesus loves the little children of the world." },
-    ],
+      "The 1912 Woolston refrain is public domain, but its middle line is the wording the owner does not want printed. The widely sung replacement, \"Every color, every race, all are covered by His grace,\" is the Baptist Hymnal 1991 text (Broadman Press, administered by Music Services) and needs a CCLI license. No other replacement was verified free to print. https://digitalsongsandhymns.com/songs/3377",
   }),
   lyricsOk({
     slug: "hes-got-the-whole-world",
@@ -458,6 +439,15 @@ export { songForTonight } from "@/lib/tonight-song";
 
 export function songsInGroup(group: SongGroupId) {
   return songs.filter((song) => song.group === group);
+}
+
+/** Badge and heading counts. Derived so the lineup can grow without a hard-coded 8/5/4. */
+export function groupCount(group: SongGroupId) {
+  return songsInGroup(group).length;
+}
+
+export function songTotal() {
+  return songs.length;
 }
 
 export function findSong(slug: string | undefined | null): Song {

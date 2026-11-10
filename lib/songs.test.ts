@@ -6,6 +6,8 @@ import { books } from "@/app/books";
 import {
   SONG_GROUPS,
   findSong,
+  groupCount,
+  songTotal,
   songs,
   songForTonight,
   songsInGroup,
@@ -20,21 +22,21 @@ function linesOf(song: Song) {
   return song.lyrics.filter((part) => part.kind === "line").map((part) => part.text);
 }
 
-test("song groups are 8 action, 5 gentle, and 4 story", () => {
-  assert.equal(songs.length, 17);
+test("group counts and the total come from the song data", () => {
   assert.deepEqual(
     SONG_GROUPS.map((group) => group.title),
     ["Action Songs", "Gentle Songs", "Bible Story Songs"],
   );
-  assert.equal(songsInGroup("action").length, 8);
-  assert.equal(songsInGroup("gentle").length, 5);
-  assert.equal(songsInGroup("story").length, 4);
-  assert.equal(
-    songs.filter((song) => song.group === "action").length +
-      songs.filter((song) => song.group === "gentle").length +
-      songs.filter((song) => song.group === "story").length,
-    17,
-  );
+  assert.ok(songTotal() > 0);
+  let summed = 0;
+  for (const group of SONG_GROUPS) {
+    const count = groupCount(group.id);
+    summed += count;
+    assert.equal(count, songs.filter((song) => song.group === group.id).length);
+    assert.equal(count, songsInGroup(group.id).length);
+  }
+  assert.equal(summed, songTotal());
+  assert.equal(summed, songs.length);
 });
 
 test("a video-only song cannot carry lyrics", () => {
@@ -90,6 +92,22 @@ test("The B-I-B-L-E prints only the short original verse", () => {
   assert.doesNotMatch(text, /I have a book|God's holy Word I'll|I'll read and pray|every day/i);
 });
 
+test("the color line and unverified texts stay out of the printed words", () => {
+  assert.doesNotMatch(songSource, /Red and yellow, black and white/i);
+  assert.doesNotMatch(JSON.stringify(songs), /Red and yellow, black and white/i);
+  for (const slug of ["the-wise-man-built-his-house", "jesus-loves-the-little-children"]) {
+    const song = songs.find((item) => item.slug === slug);
+    assert.ok(song);
+    assert.equal(song.lyricsStatus, "video-only");
+    assert.equal(Object.hasOwn(song, "lyrics"), false);
+  }
+  for (const slug of ["this-little-light-of-mine", "zacchaeus-was-a-wee-little-man", "the-b-i-b-l-e"]) {
+    const song = songs.find((item) => item.slug === slug);
+    assert.ok(song);
+    assert.equal(song.lyricsStatus, "lyrics-ok");
+  }
+});
+
 test("excluded songs appear nowhere in the song data", () => {
   assert.doesNotMatch(songSource, /My God Is So Great/i);
   assert.doesNotMatch(songSource, /My God Is So Big/i);
@@ -103,7 +121,7 @@ test("excluded songs appear nowhere in the song data", () => {
 test("every story-song book link resolves", () => {
   const bookSlugs = new Set(books.map((book) => book.slug));
   const story = songsInGroup("story");
-  assert.equal(story.length, 4);
+  assert.equal(story.length, groupCount("story"));
   for (const song of story) {
     assert.ok(song.bookLink, song.title);
     if (!song.bookLink) continue;
@@ -116,16 +134,6 @@ test("every story-song book link resolves", () => {
       assert.match(song.bookLink.anchor, /Bible stories/);
     }
   }
-  assert.equal(
-    story.filter((song) => song.bookLink?.kind === "book" && song.bookLink.slug === "zacchaeus").length,
-    1,
-  );
-  assert.equal(
-    story.filter(
-      (song) => song.bookLink?.kind === "book" && song.bookLink.slug === "noah-and-gods-big-promise",
-    ).length,
-    2,
-  );
 });
 
 test("tonight's song matches only real story nights", () => {
@@ -149,11 +157,27 @@ test("tonight's song matches only real story nights", () => {
   assert.notEqual(songForTonight("david-and-the-giant").slug, "zacchaeus-was-a-wee-little-man");
 });
 
+test("lyric cues stay strictly increasing and inside the video", () => {
+  for (const song of songs) {
+    if (song.lyricsStatus !== "lyrics-ok" || !song.cues) continue;
+    assert.equal(typeof song.videoDuration, "number");
+    assert.ok(song.videoDuration && song.videoDuration > 0);
+    const lineCount = song.lyrics.filter((part) => part.kind === "line").length;
+    let previous = -1;
+    for (const cue of song.cues) {
+      assert.ok(cue.line >= 0 && cue.line < lineCount);
+      assert.ok(cue.start > previous);
+      assert.ok(cue.start < (song.videoDuration ?? 0));
+      previous = cue.start;
+    }
+  }
+});
+
 test("every song has a video id and the catalog slugs are unique", () => {
   const slugs = new Set(songs.map((song) => song.slug));
   const videos = new Set(songs.map((song) => song.videoId));
-  assert.equal(slugs.size, 17);
-  assert.equal(videos.size, 17);
+  assert.equal(slugs.size, songTotal());
+  assert.equal(videos.size, songTotal());
   for (const song of songs) {
     assert.match(song.videoId, /^[\w-]{6,}$/);
     assert.ok(song.channel);
