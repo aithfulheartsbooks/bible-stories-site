@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "TZ=America/Los_Angeles node --experimental-strip-types --import ./scripts/register-alias.mjs --test lib/book-aliases.test.js lib/tonight.test.ts"
+    "test": "TZ=America/Los_Angeles node --experimental-strip-types --import ./scripts/register-alias.mjs --test lib/book-aliases.test.js lib/tonight.test.ts lib/songs.test.ts"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

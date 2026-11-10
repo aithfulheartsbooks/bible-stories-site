@@ -15,6 +15,7 @@ import ReadingBadges from "@/components/tonight/ReadingBadges";
 import TonightPrintable from "@/components/tonight/TonightPrintable";
 import { useTonightBook } from "@/components/tonight/useTonightBook";
 import { peekFor } from "@/lib/peeks";
+import { songForTonight } from "@/lib/tonight-song";
 
 const MOODS: { id: TonightMood; title: string; blurb: string }[] = [
   { id: "brave", title: "Brave and ready", blurb: "Giants, lions, and small people who trust God." },
@@ -138,6 +139,7 @@ export default function TonightClient() {
 
       {nightly ? (
         <>
+          <TonightSongStrip bookSlug={nightly.slug} />
           <TonightPrintable slug={nightly.slug} />
           <ReadingBadges slug={nightly.slug} />
         </>
@@ -294,5 +296,18 @@ export default function TonightClient() {
         </button>
       </section>
     </div>
+  );
+}
+
+function TonightSongStrip({ bookSlug }: { bookSlug: string }) {
+  const song = songForTonight(bookSlug);
+  return (
+    <a
+      href={`/songs?song=${song.slug}`}
+      className="tonight-hide-when-chart-prints mt-4 flex items-center justify-center rounded-full border border-white/80 bg-cream/90 px-4 py-2.5 text-center text-sm text-chestnut shadow-sm transition hover:border-terracotta"
+    >
+      Tonight&apos;s song:{" "}
+      <span className="ml-1 font-display text-base font-bold">{song.title}</span>
+    </a>
   );
 }

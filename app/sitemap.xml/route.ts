@@ -7,6 +7,7 @@ const lastmod = "2026-08-25";
 const urls = [
   { loc: `${baseUrl}/`, changefreq: "weekly", priority: "1.0" },
   { loc: `${baseUrl}/tonight`, changefreq: "daily", priority: "0.9" },
+  { loc: `${baseUrl}/songs`, changefreq: "monthly", priority: "0.8" },
   { loc: `${baseUrl}/churches`, changefreq: "weekly", priority: "0.8" },
   { loc: `${baseUrl}/about`, changefreq: "monthly", priority: "0.7" },
   { loc: `${baseUrl}/shop`, changefreq: "monthly", priority: "0.7" },
