@@ -51,6 +51,9 @@ export default function SongsClient({ initialSlug }: { initialSlug?: string }) {
 
   const current = findSong(slug);
   const playerHostRef = useRef<HTMLDivElement>(null);
+  const playerRef = useRef<YouTubePlayer | null>(null);
+  const queuedCommand = useRef<"play" | "pause" | null>(null);
+  const [playing, setPlaying] = useState(false);
   const needle = query.trim().toLowerCase();
 
   const visible = useMemo(() => {
@@ -77,6 +80,9 @@ export default function SongsClient({ initialSlug }: { initialSlug?: string }) {
         const frame = host.querySelector("iframe");
         const sameVideo = Boolean(videoOn && frame?.src.includes(`/embed/${next.videoId}`));
         if (!sameVideo) {
+          playerRef.current = null;
+          queuedCommand.current = null;
+          setPlaying(false);
           startSingAlongFromTap<HTMLIFrameElement>(
             {
               replaceChildren(node) {
@@ -92,6 +98,8 @@ export default function SongsClient({ initialSlug }: { initialSlug?: string }) {
           );
         }
       } else {
+        playerRef.current = null;
+        queuedCommand.current = null;
         host.replaceChildren();
       }
     }
@@ -103,12 +111,30 @@ export default function SongsClient({ initialSlug }: { initialSlug?: string }) {
       markSung(nextSlug);
     } else {
       setVideoOn(false);
+      setPlaying(false);
     }
   }
 
   function step(direction: -1 | 1) {
     const next = sequence[(index + direction + sequence.length) % sequence.length];
     choose(next.slug, videoOn);
+  }
+
+  function togglePlayback() {
+    if (!videoOn) {
+      queuedCommand.current = null;
+      choose(current.slug, true);
+      return;
+    }
+    const player = playerRef.current;
+    if (!player) {
+      queuedCommand.current = playing ? "pause" : "play";
+      return;
+    }
+    const state = readPlayerState(player);
+    const active = state == null ? playing : state === 1 || state === 3;
+    queuedCommand.current = null;
+    runPlayerCommand(player, active ? "pause" : "play");
   }
 
   async function copyLyrics() {
@@ -124,48 +150,83 @@ export default function SongsClient({ initialSlug }: { initialSlug?: string }) {
   }
 
   useEffect(() => {
-    if (!videoOn || current.lyricsStatus !== "lyrics-ok" || !current.cues?.length) {
+    if (!videoOn) {
+      playerRef.current = null;
+      setPlaying(false);
       setActiveLine(null);
       return;
     }
-    const cues = current.cues;
+
+    const cues = current.lyricsStatus === "lyrics-ok" ? current.cues : undefined;
+    if (!cues?.length) setActiveLine(null);
     let cancelled = false;
     let timer = 0;
-    let player: YouTubePlayer | null = null;
+
+    function applyState(state: number) {
+      if (cancelled) return;
+      setPlaying(state === 1 || state === 3);
+      if (!cues?.length) return;
+      if (state === 0 || state === -1 || state === 5) setActiveLine(null);
+    }
 
     function tick() {
+      const player = playerRef.current;
       if (cancelled || !player) return;
-      const state = player.getPlayerState();
+      const state = readPlayerState(player);
+      if (state == null) return;
+      setPlaying(state === 1 || state === 3);
+      if (!cues?.length) return;
       if (state === 0 || state === -1 || state === 5) {
         setActiveLine(null);
         return;
       }
-      const line = activeLyricLine(cues, player.getCurrentTime());
+      // Paused: keep the current line. Reading time here would let a late
+      // tick paint the next lyric after the song has already stopped.
+      if (state === 2) return;
+      let time = Number.NaN;
+      try {
+        time = player.getCurrentTime();
+      } catch {
+        return;
+      }
+      const line = activeLyricLine(cues, time);
       setActiveLine((previous) => (previous === line ? previous : line));
     }
 
     function attach(youtube: YouTubeApi) {
       const iframe = playerHostRef.current?.querySelector("iframe");
       if (cancelled || !iframe) return;
-      player = new youtube.Player(iframe, {
+      new youtube.Player(iframe, {
         events: {
           onReady: (event) => {
-            player = event.target;
             if (cancelled) return;
+            playerRef.current = event.target;
+            const queued = queuedCommand.current;
+            queuedCommand.current = null;
+            if (queued) runPlayerCommand(event.target, queued);
             tick();
             timer = window.setInterval(tick, 250);
+          },
+          onStateChange: (event) => {
+            if (cancelled) return;
+            playerRef.current = event.target;
+            if (typeof event.data === "number") applyState(event.data);
+          },
+          onError: () => {
+            if (!cancelled) setPlaying(false);
           },
         },
       });
     }
 
     loadYouTubeApi().then((youtube) => {
-      if (youtube) attach(youtube);
+      if (!cancelled && youtube) attach(youtube);
     });
 
     return () => {
       cancelled = true;
       window.clearInterval(timer);
+      playerRef.current = null;
     };
   }, [videoOn, current]);
 
@@ -201,30 +262,29 @@ export default function SongsClient({ initialSlug }: { initialSlug?: string }) {
               onPlay={() => choose(current.slug, true)}
             />
 
-            <div className="mt-4 flex items-center justify-center gap-4">
+            <div
+              className="mt-4 flex items-center justify-center gap-6"
+              role="group"
+              aria-label="Playback"
+            >
               <button
                 type="button"
                 onClick={() => step(-1)}
-                className="grid h-11 w-11 place-items-center rounded-full border border-terracotta/30 bg-cream text-chestnut shadow-sm transition hover:border-terracotta hover:text-terracotta"
+                className={sideTransportClass}
                 aria-label="Previous song"
               >
-                ‹
+                <PlayerIcon name="previous" />
               </button>
               <button
                 type="button"
-                onClick={() => choose(current.slug, true)}
-                className="grid h-14 w-14 place-items-center rounded-full bg-terracotta text-xl text-cream shadow-md transition hover:bg-chestnut"
-                aria-label={`Play ${current.title}`}
+                onClick={togglePlayback}
+                className={playTransportClass}
+                aria-label={playing ? "Pause" : "Play"}
               >
-                ▶
+                <PlayerIcon name={playing ? "pause" : "play"} />
               </button>
-              <button
-                type="button"
-                onClick={() => step(1)}
-                className="grid h-11 w-11 place-items-center rounded-full border border-terracotta/30 bg-cream text-chestnut shadow-sm transition hover:border-terracotta hover:text-terracotta"
-                aria-label="Next song"
-              >
-                ›
+              <button type="button" onClick={() => step(1)} className={sideTransportClass} aria-label="Next song">
+                <PlayerIcon name="next" />
               </button>
             </div>
             <p className="mt-3 text-center text-sm text-chestnut-soft">
@@ -455,8 +515,8 @@ function SingAlongVideo({
             className="h-full w-full object-cover"
           />
           <span className="absolute inset-0 grid place-items-center">
-            <span className="grid h-16 w-16 place-items-center rounded-full bg-terracotta text-2xl text-cream shadow-lg">
-              ▶
+            <span className="grid h-16 w-16 place-items-center rounded-full bg-terracotta text-white shadow-[0_8px_18px_rgba(217,119,87,0.38),0_0_0_4px_#f6d2c4]">
+              <PlayerIcon name="play" />
             </span>
           </span>
         </button>
@@ -491,6 +551,42 @@ function PlayArrow() {
   return (
     <svg viewBox="0 0 12 12" className="h-3 w-3 fill-current" aria-hidden>
       <path d="M3 1.5v9l8-4.5-8-4.5z" />
+    </svg>
+  );
+}
+
+const sideTransportClass =
+  "grid h-12 w-12 min-h-11 min-w-11 cursor-pointer place-items-center rounded-full bg-cream-deep text-terracotta shadow-[inset_0_1px_0_rgba(255,255,255,0.95),0_5px_12px_rgba(90,61,43,0.12),0_0_0_4px_#f6d8c6] [-webkit-tap-highlight-color:transparent] motion-safe:transition-transform motion-safe:duration-150 motion-safe:ease-out motion-safe:hover:scale-105 motion-safe:active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[6px] focus-visible:outline-terracotta";
+
+const playTransportClass =
+  "grid h-16 w-16 min-h-11 min-w-11 cursor-pointer place-items-center rounded-full bg-terracotta text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.45),0_8px_18px_rgba(217,119,87,0.38),0_0_0_4px_#f6d2c4] [-webkit-tap-highlight-color:transparent] motion-safe:transition-transform motion-safe:duration-150 motion-safe:ease-out motion-safe:hover:scale-105 motion-safe:active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[6px] focus-visible:outline-gold";
+
+function PlayerIcon({ name }: { name: "play" | "pause" | "previous" | "next" }) {
+  if (name === "pause") {
+    return (
+      <svg viewBox="0 0 24 24" className="h-7 w-7 fill-current" aria-hidden="true">
+        <rect x="7.25" y="5.5" width="3.4" height="13" rx="1.2" />
+        <rect x="13.35" y="5.5" width="3.4" height="13" rx="1.2" />
+      </svg>
+    );
+  }
+  if (name === "play") {
+    return (
+      <svg viewBox="0 0 24 24" className="h-7 w-7 fill-current" aria-hidden="true">
+        <path d="M8.6 5.55 18.85 12 8.6 18.45Z" />
+      </svg>
+    );
+  }
+  const previous = name === "previous";
+  return (
+    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
+      <path
+        d={previous ? "M14.9 6.15 9.1 12l5.8 5.85" : "M9.1 6.15 14.9 12l-5.8 5.85"}
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
@@ -568,14 +664,45 @@ function LyricLines({
 type YouTubePlayer = {
   getCurrentTime: () => number;
   getPlayerState: () => number;
+  playVideo: () => void;
+  pauseVideo: () => void;
+};
+
+type YouTubeStateEvent = {
+  data: number;
+  target: YouTubePlayer;
 };
 
 type YouTubeApi = {
   Player: new (
     element: HTMLElement,
-    options?: { events?: { onReady?: (event: { target: YouTubePlayer }) => void } },
+    options?: {
+      events?: {
+        onReady?: (event: { target: YouTubePlayer }) => void;
+        onStateChange?: (event: YouTubeStateEvent) => void;
+        onError?: (event: { data: number; target: YouTubePlayer }) => void;
+      };
+    },
   ) => YouTubePlayer;
 };
+
+function readPlayerState(player: YouTubePlayer): number | null {
+  try {
+    const state = player.getPlayerState();
+    return typeof state === "number" ? state : null;
+  } catch {
+    return null;
+  }
+}
+
+function runPlayerCommand(player: YouTubePlayer, command: "play" | "pause") {
+  try {
+    if (command === "pause") player.pauseVideo();
+    else player.playVideo();
+  } catch {
+    // The iframe API rejects calls before the player is ready.
+  }
+}
 
 let youtubeApi: Promise<YouTubeApi | null> | null = null;
 
