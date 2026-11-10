@@ -547,6 +547,21 @@ const widgetScript = String.raw`
       return 'The **Free Resources** page has printable resources like coloring pages, memory verse posters, lesson packs, 5-day devotionals, bookmarks, and certificates when available. You can visit **/free-resources**.';
     }
 
+    if (/song|sing along|sing-along|hymn/.test(q)) {
+      const list = SONG_PAGE.songs || [];
+      const words = ['jonah', 'joshua', 'jericho', 'david', 'goliath', 'daniel', 'zacchaeus', 'christmas', 'manger', 'gentle', 'action', 'bedtime'];
+      const hit = list.find(function (song) {
+        const hay = (song.title + ' ' + song.group + ' ' + song.bookAnchor + ' ' + song.bookHref + ' ' + song.page).toLowerCase();
+        return words.some(function (word) { return q.indexOf(word) !== -1 && hay.indexOf(word) !== -1; });
+      }) || list[0];
+      if (hit) {
+        const book = hit.bookHref ? ' ' + hit.bookAnchor + ': ' + hit.bookHref + '.' : '';
+        const domain = hit.lyricsOk ? ' The printed words are in the public domain.' : '';
+        return '**' + hit.title + '** is on **' + hit.page + '**.' + book + domain + ' The full list is **/songs**.';
+      }
+      return 'The sing-along songs are on **/songs**.';
+    }
+
     if (/tonight|bedtime|bed time|what to read|nightly story/.test(q)) {
       return "**Tonight's story** is a new picture book every night. Open **/tonight**, read a few sample pages together, then buy the paperback on Amazon. After midnight a new book takes a turn.";
     }
@@ -577,21 +592,6 @@ const widgetScript = String.raw`
 
     if (/\babout\b|faith rivers|who wrote the books|who is the author/.test(q) && !/song|sing/.test(q)) {
       return 'About is in the footer, not the top menu. Open **/about** to meet Faith Rivers.';
-    }
-
-    if (/song|sing along|sing-along|hymn/.test(q)) {
-      const list = SONG_PAGE.songs || [];
-      const words = ['jonah', 'joshua', 'jericho', 'david', 'goliath', 'daniel', 'zacchaeus', 'christmas', 'manger', 'gentle', 'action', 'bedtime'];
-      const hit = list.find(function (song) {
-        const hay = (song.title + ' ' + song.group + ' ' + song.bookAnchor + ' ' + song.bookHref + ' ' + song.page).toLowerCase();
-        return words.some(function (word) { return q.indexOf(word) !== -1 && hay.indexOf(word) !== -1; });
-      }) || list[0];
-      if (hit) {
-        const book = hit.bookHref ? ' ' + hit.bookAnchor + ': ' + hit.bookHref + '.' : '';
-        const domain = hit.lyricsOk ? ' The printed words are in the public domain.' : '';
-        return '**' + hit.title + '** is on **' + hit.page + '**.' + book + domain + ' The full list is **/songs**.';
-      }
-      return 'The sing-along songs are on **/songs**.';
     }
 
     if (/song|sing along|youtube|video|music/.test(q)) {
@@ -642,7 +642,7 @@ const widgetScript = String.raw`
         const href = url.startsWith('www.') ? 'https://' + url : 'https://www.' + url;
         return prefix + buildLink(href, url);
       })
-      .replace(/(^|[\s>])(\/(?:play|tonight|churches|shop|about|contact|privacy|free-resources|book\/[a-z0-9-]+|newsletter\/thank-you)(?:[^\s<]*)?)/gi, function (match, prefix, path) {
+      .replace(/(^|[\s>])(\/(?:play|tonight|churches|shop|about|contact|privacy|free-resources|songs|book\/[a-z0-9-]+|newsletter\/thank-you)(?:[^\s<]*)?)/gi, function (match, prefix, path) {
         return prefix + buildLink(SITE_URL + path, path);
       })
       .replace(/\n/g, '<br>');

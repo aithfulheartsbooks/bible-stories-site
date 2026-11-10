@@ -285,5 +285,26 @@ test("Ask Angel song knowledge matches the 18-song list", () => {
   assert.match(gentle ?? "", /\/songs\?song=/);
   assert.match(about ?? "", /footer/);
   assert.match(about ?? "", /\/about/);
+  assert.doesNotMatch(knowledge, /\.\./);
   console.log("\nASK ANGEL\n" + [jonah, gentle, about].join("\n"));
+});
+
+test("Ask Angel links /songs and lets a bedtime song question win", () => {
+  const widget = fs.readFileSync(path.join(process.cwd(), "components/AskAngelWidget.tsx"), "utf8");
+  const paths = widget.match(/\/\(\?:(play\|tonight\|[^)]+)\)\(\?:\[\^\\s<\]\*\)\?\)/);
+  assert.ok(paths);
+  const re = new RegExp(`(^|[\\s>])(/(?:${paths[1]})(?:[^\\s<]*)?)`, "gi");
+  const deepLink = "Try /songs?song=who-did-swallow-jonah tonight".replace(re, (_match, prefix, path) => {
+    return `${prefix}<a href="https://www.faithfulheartsbooks.com${path}">${path}</a>`;
+  });
+  const pageLink = "Open /songs for the list".replace(re, (_match, prefix, path) => {
+    return `${prefix}<a href="https://www.faithfulheartsbooks.com${path}">${path}</a>`;
+  });
+  assert.match(deepLink, /href="https:\/\/www\.faithfulheartsbooks\.com\/songs\?song=who-did-swallow-jonah"/);
+  assert.match(pageLink, /href="https:\/\/www\.faithfulheartsbooks\.com\/songs"/);
+
+  const fallback = widget.slice(widget.indexOf("function localFallbackReply"), widget.indexOf("function avatarSVG"));
+  const songAt = fallback.indexOf("if (/song|sing along|sing-along|hymn/");
+  const tonightAt = fallback.indexOf("if (/tonight|bedtime|bed time|what to read|nightly story/");
+  assert.ok(songAt >= 0 && tonightAt > songAt);
 });

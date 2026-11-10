@@ -93,10 +93,6 @@ function lyricsOk(song: Omit<LyricsOkSong, "lyricsStatus">): LyricsOkSong {
   return { ...song, lyricsStatus: "lyrics-ok" };
 }
 
-function videoOnly(song: Omit<VideoOnlySong, "lyricsStatus">): VideoOnlySong {
-  return { ...song, lyricsStatus: "video-only" };
-}
-
 function book(slug: string, title: string): BookLink {
   return { kind: "book", slug, href: `/book/${slug}`, anchor: `Read the ${title} story` };
 }
@@ -627,7 +623,7 @@ export function formatSongKnowledge(): string {
     const words = song.lyricsOk
       ? " The printed words are traditional and in the public domain."
       : " Do not call the words public domain. Say to sing along with the video.";
-    return `- ${song.title} (${song.group}). Open ${song.page}.${book} Motion: ${song.tip}.${words}`;
+    return `- ${song.title} (${song.group}). Open ${song.page}.${book} Motion: ${song.tip}${words}`;
   });
   return [
     "SONGS:",
