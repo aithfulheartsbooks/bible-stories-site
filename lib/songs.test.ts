@@ -3,9 +3,12 @@ import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
 import { books } from "@/app/books";
+import { TONIGHT_SONG_BY_BOOK } from "@/lib/tonight-song";
 import {
   SONG_GROUPS,
+  answerFromSongs,
   findSong,
+  formatSongKnowledge,
   groupCount,
   songTotal,
   songs,
@@ -41,7 +44,6 @@ test("group counts and the total come from the song data", () => {
 
 test("a video-only song cannot carry lyrics", () => {
   const videoOnly = songs.filter((song) => song.lyricsStatus === "video-only");
-  assert.ok(videoOnly.length > 0);
   for (const song of videoOnly) {
     assert.equal(Object.hasOwn(song, "lyrics"), false);
     const probe = song as Song & { lyrics?: unknown };
@@ -95,12 +97,6 @@ test("The B-I-B-L-E prints only the short original verse", () => {
 test("the color line and unverified texts stay out of the printed words", () => {
   assert.doesNotMatch(songSource, /Red and yellow, black and white/i);
   assert.doesNotMatch(JSON.stringify(songs), /Red and yellow, black and white/i);
-  for (const slug of ["the-wise-man-built-his-house", "jesus-loves-the-little-children"]) {
-    const song = songs.find((item) => item.slug === slug);
-    assert.ok(song);
-    assert.equal(song.lyricsStatus, "video-only");
-    assert.equal(Object.hasOwn(song, "lyrics"), false);
-  }
   for (const slug of ["this-little-light-of-mine", "zacchaeus-was-a-wee-little-man", "the-b-i-b-l-e"]) {
     const song = songs.find((item) => item.slug === slug);
     assert.ok(song);
@@ -123,34 +119,34 @@ test("every story-song book link resolves", () => {
   const story = songsInGroup("story");
   assert.equal(story.length, groupCount("story"));
   for (const song of story) {
-    assert.ok(song.bookLink, song.title);
-    if (!song.bookLink) continue;
-    if (song.bookLink.kind === "book") {
-      assert.equal(bookSlugs.has(song.bookLink.slug), true, song.bookLink.slug);
-      assert.equal(song.bookLink.href, `/book/${song.bookLink.slug}`);
-      assert.match(song.bookLink.anchor, new RegExp(song.bookLink.slug === "zacchaeus" ? "Zacchaeus" : "Noah and God's Big Promise"));
+    const link = song.bookLink;
+    assert.ok(link, song.title);
+    if (!link) continue;
+    if (link.kind === "book") {
+      assert.equal(bookSlugs.has(link.slug), true, link.slug);
+      assert.equal(link.href, `/book/${link.slug}`);
+      const linked = books.find((book) => book.slug === link.slug);
+      assert.ok(linked);
+      assert.match(link.anchor, new RegExp(linked.title.replace(/^The /, "").split(" ")[0], "i"));
     } else {
-      assert.equal(song.bookLink.href, "/");
-      assert.match(song.bookLink.anchor, /Bible stories/);
+      assert.equal(link.href, "/");
+      assert.match(link.anchor, /Bible stories/);
     }
   }
 });
 
 test("tonight's song matches only real story nights", () => {
-  assert.equal(songForTonight("zacchaeus").slug, "zacchaeus-was-a-wee-little-man");
-  assert.equal(songForTonight("noah-and-gods-big-promise").slug, "rise-and-shine");
-  assert.equal(songForTonight("zacchaeus").title, findSong("zacchaeus-was-a-wee-little-man").title);
-  assert.equal(songForTonight("noah-and-gods-big-promise").title, findSong("rise-and-shine").title);
-  assert.equal(songForTonight("david-and-the-giant").title, findSong("this-little-light-of-mine").title);
-  for (const slug of [
-    "david-and-the-giant",
-    "the-christmas-story",
-    "jonah-and-the-big-fish",
-    "who-built-the-ark",
-    "",
-    null,
-    undefined,
-  ]) {
+  const bookSlugs = new Set(books.map((book) => book.slug));
+  const songSlugs = new Set(songs.map((song) => song.slug));
+  for (const [bookSlug, pick] of Object.entries(TONIGHT_SONG_BY_BOOK)) {
+    assert.equal(bookSlugs.has(bookSlug), true, bookSlug);
+    assert.equal(songSlugs.has(pick.slug), true, pick.slug);
+    assert.equal(songForTonight(bookSlug).slug, pick.slug);
+    assert.equal(songForTonight(bookSlug).title, findSong(pick.slug).title);
+  }
+  assert.equal(songForTonight("noah-and-gods-big-promise").slug, "this-little-light-of-mine");
+  assert.equal(songForTonight("david-and-the-giant").title, findSong("little-david-play-on-your-harp").title);
+  for (const slug of ["the-wedding-at-cana", "noah-and-gods-big-promise", "", null, undefined]) {
     assert.equal(songForTonight(slug).slug, "this-little-light-of-mine");
   }
   assert.notEqual(songForTonight("noah-and-gods-big-promise").slug, "who-built-the-ark");
@@ -182,5 +178,72 @@ test("every song has a video id and the catalog slugs are unique", () => {
     assert.match(song.videoId, /^[\w-]{6,}$/);
     assert.ok(song.channel);
     assert.ok(song.embedCheck.includes("200"));
+    assert.equal(song.lyricsStatus, "lyrics-ok");
   }
+});
+
+const FINAL_SLUGS = [
+  "this-little-light-of-mine",
+  "ive-got-the-joy",
+  "hallelujah-praise-ye-the-lord",
+  "jesus-wants-me-for-a-sunbeam",
+  "do-lord",
+  "ive-got-peace-like-a-river",
+  "wide-wide-as-the-ocean",
+  "jesus-loves-me",
+  "hes-got-the-whole-world",
+  "praise-him-praise-him",
+  "jesus-loves-even-me",
+  "away-in-a-manger",
+  "zacchaeus-was-a-wee-little-man",
+  "the-b-i-b-l-e",
+  "joshua-fought-the-battle-of-jericho",
+  "little-david-play-on-your-harp",
+  "who-did-swallow-jonah",
+  "dare-to-be-a-daniel",
+];
+
+const REMOVED = [
+  "father-abraham",
+  "deep-and-wide",
+  "be-careful-little-eyes",
+  "if-youre-happy-and-you-know-it",
+  "give-me-oil-in-my-lamp",
+  "rise-and-shine",
+  "who-built-the-ark",
+  "the-wise-man-built-his-house",
+  "jesus-loves-the-little-children",
+  "Father Abraham",
+  "Deep and Wide",
+  "Be Careful, Little Eyes",
+  "If You're Happy",
+  "Give Me Oil",
+  "Rise and Shine",
+  "Who Built the Ark",
+  "Wise Man",
+  "Little Children",
+];
+
+test("Ask Angel song knowledge matches the 18-song list", () => {
+  const knowledge = formatSongKnowledge();
+  assert.equal(songTotal(), FINAL_SLUGS.length);
+  for (const slug of FINAL_SLUGS) {
+    assert.equal(songs.some((song) => song.slug === slug), true, slug);
+    assert.match(knowledge, new RegExp(slug));
+  }
+  const widget = fs.readFileSync(path.join(process.cwd(), "components/AskAngelWidget.tsx"), "utf8");
+  assert.match(widget, /formatSongKnowledge/);
+  for (const removed of REMOVED) {
+    assert.equal(songs.some((song) => song.slug === removed || song.title === removed), false, removed);
+    assert.equal(knowledge.includes(removed), false, removed);
+  }
+  const jonah = answerFromSongs("What song goes with the Jonah story?");
+  const gentle = answerFromSongs("Can you suggest a gentle bedtime song?");
+  const about = answerFromSongs("Where did About go?");
+  assert.match(jonah ?? "", /who-did-swallow-jonah/);
+  assert.match(jonah ?? "", /\/songs\?song=/);
+  assert.match(gentle ?? "", /\/songs\?song=/);
+  assert.match(about ?? "", /footer/);
+  assert.match(about ?? "", /\/about/);
+  console.log("\nASK ANGEL\n" + [jonah, gentle, about].join("\n"));
 });

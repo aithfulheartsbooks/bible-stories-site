@@ -1,4 +1,5 @@
 import { ETSY_SHOP_URL } from "@/lib/etsy";
+import { askAngelSongs, formatSongKnowledge } from "@/lib/songs";
 import { formatLiveTeeList } from "@/lib/shop-tees";
 
 const widgetStyles = String.raw`
@@ -261,6 +262,7 @@ const widgetScript = String.raw`
   const WORKER_URL = 'https://ask-angel.ruhezhao.workers.dev';
   const SITE_URL = 'https://www.faithfulheartsbooks.com';
   const ETSY_SHOP_URL = '${ETSY_SHOP_URL}';
+  const SONG_PAGE = __SONG_PAGE_JSON__;
 
   let booksCache = null;
   let isOpen = false;
@@ -440,14 +442,16 @@ const widgetScript = String.raw`
       '- Tonight page: /tonight. A new Bible picture book is featured every night after midnight in the visitor\'s local time. Families can read a 4-page bedtime peek, then buy the paperback on Amazon. If tonight\'s book is not the right mood, they can pick brave, cozy, curious, or needs a hug and get three matching books with sample pages. There is a Copy caption button for posting. Send bedtime / what-should-we-read-tonight questions here.',
       '- Churches page: /churches. A weekly Sunday school and homeschool kit. Three picture books for this week\'s theme. The kit changes every Sunday. Teachers and families should order the paperbacks on Amazon, not by email. There is a Copy caption for sharing the kit. Send Sunday school, church, classroom, and homeschool questions here.',
       '- Etsy shop (Faith Rivers Studio): ' + ETSY_SHOP_URL + '. Ready-to-print Bible lessons and activity pages for Sunday school and home. Mention this shop only when a visitor asks about printables, Sunday-school or classroom lessons, activity pages, or what else you sell. Then add one warm, plain sentence with the link. Example: We also have ready-to-print Bible lessons and activity pages on our Etsy shop: ' + ETSY_SHOP_URL + '. Do not mention this shop in unrelated answers. Do not quote prices, sales, or urgency. Do not say that anything on Etsy is free.',
-      '- About page: /about. It introduces Faith Rivers and the heart behind the series.',
+      '- About page: /about. It introduces Faith Rivers and the heart behind the series. About is not in the top menu. It is a footer link on every page.',
       '- Shop page: /shop (Little Hearts Tees by Faith Rivers). Gentle Bible verse tees for little ones. Sold on Amazon. As of Oct 2026, __LIVE_TEES__ are live with Shop on Amazon buttons; other designs show Coming soon and go live over the following days. Some tees have a quiet Pair it with link to a matching book page. Send merch, tee, shirt, and apparel questions to /shop.',
       '- Contact page: /contact. Families can reach the site there or use info@faithfulheartsbooks.com.',
       '- Privacy Policy page: /privacy. It explains what this site collects. Social links are covered there too: Amazon, Instagram, Facebook, X (Twitter), and Pinterest are off-site, and each has its own privacy policy.',
       '- Newsletter signup: on the homepage for updates about new books and free printables.',
       '',
       'SERIES MAP ORDER FROM LIVE BOOK DATA:',
-      seriesMap || 'Use scriptureReference and biblicalOrder fields from live book data.'
+      seriesMap || 'Use scriptureReference and biblicalOrder fields from live book data.',
+      '',
+      SONG_PAGE.knowledge
     ].join('\n');
   }
 
@@ -494,7 +498,8 @@ const widgetScript = String.raw`
       '- If a parent asks what to read tonight, at bedtime, or for a nightly story, send them to /tonight. Mention they can read a few sample pages, then buy the paperback on Amazon.',
       '- If a teacher, church, Sunday school, or homeschool asks for a lesson or kit, send them to /churches and tell them to order the paperbacks on Amazon. Do not tell them to email for bulk orders.',
       '- Mention the Faith Rivers Studio Etsy shop only when the visitor asks about printables, Sunday-school or classroom lessons, activity pages, or what else you sell. In that case add one warm plain sentence and this markdown link: [Etsy shop](' + ETSY_SHOP_URL + '). Use this sentence: "We also have ready-to-print Bible lessons and activity pages on our Etsy shop." You may mention the Churches kit and Amazon paperbacks first when they asked about Sunday school, then that one Etsy sentence. Do not mention Etsy, Faith Rivers Studio, or that link on bedtime, tonight, which-book, theme, or any other unrelated answer. Those answers stay pointed at the books and Amazon, /tonight, or /churches. Never quote a price or a sale, and never call an Etsy item free.',
-      '- Each book page may include a Sing Along YouTube video. If asked about songs, music, sing-along videos, or YouTube videos, answer from the Sing Along video fields in the live book list.',
+      '- If asked about songs, sing-alongs, or music, answer only from the SONGS list. Link to /songs or /songs?song=slug. Recommend one song by group, mood, or book. Mention Tonight\'s song when the question is about bedtime. Say the words are in the public domain only when that song\'s line says so. Do not mention songs that are not in the list.',
+      '- Each book page may also include its own Sing Along YouTube video. If asked for that book-page video, use the Sing Along fields in the live book list.',
       '- If a user asks for a book video, include the YouTube link when it exists and mention that the video is also embedded on that book page.',
       '- If asked about the Series Map, explain that it is biblical chronological order and mention Old Testament/New Testament grouping.',
       '- If asked for the newest/latest/new book, answer using this live value: ' + (newestBook ? newestBook.number + ' "' + newestBook.title + '"' : 'highest available book number') + '.',
@@ -568,6 +573,25 @@ const widgetScript = String.raw`
 
     if (/new|newest|latest|recent/.test(q) && newestBook) {
       return 'The newest book is **' + newestBook.title + '**' + (newestBook.desc ? '. ' + newestBook.desc : '') + ' [Find it on Amazon](' + (newestBook.amazonUrl || newestBook.bookUrl) + ')';
+    }
+
+    if (/\babout\b|faith rivers|who wrote the books|who is the author/.test(q) && !/song|sing/.test(q)) {
+      return 'About is in the footer, not the top menu. Open **/about** to meet Faith Rivers.';
+    }
+
+    if (/song|sing along|sing-along|hymn/.test(q)) {
+      const list = SONG_PAGE.songs || [];
+      const words = ['jonah', 'joshua', 'jericho', 'david', 'goliath', 'daniel', 'zacchaeus', 'christmas', 'manger', 'gentle', 'action', 'bedtime'];
+      const hit = list.find(function (song) {
+        const hay = (song.title + ' ' + song.group + ' ' + song.bookAnchor + ' ' + song.bookHref + ' ' + song.page).toLowerCase();
+        return words.some(function (word) { return q.indexOf(word) !== -1 && hay.indexOf(word) !== -1; });
+      }) || list[0];
+      if (hit) {
+        const book = hit.bookHref ? ' ' + hit.bookAnchor + ': ' + hit.bookHref + '.' : '';
+        const domain = hit.lyricsOk ? ' The printed words are in the public domain.' : '';
+        return '**' + hit.title + '** is on **' + hit.page + '**.' + book + domain + ' The full list is **/songs**.';
+      }
+      return 'The sing-along songs are on **/songs**.';
     }
 
     if (/song|sing along|youtube|video|music/.test(q)) {
@@ -833,7 +857,8 @@ const widgetScript = String.raw`
     ];
   }
 })();
-`.replace("__LIVE_TEES__", formatLiveTeeList().replace(/\\/g, "\\\\").replace(/'/g, "\\'"));
+`.replace("__LIVE_TEES__", formatLiveTeeList().replace(/\\/g, "\\\\").replace(/'/g, "\\'"))
+  .replace("__SONG_PAGE_JSON__", JSON.stringify({ knowledge: formatSongKnowledge(), songs: askAngelSongs() }));
 
 export default function AskAngelWidget() {
   return (
