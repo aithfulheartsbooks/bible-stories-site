@@ -1,6 +1,7 @@
 "use client";
 
-import { memo, useMemo, useRef, useState, type Ref } from "react";
+import { memo, useEffect, useMemo, useRef, useState, type Ref } from "react";
+import { activeLyricLine } from "@/lib/lyric-sync";
 import {
   SONG_GROUPS,
   findSong,
@@ -121,6 +122,52 @@ export default function SongsClient({ initialSlug }: { initialSlug?: string }) {
       setCopied(false);
     }
   }
+
+  useEffect(() => {
+    if (!videoOn || current.lyricsStatus !== "lyrics-ok" || !current.cues?.length) {
+      setActiveLine(null);
+      return;
+    }
+    const cues = current.cues;
+    let cancelled = false;
+    let timer = 0;
+    let player: YouTubePlayer | null = null;
+
+    function tick() {
+      if (cancelled || !player) return;
+      const state = player.getPlayerState();
+      if (state === 0 || state === -1 || state === 5) {
+        setActiveLine(null);
+        return;
+      }
+      const line = activeLyricLine(cues, player.getCurrentTime());
+      setActiveLine((previous) => (previous === line ? previous : line));
+    }
+
+    function attach(youtube: YouTubeApi) {
+      const iframe = playerHostRef.current?.querySelector("iframe");
+      if (cancelled || !iframe) return;
+      player = new youtube.Player(iframe, {
+        events: {
+          onReady: (event) => {
+            player = event.target;
+            if (cancelled) return;
+            tick();
+            timer = window.setInterval(tick, 250);
+          },
+        },
+      });
+    }
+
+    loadYouTubeApi().then((youtube) => {
+      if (youtube) attach(youtube);
+    });
+
+    return () => {
+      cancelled = true;
+      window.clearInterval(timer);
+    };
+  }, [videoOn, current]);
 
   const sungLabel =
     sung.length === 1 ? "1 song sung this visit" : `${sung.length} songs sung this visit`;
@@ -455,9 +502,32 @@ function LyricLines({
   song: Extract<Song, { lyricsStatus: "lyrics-ok" }>;
   activeLine: number | null;
 }) {
+  const boxRef = useRef<HTMLDivElement>(null);
   let lineIndex = -1;
+
+  useEffect(() => {
+    const box = boxRef.current;
+    if (!box || activeLine == null) return;
+    const line = box.querySelector<HTMLElement>(`[data-lyric-line="${activeLine}"]`);
+    if (!line) return;
+    const boxRect = box.getBoundingClientRect();
+    const lineRect = line.getBoundingClientRect();
+    const alreadyVisible = lineRect.top >= boxRect.top && lineRect.bottom <= boxRect.bottom;
+    if (alreadyVisible) return;
+    const next = box.scrollTop + (lineRect.top - boxRect.top) - box.clientHeight / 2 + lineRect.height / 2;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) {
+      box.scrollTop = Math.max(0, next);
+    } else {
+      box.scrollTo({ top: Math.max(0, next), behavior: "smooth" });
+    }
+  }, [activeLine, song.slug]);
+
   return (
-    <div className="mt-3 max-h-64 space-y-1 overflow-y-auto pr-2 text-[0.98rem] leading-relaxed sm:max-h-80">
+    <div
+      ref={boxRef}
+      className="relative mt-3 max-h-64 space-y-1 overflow-y-auto pr-2 text-[0.98rem] leading-relaxed sm:max-h-80"
+    >
       {song.lyrics.map((part, index) => {
         if (part.kind === "label") {
           return (
@@ -471,20 +541,65 @@ function LyricLines({
         }
         lineIndex += 1;
         const currentIndex = lineIndex;
+        const active = currentIndex === activeLine;
         const tone =
           activeLine == null
             ? "text-chestnut-soft"
             : currentIndex < activeLine
               ? "text-chestnut-soft/40"
-              : currentIndex === activeLine
-                ? "font-semibold text-chestnut"
+              : active
+                ? "rounded-md bg-[#fbf6df] font-semibold text-chestnut motion-safe:transition-colors"
                 : "text-chestnut-soft/55";
         return (
-          <p key={`${part.text}-${index}`} className={`px-1 py-0.5 ${tone}`}>
+          <p
+            key={`${part.text}-${index}`}
+            data-lyric-line={currentIndex}
+            aria-current={active ? "true" : undefined}
+            className={`px-1 py-0.5 ${tone}`}
+          >
             {part.text}
           </p>
         );
       })}
     </div>
   );
+}
+
+type YouTubePlayer = {
+  getCurrentTime: () => number;
+  getPlayerState: () => number;
+};
+
+type YouTubeApi = {
+  Player: new (
+    element: HTMLElement,
+    options?: { events?: { onReady?: (event: { target: YouTubePlayer }) => void } },
+  ) => YouTubePlayer;
+};
+
+let youtubeApi: Promise<YouTubeApi | null> | null = null;
+
+function loadYouTubeApi() {
+  if (typeof window === "undefined") return Promise.resolve(null);
+  if (window.YT?.Player) return Promise.resolve(window.YT);
+  if (!youtubeApi) {
+    youtubeApi = new Promise((resolve) => {
+      const previous = window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady = () => {
+        previous?.();
+        resolve(window.YT?.Player ? window.YT : null);
+      };
+      const script = document.createElement("script");
+      script.src = "https://www.youtube.com/iframe_api";
+      document.head.appendChild(script);
+    });
+  }
+  return youtubeApi;
+}
+
+declare global {
+  interface Window {
+    YT?: YouTubeApi;
+    onYouTubeIframeAPIReady?: () => void;
+  }
 }

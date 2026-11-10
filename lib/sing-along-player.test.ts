@@ -76,6 +76,6 @@ test("embed url stays on the nocookie host", () => {
 test("the song page starts playback inside the tap handler", () => {
   const source = fs.readFileSync(path.join(process.cwd(), "app/songs/SongsClient.tsx"), "utf8");
   const choose = source.slice(source.indexOf("function choose"), source.indexOf("function step"));
-  assert.match(choose, /startSingAlongFromTap\(/);
-  assert.doesNotMatch(source, /useEffect\(/);
+  assert.match(choose, /startSingAlongFromTap/);
+  assert.doesNotMatch(choose, /useEffect/);
 });

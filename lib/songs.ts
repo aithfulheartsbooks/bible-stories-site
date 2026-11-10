@@ -1,3 +1,5 @@
+import { songCueTimes } from "@/lib/song-cue-times";
+
 // One source of truth for the /songs page and Tonight's song strip.
 // Lyric text is printed only when a hymnal record or publisher labels it
 // public domain (or the traditional first verse the brief allows). Otherwise
@@ -9,7 +11,12 @@ export type LyricPart =
   | { kind: "line"; text: string }
   | { kind: "label"; text: string };
 
-/** A printed line, timed to this song's videoId. The same line index may repeat. */
+/**
+ * A printed line (labels are not counted), timed to this song's videoId.
+ * The same line index may appear again when the recording repeats it.
+ * Starts stay in order. A stretch with no cue, including an unprinted verse,
+ * is not highlighted.
+ */
 export type LyricCue = {
   line: number;
   start: number;
@@ -280,7 +287,7 @@ export const songs: Song[] = [
     videoId: "Ri-StyOL1I4",
     ...vevo("Wide, Wide as the Ocean"),
     lyricsSource:
-      "Charles Austin Miles, 1914. Hymnary: Public Domain. https://hymnary.org/text/wide_wide_as_the_ocean The Apr 6, 2023 CedarmontKidsVEVO page is the official recording of this title. Its description did not reprint the lyric, so cues are not attached.",
+      "Charles Austin Miles, 1914. Hymnary: Public Domain. https://hymnary.org/text/wide_wide_as_the_ocean The Apr 6, 2023 CedarmontKidsVEVO page is the official recording of this title. Its description did not reprint the lyric.",
     lyrics: [
       { kind: "line", text: "Wide, wide as the ocean, high as the heavens above;" },
       { kind: "line", text: "Deep, deep as the deepest sea is my Savior's love." },
@@ -528,6 +535,32 @@ export const songs: Song[] = [
   }),
 ];
 
+/** Cue files index the lyrics array, so a "Refrain" label keeps a number. Highlighting uses printed lines only. */
+function printedLineIndex(lyrics: LyricPart[], lyricsIndex: number): number | null {
+  const part = lyrics[lyricsIndex];
+  if (!part || part.kind !== "line") return null;
+  let printed = 0;
+  for (let index = 0; index < lyricsIndex; index += 1) {
+    if (lyrics[index].kind === "line") printed += 1;
+  }
+  return printed;
+}
+
+for (const song of songs) {
+  if (song.lyricsStatus !== "lyrics-ok") continue;
+  const timing = songCueTimes[song.slug];
+  if (!timing || timing.videoId !== song.videoId) {
+    throw new Error(`Sing-along cues do not match ${song.slug}`);
+  }
+  song.videoDuration = timing.videoDuration;
+  song.cues = timing.cues.map((cue) => {
+    const line = printedLineIndex(song.lyrics, cue.line);
+    if (line == null) {
+      throw new Error(`Cue for ${song.slug} does not land on a printed line (${cue.line})`);
+    }
+    return { line, start: cue.start };
+  });
+}
 
 export const DEFAULT_SONG_SLUG = "this-little-light-of-mine";
 

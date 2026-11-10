@@ -4,6 +4,7 @@ import path from "node:path";
 import test from "node:test";
 import { books } from "@/app/books";
 import { TONIGHT_SONG_BY_BOOK } from "@/lib/tonight-song";
+import { activeLyricLine } from "@/lib/lyric-sync";
 import {
   SONG_GROUPS,
   answerFromSongs,
@@ -155,7 +156,9 @@ test("tonight's song matches only real story nights", () => {
 
 test("lyric cues stay strictly increasing and inside the video", () => {
   for (const song of songs) {
-    if (song.lyricsStatus !== "lyrics-ok" || !song.cues) continue;
+    assert.equal(song.lyricsStatus, "lyrics-ok");
+    if (song.lyricsStatus !== "lyrics-ok") continue;
+    assert.ok(song.cues && song.cues.length > 0, song.slug);
     assert.equal(typeof song.videoDuration, "number");
     assert.ok(song.videoDuration && song.videoDuration > 0);
     const lineCount = song.lyrics.filter((part) => part.kind === "line").length;
@@ -167,6 +170,43 @@ test("lyric cues stay strictly increasing and inside the video", () => {
       previous = cue.start;
     }
   }
+});
+
+test("active line follows repeats and clears in the gaps", () => {
+  const cues = [
+    { line: 0, start: 10 },
+    { line: 1, start: 14 },
+    { line: 2, start: 18 },
+    { line: 0, start: 40 },
+    { line: 1, start: 44 },
+  ];
+  assert.equal(activeLyricLine(cues, 9), null);
+  assert.equal(activeLyricLine(cues, 10), 0);
+  assert.equal(activeLyricLine(cues, 13.9), 0);
+  assert.equal(activeLyricLine(cues, 14), 1);
+  assert.equal(activeLyricLine(cues, 18), 2);
+  assert.equal(activeLyricLine(cues, 30), null);
+  assert.equal(activeLyricLine(cues, 40), 0);
+  assert.equal(activeLyricLine(cues, 44), 1);
+  assert.equal(activeLyricLine(cues, 80), null);
+
+  const sunbeam = findSong("jesus-wants-me-for-a-sunbeam");
+  assert.equal(sunbeam.lyricsStatus, "lyrics-ok");
+  if (sunbeam.lyricsStatus !== "lyrics-ok" || !sunbeam.cues) return;
+  const printed = sunbeam.lyrics.filter((part) => part.kind === "line").length;
+  assert.equal(printed, 8);
+  assert.equal(sunbeam.cues.length, 6);
+  const highlighted = new Set<number>();
+  const duration = sunbeam.videoDuration ?? 0;
+  for (let time = 0; time < duration; time += 0.25) {
+    const line = activeLyricLine(sunbeam.cues, time);
+    if (line != null) highlighted.add(line);
+  }
+  assert.equal(highlighted.has(printed - 1), false);
+  assert.equal(highlighted.has(printed - 2), false);
+  const last = sunbeam.cues[sunbeam.cues.length - 1];
+  assert.equal(activeLyricLine(sunbeam.cues, last.start), last.line);
+  assert.equal(activeLyricLine(sunbeam.cues, last.start + 30), null);
 });
 
 test("every song has a video id and the catalog slugs are unique", () => {
