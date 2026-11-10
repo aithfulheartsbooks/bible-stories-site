@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { memo, useMemo, useRef, useState, type Ref } from "react";
 import {
   SONG_GROUPS,
   findSong,
@@ -11,6 +11,7 @@ import {
   type Song,
   type SongGroupId,
 } from "@/lib/songs";
+import { startSingAlongFromTap } from "@/lib/sing-along-player";
 
 type GroupFilter = "all" | SongGroupId;
 
@@ -48,6 +49,7 @@ export default function SongsClient({ initialSlug }: { initialSlug?: string }) {
   const [activeLine, setActiveLine] = useState<number | null>(null);
 
   const current = findSong(slug);
+  const playerHostRef = useRef<HTMLDivElement>(null);
   const needle = query.trim().toLowerCase();
 
   const visible = useMemo(() => {
@@ -67,6 +69,31 @@ export default function SongsClient({ initialSlug }: { initialSlug?: string }) {
   }
 
   function choose(nextSlug: string, play: boolean) {
+    const next = findSong(nextSlug);
+    const host = playerHostRef.current;
+    if (host) {
+      if (play) {
+        const frame = host.querySelector("iframe");
+        const sameVideo = Boolean(videoOn && frame?.src.includes(`/embed/${next.videoId}`));
+        if (!sameVideo) {
+          startSingAlongFromTap<HTMLIFrameElement>(
+            {
+              replaceChildren(node) {
+                host.replaceChildren(node);
+              },
+              ownerDocument: {
+                createElement: (tag) => host.ownerDocument.createElement(tag),
+              },
+            },
+            next.videoId,
+            next.title,
+            window.location.origin,
+          );
+        }
+      } else {
+        host.replaceChildren();
+      }
+    }
     setSlug(nextSlug);
     setActiveLine(null);
     setCopied(false);
@@ -123,6 +150,7 @@ export default function SongsClient({ initialSlug }: { initialSlug?: string }) {
             <SingAlongVideo
               song={current}
               playing={videoOn}
+              hostRef={playerHostRef}
               onPlay={() => choose(current.slug, true)}
             />
 
@@ -343,43 +371,38 @@ function FilterPill({
   );
 }
 
-function embedSrc(videoId: string) {
-  const origin = window.location.origin;
-  const params = new URLSearchParams({
-    rel: "0",
-    enablejsapi: "1",
-    origin,
-  });
-  return `https://www.youtube-nocookie.com/embed/${videoId}?${params.toString()}`;
-}
+const PlayerHost = memo(function PlayerHost({
+  hostRef,
+}: {
+  hostRef: Ref<HTMLDivElement>;
+}) {
+  return <div ref={hostRef} className="absolute inset-0" data-player-host="" />;
+});
 
 function SingAlongVideo({
   song,
   playing,
+  hostRef,
   onPlay,
 }: {
   song: Song;
   playing: boolean;
+  hostRef: Ref<HTMLDivElement>;
   onPlay: () => void;
 }) {
   return (
     <div className="relative mt-4 aspect-video w-full overflow-hidden rounded-2xl bg-chestnut/10">
-      {playing ? (
-        <iframe
-          key={song.videoId}
-          id="sing-along-player"
-          className="absolute inset-0 h-full w-full"
-          src={embedSrc(song.videoId)}
-          title={`${song.title} sing-along video`}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        />
-      ) : (
-        <button type="button" onClick={onPlay} className="absolute inset-0 block h-full w-full">
+      <PlayerHost hostRef={hostRef} />
+      {playing ? null : (
+        <button
+          type="button"
+          onClick={onPlay}
+          className="absolute inset-0 z-10 block h-full w-full"
+          aria-label={`Play ${song.title}`}
+        >
           <img
             src={`https://i.ytimg.com/vi/${song.videoId}/hqdefault.jpg`}
-            alt={`Play ${song.title}, a children's sing-along video`}
+            alt=""
             width={480}
             height={360}
             className="h-full w-full object-cover"
