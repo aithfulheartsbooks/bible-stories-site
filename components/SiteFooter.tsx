@@ -1,6 +1,7 @@
+import type { ReactNode } from "react";
 import { ETSY_SHOP_URL } from "@/lib/etsy";
 
-export default function SiteFooter() {
+export default function SiteFooter({ extra }: { extra?: ReactNode }) {
   return (
     <footer className="relative z-10 px-6 pb-32 pt-12 text-center text-chestnut-soft sm:pb-16">
       <div className="mx-auto mb-6 h-0.5 w-16 rounded bg-gold/50" />
@@ -8,6 +9,7 @@ export default function SiteFooter() {
         &ldquo;Let the little children come to me.&rdquo; &mdash; A series made with
         love for growing hearts.
       </p>
+      {extra}
       <div className="mt-8 flex flex-wrap justify-center gap-3">
         <a
           href="https://www.instagram.com/faithriversbooks/"
@@ -40,6 +42,12 @@ export default function SiteFooter() {
           className="inline-flex items-center justify-center rounded-full border border-terracotta/25 bg-cream/80 px-5 py-2.5 text-sm font-semibold text-chestnut-soft shadow-sm transition hover:border-terracotta hover:bg-terracotta hover:text-cream"
         >
           Follow on X
+        </a>
+        <a
+          href="/about"
+          className="inline-flex items-center justify-center rounded-full border border-terracotta/25 bg-cream/80 px-5 py-2.5 text-sm font-semibold text-chestnut-soft shadow-sm transition hover:border-terracotta hover:bg-terracotta hover:text-cream"
+        >
+          About
         </a>
         <a
           href="/contact"
