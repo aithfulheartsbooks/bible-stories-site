@@ -29,6 +29,19 @@ test("every printed line is sung on the song's own video", () => {
   }
 });
 
+test("a sung stretch that matches no printed line fails", () => {
+  const alignment: SongAlignment = {
+    videoId: "f1JbSvhw43I",
+    duration: 40,
+    cues: [{ line: 0, start: 1, score: 1 }],
+    unmatched: [{ start: 10, end: 16, text: "I read about it in the book of Revelation" }],
+  };
+  assert.throws(
+    () => checkSungLines("do-lord", "f1JbSvhw43I", ["Do Lord, O do Lord, O do remember me,"], alignment),
+    /the video sings words that are not printed: swap the video or re-run scripts\/align-songs\.py/,
+  );
+});
+
 test("a manifest for a different video id fails", () => {
   const alignment: SongAlignment = {
     videoId: "other-video",

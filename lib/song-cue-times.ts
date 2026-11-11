@@ -12,7 +12,7 @@ export const songCueTimes: Record<string, { videoId: string; videoDuration: numb
   "ive-got-the-joy": {
     videoId: "8i_IoI9NmW8",
     videoDuration: 151,
-    cues: [{ line: 0, start: 8.62 }, { line: 1, start: 14.1 }, { line: 2, start: 18.04 }, { line: 3, start: 22.56 }, { line: 5, start: 26.16 }, { line: 6, start: 29.6 }, { line: 5, start: 34.0 }, { line: 6, start: 37.86 }, { line: 7, start: 42.36 }, { line: 8, start: 47.04 }, { line: 9, start: 50.96 }, { line: 10, start: 55.16 }, { line: 5, start: 58.3 }, { line: 6, start: 62.68 }, { line: 5, start: 67.1 }, { line: 6, start: 71.02 }, { line: 11, start: 75.46 }, { line: 6, start: 95.78 }, { line: 5, start: 100.52 }, { line: 6, start: 104.02 }, { line: 5, start: 125.12 }, { line: 6, start: 129.58 }, { line: 5, start: 133.32 }, { line: 6, start: 137.84 }, { line: 6, start: 141.5 }, { line: 6, start: 146.24 }],
+    cues: [{ line: 0, start: 8.62 }, { line: 1, start: 14.1 }, { line: 2, start: 18.04 }, { line: 3, start: 22.56 }, { line: 5, start: 26.16 }, { line: 6, start: 29.6 }, { line: 5, start: 34.0 }, { line: 6, start: 37.86 }, { line: 7, start: 42.36 }, { line: 8, start: 47.04 }, { line: 9, start: 50.96 }, { line: 10, start: 55.16 }, { line: 5, start: 58.3 }, { line: 6, start: 62.68 }, { line: 5, start: 67.1 }, { line: 6, start: 71.02 }, { line: 11, start: 75.46 }, { line: 6, start: 95.78 }, { line: 5, start: 100.52 }, { line: 6, start: 104.02 }, { line: 12, start: 109.06 }, { line: 13, start: 113.0 }, { line: 14, start: 117.52 }, { line: 15, start: 121.24 }, { line: 5, start: 125.12 }, { line: 6, start: 129.58 }, { line: 5, start: 133.32 }, { line: 6, start: 137.84 }, { line: 6, start: 141.5 }, { line: 6, start: 146.24 }],
   },
   "hallelujah-praise-ye-the-lord": {
     videoId: "G1VrEJ5lsnQ",
@@ -25,9 +25,9 @@ export const songCueTimes: Record<string, { videoId: string; videoDuration: numb
     cues: [{ line: 0, start: 9.08 }, { line: 1, start: 17.48 }, { line: 3, start: 27.16 }, { line: 4, start: 36.28 }, { line: 5, start: 53.84 }, { line: 6, start: 62.3 }, { line: 3, start: 72.64 }, { line: 4, start: 81.36 }, { line: 7, start: 98.86 }, { line: 8, start: 107.16 }, { line: 3, start: 116.12 }, { line: 4, start: 126.26 }],
   },
   "do-lord": {
-    videoId: "FCXvjx-nP9g",
-    videoDuration: 152,
-    cues: [{ line: 0, start: 7.2 }, { line: 1, start: 12.49 }, { line: 2, start: 17.21 }, { line: 3, start: 21.04 }, { line: 4, start: 26.12 }, { line: 5, start: 30.98 }, { line: 6, start: 35.76 }, { line: 7, start: 39.48 }, { line: 11, start: 51.72 }, { line: 3, start: 61.44 }, { line: 8, start: 65.8 }, { line: 9, start: 71.38 }, { line: 10, start: 76.28 }, { line: 7, start: 79.76 }, { line: 0, start: 91.58 }, { line: 1, start: 97.43 }, { line: 11, start: 101.4 }, { line: 3, start: 121.84 }, { line: 2, start: 127.16 }, { line: 7, start: 140.82 }],
+    videoId: "gPhob_9vTdw",
+    videoDuration: 147,
+    cues: [{ line: 4, start: 10.26 }, { line: 3, start: 26.44 }, { line: 0, start: 31.34 }, { line: 1, start: 37.18 }, { line: 2, start: 42.5 }, { line: 7, start: 47.9 }, { line: 8, start: 53.04 }, { line: 9, start: 58.88 }, { line: 10, start: 64.14 }, { line: 0, start: 69.98 }, { line: 1, start: 77.52 }, { line: 2, start: 85.28 }, { line: 11, start: 90.98 }, { line: 5, start: 96.14 }, { line: 6, start: 101 }, { line: 4, start: 106.38 }, { line: 3, start: 111.92 }, { line: 0, start: 116.54 }, { line: 7, start: 133.56 }, { line: 11, start: 138.66 }],
   },
   "ive-got-peace-like-a-river": {
     videoId: "A9xOG-v0LzU",

@@ -22,9 +22,9 @@ Write the catalog manifest with:
   python scripts/align-songs.py --catalog catalog.json --out data/song-alignment.json
 
 catalog.json is a list of {slug, videoId, audio, lines}. The manifest maps
-each slug to {videoId, duration, cues}. lib/song-alignment.test.ts fails
-when a printed line has no cue scoring 0.6 or better, or when the manifest
-video id does not match the song.
+each slug to {videoId, duration, cues, unmatched}. `unmatched` lists sung
+stretches of 4 seconds or more that match no printed line. The test fails
+on those stretches unless the song is named in UNPRINTED_EXCEPTIONS.
 
 Requires ffmpeg, yt-dlp, and `pip install faster-whisper`.
 Optional: `pip install whisperx` and `--align` to snap each matched line
@@ -134,7 +134,18 @@ def load_audio(path: Path):
     return np.frombuffer(raw, np.int16).astype(np.float32) / 32768.0
 
 
+# A run of transcribed words this long, matching no printed line, is an
+# extra sung stretch. Shorter gaps between lines are not.
+UNMATCHED_SECONDS = 4.0
+
+
 def match_lines(lines: list[str], words: list[dict]) -> list[dict]:
+    cues, _unmatched = align_to_printed(lines, words)
+    return cues
+
+
+def align_to_printed(lines: list[str], words: list[dict]) -> tuple[list[dict], list[dict]]:
+    """Cues for printed lines, plus sung stretches that match none of them."""
     line_toks = [norm(tokens(line)) for line in lines]
     heard = []
     for word in words:
@@ -162,6 +173,7 @@ def match_lines(lines: list[str], words: list[dict]) -> list[dict]:
     # Earliest start, then the higher score, then the longer line.
     cands.sort(key=lambda item: (item[0], -item[3], -item[4]))
     chosen = []
+    covered = [False] * len(heard)
     cursor = 0
     for start, end, line_index, score, _length in cands:
         if start < cursor:
@@ -178,8 +190,15 @@ def match_lines(lines: list[str], words: list[dict]) -> list[dict]:
             if snapped >= 0.6:
                 use = start + 1
                 score = snapped
+        for index in range(use, end):
+            covered[index] = True
         chosen.append(
-            {"line": line_index, "start": round(float(heard[use]["start"]), 2), "score": round(score, 2)}
+            {
+                "line": line_index,
+                "start": round(float(heard[use]["start"]), 2),
+                "score": round(score, 2),
+                "_end": end,
+            }
         )
         cursor = end
     # Identical printed lines share one match. Hand each singing to the next copy.
@@ -192,7 +211,50 @@ def match_lines(lines: list[str], words: list[dict]) -> list[dict]:
         copies = groups[key]
         cue["line"] = copies[cursors[key] % len(copies)]
         cursors[key] += 1
-    return chosen
+        cue.pop("_end", None)
+    unmatched = unmatched_stretches(heard, covered)
+    return chosen, unmatched
+
+
+def unmatched_stretches(heard: list[dict], covered: list[bool]) -> list[dict]:
+    """Sung words no printed line claimed, kept when the stretch lasts 4 seconds."""
+    stretches = []
+    index = 0
+    while index < len(heard):
+        if covered[index]:
+            index += 1
+            continue
+        end = index + 1
+        while end < len(heard) and not covered[end]:
+            gap = float(heard[end]["start"]) - float(heard[end - 1]["end"])
+            if gap > 1.5:
+                break
+            end += 1
+        raw_end = end
+        # A spoken "thanks for watching" is channel outro, not a sung line.
+        outro = [
+            ["thanks", "for", "watching"],
+            ["thank", "you", "for", "watching"],
+        ]
+        spoken = [heard[i]["word"].strip(" !.?").lower() for i in range(index, end)]
+        for phrase in outro:
+            if len(spoken) >= len(phrase) and spoken[-len(phrase) :] == phrase:
+                end -= len(phrase)
+                break
+        if end > index:
+            start = float(heard[index]["start"])
+            stop = float(heard[end - 1]["end"])
+            if stop - start >= UNMATCHED_SECONDS:
+                text = " ".join(heard[i]["word"] for i in range(index, end)).strip()
+                stretches.append(
+                    {
+                        "start": round(start, 2),
+                        "end": round(stop, 2),
+                        "text": text,
+                    }
+                )
+        index = raw_end
+    return stretches
 
 
 def align_cues(audio_path: Path, lines: list[str], cues: list[dict]) -> list[dict]:
@@ -279,11 +341,12 @@ def write_catalog(catalog_path: Path, out_path: Path, model_name: str) -> dict:
         print(f"align {song['slug']}", file=sys.stderr, flush=True)
         samples = load_audio(Path(song["audio"]))
         words = transcribe_with_model(samples, model)
-        cues = match_lines(song["lines"], words)
+        cues, unmatched = align_to_printed(song["lines"], words)
         entry = {
             "videoId": song["videoId"],
             "duration": round(len(samples) / 16000, 2),
             "cues": cues,
+            "unmatched": unmatched,
         }
         manifest[song["slug"]] = entry
         words_out[song["slug"]] = words
@@ -331,10 +394,11 @@ def main() -> int:
     payload: dict = {"videoId": args.video_id, "duration": round(duration, 2), "words": words}
     if args.lines:
         lines = [line.strip() for line in Path(args.lines).read_text().splitlines() if line.strip()]
-        cues = match_lines(lines, words)
+        cues, unmatched = align_to_printed(lines, words)
         if args.align:
             cues = align_cues(audio, lines, cues)
         payload["cues"] = cues
+        payload["unmatched"] = unmatched
     print(json.dumps(payload, indent=2))
     if cleanup:
         cleanup.cleanup()

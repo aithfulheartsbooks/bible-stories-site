@@ -161,7 +161,7 @@ export const songs: Song[] = [
     videoId: "8i_IoI9NmW8",
     ...vevo("Down in My Heart"),
     lyricsSource:
-      "George W. Cooke, 1926, copyright not renewed; Hymnary Public Domain, including the refrain And I'm so happy. The recording sings Cooke's I have, not I've got. https://hymnary.org/text/i_have_the_joy_joy_joy_joy_down_in_my_h",
+      "George W. Cooke, 1926, copyright not renewed; Hymnary Public Domain, including the refrain And I'm so happy. The recording sings Cooke's I have, not I've got, and the wonderful-love verse way down in the depths of my heart, so that verse is printed too. https://hymnary.org/text/i_have_the_joy_joy_joy_joy_down_in_my_h",
     lyrics: [
       { kind: "line", text: "I have the joy, joy, joy, joy down in my heart," },
       { kind: "line", text: "Down in my heart, down in my heart." },
@@ -175,6 +175,10 @@ export const songs: Song[] = [
       { kind: "line", text: "I have the love of Jesus, love of Jesus, down in my heart," },
       { kind: "line", text: "Down in my heart to stay." },
       { kind: "line", text: "I have the peace that passeth understanding down in my heart." },
+      { kind: "line", text: "I have the wonderful love of my blessed Redeemer way down in the depths of my heart." },
+      { kind: "line", text: "Way down in the depths of my heart." },
+      { kind: "line", text: "I have the wonderful love of my blessed Redeemer way down in the depths of my heart." },
+      { kind: "line", text: "Way down in the depths of my heart." },
     ],
   }),
   lyricsOk({
@@ -224,23 +228,28 @@ export const songs: Song[] = [
     group: "action",
     tip: "Clap on each Do Lord, then point beyond the blue.",
     blurb: "Do Lord, O do Lord, O do remember me.",
-    videoId: "FCXvjx-nP9g",
-    ...vevo("Do Lord"),
+    videoId: "gPhob_9vTdw",
+    channel: "Mount Moriah Sabbath School",
+    channelUrl: "https://www.youtube.com/@mountmoriahsabbathschool",
+    videoNote:
+      "Mount Moriah Sabbath School action song, I've Got a Home in Glory Land (Do Lord). Human voices. It sings the remember-me, home, and Savior verses and does not sing the Revelation verse.",
+    embedCheck:
+      "YouTube oEmbed returned HTTP 200 on 2026-11-11 (author Mount Moriah Sabbath School). The nocookie embed response did not include an owner message that playback on other websites is disabled.",
     lyricsSource:
-      "Traditional spiritual. Hymnary: Public Domain. https://hymnary.org/text/do_lord_do_lord_do_remember_me The Apr 15, 2021 CedarmontKidsVEVO description sings these verses. A newer Listener Kids upload did not print its words.",
+      "Traditional spiritual. Hymnary: Public Domain. https://hymnary.org/text/do_lord_do_lord_do_remember_me This recording sings Way beyond the blue, the same public-domain tag, and not the Revelation verse.",
     lyrics: [
       { kind: "line", text: "Do Lord, O do Lord, O do remember me," },
       { kind: "line", text: "Do Lord, O do Lord, O do remember me," },
       { kind: "line", text: "Do Lord, O do Lord, O do remember me," },
-      { kind: "line", text: "Look away beyond the blue." },
+      { kind: "line", text: "Way beyond the blue." },
       { kind: "line", text: "I've got a home in glory land that outshines the sun," },
       { kind: "line", text: "I've got a home in glory land that outshines the sun," },
       { kind: "line", text: "I've got a home in glory land that outshines the sun," },
-      { kind: "line", text: "Look away beyond the blue." },
+      { kind: "line", text: "Way beyond the blue." },
       { kind: "line", text: "I took Jesus as my Savior, you take Him too," },
       { kind: "line", text: "I took Jesus as my Savior, you take Him too," },
       { kind: "line", text: "I took Jesus as my Savior, you take Him too," },
-      { kind: "line", text: "Look away beyond the blue." },
+      { kind: "line", text: "Way beyond the blue." },
     ],
   }),
   lyricsOk({
@@ -489,7 +498,7 @@ export const songs: Song[] = [
     ...vevo("Who Did Swallow Jonah?"),
     bookLink: book("jonah-and-the-big-fish", "Jonah and the Big Fish"),
     lyricsSource:
-      "Traditional spiritual. The Jo-Jo stutter and Daniel verse are the pre-1929 folk text (Barton 1899; ballad index), not the 1986 Beall/Nipp copyright. A Gabriel verse on this recording is left unprinted because its wording was not confirmed as that public-domain text. https://hymnary.org/text/who_did_who_did_who_did_swallow",
+      "Traditional spiritual. The Jo-Jo stutter and Daniel verse are the pre-1929 folk text (Barton 1899; ballad index). A clip of this recording at 70–89s is \"Gabriel, Gabriel, Gabriel, Gabriel, Gabriel, blow your trumpet loud.\" That is the children's line in Wee Sing (Beall and Nipp, 1982), not the 1867 \"Blow your trumpet, Gabriel\" spiritual, so it is not printed. https://hymnary.org/text/who_did_who_did_who_did_swallow",
     lyrics: [
       { kind: "line", text: "Who did, who did, who did, who did, swallow Jo, Jo, Jo, Jo?" },
       { kind: "line", text: "Whale did, whale did, whale did, whale did, swallow Jo, Jo, Jo, Jo." },

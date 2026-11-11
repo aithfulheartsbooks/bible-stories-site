@@ -43,7 +43,8 @@
         "start": 73.88,
         "score": 1.0
       }
-    ]
+    ],
+    "unmatched": []
   },
   "ive-got-the-joy": {
     "videoId": "8i_IoI9NmW8",
@@ -155,29 +156,34 @@
         "score": 0.94
       },
       {
-        "line": 5,
+        "line": 11,
         "start": 109.06,
-        "score": 0.75
+        "score": 0.8
       },
       {
-        "line": 1,
-        "start": 111.62,
-        "score": 0.67
+        "line": 12,
+        "start": 113.0,
+        "score": 0.88
       },
       {
-        "line": 7,
-        "start": 120.0,
-        "score": 0.67
+        "line": 13,
+        "start": 117.52,
+        "score": 0.65
+      },
+      {
+        "line": 14,
+        "start": 121.24,
+        "score": 0.88
       },
       {
         "line": 4,
-        "start": 122.7,
-        "score": 0.62
+        "start": 125.12,
+        "score": 1.0
       },
       {
         "line": 5,
-        "start": 127.68,
-        "score": 0.9
+        "start": 129.58,
+        "score": 1.0
       },
       {
         "line": 4,
@@ -199,7 +205,8 @@
         "start": 146.24,
         "score": 1.0
       }
-    ]
+    ],
+    "unmatched": []
   },
   "hallelujah-praise-ye-the-lord": {
     "videoId": "G1VrEJ5lsnQ",
@@ -245,7 +252,8 @@
         "start": 85.98,
         "score": 1.0
       }
-    ]
+    ],
+    "unmatched": []
   },
   "jesus-wants-me-for-a-sunbeam": {
     "videoId": "UYWWBnAepes",
@@ -311,138 +319,115 @@
         "start": 126.26,
         "score": 1.0
       }
-    ]
+    ],
+    "unmatched": []
   },
   "do-lord": {
-    "videoId": "FCXvjx-nP9g",
-    "duration": 152.28,
+    "videoId": "gPhob_9vTdw",
+    "duration": 146.43,
     "cues": [
       {
-        "line": 0,
-        "start": 7.66,
-        "score": 1.0
-      },
-      {
-        "line": 1,
-        "start": 12.12,
-        "score": 1.0
-      },
-      {
-        "line": 2,
-        "start": 17.04,
+        "line": 4,
+        "start": 10.26,
         "score": 1.0
       },
       {
         "line": 3,
-        "start": 21.1,
-        "score": 1.0
-      },
-      {
-        "line": 4,
-        "start": 26.36,
-        "score": 0.91
-      },
-      {
-        "line": 5,
-        "start": 30.98,
-        "score": 0.91
-      },
-      {
-        "line": 6,
-        "start": 35.76,
-        "score": 0.91
-      },
-      {
-        "line": 7,
-        "start": 39.98,
+        "start": 26.44,
         "score": 1.0
       },
       {
         "line": 0,
-        "start": 47.18,
+        "start": 31.34,
         "score": 1.0
       },
       {
         "line": 1,
-        "start": 52.28,
-        "score": 1.0
+        "start": 37.18,
+        "score": 0.89
       },
       {
         "line": 2,
-        "start": 56.98,
+        "start": 42.5,
         "score": 1.0
       },
       {
-        "line": 11,
-        "start": 61.18,
+        "line": 7,
+        "start": 47.9,
         "score": 1.0
       },
       {
         "line": 8,
-        "start": 65.42,
+        "start": 53.04,
         "score": 1.0
       },
       {
         "line": 9,
-        "start": 71.08,
+        "start": 58.88,
         "score": 1.0
       },
       {
         "line": 10,
-        "start": 75.82,
-        "score": 1.0
-      },
-      {
-        "line": 3,
-        "start": 79.98,
+        "start": 64.14,
         "score": 1.0
       },
       {
         "line": 0,
-        "start": 86.94,
-        "score": 1.0
+        "start": 69.98,
+        "score": 0.6
       },
       {
         "line": 1,
-        "start": 92.1,
-        "score": 1.0
+        "start": 77.52,
+        "score": 0.8
       },
       {
         "line": 2,
-        "start": 96.82,
-        "score": 1.0
-      },
-      {
-        "line": 7,
-        "start": 101.14,
+        "start": 85.28,
         "score": 1.0
       },
       {
         "line": 11,
-        "start": 118.58,
-        "score": 0.67
-      },
-      {
-        "line": 0,
-        "start": 127.44,
+        "start": 90.98,
         "score": 1.0
       },
       {
-        "line": 1,
-        "start": 132.08,
+        "line": 5,
+        "start": 96.14,
         "score": 1.0
       },
       {
-        "line": 2,
-        "start": 136.8,
-        "score": 0.95
+        "line": 6,
+        "start": 101.0,
+        "score": 1.0
+      },
+      {
+        "line": 4,
+        "start": 106.38,
+        "score": 1.0
       },
       {
         "line": 3,
-        "start": 141.14,
+        "start": 111.92,
+        "score": 1.0
+      },
+      {
+        "line": 0,
+        "start": 116.54,
+        "score": 1.0
+      },
+      {
+        "line": 7,
+        "start": 133.56,
+        "score": 1.0
+      },
+      {
+        "line": 11,
+        "start": 138.66,
         "score": 1.0
       }
-    ]
+    ],
+    "unmatched": []
   },
   "ive-got-peace-like-a-river": {
     "videoId": "A9xOG-v0LzU",
@@ -518,7 +503,8 @@
         "start": 81.52,
         "score": 1.0
       }
-    ]
+    ],
+    "unmatched": []
   },
   "wide-wide-as-the-ocean": {
     "videoId": "Ri-StyOL1I4",
@@ -584,7 +570,8 @@
         "start": 92.78,
         "score": 1.0
       }
-    ]
+    ],
+    "unmatched": []
   },
   "jesus-loves-me": {
     "videoId": "QSaWPYb6_6k",
@@ -695,7 +682,8 @@
         "start": 118.1,
         "score": 1.0
       }
-    ]
+    ],
+    "unmatched": []
   },
   "hes-got-the-whole-world": {
     "videoId": "b4uNT8a4Q1s",
@@ -781,7 +769,8 @@
         "start": 117.24,
         "score": 1.0
       }
-    ]
+    ],
+    "unmatched": []
   },
   "praise-him-praise-him": {
     "videoId": "Srbmk3zrsss",
@@ -862,7 +851,8 @@
         "start": 92.36,
         "score": 1.0
       }
-    ]
+    ],
+    "unmatched": []
   },
   "jesus-loves-even-me": {
     "videoId": "DnJ65AKkRaE",
@@ -973,7 +963,8 @@
         "start": 89.92,
         "score": 0.86
       }
-    ]
+    ],
+    "unmatched": []
   },
   "away-in-a-manger": {
     "videoId": "h4Jcl_ax2OE",
@@ -1039,7 +1030,8 @@
         "start": 107.04,
         "score": 1.0
       }
-    ]
+    ],
+    "unmatched": []
   },
   "zacchaeus-was-a-wee-little-man": {
     "videoId": "C8GJXE7e5s0",
@@ -1110,7 +1102,8 @@
         "start": 55.98,
         "score": 0.71
       }
-    ]
+    ],
+    "unmatched": []
   },
   "the-b-i-b-l-e": {
     "videoId": "8a1amee1gW0",
@@ -1221,7 +1214,8 @@
         "start": 72.8,
         "score": 1.0
       }
-    ]
+    ],
+    "unmatched": []
   },
   "joshua-fought-the-battle-of-jericho": {
     "videoId": "BfJY082DcP8",
@@ -1327,7 +1321,8 @@
         "start": 111.68,
         "score": 1.0
       }
-    ]
+    ],
+    "unmatched": []
   },
   "little-david-play-on-your-harp": {
     "videoId": "3VH0pYbPVUo",
@@ -1398,6 +1393,13 @@
         "start": 84.94,
         "score": 0.75
       }
+    ],
+    "unmatched": [
+      {
+        "start": 102.28,
+        "end": 120.92,
+        "text": "In  John  10,  28,  Jesus  says,  I  give  my  sheep  eternal  life.  They  will  never  die  and  no  one  can  take  them  out  of  my  hand.  Not  even  the  strongest  muscle  man  or  a  huge  giant  could  steal  us  from  God's  hand.  God  is  still  stronger."
+      }
     ]
   },
   "who-did-swallow-jonah": {
@@ -1406,45 +1408,46 @@
     "cues": [
       {
         "line": 0,
-        "start": 11.54,
-        "score": 0.93
+        "start": 12.14,
+        "score": 0.72
       },
       {
-        "line": 0,
-        "start": 17.04,
-        "score": 0.89
-      },
-      {
-        "line": 0,
-        "start": 22.44,
+        "line": 1,
+        "start": 38.78,
         "score": 0.89
       },
       {
         "line": 1,
-        "start": 33.1,
-        "score": 0.62
+        "start": 43.8,
+        "score": 0.89
+      },
+      {
+        "line": 1,
+        "start": 49.14,
+        "score": 1.0
       },
       {
         "line": 2,
-        "start": 46.3,
+        "start": 57.7,
         "score": 0.67
       },
       {
         "line": 2,
-        "start": 96.46,
+        "start": 96.16,
         "score": 0.67
       },
       {
         "line": 2,
-        "start": 101.86,
+        "start": 101.5,
         "score": 0.67
       },
       {
         "line": 2,
-        "start": 110.74,
+        "start": 110.7,
         "score": 0.71
       }
-    ]
+    ],
+    "unmatched": []
   },
   "dare-to-be-a-daniel": {
     "videoId": "3k7wqHUpJOI",
@@ -1540,6 +1543,7 @@
         "start": 84.1,
         "score": 1.0
       }
-    ]
+    ],
+    "unmatched": []
   }
 }
