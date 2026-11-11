@@ -12,7 +12,7 @@ import {
   type Song,
   type SongGroupId,
 } from "@/lib/songs";
-import { startSingAlongFromTap } from "@/lib/sing-along-player";
+import { playLoadedSingAlong, startSingAlongFromTap } from "@/lib/sing-along-player";
 
 type GroupFilter = "all" | SongGroupId;
 
@@ -50,9 +50,13 @@ export default function SongsClient({ initialSlug }: { initialSlug?: string }) {
   const [activeLine, setActiveLine] = useState<number | null>(null);
 
   const current = findSong(slug);
+  const slugRef = useRef(slug);
+  slugRef.current = slug;
   const playerHostRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<YouTubePlayer | null>(null);
-  const queuedCommand = useRef<"play" | "pause" | null>(null);
+  const loadedVideoId = useRef<string | null>(null);
+  const pendingVideoId = useRef<string | null>(null);
+  const playerConstructed = useRef(false);
   const [playing, setPlaying] = useState(false);
   const needle = query.trim().toLowerCase();
 
@@ -75,14 +79,16 @@ export default function SongsClient({ initialSlug }: { initialSlug?: string }) {
   function choose(nextSlug: string, play: boolean) {
     const next = findSong(nextSlug);
     const host = playerHostRef.current;
-    if (host) {
-      if (play) {
-        const frame = host.querySelector("iframe");
-        const sameVideo = Boolean(videoOn && frame?.src.includes(`/embed/${next.videoId}`));
-        if (!sameVideo) {
-          playerRef.current = null;
-          queuedCommand.current = null;
-          setPlaying(false);
+    if (play) {
+      const player = playerRef.current;
+      // playVideo/loadVideoById must run before any await so mobile still
+      // treats this tap as the gesture that starts sound.
+      if (player) {
+        loadedVideoId.current = playLoadedSingAlong(player, next.videoId, loadedVideoId.current);
+        pendingVideoId.current = null;
+      } else {
+        pendingVideoId.current = next.videoId;
+        if (host && !playerConstructed.current && !host.querySelector("iframe")) {
           startSingAlongFromTap<HTMLIFrameElement>(
             {
               replaceChildren(node) {
@@ -95,12 +101,9 @@ export default function SongsClient({ initialSlug }: { initialSlug?: string }) {
             next.videoId,
             next.title,
             window.location.origin,
+            false,
           );
         }
-      } else {
-        playerRef.current = null;
-        queuedCommand.current = null;
-        host.replaceChildren();
       }
     }
     setSlug(nextSlug);
@@ -122,18 +125,16 @@ export default function SongsClient({ initialSlug }: { initialSlug?: string }) {
 
   function togglePlayback() {
     if (!videoOn) {
-      queuedCommand.current = null;
       choose(current.slug, true);
       return;
     }
     const player = playerRef.current;
     if (!player) {
-      queuedCommand.current = playing ? "pause" : "play";
+      pendingVideoId.current = current.videoId;
       return;
     }
     const state = readPlayerState(player);
     const active = state == null ? playing : state === 1 || state === 3;
-    queuedCommand.current = null;
     runPlayerCommand(player, active ? "pause" : "play");
   }
 
@@ -150,28 +151,84 @@ export default function SongsClient({ initialSlug }: { initialSlug?: string }) {
   }
 
   useEffect(() => {
+    let cancelled = false;
+    const bootId = findSong(slugRef.current).videoId;
+
+    loadYouTubeApi().then((youtube) => {
+      const host = playerHostRef.current;
+      if (cancelled || !youtube || !host || playerRef.current) return;
+      const existing = host.querySelector("iframe");
+      let target: HTMLElement;
+      if (existing) {
+        target = existing;
+      } else {
+        const mount = host.ownerDocument.createElement("div");
+        mount.id = "sing-along-player";
+        mount.className = "h-full w-full";
+        host.replaceChildren(mount);
+        target = mount;
+      }
+      playerConstructed.current = true;
+      new youtube.Player(target, {
+        host: "https://www.youtube-nocookie.com",
+        videoId: existing ? undefined : bootId,
+        playerVars: {
+          autoplay: 0,
+          playsinline: 1,
+          rel: 0,
+          enablejsapi: 1,
+          origin: window.location.origin,
+        },
+        events: {
+          onReady: (event) => {
+            if (cancelled) return;
+            playerRef.current = event.target;
+            const pending = pendingVideoId.current;
+            pendingVideoId.current = null;
+            // A tap that arrived before the player existed already revealed
+            // the card. Cue that video so YouTube's own play button shows.
+            // Do not call playVideo here: the tap gesture is over.
+            if (pending && pending !== bootId) {
+              try {
+                event.target.cueVideoById(pending);
+              } catch {
+                // The iframe is visible; its own play button remains usable.
+              }
+            }
+            loadedVideoId.current = pending && pending !== bootId ? pending : bootId;
+          },
+          onStateChange: (event) => {
+            if (cancelled) return;
+            playerRef.current = event.target;
+            if (typeof event.data === "number") {
+              setPlaying(event.data === 1 || event.data === 3);
+              if (event.data === 0 || event.data === -1 || event.data === 5) setActiveLine(null);
+            }
+          },
+          onError: () => {
+            if (!cancelled) setPlaying(false);
+          },
+        },
+      });
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
     if (!videoOn) {
-      playerRef.current = null;
       setPlaying(false);
       setActiveLine(null);
       return;
     }
-
     const cues = current.lyricsStatus === "lyrics-ok" ? current.cues : undefined;
     if (!cues?.length) setActiveLine(null);
-    let cancelled = false;
     let timer = 0;
-
-    function applyState(state: number) {
-      if (cancelled) return;
-      setPlaying(state === 1 || state === 3);
-      if (!cues?.length) return;
-      if (state === 0 || state === -1 || state === 5) setActiveLine(null);
-    }
-
     function tick() {
       const player = playerRef.current;
-      if (cancelled || !player) return;
+      if (!player) return;
       const state = readPlayerState(player);
       if (state == null) return;
       setPlaying(state === 1 || state === 3);
@@ -192,42 +249,9 @@ export default function SongsClient({ initialSlug }: { initialSlug?: string }) {
       const line = activeLyricLine(cues, time);
       setActiveLine((previous) => (previous === line ? previous : line));
     }
-
-    function attach(youtube: YouTubeApi) {
-      const iframe = playerHostRef.current?.querySelector("iframe");
-      if (cancelled || !iframe) return;
-      new youtube.Player(iframe, {
-        events: {
-          onReady: (event) => {
-            if (cancelled) return;
-            playerRef.current = event.target;
-            const queued = queuedCommand.current;
-            queuedCommand.current = null;
-            if (queued) runPlayerCommand(event.target, queued);
-            tick();
-            timer = window.setInterval(tick, 250);
-          },
-          onStateChange: (event) => {
-            if (cancelled) return;
-            playerRef.current = event.target;
-            if (typeof event.data === "number") applyState(event.data);
-          },
-          onError: () => {
-            if (!cancelled) setPlaying(false);
-          },
-        },
-      });
-    }
-
-    loadYouTubeApi().then((youtube) => {
-      if (!cancelled && youtube) attach(youtube);
-    });
-
-    return () => {
-      cancelled = true;
-      window.clearInterval(timer);
-      playerRef.current = null;
-    };
+    tick();
+    timer = window.setInterval(tick, 250);
+    return () => window.clearInterval(timer);
   }, [videoOn, current]);
 
   const sungLabel =
@@ -666,6 +690,8 @@ type YouTubePlayer = {
   getPlayerState: () => number;
   playVideo: () => void;
   pauseVideo: () => void;
+  loadVideoById: (videoId: string) => void;
+  cueVideoById: (videoId: string) => void;
 };
 
 type YouTubeStateEvent = {
@@ -677,6 +703,9 @@ type YouTubeApi = {
   Player: new (
     element: HTMLElement,
     options?: {
+      host?: string;
+      videoId?: string;
+      playerVars?: Record<string, string | number>;
       events?: {
         onReady?: (event: { target: YouTubePlayer }) => void;
         onStateChange?: (event: YouTubeStateEvent) => void;

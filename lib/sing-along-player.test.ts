@@ -2,7 +2,12 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import test from "node:test";
-import { singAlongEmbedSrc, startSingAlongFromTap, type SingAlongFrame } from "@/lib/sing-along-player";
+import {
+  playLoadedSingAlong,
+  singAlongEmbedSrc,
+  startSingAlongFromTap,
+  type SingAlongFrame,
+} from "@/lib/sing-along-player";
 
 function frame(): SingAlongFrame {
   return {
@@ -76,6 +81,41 @@ test("embed url stays on the nocookie host", () => {
 test("the song page starts playback inside the tap handler", () => {
   const source = fs.readFileSync(path.join(process.cwd(), "app/songs/SongsClient.tsx"), "utf8");
   const choose = source.slice(source.indexOf("function choose"), source.indexOf("function step"));
-  assert.match(choose, /startSingAlongFromTap/);
+  const code = choose.replace(/\/\/.*$/gm, "");
+  assert.match(code, /playLoadedSingAlong/);
+  assert.doesNotMatch(code, /\bawait\b/);
   assert.doesNotMatch(choose, /useEffect/);
+  assert.doesNotMatch(source, /onClick=\{async[^}]*choose\(/);
+  const playAt = code.indexOf("playLoadedSingAlong");
+  assert.ok(playAt > 0);
+  assert.doesNotMatch(code.slice(0, playAt), /\bawait\b/);
+});
+
+test("playLoadedSingAlong calls the player synchronously", () => {
+  const calls: string[] = [];
+  const player = {
+    loadVideoById(id: string) {
+      calls.push(`load:${id}`);
+    },
+    playVideo() {
+      calls.push("play");
+    },
+  };
+  assert.equal(playLoadedSingAlong(player, "Xe_1XJsjMZY", null), "Xe_1XJsjMZY");
+  assert.deepEqual(calls, ["load:Xe_1XJsjMZY", "play"]);
+  assert.equal(playLoadedSingAlong(player, "Xe_1XJsjMZY", "Xe_1XJsjMZY"), "Xe_1XJsjMZY");
+  assert.deepEqual(calls, ["load:Xe_1XJsjMZY", "play", "play"]);
+});
+
+test("a not-ready fallback iframe does not autoplay", () => {
+  const player = host();
+  const created = startSingAlongFromTap(
+    player,
+    "Xe_1XJsjMZY",
+    "This Little Light of Mine",
+    "https://www.faithfulheartsbooks.com",
+    false,
+  );
+  assert.match(created.src, /[?&]autoplay=0(?:&|$)/);
+  assert.match(created.src, /playsinline=1/);
 });
