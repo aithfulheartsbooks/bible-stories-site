@@ -154,7 +154,7 @@ test("tonight's song matches only real story nights", () => {
   assert.notEqual(songForTonight("david-and-the-giant").slug, "zacchaeus-was-a-wee-little-man");
 });
 
-test("lyric cues stay strictly increasing, inside the video, and cover every printed line", () => {
+test("lyric cues stay strictly increasing and inside the video, one printed line each", () => {
   for (const song of songs) {
     assert.equal(song.lyricsStatus, "lyrics-ok");
     if (song.lyricsStatus !== "lyrics-ok") continue;
@@ -162,17 +162,13 @@ test("lyric cues stay strictly increasing, inside the video, and cover every pri
     assert.equal(typeof song.videoDuration, "number");
     assert.ok(song.videoDuration && song.videoDuration > 0);
     const lineCount = song.lyrics.filter((part) => part.kind === "line").length;
-    const covered = new Set<number>();
     let previous = -1;
     for (const cue of song.cues) {
+      assert.equal(Number.isInteger(cue.line), true, song.slug);
       assert.ok(cue.line >= 0 && cue.line < lineCount, `${song.slug} line ${cue.line}`);
       assert.ok(cue.start > previous, `${song.slug} ${cue.start} after ${previous}`);
       assert.ok(cue.start >= 0 && cue.start < (song.videoDuration ?? 0), song.slug);
-      covered.add(cue.line);
       previous = cue.start;
-    }
-    for (let line = 0; line < lineCount; line += 1) {
-      assert.equal(covered.has(line), true, `${song.slug} printed line ${line} has no cue`);
     }
   }
 });

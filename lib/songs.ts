@@ -297,7 +297,7 @@ export const songs: Song[] = [
     videoId: "f1JbSvhw43I",
     ...vevo("Jesus Loves Me"),
     lyricsSource:
-      "Anna B. Warner, 1860; William B. Bradbury refrain, 1862. The Sep 30, 2021 CedarmontKidsVEVO description sings these two verses and the refrain. A later kids' verse on that recording (take this heart of mine) is not printed here.",
+      "Anna B. Warner, 1860; William B. Bradbury refrain, 1862. The recording sings verse 1 and the refrain. The middle of the track is a different children's verse, so Warner's He who died stanza stays printed and is not highlighted.",
     lyrics: [
       { kind: "line", text: "Jesus loves me, this I know," },
       { kind: "line", text: "For the Bible tells me so." },
