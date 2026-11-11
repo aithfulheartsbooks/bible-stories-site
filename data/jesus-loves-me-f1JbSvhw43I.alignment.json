@@ -1,0 +1,96 @@
+{
+  "videoId": "f1JbSvhw43I",
+  "duration": 188.52,
+  "cues": [
+    {
+      "line": 0,
+      "start": 11.34,
+      "score": 1.0
+    },
+    {
+      "line": 1,
+      "start": 17.64,
+      "score": 1.0
+    },
+    {
+      "line": 2,
+      "start": 23.22,
+      "score": 1.0
+    },
+    {
+      "line": 3,
+      "start": 30.06,
+      "score": 1.0
+    },
+    {
+      "line": 4,
+      "start": 37.74,
+      "score": 1.0
+    },
+    {
+      "line": 5,
+      "start": 44.48,
+      "score": 0.8
+    },
+    {
+      "line": 6,
+      "start": 50.62,
+      "score": 1.0
+    },
+    {
+      "line": 7,
+      "start": 57.1,
+      "score": 1.0
+    },
+    {
+      "line": 4,
+      "start": 67.08,
+      "score": 0.86
+    },
+    {
+      "line": 5,
+      "start": 76.72,
+      "score": 0.6
+    },
+    {
+      "line": 6,
+      "start": 88.54,
+      "score": 0.6
+    },
+    {
+      "line": 4,
+      "start": 100.18,
+      "score": 1.0
+    },
+    {
+      "line": 5,
+      "start": 106.56,
+      "score": 1.0
+    },
+    {
+      "line": 7,
+      "start": 111.64,
+      "score": 1.0
+    },
+    {
+      "line": 6,
+      "start": 144.16,
+      "score": 0.6
+    },
+    {
+      "line": 4,
+      "start": 156.04,
+      "score": 1.0
+    },
+    {
+      "line": 5,
+      "start": 162.22,
+      "score": 1.0
+    },
+    {
+      "line": 7,
+      "start": 167.22,
+      "score": 1.0
+    }
+  ]
+}
