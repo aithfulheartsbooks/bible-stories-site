@@ -145,9 +145,9 @@ const publishedBooks: Book[] = [
     status: "available",
     coverImage: "/covers/jonah.png",
     song: {
-      title: "Who Did Swallow Jonah?",
-      artist: "Sing Hosanna",
-      embedId: "3ze-RgXHYVE",
+      title: "Jesus Loves the Little Children",
+      artist: "Hi Heaven",
+      embedId: "lmgUKoFKM60",
     },
     coverScene: "default",
   },

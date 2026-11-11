@@ -1402,53 +1402,6 @@
       }
     ]
   },
-  "who-did-swallow-jonah": {
-    "videoId": "UZ5UeNOXbOQ",
-    "duration": 124.69,
-    "cues": [
-      {
-        "line": 0,
-        "start": 12.14,
-        "score": 0.72
-      },
-      {
-        "line": 1,
-        "start": 38.78,
-        "score": 0.89
-      },
-      {
-        "line": 1,
-        "start": 43.8,
-        "score": 0.89
-      },
-      {
-        "line": 1,
-        "start": 49.14,
-        "score": 1.0
-      },
-      {
-        "line": 2,
-        "start": 57.7,
-        "score": 0.67
-      },
-      {
-        "line": 2,
-        "start": 96.16,
-        "score": 0.67
-      },
-      {
-        "line": 2,
-        "start": 101.5,
-        "score": 0.67
-      },
-      {
-        "line": 2,
-        "start": 110.7,
-        "score": 0.71
-      }
-    ],
-    "unmatched": []
-  },
   "dare-to-be-a-daniel": {
     "videoId": "3k7wqHUpJOI",
     "duration": 95.43,
@@ -1541,6 +1494,103 @@
       {
         "line": 1,
         "start": 84.1,
+        "score": 1.0
+      }
+    ],
+    "unmatched": []
+  },
+  "jesus-loves-the-little-children": {
+    "videoId": "lmgUKoFKM60",
+    "duration": 113.66,
+    "cues": [
+      {
+        "line": 2,
+        "start": 7.26,
+        "score": 0.71
+      },
+      {
+        "line": 3,
+        "start": 33.12,
+        "score": 0.83
+      },
+      {
+        "line": 4,
+        "start": 35.24,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 40.34,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 43.82,
+        "score": 1.0
+      },
+      {
+        "line": 7,
+        "start": 47.68,
+        "score": 1.0
+      },
+      {
+        "line": 8,
+        "start": 49.86,
+        "score": 0.83
+      },
+      {
+        "line": 9,
+        "start": 52.0,
+        "score": 1.0
+      },
+      {
+        "line": 0,
+        "start": 67.3,
+        "score": 1.0
+      },
+      {
+        "line": 6,
+        "start": 70.84,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 74.8,
+        "score": 1.0
+      },
+      {
+        "line": 3,
+        "start": 76.96,
+        "score": 0.73
+      },
+      {
+        "line": 4,
+        "start": 79.0,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 87.6,
+        "score": 1.0
+      },
+      {
+        "line": 7,
+        "start": 91.58,
+        "score": 0.91
+      },
+      {
+        "line": 8,
+        "start": 93.66,
+        "score": 0.83
+      },
+      {
+        "line": 4,
+        "start": 95.82,
+        "score": 1.0
+      },
+      {
+        "line": 4,
+        "start": 99.82,
         "score": 1.0
       }
     ],

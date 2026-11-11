@@ -84,10 +84,10 @@ export const songCueTimes: Record<string, { videoId: string; videoDuration: numb
     videoDuration: 127,
     cues: [{ line: 1, start: 9.08 }, { line: 1, start: 13.38 }, { line: 1, start: 18.06 }, { line: 1, start: 22.44 }, { line: 2, start: 26.72 }, { line: 3, start: 31.74 }, { line: 1, start: 36.38 }, { line: 1, start: 40.32 }, { line: 0, start: 44.62 }, { line: 1, start: 49.38 }, { line: 2, start: 53.46 }, { line: 3, start: 58.5 }, { line: 2, start: 80.02 }],
   },
-  "who-did-swallow-jonah": {
-    videoId: "UZ5UeNOXbOQ",
-    videoDuration: 124,
-    cues: [{ line: 0, start: 12.86 }, { line: 0, start: 17.1 }, { line: 0, start: 22.14 }, { line: 1, start: 38.52 }, { line: 2, start: 92.69 }, { line: 2, start: 97.36 }, { line: 2, start: 102.72 }],
+  "jesus-loves-the-little-children": {
+    videoId: "lmgUKoFKM60",
+    videoDuration: 114,
+    cues: [{ line: 3, start: 33.12 }, { line: 4, start: 35.24 }, { line: 5, start: 40.34 }, { line: 1, start: 43.82 }, { line: 7, start: 47.68 }, { line: 8, start: 49.86 }, { line: 9, start: 52 }, { line: 0, start: 67.3 }, { line: 6, start: 70.84 }, { line: 2, start: 74.8 }, { line: 3, start: 76.96 }, { line: 4, start: 79 }, { line: 1, start: 87.6 }, { line: 7, start: 91.58 }, { line: 8, start: 93.66 }, { line: 4, start: 95.82 }, { line: 4, start: 99.82 }],
   },
   "dare-to-be-a-daniel": {
     videoId: "3k7wqHUpJOI",
