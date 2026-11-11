@@ -1,95 +1,98 @@
 // Timings for the exact video on each song.
 // `line` is the index in that song's lyrics array, including labels.
 // lib/songs.ts maps it to the printed line index. Labels are never cued.
+// Starts come from WhisperX / faster-whisper word times, checked with
+// wav2vec2 forced alignment of the printed line. Re-run with
+// `python scripts/align-songs.py`.
 export const songCueTimes: Record<string, { videoId: string; videoDuration: number; cues: { line: number; start: number }[] }> = {
   "this-little-light-of-mine": {
     videoId: "Xe_1XJsjMZY",
-    videoDuration: 102,
-    cues: [{ line: 0, start: 10.67 }, { line: 1, start: 15.05 }, { line: 2, start: 19.47 }, { line: 3, start: 23.5 }, { line: 4, start: 30.46 }, { line: 5, start: 39.26 }, { line: 6, start: 43.3 }, { line: 7, start: 51.64 }, { line: 8, start: 63.19 }, { line: 9, start: 79.95 }, { line: 10, start: 81.89 }, { line: 11, start: 83.53 }, { line: 12, start: 87.09 }, { line: 13, start: 89.28 }, { line: 14, start: 93.66 }, { line: 15, start: 97.81 }],
+    videoDuration: 101,
+    cues: [{ line: 0, start: 10.22 }, { line: 3, start: 14.55 }, { line: 3, start: 19.49 }, { line: 3, start: 23.36 }, { line: 4, start: 24.94 }, { line: 5, start: 31.07 }, { line: 6, start: 34.39 }, { line: 7, start: 40.92 }, { line: 8, start: 44.24 }, { line: 9, start: 54.29 }, { line: 12, start: 70.08 }, { line: 13, start: 74.46 }, { line: 14, start: 78.87 }, { line: 15, start: 83.85 }],
   },
   "ive-got-the-joy": {
     videoId: "8i_IoI9NmW8",
-    videoDuration: 152,
-    cues: [{ line: 0, start: 9.43 }, { line: 1, start: 14.52 }, { line: 2, start: 18.1 }, { line: 3, start: 28.25 }, { line: 5, start: 34.51 }, { line: 6, start: 37.92 }, { line: 7, start: 42.92 }, { line: 8, start: 48.32 }, { line: 9, start: 56.25 }, { line: 10, start: 67.53 }, { line: 11, start: 68.93 }, { line: 12, start: 78.14 }, { line: 13, start: 89.08 }, { line: 14, start: 98.54 }, { line: 0, start: 109.09 }, { line: 1, start: 118.08 }, { line: 2, start: 119.9 }, { line: 3, start: 126.81 }, { line: 5, start: 134.02 }, { line: 6, start: 137.18 }, { line: 7, start: 141.65 }, { line: 8, start: 147.46 }],
+    videoDuration: 151,
+    cues: [{ line: 0, start: 8.62 }, { line: 1, start: 14.1 }, { line: 2, start: 18.04 }, { line: 3, start: 22.56 }, { line: 5, start: 26.16 }, { line: 6, start: 29.6 }, { line: 5, start: 34.0 }, { line: 6, start: 37.86 }, { line: 7, start: 42.36 }, { line: 8, start: 47.04 }, { line: 9, start: 50.96 }, { line: 10, start: 55.16 }, { line: 5, start: 58.3 }, { line: 6, start: 62.68 }, { line: 5, start: 67.1 }, { line: 6, start: 71.02 }, { line: 11, start: 75.46 }, { line: 6, start: 95.78 }, { line: 5, start: 100.52 }, { line: 6, start: 104.02 }, { line: 5, start: 125.12 }, { line: 6, start: 129.58 }, { line: 5, start: 133.32 }, { line: 6, start: 137.84 }, { line: 6, start: 141.5 }, { line: 6, start: 146.24 }],
   },
   "hallelujah-praise-ye-the-lord": {
     videoId: "G1VrEJ5lsnQ",
     videoDuration: 110,
-    cues: [{ line: 0, start: 11.53 }, { line: 1, start: 17.24 }, { line: 2, start: 23.43 }, { line: 3, start: 27.11 }, { line: 4, start: 32.58 }, { line: 5, start: 39.8 }, { line: 0, start: 47.59 }, { line: 1, start: 51.55 }, { line: 2, start: 57.78 }, { line: 3, start: 60.35 }, { line: 4, start: 63.23 }, { line: 5, start: 67.68 }, { line: 0, start: 72.79 }, { line: 1, start: 82.08 }, { line: 2, start: 91.68 }, { line: 3, start: 94.48 }, { line: 4, start: 98.93 }, { line: 5, start: 106.3 }],
+    cues: [{ line: 0, start: 15.06 }, { line: 1, start: 35.53 }, { line: 2, start: 45.24 }, { line: 3, start: 45.9 }, { line: 4, start: 46.58 }, { line: 5, start: 47.22 }, { line: 2, start: 47.62 }, { line: 3, start: 48.32 }, { line: 4, start: 49.12 }, { line: 2, start: 50.44 }, { line: 3, start: 51.68 }, { line: 4, start: 53.34 }, { line: 5, start: 91.02 }],
   },
   "jesus-wants-me-for-a-sunbeam": {
     videoId: "UYWWBnAepes",
-    videoDuration: 151,
-    cues: [{ line: 0, start: 9.74 }, { line: 1, start: 18.9 }, { line: 3, start: 27.53 }, { line: 4, start: 38.75 }, { line: 5, start: 54.79 }, { line: 6, start: 63.78 }],
+    videoDuration: 150,
+    cues: [{ line: 0, start: 9.08 }, { line: 1, start: 17.48 }, { line: 3, start: 27.16 }, { line: 4, start: 36.28 }, { line: 5, start: 53.84 }, { line: 6, start: 62.3 }, { line: 3, start: 72.64 }, { line: 4, start: 81.36 }, { line: 7, start: 98.86 }, { line: 8, start: 107.16 }, { line: 3, start: 116.12 }, { line: 4, start: 126.26 }],
   },
   "do-lord": {
     videoId: "FCXvjx-nP9g",
     videoDuration: 152,
-    cues: [{ line: 0, start: 8.63 }, { line: 1, start: 12.43 }, { line: 2, start: 21.29 }, { line: 3, start: 27.77 }, { line: 4, start: 36.04 }, { line: 5, start: 39.76 }, { line: 6, start: 43.44 }, { line: 7, start: 58.59 }, { line: 8, start: 65.57 }, { line: 9, start: 71.41 }, { line: 10, start: 76.11 }, { line: 11, start: 80.05 }, { line: 0, start: 88.56 }, { line: 1, start: 92.38 }, { line: 2, start: 97.1 }, { line: 3, start: 101.24 }, { line: 4, start: 106.76 }, { line: 5, start: 111.45 }, { line: 6, start: 116.17 }, { line: 7, start: 120.11 }, { line: 8, start: 127.79 }, { line: 9, start: 131.32 }, { line: 10, start: 137.91 }, { line: 11, start: 141.21 }],
+    cues: [{ line: 0, start: 7.2 }, { line: 1, start: 12.49 }, { line: 2, start: 17.21 }, { line: 3, start: 21.04 }, { line: 4, start: 26.12 }, { line: 7, start: 39.48 }, { line: 11, start: 51.72 }, { line: 3, start: 61.44 }, { line: 8, start: 65.8 }, { line: 9, start: 71.38 }, { line: 10, start: 76.28 }, { line: 7, start: 79.76 }, { line: 0, start: 91.58 }, { line: 1, start: 97.43 }, { line: 11, start: 101.4 }, { line: 3, start: 121.84 }, { line: 2, start: 127.16 }, { line: 7, start: 140.82 }],
   },
   "ive-got-peace-like-a-river": {
     videoId: "A9xOG-v0LzU",
-    videoDuration: 99,
-    cues: [{ line: 0, start: 12.33 }, { line: 1, start: 21.45 }, { line: 2, start: 27.6 }, { line: 3, start: 38.18 }, { line: 4, start: 47.82 }, { line: 5, start: 57.45 }, { line: 6, start: 63.08 }, { line: 0, start: 71.0 }, { line: 1, start: 75.66 }, { line: 2, start: 79.01 }, { line: 3, start: 80.91 }, { line: 4, start: 84.55 }, { line: 5, start: 86.35 }, { line: 6, start: 95.07 }],
+    videoDuration: 98,
+    cues: [{ line: 0, start: 11.24 }, { line: 1, start: 16.2 }, { line: 0, start: 20.82 }, { line: 1, start: 25.8 }, { line: 2, start: 30.52 }, { line: 3, start: 35.44 }, { line: 2, start: 40.24 }, { line: 3, start: 45.26 }, { line: 4, start: 50.29 }, { line: 5, start: 55.13 }, { line: 4, start: 59.55 }, { line: 5, start: 64.71 }, { line: 6, start: 83.68 }],
   },
   "wide-wide-as-the-ocean": {
     videoId: "Ri-StyOL1I4",
     videoDuration: 106,
-    cues: [{ line: 0, start: 10.27 }, { line: 1, start: 17.39 }, { line: 2, start: 25.38 }, { line: 3, start: 31.68 }, { line: 0, start: 40.67 }, { line: 1, start: 47.79 }, { line: 2, start: 55.76 }, { line: 3, start: 62.14 }, { line: 0, start: 71.07 }, { line: 1, start: 78.17 }, { line: 2, start: 86.2 }, { line: 3, start: 92.54 }],
+    cues: [{ line: 0, start: 10.28 }, { line: 1, start: 17.26 }, { line: 2, start: 23.56 }, { line: 3, start: 31.32 }, { line: 0, start: 39.48 }, { line: 1, start: 47.62 }, { line: 2, start: 54.88 }, { line: 3, start: 62.02 }, { line: 0, start: 69.86 }, { line: 1, start: 78.04 }, { line: 2, start: 85.04 }, { line: 3, start: 91.28 }],
   },
   "jesus-loves-me": {
     videoId: "f1JbSvhw43I",
-    videoDuration: 189,
-    cues: [{ line: 0, start: 11.57 }, { line: 1, start: 17.96 }, { line: 2, start: 23.26 }, { line: 3, start: 25.35 }, { line: 5, start: 30.97 }, { line: 6, start: 33.92 }, { line: 7, start: 38.64 }, { line: 8, start: 42.27 }, { line: 9, start: 46.59 }, { line: 10, start: 54.02 }, { line: 11, start: 57.25 }, { line: 12, start: 59.15 }, { line: 0, start: 67.28 }, { line: 1, start: 73.71 }, { line: 2, start: 77.69 }, { line: 3, start: 79.19 }, { line: 5, start: 83.47 }, { line: 6, start: 84.72 }, { line: 7, start: 87.74 }, { line: 8, start: 89.52 }, { line: 9, start: 94.62 }, { line: 10, start: 97.01 }, { line: 11, start: 98.95 }, { line: 12, start: 105.06 }, { line: 0, start: 108.66 }, { line: 1, start: 113.43 }, { line: 2, start: 116.19 }, { line: 3, start: 121.75 }, { line: 5, start: 127.86 }, { line: 6, start: 133.19 }, { line: 7, start: 134.41 }, { line: 8, start: 137.29 }, { line: 9, start: 140.5 }, { line: 10, start: 143.72 }, { line: 11, start: 150.07 }, { line: 12, start: 154.92 }, { line: 0, start: 160.2 }, { line: 1, start: 165.91 }, { line: 2, start: 168.39 }, { line: 3, start: 170.63 }, { line: 5, start: 174.7 }, { line: 6, start: 176.66 }, { line: 7, start: 178.27 }, { line: 8, start: 182.02 }],
+    videoDuration: 188,
+    cues: [{ line: 0, start: 11.34 }, { line: 1, start: 17.64 }, { line: 2, start: 23.22 }, { line: 3, start: 30.06 }, { line: 5, start: 37.74 }, { line: 6, start: 47.12 }, { line: 7, start: 50.62 }, { line: 8, start: 57.1 }, { line: 7, start: 93.44 }, { line: 5, start: 100.18 }, { line: 6, start: 106.56 }, { line: 8, start: 111.64 }, { line: 7, start: 149.2 }, { line: 5, start: 156.04 }, { line: 6, start: 162.22 }, { line: 8, start: 167.22 }],
   },
   "hes-got-the-whole-world": {
     videoId: "b4uNT8a4Q1s",
-    videoDuration: 119,
-    cues: [{ line: 0, start: 8.47 }, { line: 1, start: 12.44 }, { line: 2, start: 16.74 }, { line: 3, start: 21.11 }, { line: 4, start: 25.82 }, { line: 5, start: 32.43 }, { line: 0, start: 40.52 }, { line: 1, start: 44.44 }, { line: 2, start: 48.69 }, { line: 3, start: 52.41 }, { line: 4, start: 56.5 }, { line: 5, start: 64.43 }, { line: 0, start: 75.45 }, { line: 1, start: 78.11 }, { line: 2, start: 81.12 }, { line: 3, start: 84.38 }, { line: 4, start: 88.13 }, { line: 5, start: 92.89 }],
+    videoDuration: 118,
+    cues: [{ line: 0, start: 8.0 }, { line: 5, start: 12.5 }, { line: 0, start: 16.46 }, { line: 1, start: 24.68 }, { line: 1, start: 28.42 }, { line: 1, start: 32.64 }, { line: 5, start: 36.62 }, { line: 2, start: 44.3 }, { line: 2, start: 48.26 }, { line: 5, start: 52.3 }, { line: 3, start: 55.62 }, { line: 3, start: 60.22 }, { line: 0, start: 68.38 }, { line: 4, start: 71.62 }, { line: 4, start: 76.3 }, { line: 5, start: 80.26 }, { line: 0, start: 88.52 }, { line: 5, start: 117.24 }],
   },
   "praise-him-praise-him": {
     videoId: "Srbmk3zrsss",
     videoDuration: 116,
-    cues: [{ line: 0, start: 8.99 }, { line: 1, start: 13.28 }, { line: 2, start: 17.86 }, { line: 3, start: 21.85 }, { line: 4, start: 30.02 }, { line: 5, start: 34.73 }, { line: 0, start: 39.74 }, { line: 1, start: 43.28 }, { line: 2, start: 48.79 }, { line: 3, start: 56.14 }, { line: 4, start: 63.8 }, { line: 5, start: 69.57 }, { line: 0, start: 75.64 }, { line: 1, start: 85.53 }, { line: 2, start: 95.75 }, { line: 3, start: 98.24 }],
+    cues: [{ line: 0, start: 8.54 }, { line: 1, start: 13.14 }, { line: 0, start: 17.4 }, { line: 3, start: 21.96 }, { line: 5, start: 27.48 }, { line: 2, start: 30.08 }, { line: 7, start: 34.72 }, { line: 2, start: 38.86 }, { line: 1, start: 43.16 }, { line: 4, start: 50.78 }, { line: 3, start: 55.88 }, { line: 4, start: 60.17 }, { line: 5, start: 64.7 }, { line: 6, start: 72.84 }, { line: 7, start: 77.33 }, { line: 1, start: 88.64 }, { line: 3, start: 92.36 }],
   },
   "jesus-loves-even-me": {
     videoId: "DnJ65AKkRaE",
     videoDuration: 108,
-    cues: [{ line: 1, start: 12.02 }, { line: 2, start: 16.63 }, { line: 3, start: 18.07 }, { line: 4, start: 21.59 }, { line: 5, start: 27.76 }, { line: 6, start: 31.32 }, { line: 7, start: 35.2 }, { line: 8, start: 39.09 }, { line: 9, start: 43.29 }, { line: 10, start: 49.43 }, { line: 11, start: 53.29 }, { line: 12, start: 61.54 }, { line: 1, start: 68.3 }, { line: 2, start: 73.06 }, { line: 3, start: 75.23 }, { line: 4, start: 81.82 }, { line: 5, start: 87.7 }, { line: 6, start: 89.42 }, { line: 7, start: 93.17 }, { line: 8, start: 96.29 }],
+    cues: [{ line: 1, start: 9.24 }, { line: 2, start: 13.36 }, { line: 2, start: 15.62 }, { line: 3, start: 17.58 }, { line: 4, start: 21.56 }, { line: 5, start: 26.94 }, { line: 6, start: 30.76 }, { line: 7, start: 35.2 }, { line: 8, start: 38.96 }, { line: 1, start: 42.28 }, { line: 2, start: 46.38 }, { line: 2, start: 48.42 }, { line: 3, start: 50.6 }, { line: 4, start: 54.56 }, { line: 9, start: 60.9 }, { line: 10, start: 64.26 }, { line: 11, start: 67.5 }, { line: 12, start: 71.96 }, { line: 1, start: 75.86 }, { line: 2, start: 79.72 }, { line: 2, start: 81.64 }, { line: 3, start: 83.68 }, { line: 4, start: 87.54 }],
   },
   "away-in-a-manger": {
     videoId: "h4Jcl_ax2OE",
     videoDuration: 140,
-    cues: [{ line: 0, start: 8.87 }, { line: 1, start: 16.74 }, { line: 2, start: 24.52 }, { line: 3, start: 31.75 }, { line: 4, start: 45.88 }, { line: 5, start: 53.76 }, { line: 6, start: 60.81 }, { line: 7, start: 62.41 }, { line: 8, start: 69.75 }, { line: 9, start: 73.93 }, { line: 10, start: 78.45 }, { line: 11, start: 87.22 }, { line: 0, start: 92.24 }, { line: 1, start: 98.18 }, { line: 2, start: 105.31 }, { line: 3, start: 112.44 }],
+    cues: [{ line: 1, start: 15.74 }, { line: 2, start: 24.44 }, { line: 3, start: 32.34 }, { line: 4, start: 45.91 }, { line: 5, start: 54.18 }, { line: 6, start: 61.0 }, { line: 7, start: 68.88 }, { line: 8, start: 79.28 }, { line: 9, start: 90.38 }, { line: 10, start: 98.0 }, { line: 11, start: 106.02 }, { line: 11, start: 114.68 }],
   },
   "zacchaeus-was-a-wee-little-man": {
     videoId: "C8GJXE7e5s0",
     videoDuration: 62,
-    cues: [{ line: 0, start: 13.13 }, { line: 1, start: 16.37 }, { line: 2, start: 19.51 }, { line: 3, start: 22.6 }, { line: 4, start: 25.88 }, { line: 5, start: 28.96 }, { line: 6, start: 32.16 }, { line: 7, start: 36.84 }, { line: 0, start: 40.19 }, { line: 1, start: 44.45 }, { line: 2, start: 46.45 }, { line: 3, start: 48.64 }, { line: 4, start: 50.9 }, { line: 6, start: 53.9 }],
+    cues: [{ line: 0, start: 13.18 }, { line: 1, start: 16.44 }, { line: 2, start: 18.58 }, { line: 3, start: 22.46 }, { line: 4, start: 25.0 }, { line: 5, start: 28.82 }, { line: 6, start: 32.04 }, { line: 7, start: 36.66 }, { line: 7, start: 39.62 }],
   },
   "the-b-i-b-l-e": {
     videoId: "8a1amee1gW0",
-    videoDuration: 94,
-    cues: [{ line: 0, start: 25.62 }, { line: 1, start: 28.61 }, { line: 2, start: 31.95 }, { line: 3, start: 34.19 }, { line: 0, start: 55.85 }, { line: 1, start: 58.11 }, { line: 2, start: 59.55 }, { line: 3, start: 62.55 }, { line: 1, start: 66.8 }, { line: 2, start: 68.26 }, { line: 3, start: 71.28 }, { line: 0, start: 77.92 }, { line: 1, start: 84.23 }, { line: 2, start: 86.47 }, { line: 3, start: 88.76 }],
+    videoDuration: 93,
+    cues: [{ line: 0, start: 18.44 }, { line: 1, start: 20.88 }, { line: 2, start: 22.72 }, { line: 3, start: 25.52 }, { line: 0, start: 26.98 }, { line: 1, start: 29.18 }, { line: 2, start: 31.42 }, { line: 3, start: 34.3 }, { line: 0, start: 35.72 }, { line: 1, start: 38.02 }, { line: 2, start: 40.18 }, { line: 3, start: 43.06 }, { line: 0, start: 55.52 }, { line: 1, start: 58.1 }, { line: 2, start: 59.76 }, { line: 3, start: 62.58 }, { line: 0, start: 64.12 }, { line: 1, start: 66.34 }, { line: 2, start: 68.46 }, { line: 3, start: 71.36 }, { line: 0, start: 72.8 }],
   },
   "joshua-fought-the-battle-of-jericho": {
     videoId: "BfJY082DcP8",
     videoDuration: 123,
-    cues: [{ line: 0, start: 10.56 }, { line: 1, start: 14.8 }, { line: 2, start: 18.32 }, { line: 3, start: 31.76 }, { line: 4, start: 34.36 }, { line: 5, start: 37.0 }, { line: 6, start: 40.88 }, { line: 0, start: 44.88 }, { line: 1, start: 62.76 }, { line: 2, start: 70.32 }, { line: 6, start: 84.24 }, { line: 0, start: 89.16 }, { line: 1, start: 103.52 }, { line: 2, start: 111.12 }],
+    cues: [{ line: 0, start: 10.64 }, { line: 1, start: 15.87 }, { line: 2, start: 18.25 }, { line: 0, start: 21.09 }, { line: 6, start: 26.86 }, { line: 3, start: 30.52 }, { line: 4, start: 33.4 }, { line: 5, start: 35.9 }, { line: 6, start: 38.38 }, { line: 0, start: 41.56 }, { line: 1, start: 46.6 }, { line: 2, start: 49.16 }, { line: 7, start: 52.22 }, { line: 8, start: 56.66 }, { line: 0, start: 62.46 }, { line: 1, start: 67.44 }, { line: 2, start: 70.08 }, { line: 9, start: 72.76 }, { line: 10, start: 78.28 }, { line: 0, start: 83.26 }, { line: 1, start: 88.36 }, { line: 2, start: 90.9 }, { line: 0, start: 104.1 }, { line: 1, start: 109.24 }, { line: 2, start: 111.68 }],
   },
   "little-david-play-on-your-harp": {
     videoId: "3VH0pYbPVUo",
     videoDuration: 127,
-    cues: [{ line: 0, start: 9.84 }, { line: 1, start: 18.4 }, { line: 2, start: 27.28 }, { line: 3, start: 32.08 }, { line: 0, start: 36.64 }, { line: 1, start: 40.0 }, { line: 2, start: 54.16 }, { line: 3, start: 58.88 }],
+    cues: [{ line: 1, start: 9.08 }, { line: 1, start: 13.38 }, { line: 1, start: 18.06 }, { line: 1, start: 22.44 }, { line: 2, start: 26.72 }, { line: 3, start: 31.74 }, { line: 1, start: 36.38 }, { line: 1, start: 40.32 }, { line: 0, start: 44.62 }, { line: 1, start: 49.38 }, { line: 2, start: 53.46 }, { line: 3, start: 58.5 }, { line: 2, start: 80.02 }],
   },
   "who-did-swallow-jonah": {
     videoId: "UZ5UeNOXbOQ",
-    videoDuration: 125,
-    cues: [{ line: 0, start: 11.72 }, { line: 1, start: 19.75 }, { line: 2, start: 25.07 }, { line: 3, start: 30.69 }, { line: 0, start: 38.5 }, { line: 1, start: 45.88 }, { line: 2, start: 55.21 }, { line: 3, start: 57.43 }, { line: 0, start: 73.56 }, { line: 1, start: 78.27 }, { line: 2, start: 81.05 }, { line: 3, start: 87.85 }, { line: 0, start: 92.85 }, { line: 1, start: 94.68 }, { line: 2, start: 102.0 }, { line: 3, start: 105.38 }, { line: 0, start: 109.07 }, { line: 1, start: 111.09 }, { line: 2, start: 113.23 }, { line: 3, start: 115.42 }],
+    videoDuration: 124,
+    cues: [{ line: 0, start: 12.86 }, { line: 0, start: 17.1 }, { line: 0, start: 22.14 }, { line: 1, start: 38.52 }, { line: 2, start: 92.69 }, { line: 2, start: 97.36 }, { line: 2, start: 102.72 }],
   },
   "dare-to-be-a-daniel": {
     videoId: "3k7wqHUpJOI",
     videoDuration: 95,
-    cues: [{ line: 1, start: 9.48 }, { line: 2, start: 13.82 }, { line: 3, start: 18.16 }, { line: 4, start: 22.62 }, { line: 5, start: 35.73 }, { line: 6, start: 40.09 }, { line: 7, start: 47.75 }, { line: 8, start: 57.57 }, { line: 9, start: 62.42 }, { line: 10, start: 75.08 }],
+    cues: [{ line: 1, start: 8.76 }, { line: 2, start: 13.04 }, { line: 3, start: 17.52 }, { line: 4, start: 21.64 }, { line: 1, start: 26.18 }, { line: 2, start: 31.18 }, { line: 5, start: 34.98 }, { line: 6, start: 39.52 }, { line: 1, start: 43.7 }, { line: 2, start: 48.12 }, { line: 7, start: 52.68 }, { line: 8, start: 57.06 }, { line: 1, start: 61.22 }, { line: 2, start: 65.56 }, { line: 9, start: 68.04 }, { line: 10, start: 74.52 }, { line: 1, start: 78.74 }, { line: 2, start: 83.08 }],
   },
 };
