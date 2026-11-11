@@ -67,9 +67,6 @@ function SongWords({ song }: { song: Song }) {
   );
 }
 
-const pillClass =
-  "inline-flex items-center justify-center rounded-full border border-terracotta/25 bg-cream/80 px-5 py-2.5 text-sm font-semibold text-chestnut-soft shadow-sm transition hover:border-terracotta hover:bg-terracotta hover:text-cream";
-
 export default function SongsPage({
   searchParams,
 }: {
@@ -136,24 +133,7 @@ export default function SongsPage({
         </div>
       </section>
 
-      <SiteFooter
-        extra={
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <a className={pillClass} href="/tonight">
-              Tonight&apos;s story
-            </a>
-            <a className={pillClass} href="/book/zacchaeus">
-              Read the Zacchaeus story
-            </a>
-            <a className={pillClass} href="/book/noah-and-gods-big-promise">
-              Read the Noah and God&apos;s Big Promise story
-            </a>
-            <a className={pillClass} href="/">
-              Read all the Bible stories
-            </a>
-          </div>
-        }
-      />
+      <SiteFooter />
     </main>
   );
 }
