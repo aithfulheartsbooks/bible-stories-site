@@ -154,7 +154,7 @@ test("tonight's song matches only real story nights", () => {
   assert.notEqual(songForTonight("david-and-the-giant").slug, "zacchaeus-was-a-wee-little-man");
 });
 
-test("lyric cues stay strictly increasing and inside the video", () => {
+test("lyric cues stay strictly increasing, inside the video, and cover every printed line", () => {
   for (const song of songs) {
     assert.equal(song.lyricsStatus, "lyrics-ok");
     if (song.lyricsStatus !== "lyrics-ok") continue;
@@ -162,12 +162,17 @@ test("lyric cues stay strictly increasing and inside the video", () => {
     assert.equal(typeof song.videoDuration, "number");
     assert.ok(song.videoDuration && song.videoDuration > 0);
     const lineCount = song.lyrics.filter((part) => part.kind === "line").length;
+    const covered = new Set<number>();
     let previous = -1;
     for (const cue of song.cues) {
-      assert.ok(cue.line >= 0 && cue.line < lineCount);
-      assert.ok(cue.start > previous);
-      assert.ok(cue.start < (song.videoDuration ?? 0));
+      assert.ok(cue.line >= 0 && cue.line < lineCount, `${song.slug} line ${cue.line}`);
+      assert.ok(cue.start > previous, `${song.slug} ${cue.start} after ${previous}`);
+      assert.ok(cue.start >= 0 && cue.start < (song.videoDuration ?? 0), song.slug);
+      covered.add(cue.line);
       previous = cue.start;
+    }
+    for (let line = 0; line < lineCount; line += 1) {
+      assert.equal(covered.has(line), true, `${song.slug} printed line ${line} has no cue`);
     }
   }
 });
@@ -195,15 +200,15 @@ test("active line follows repeats and clears in the gaps", () => {
   if (sunbeam.lyricsStatus !== "lyrics-ok" || !sunbeam.cues) return;
   const printed = sunbeam.lyrics.filter((part) => part.kind === "line").length;
   assert.equal(printed, 8);
-  assert.equal(sunbeam.cues.length, 6);
   const highlighted = new Set<number>();
   const duration = sunbeam.videoDuration ?? 0;
   for (let time = 0; time < duration; time += 0.25) {
     const line = activeLyricLine(sunbeam.cues, time);
     if (line != null) highlighted.add(line);
   }
-  assert.equal(highlighted.has(printed - 1), false);
-  assert.equal(highlighted.has(printed - 2), false);
+  // The recording sings the third verse, so those lines are cued.
+  assert.equal(highlighted.has(printed - 1), true);
+  assert.equal(highlighted.has(printed - 2), true);
   const last = sunbeam.cues[sunbeam.cues.length - 1];
   assert.equal(activeLyricLine(sunbeam.cues, last.start), last.line);
   assert.equal(activeLyricLine(sunbeam.cues, last.start + 30), null);

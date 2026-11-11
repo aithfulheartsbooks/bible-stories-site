@@ -50,7 +50,7 @@ export type LyricsOkSong = SongBase & {
   /**
    * Optional timing for videoId. Leave it off when captions or alignment
    * could not be derived — the words stay readable and are not highlighted.
-   * Add cues with `node scripts/song-cues.mjs <videoId>`.
+   * Add cues with `python scripts/align-songs.py <videoId> --lines lines.txt`.
    */
   cues?: LyricCue[];
   /** Seconds. Required whenever cues are present. */
@@ -169,23 +169,20 @@ export const songs: Song[] = [
     videoId: "8i_IoI9NmW8",
     ...vevo("Down in My Heart"),
     lyricsSource:
-      "George W. Cooke, 1926, copyright not renewed; Hymnary Public Domain, including the refrain And I'm so happy. The July 1, 2021 CedarmontKidsVEVO description sings these verses. https://hymnary.org/text/i_have_the_joy_joy_joy_joy_down_in_my_h",
+      "George W. Cooke, 1926, copyright not renewed; Hymnary Public Domain, including the refrain And I'm so happy. The recording sings Cooke's I have, not I've got. https://hymnary.org/text/i_have_the_joy_joy_joy_joy_down_in_my_h",
     lyrics: [
-      { kind: "line", text: "I've got the joy, joy, joy, joy down in my heart," },
+      { kind: "line", text: "I have the joy, joy, joy, joy down in my heart," },
       { kind: "line", text: "Down in my heart, down in my heart." },
-      { kind: "line", text: "I've got the joy, joy, joy, joy down in my heart," },
+      { kind: "line", text: "I have the joy, joy, joy, joy down in my heart," },
       { kind: "line", text: "Down in my heart to stay." },
       { kind: "label", text: "Refrain" },
       { kind: "line", text: "And I'm so happy, so very happy," },
-      { kind: "line", text: "I've got the love of Jesus in my heart." },
-      { kind: "line", text: "I've got the love of Jesus, love of Jesus, down in my heart," },
+      { kind: "line", text: "I have the love of Jesus in my heart." },
+      { kind: "line", text: "I have the love of Jesus, love of Jesus, down in my heart," },
       { kind: "line", text: "Down in my heart, down in my heart." },
-      { kind: "line", text: "I've got the love of Jesus, love of Jesus, down in my heart," },
+      { kind: "line", text: "I have the love of Jesus, love of Jesus, down in my heart," },
       { kind: "line", text: "Down in my heart to stay." },
-      { kind: "line", text: "I've got the peace that passeth understanding down in my heart," },
-      { kind: "line", text: "Down in my heart, down in my heart." },
-      { kind: "line", text: "I've got the peace that passeth understanding down in my heart," },
-      { kind: "line", text: "Down in my heart to stay." },
+      { kind: "line", text: "I have the peace that passeth understanding down in my heart." },
     ],
   }),
   lyricsOk({
@@ -345,13 +342,15 @@ export const songs: Song[] = [
     videoId: "Srbmk3zrsss",
     ...topic("Praise Him, All Ye Little Children"),
     lyricsSource:
-      "Anonymous text, tune BONNER by Carey Bonner. Hymnary: Public Domain. https://hymnary.org/text/praise_him_praise_him_all_ye_little_chil No official picture video of this title was found.",
+      "Anonymous text, tune BONNER by Carey Bonner. Hymnary: Public Domain, including Serve Him. https://hymnary.org/text/praise_him_praise_him_all_ye_little_chil The Cedarmont topic recording sings Praise, Love, Thank, and Serve.",
     lyrics: [
       { kind: "line", text: "Praise Him, praise Him, all ye little children," },
       { kind: "line", text: "God is love, God is love." },
       { kind: "line", text: "Love Him, love Him, all ye little children," },
       { kind: "line", text: "God is love, God is love." },
       { kind: "line", text: "Thank Him, thank Him, all ye little children," },
+      { kind: "line", text: "God is love, God is love." },
+      { kind: "line", text: "Serve Him, serve Him, all ye little children," },
       { kind: "line", text: "God is love, God is love." },
     ],
   }),
@@ -457,15 +456,19 @@ export const songs: Song[] = [
     ...listener("Joshua Fought the Battle of Jericho"),
     bookLink: book("joshua-and-jericho", "Joshua and Jericho"),
     lyricsSource:
-      "Traditional spiritual, in print by 1882. Hymnary: Public Domain. https://hymnary.org/text/you_may_talk_about_the_men_of_gideon The Oct 19, 2023 Listener Kids description sings these verses.",
+      "Traditional spiritual, in print by 1882. Hymnary: Public Domain, men of Gideon, and the walls and ram-horn verses. https://hymnary.org/text/you_may_talk_about_the_men_of_gideon The Oct 19, 2023 Listener Kids recording sings these verses.",
     lyrics: [
       { kind: "line", text: "Joshua fought the battle of Jericho, Jericho, Jericho," },
       { kind: "line", text: "Joshua fought the battle of Jericho," },
       { kind: "line", text: "And the walls came tumbling down." },
-      { kind: "line", text: "You may talk about the kings of Gideon," },
-      { kind: "line", text: "You may talk about the man of Saul," },
+      { kind: "line", text: "You may talk about the men of Gideon," },
+      { kind: "line", text: "You may talk about the men of Saul," },
       { kind: "line", text: "But there's none like good old Joshua" },
       { kind: "line", text: "At the battle of Jericho." },
+      { kind: "line", text: "Up to the walls of Jericho, he marched with spear in hand." },
+      { kind: "line", text: "“Go blow that ram's horn,” Joshua cried, “for the battle is in my hand.”" },
+      { kind: "line", text: "Then the lamb, ram, sheep horns began to blow, and the trumpets began to sound." },
+      { kind: "line", text: "Joshua commanded the children to shout, and the walls came tumbling down." },
     ],
   }),
   lyricsOk({
@@ -496,12 +499,11 @@ export const songs: Song[] = [
     ...vevo("Who Did Swallow Jonah?"),
     bookLink: book("jonah-and-the-big-fish", "Jonah and the Big Fish"),
     lyricsSource:
-      "Traditional spiritual, in Religious Folk Songs of the Negro (1893) as Peter on the Sea. Hymnary marks the anonymous text Public Domain. https://hymnary.org/text/who_did_who_did_who_did_swallow The 1986 Beall/Nipp version is not used. A 2025 Listener Kids upload sings Jo-Jo-Jo-Jo plus Gabriel and Daniel verses, so the 2014 CedarmontKidsVEVO recording of this title is used instead. That page did not reprint a lyric sheet.",
+      "Traditional spiritual. The Jo-Jo stutter and Daniel verse are the pre-1929 folk text (Barton 1899; ballad index), not the 1986 Beall/Nipp copyright. A Gabriel verse on this recording is left unprinted because its wording was not confirmed as that public-domain text. https://hymnary.org/text/who_did_who_did_who_did_swallow",
     lyrics: [
-      { kind: "line", text: "Who did swallow Jonah? Who did swallow Jonah?" },
-      { kind: "line", text: "Who did swallow Jonah? Who did swallow Jonah down?" },
-      { kind: "line", text: "Whale did swallow Jonah. Whale did swallow Jonah." },
-      { kind: "line", text: "Whale did swallow Jonah. Whale did swallow Jonah down." },
+      { kind: "line", text: "Who did, who did, who did, who did, swallow Jo, Jo, Jo, Jo?" },
+      { kind: "line", text: "Whale did, whale did, whale did, whale did, swallow Jo, Jo, Jo, Jo." },
+      { kind: "line", text: "Daniel, Daniel, Daniel, Daniel in the lion's den." },
     ],
   }),
   lyricsOk({
