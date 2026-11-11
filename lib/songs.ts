@@ -489,20 +489,32 @@ export const songs: Song[] = [
     ],
   }),
   lyricsOk({
-    slug: "who-did-swallow-jonah",
-    title: "Who Did Swallow Jonah?",
+    slug: "jesus-loves-the-little-children",
+    title: "Jesus Loves the Little Children",
     group: "story",
-    tip: "Cup a hand by your ear, then answer whale.",
-    blurb: "Who did swallow Jonah down?",
-    videoId: "UZ5UeNOXbOQ",
-    ...vevo("Who Did Swallow Jonah?"),
+    tip: "Point to children all around you, every one precious.",
+    blurb: "Jesus loves the little children of the world.",
+    videoId: "lmgUKoFKM60",
+    channel: "Hi Heaven",
+    channelUrl: "https://www.youtube.com/@hiheavenkids",
+    videoNote:
+      "Hi Heaven kids sing-along, Jesus Loves the Little Children. Human voices. It sings Woolston's refrain and the public-domain died-for refrain, and no other verse.",
+    embedCheck:
+      "YouTube oEmbed returned HTTP 200 on 2026-11-11 (author Hi Heaven). The nocookie embed response did not include an owner message that playback on other websites is disabled.",
     bookLink: book("jonah-and-the-big-fish", "Jonah and the Big Fish"),
     lyricsSource:
-      "Traditional spiritual. The Jo-Jo stutter and Daniel verse are the pre-1929 folk text (Barton 1899; ballad index). A clip of this recording at 70–89s is \"Gabriel, Gabriel, Gabriel, Gabriel, Gabriel, blow your trumpet loud.\" That is the children's line in Wee Sing (Beall and Nipp, 1982), not the 1867 \"Blow your trumpet, Gabriel\" spiritual, so it is not printed. https://hymnary.org/text/who_did_who_did_who_did_swallow",
+      "C. Herbert Woolston refrain, The Gospel Message, No. 3 (1913); Beginner and Primary Songs (1915). Hymnary: Public Domain. https://hymnary.org/text/jesus_calls_the_children_dear The died-for refrain is the alternate public-domain refrain attributed to Agnes C. Woolston. https://hymnary.org/text/jesus_died_for_all_the_children This Hi Heaven recording sings those two refrains.",
     lyrics: [
-      { kind: "line", text: "Who did, who did, who did, who did, swallow Jo, Jo, Jo, Jo?" },
-      { kind: "line", text: "Whale did, whale did, whale did, whale did, swallow Jo, Jo, Jo, Jo." },
-      { kind: "line", text: "Daniel, Daniel, Daniel, Daniel in the lion's den." },
+      { kind: "line", text: "Jesus loves the little children," },
+      { kind: "line", text: "All the children of the world." },
+      { kind: "line", text: "Red and yellow, black and white," },
+      { kind: "line", text: "They are precious in His sight." },
+      { kind: "line", text: "Jesus loves the little children of the world." },
+      { kind: "line", text: "Jesus died for all the children," },
+      { kind: "line", text: "All the children of the world." },
+      { kind: "line", text: "Red and yellow, black and white," },
+      { kind: "line", text: "They are precious in His sight." },
+      { kind: "line", text: "Jesus died for all the children of the world." },
     ],
   }),
   lyricsOk({
@@ -629,7 +641,7 @@ export function formatSongKnowledge(): string {
   return [
     "SONGS:",
     "- Sing-along page: /songs. The top menu is Home, Tonight, Songs, Play, Free, Churches, Shop. About is not in the top menu. About is a footer link, and the page is still /about.",
-    "- Tonight's song: on /tonight, under the story. Zacchaeus night links to the Zacchaeus song, Joshua and Jericho night to Joshua Fought the Battle of Jericho, David and the Giant night to Little David, Jonah and the Big Fish night to Who Did Swallow Jonah?, Daniel and the Lions night to Dare to Be a Daniel, and the Christmas Story night to Away in a Manger. Noah and every other night use This Little Light of Mine.",
+    "- Tonight's song: on /tonight, under the story. Zacchaeus night links to the Zacchaeus song, Joshua and Jericho night to Joshua Fought the Battle of Jericho, David and the Giant night to Little David, Jonah and the Big Fish night to Jesus Loves the Little Children, Daniel and the Lions night to Dare to Be a Daniel, and the Christmas Story night to Away in a Manger. Noah and every other night use This Little Light of Mine.",
     ...lines,
   ].join("\n");
 }

@@ -16,8 +16,8 @@ export const TONIGHT_SONG_BY_BOOK: Record<string, TonightSongPick> = {
     title: "Little David, Play on Your Harp",
   },
   "jonah-and-the-big-fish": {
-    slug: "who-did-swallow-jonah",
-    title: "Who Did Swallow Jonah?",
+    slug: "jesus-loves-the-little-children",
+    title: "Jesus Loves the Little Children",
   },
   "daniel-and-the-lions": {
     slug: "dare-to-be-a-daniel",

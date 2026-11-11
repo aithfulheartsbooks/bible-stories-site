@@ -95,9 +95,14 @@ test("The B-I-B-L-E prints only the short original verse", () => {
   assert.doesNotMatch(text, /I have a book|God's holy Word I'll|I'll read and pray|every day/i);
 });
 
-test("the color line and unverified texts stay out of the printed words", () => {
-  assert.doesNotMatch(songSource, /Red and yellow, black and white/i);
-  assert.doesNotMatch(JSON.stringify(songs), /Red and yellow, black and white/i);
+test("the Woolston color line is only the Jesus Loves the Little Children refrain", () => {
+  const little = songs.find((item) => item.slug === "jesus-loves-the-little-children");
+  assert.ok(little);
+  assert.equal(little.lyricsStatus, "lyrics-ok");
+  if (little.lyricsStatus !== "lyrics-ok") return;
+  assert.match(linesOf(little).join(" "), /Red and yellow, black and white/);
+  const others = songs.filter((item) => item.slug !== "jesus-loves-the-little-children");
+  assert.doesNotMatch(JSON.stringify(others), /Red and yellow, black and white/i);
   for (const slug of ["this-little-light-of-mine", "zacchaeus-was-a-wee-little-man", "the-b-i-b-l-e"]) {
     const song = songs.find((item) => item.slug === slug);
     assert.ok(song);
@@ -240,7 +245,7 @@ const FINAL_SLUGS = [
   "the-b-i-b-l-e",
   "joshua-fought-the-battle-of-jericho",
   "little-david-play-on-your-harp",
-  "who-did-swallow-jonah",
+  "jesus-loves-the-little-children",
   "dare-to-be-a-daniel",
 ];
 
@@ -253,7 +258,6 @@ const REMOVED = [
   "rise-and-shine",
   "who-built-the-ark",
   "the-wise-man-built-his-house",
-  "jesus-loves-the-little-children",
   "Father Abraham",
   "Deep and Wide",
   "Be Careful, Little Eyes",
@@ -262,7 +266,6 @@ const REMOVED = [
   "Rise and Shine",
   "Who Built the Ark",
   "Wise Man",
-  "Little Children",
 ];
 
 test("Ask Angel song knowledge matches the 18-song list", () => {
@@ -281,7 +284,8 @@ test("Ask Angel song knowledge matches the 18-song list", () => {
   const jonah = answerFromSongs("What song goes with the Jonah story?");
   const gentle = answerFromSongs("Can you suggest a gentle bedtime song?");
   const about = answerFromSongs("Where did About go?");
-  assert.match(jonah ?? "", /who-did-swallow-jonah/);
+  assert.match(jonah ?? "", /jesus-loves-the-little-children/);
+  assert.match(jonah ?? "", /\/book\/jonah-and-the-big-fish/);
   assert.match(jonah ?? "", /\/songs\?song=/);
   assert.match(gentle ?? "", /\/songs\?song=/);
   assert.match(about ?? "", /footer/);
@@ -295,13 +299,13 @@ test("Ask Angel links /songs and lets a bedtime song question win", () => {
   const paths = widget.match(/\/\(\?:(play\|tonight\|[^)]+)\)\(\?:\[\^\\s<\]\*\)\?\)/);
   assert.ok(paths);
   const re = new RegExp(`(^|[\\s>])(/(?:${paths[1]})(?:[^\\s<]*)?)`, "gi");
-  const deepLink = "Try /songs?song=who-did-swallow-jonah tonight".replace(re, (_match, prefix, path) => {
+  const deepLink = "Try /songs?song=jesus-loves-the-little-children tonight".replace(re, (_match, prefix, path) => {
     return `${prefix}<a href="https://www.faithfulheartsbooks.com${path}">${path}</a>`;
   });
   const pageLink = "Open /songs for the list".replace(re, (_match, prefix, path) => {
     return `${prefix}<a href="https://www.faithfulheartsbooks.com${path}">${path}</a>`;
   });
-  assert.match(deepLink, /href="https:\/\/www\.faithfulheartsbooks\.com\/songs\?song=who-did-swallow-jonah"/);
+  assert.match(deepLink, /href="https:\/\/www\.faithfulheartsbooks\.com\/songs\?song=jesus-loves-the-little-children"/);
   assert.match(pageLink, /href="https:\/\/www\.faithfulheartsbooks\.com\/songs"/);
 
   const fallback = widget.slice(widget.indexOf("function localFallbackReply"), widget.indexOf("function avatarSVG"));
