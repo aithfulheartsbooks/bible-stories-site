@@ -1,0 +1,1545 @@
+{
+  "this-little-light-of-mine": {
+    "videoId": "Xe_1XJsjMZY",
+    "duration": 101.77,
+    "cues": [
+      {
+        "line": 0,
+        "start": 10.24,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 30.52,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 49.94,
+        "score": 0.91
+      },
+      {
+        "line": 3,
+        "start": 54.02,
+        "score": 0.82
+      },
+      {
+        "line": 4,
+        "start": 58.58,
+        "score": 0.91
+      },
+      {
+        "line": 5,
+        "start": 62.76,
+        "score": 1.0
+      },
+      {
+        "line": 6,
+        "start": 69.7,
+        "score": 1.0
+      },
+      {
+        "line": 7,
+        "start": 73.88,
+        "score": 1.0
+      }
+    ]
+  },
+  "ive-got-the-joy": {
+    "videoId": "8i_IoI9NmW8",
+    "duration": 151.97,
+    "cues": [
+      {
+        "line": 0,
+        "start": 8.62,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 14.1,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 18.04,
+        "score": 1.0
+      },
+      {
+        "line": 3,
+        "start": 22.56,
+        "score": 1.0
+      },
+      {
+        "line": 4,
+        "start": 26.16,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 29.6,
+        "score": 1.0
+      },
+      {
+        "line": 4,
+        "start": 34.0,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 37.86,
+        "score": 1.0
+      },
+      {
+        "line": 6,
+        "start": 42.36,
+        "score": 1.0
+      },
+      {
+        "line": 7,
+        "start": 47.04,
+        "score": 1.0
+      },
+      {
+        "line": 8,
+        "start": 50.96,
+        "score": 1.0
+      },
+      {
+        "line": 9,
+        "start": 55.16,
+        "score": 1.0
+      },
+      {
+        "line": 4,
+        "start": 58.3,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 62.68,
+        "score": 0.94
+      },
+      {
+        "line": 4,
+        "start": 67.1,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 71.02,
+        "score": 0.94
+      },
+      {
+        "line": 10,
+        "start": 75.46,
+        "score": 1.0
+      },
+      {
+        "line": 4,
+        "start": 80.06,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 95.78,
+        "score": 0.94
+      },
+      {
+        "line": 4,
+        "start": 100.52,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 104.02,
+        "score": 0.94
+      },
+      {
+        "line": 5,
+        "start": 109.06,
+        "score": 0.75
+      },
+      {
+        "line": 1,
+        "start": 111.62,
+        "score": 0.67
+      },
+      {
+        "line": 7,
+        "start": 120.0,
+        "score": 0.67
+      },
+      {
+        "line": 4,
+        "start": 122.7,
+        "score": 0.62
+      },
+      {
+        "line": 5,
+        "start": 127.68,
+        "score": 0.9
+      },
+      {
+        "line": 4,
+        "start": 133.32,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 137.84,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 141.5,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 146.24,
+        "score": 1.0
+      }
+    ]
+  },
+  "hallelujah-praise-ye-the-lord": {
+    "videoId": "G1VrEJ5lsnQ",
+    "duration": 110.37,
+    "cues": [
+      {
+        "line": 0,
+        "start": 11.38,
+        "score": 0.94
+      },
+      {
+        "line": 1,
+        "start": 16.54,
+        "score": 0.94
+      },
+      {
+        "line": 0,
+        "start": 36.36,
+        "score": 0.94
+      },
+      {
+        "line": 1,
+        "start": 41.3,
+        "score": 0.78
+      },
+      {
+        "line": 2,
+        "start": 48.66,
+        "score": 0.83
+      },
+      {
+        "line": 3,
+        "start": 55.42,
+        "score": 1.0
+      },
+      {
+        "line": 4,
+        "start": 83.66,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 85.98,
+        "score": 1.0
+      }
+    ]
+  },
+  "jesus-wants-me-for-a-sunbeam": {
+    "videoId": "UYWWBnAepes",
+    "duration": 150.67,
+    "cues": [
+      {
+        "line": 0,
+        "start": 9.08,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 17.48,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 27.16,
+        "score": 1.0
+      },
+      {
+        "line": 3,
+        "start": 36.28,
+        "score": 1.0
+      },
+      {
+        "line": 4,
+        "start": 53.84,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 62.3,
+        "score": 0.9
+      },
+      {
+        "line": 2,
+        "start": 74.74,
+        "score": 0.89
+      },
+      {
+        "line": 3,
+        "start": 81.36,
+        "score": 1.0
+      },
+      {
+        "line": 6,
+        "start": 98.86,
+        "score": 1.0
+      },
+      {
+        "line": 7,
+        "start": 107.16,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 116.12,
+        "score": 1.0
+      },
+      {
+        "line": 3,
+        "start": 126.26,
+        "score": 1.0
+      }
+    ]
+  },
+  "do-lord": {
+    "videoId": "FCXvjx-nP9g",
+    "duration": 152.28,
+    "cues": [
+      {
+        "line": 0,
+        "start": 7.66,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 12.12,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 17.04,
+        "score": 1.0
+      },
+      {
+        "line": 3,
+        "start": 21.1,
+        "score": 1.0
+      },
+      {
+        "line": 4,
+        "start": 26.36,
+        "score": 0.91
+      },
+      {
+        "line": 5,
+        "start": 30.98,
+        "score": 0.91
+      },
+      {
+        "line": 6,
+        "start": 35.76,
+        "score": 0.91
+      },
+      {
+        "line": 7,
+        "start": 39.98,
+        "score": 1.0
+      },
+      {
+        "line": 0,
+        "start": 47.18,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 52.28,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 56.98,
+        "score": 1.0
+      },
+      {
+        "line": 11,
+        "start": 61.18,
+        "score": 1.0
+      },
+      {
+        "line": 8,
+        "start": 65.42,
+        "score": 1.0
+      },
+      {
+        "line": 9,
+        "start": 71.08,
+        "score": 1.0
+      },
+      {
+        "line": 10,
+        "start": 75.82,
+        "score": 1.0
+      },
+      {
+        "line": 3,
+        "start": 79.98,
+        "score": 1.0
+      },
+      {
+        "line": 0,
+        "start": 86.94,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 92.1,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 96.82,
+        "score": 1.0
+      },
+      {
+        "line": 7,
+        "start": 101.14,
+        "score": 1.0
+      },
+      {
+        "line": 11,
+        "start": 118.58,
+        "score": 0.67
+      },
+      {
+        "line": 0,
+        "start": 127.44,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 132.08,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 136.8,
+        "score": 0.95
+      },
+      {
+        "line": 3,
+        "start": 141.14,
+        "score": 1.0
+      }
+    ]
+  },
+  "ive-got-peace-like-a-river": {
+    "videoId": "A9xOG-v0LzU",
+    "duration": 98.99,
+    "cues": [
+      {
+        "line": 0,
+        "start": 11.14,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 16.52,
+        "score": 1.0
+      },
+      {
+        "line": 0,
+        "start": 20.08,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 26.12,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 30.4,
+        "score": 1.0
+      },
+      {
+        "line": 3,
+        "start": 35.78,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 40.06,
+        "score": 1.0
+      },
+      {
+        "line": 3,
+        "start": 45.4,
+        "score": 1.0
+      },
+      {
+        "line": 4,
+        "start": 49.64,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 55.12,
+        "score": 1.0
+      },
+      {
+        "line": 6,
+        "start": 69.2,
+        "score": 0.78
+      },
+      {
+        "line": 0,
+        "start": 72.4,
+        "score": 0.62
+      },
+      {
+        "line": 6,
+        "start": 75.98,
+        "score": 0.78
+      },
+      {
+        "line": 6,
+        "start": 81.52,
+        "score": 1.0
+      }
+    ]
+  },
+  "wide-wide-as-the-ocean": {
+    "videoId": "Ri-StyOL1I4",
+    "duration": 106.21,
+    "cues": [
+      {
+        "line": 0,
+        "start": 10.04,
+        "score": 0.9
+      },
+      {
+        "line": 1,
+        "start": 18.22,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 24.82,
+        "score": 0.91
+      },
+      {
+        "line": 3,
+        "start": 31.92,
+        "score": 1.0
+      },
+      {
+        "line": 0,
+        "start": 40.66,
+        "score": 0.9
+      },
+      {
+        "line": 1,
+        "start": 48.2,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 55.0,
+        "score": 0.91
+      },
+      {
+        "line": 3,
+        "start": 61.92,
+        "score": 1.0
+      },
+      {
+        "line": 0,
+        "start": 70.92,
+        "score": 0.63
+      },
+      {
+        "line": 1,
+        "start": 78.22,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 85.52,
+        "score": 0.91
+      },
+      {
+        "line": 3,
+        "start": 92.78,
+        "score": 1.0
+      }
+    ]
+  },
+  "jesus-loves-me": {
+    "videoId": "QSaWPYb6_6k",
+    "duration": 124.12,
+    "cues": [
+      {
+        "line": 0,
+        "start": 15.5,
+        "score": 0.83
+      },
+      {
+        "line": 1,
+        "start": 20.56,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 26.02,
+        "score": 0.89
+      },
+      {
+        "line": 3,
+        "start": 29.54,
+        "score": 1.0
+      },
+      {
+        "line": 4,
+        "start": 36.3,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 40.82,
+        "score": 1.0
+      },
+      {
+        "line": 6,
+        "start": 45.68,
+        "score": 1.0
+      },
+      {
+        "line": 7,
+        "start": 50.12,
+        "score": 1.0
+      },
+      {
+        "line": 8,
+        "start": 58.24,
+        "score": 1.0
+      },
+      {
+        "line": 9,
+        "start": 63.94,
+        "score": 0.89
+      },
+      {
+        "line": 10,
+        "start": 68.76,
+        "score": 1.0
+      },
+      {
+        "line": 11,
+        "start": 73.4,
+        "score": 1.0
+      },
+      {
+        "line": 4,
+        "start": 77.88,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 83.44,
+        "score": 1.0
+      },
+      {
+        "line": 6,
+        "start": 88.6,
+        "score": 1.0
+      },
+      {
+        "line": 7,
+        "start": 93.72,
+        "score": 1.0
+      },
+      {
+        "line": 4,
+        "start": 98.4,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 102.98,
+        "score": 1.0
+      },
+      {
+        "line": 6,
+        "start": 108.26,
+        "score": 1.0
+      },
+      {
+        "line": 7,
+        "start": 113.14,
+        "score": 1.0
+      },
+      {
+        "line": 7,
+        "start": 118.1,
+        "score": 1.0
+      }
+    ]
+  },
+  "hes-got-the-whole-world": {
+    "videoId": "b4uNT8a4Q1s",
+    "duration": 118.68,
+    "cues": [
+      {
+        "line": 0,
+        "start": 8.0,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 12.5,
+        "score": 1.0
+      },
+      {
+        "line": 0,
+        "start": 16.46,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 23.66,
+        "score": 0.82
+      },
+      {
+        "line": 1,
+        "start": 28.42,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 36.28,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 42.6,
+        "score": 0.7
+      },
+      {
+        "line": 2,
+        "start": 48.26,
+        "score": 0.89
+      },
+      {
+        "line": 0,
+        "start": 52.3,
+        "score": 1.0
+      },
+      {
+        "line": 3,
+        "start": 55.62,
+        "score": 1.0
+      },
+      {
+        "line": 3,
+        "start": 60.22,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 68.38,
+        "score": 1.0
+      },
+      {
+        "line": 4,
+        "start": 71.62,
+        "score": 1.0
+      },
+      {
+        "line": 4,
+        "start": 76.3,
+        "score": 1.0
+      },
+      {
+        "line": 0,
+        "start": 80.26,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 117.24,
+        "score": 1.0
+      }
+    ]
+  },
+  "praise-him-praise-him": {
+    "videoId": "Srbmk3zrsss",
+    "duration": 116.25,
+    "cues": [
+      {
+        "line": 0,
+        "start": 8.54,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 13.14,
+        "score": 1.0
+      },
+      {
+        "line": 0,
+        "start": 17.4,
+        "score": 1.0
+      },
+      {
+        "line": 3,
+        "start": 21.96,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 30.08,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 34.72,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 38.86,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 43.16,
+        "score": 1.0
+      },
+      {
+        "line": 0,
+        "start": 51.54,
+        "score": 1.0
+      },
+      {
+        "line": 3,
+        "start": 55.88,
+        "score": 1.0
+      },
+      {
+        "line": 0,
+        "start": 60.22,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 64.7,
+        "score": 1.0
+      },
+      {
+        "line": 4,
+        "start": 72.84,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 88.24,
+        "score": 0.92
+      },
+      {
+        "line": 3,
+        "start": 92.36,
+        "score": 1.0
+      }
+    ]
+  },
+  "jesus-loves-even-me": {
+    "videoId": "DnJ65AKkRaE",
+    "duration": 108.27,
+    "cues": [
+      {
+        "line": 0,
+        "start": 9.24,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 13.36,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 17.58,
+        "score": 1.0
+      },
+      {
+        "line": 3,
+        "start": 21.56,
+        "score": 1.0
+      },
+      {
+        "line": 4,
+        "start": 26.94,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 30.76,
+        "score": 1.0
+      },
+      {
+        "line": 6,
+        "start": 35.2,
+        "score": 1.0
+      },
+      {
+        "line": 7,
+        "start": 38.96,
+        "score": 1.0
+      },
+      {
+        "line": 0,
+        "start": 42.28,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 46.38,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 50.6,
+        "score": 1.0
+      },
+      {
+        "line": 3,
+        "start": 54.56,
+        "score": 1.0
+      },
+      {
+        "line": 8,
+        "start": 60.9,
+        "score": 1.0
+      },
+      {
+        "line": 9,
+        "start": 64.26,
+        "score": 1.0
+      },
+      {
+        "line": 10,
+        "start": 67.5,
+        "score": 1.0
+      },
+      {
+        "line": 11,
+        "start": 71.96,
+        "score": 0.75
+      },
+      {
+        "line": 0,
+        "start": 75.86,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 79.72,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 83.68,
+        "score": 1.0
+      },
+      {
+        "line": 3,
+        "start": 87.54,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 89.92,
+        "score": 0.86
+      }
+    ]
+  },
+  "away-in-a-manger": {
+    "videoId": "h4Jcl_ax2OE",
+    "duration": 140.34,
+    "cues": [
+      {
+        "line": 0,
+        "start": 7.96,
+        "score": 0.74
+      },
+      {
+        "line": 1,
+        "start": 17.02,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 24.12,
+        "score": 0.84
+      },
+      {
+        "line": 3,
+        "start": 32.86,
+        "score": 1.0
+      },
+      {
+        "line": 4,
+        "start": 45.14,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 54.14,
+        "score": 0.88
+      },
+      {
+        "line": 6,
+        "start": 61.08,
+        "score": 1.0
+      },
+      {
+        "line": 7,
+        "start": 69.12,
+        "score": 0.89
+      },
+      {
+        "line": 8,
+        "start": 82.34,
+        "score": 1.0
+      },
+      {
+        "line": 9,
+        "start": 91.2,
+        "score": 1.0
+      },
+      {
+        "line": 10,
+        "start": 98.38,
+        "score": 0.89
+      },
+      {
+        "line": 11,
+        "start": 107.04,
+        "score": 1.0
+      }
+    ]
+  },
+  "zacchaeus-was-a-wee-little-man": {
+    "videoId": "C8GJXE7e5s0",
+    "duration": 62.18,
+    "cues": [
+      {
+        "line": 0,
+        "start": 13.68,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 16.34,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 19.06,
+        "score": 1.0
+      },
+      {
+        "line": 3,
+        "start": 22.64,
+        "score": 1.0
+      },
+      {
+        "line": 4,
+        "start": 25.94,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 29.04,
+        "score": 1.0
+      },
+      {
+        "line": 6,
+        "start": 32.12,
+        "score": 1.0
+      },
+      {
+        "line": 7,
+        "start": 36.82,
+        "score": 1.0
+      },
+      {
+        "line": 7,
+        "start": 39.96,
+        "score": 1.0
+      },
+      {
+        "line": 0,
+        "start": 42.7,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 46.62,
+        "score": 0.62
+      },
+      {
+        "line": 1,
+        "start": 51.62,
+        "score": 0.62
+      },
+      {
+        "line": 1,
+        "start": 55.98,
+        "score": 0.71
+      }
+    ]
+  },
+  "the-b-i-b-l-e": {
+    "videoId": "8a1amee1gW0",
+    "duration": 93.9,
+    "cues": [
+      {
+        "line": 0,
+        "start": 18.44,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 20.88,
+        "score": 0.83
+      },
+      {
+        "line": 2,
+        "start": 22.72,
+        "score": 0.88
+      },
+      {
+        "line": 3,
+        "start": 25.52,
+        "score": 1.0
+      },
+      {
+        "line": 0,
+        "start": 26.98,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 29.18,
+        "score": 0.83
+      },
+      {
+        "line": 2,
+        "start": 31.42,
+        "score": 0.88
+      },
+      {
+        "line": 3,
+        "start": 34.3,
+        "score": 1.0
+      },
+      {
+        "line": 0,
+        "start": 35.72,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 38.02,
+        "score": 0.83
+      },
+      {
+        "line": 2,
+        "start": 40.18,
+        "score": 0.88
+      },
+      {
+        "line": 3,
+        "start": 43.06,
+        "score": 1.0
+      },
+      {
+        "line": 0,
+        "start": 55.52,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 58.1,
+        "score": 0.83
+      },
+      {
+        "line": 2,
+        "start": 59.76,
+        "score": 0.88
+      },
+      {
+        "line": 3,
+        "start": 62.58,
+        "score": 1.0
+      },
+      {
+        "line": 0,
+        "start": 64.12,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 66.34,
+        "score": 0.83
+      },
+      {
+        "line": 2,
+        "start": 68.46,
+        "score": 0.88
+      },
+      {
+        "line": 3,
+        "start": 71.36,
+        "score": 1.0
+      },
+      {
+        "line": 0,
+        "start": 72.8,
+        "score": 1.0
+      }
+    ]
+  },
+  "joshua-fought-the-battle-of-jericho": {
+    "videoId": "BfJY082DcP8",
+    "duration": 123.39,
+    "cues": [
+      {
+        "line": 3,
+        "start": 30.52,
+        "score": 0.88
+      },
+      {
+        "line": 4,
+        "start": 33.4,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 35.9,
+        "score": 1.0
+      },
+      {
+        "line": 6,
+        "start": 38.38,
+        "score": 1.0
+      },
+      {
+        "line": 0,
+        "start": 41.56,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 46.6,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 49.16,
+        "score": 1.0
+      },
+      {
+        "line": 7,
+        "start": 52.22,
+        "score": 1.0
+      },
+      {
+        "line": 8,
+        "start": 56.66,
+        "score": 0.93
+      },
+      {
+        "line": 0,
+        "start": 62.46,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 67.44,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 70.08,
+        "score": 1.0
+      },
+      {
+        "line": 9,
+        "start": 72.1,
+        "score": 0.75
+      },
+      {
+        "line": 10,
+        "start": 78.28,
+        "score": 1.0
+      },
+      {
+        "line": 0,
+        "start": 83.26,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 88.36,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 90.9,
+        "score": 1.0
+      },
+      {
+        "line": 0,
+        "start": 93.04,
+        "score": 0.89
+      },
+      {
+        "line": 1,
+        "start": 109.24,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 111.68,
+        "score": 1.0
+      }
+    ]
+  },
+  "little-david-play-on-your-harp": {
+    "videoId": "3VH0pYbPVUo",
+    "duration": 127.36,
+    "cues": [
+      {
+        "line": 1,
+        "start": 9.08,
+        "score": 0.86
+      },
+      {
+        "line": 1,
+        "start": 13.38,
+        "score": 0.86
+      },
+      {
+        "line": 1,
+        "start": 18.06,
+        "score": 0.86
+      },
+      {
+        "line": 1,
+        "start": 21.96,
+        "score": 0.8
+      },
+      {
+        "line": 2,
+        "start": 26.72,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 34.02,
+        "score": 0.62
+      },
+      {
+        "line": 0,
+        "start": 38.38,
+        "score": 0.78
+      },
+      {
+        "line": 0,
+        "start": 44.62,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 49.38,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 53.46,
+        "score": 1.0
+      },
+      {
+        "line": 3,
+        "start": 58.5,
+        "score": 0.75
+      },
+      {
+        "line": 2,
+        "start": 80.02,
+        "score": 1.0
+      },
+      {
+        "line": 3,
+        "start": 84.94,
+        "score": 0.75
+      }
+    ]
+  },
+  "who-did-swallow-jonah": {
+    "videoId": "UZ5UeNOXbOQ",
+    "duration": 124.69,
+    "cues": [
+      {
+        "line": 0,
+        "start": 11.54,
+        "score": 0.93
+      },
+      {
+        "line": 0,
+        "start": 17.04,
+        "score": 0.89
+      },
+      {
+        "line": 0,
+        "start": 22.44,
+        "score": 0.89
+      },
+      {
+        "line": 1,
+        "start": 33.1,
+        "score": 0.62
+      },
+      {
+        "line": 2,
+        "start": 46.3,
+        "score": 0.67
+      },
+      {
+        "line": 2,
+        "start": 96.46,
+        "score": 0.67
+      },
+      {
+        "line": 2,
+        "start": 101.86,
+        "score": 0.67
+      },
+      {
+        "line": 2,
+        "start": 110.74,
+        "score": 0.71
+      }
+    ]
+  },
+  "dare-to-be-a-daniel": {
+    "videoId": "3k7wqHUpJOI",
+    "duration": 95.43,
+    "cues": [
+      {
+        "line": 0,
+        "start": 9.14,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 14.04,
+        "score": 1.0
+      },
+      {
+        "line": 2,
+        "start": 18.24,
+        "score": 0.8
+      },
+      {
+        "line": 3,
+        "start": 21.2,
+        "score": 0.64
+      },
+      {
+        "line": 0,
+        "start": 27.26,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 31.54,
+        "score": 1.0
+      },
+      {
+        "line": 4,
+        "start": 35.36,
+        "score": 1.0
+      },
+      {
+        "line": 5,
+        "start": 40.42,
+        "score": 1.0
+      },
+      {
+        "line": 0,
+        "start": 44.78,
+        "score": 0.95
+      },
+      {
+        "line": 1,
+        "start": 48.94,
+        "score": 1.0
+      },
+      {
+        "line": 6,
+        "start": 52.68,
+        "score": 1.0
+      },
+      {
+        "line": 7,
+        "start": 57.92,
+        "score": 1.0
+      },
+      {
+        "line": 0,
+        "start": 62.26,
+        "score": 0.95
+      },
+      {
+        "line": 1,
+        "start": 66.52,
+        "score": 1.0
+      },
+      {
+        "line": 8,
+        "start": 70.22,
+        "score": 0.63
+      },
+      {
+        "line": 9,
+        "start": 75.34,
+        "score": 0.84
+      },
+      {
+        "line": 0,
+        "start": 79.84,
+        "score": 1.0
+      },
+      {
+        "line": 1,
+        "start": 84.1,
+        "score": 1.0
+      }
+    ]
+  }
+}

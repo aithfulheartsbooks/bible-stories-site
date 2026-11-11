@@ -1,14 +1,13 @@
 // Timings for the exact video on each song.
 // `line` is the index in that song's lyrics array, including labels.
 // lib/songs.ts maps it to the printed line index. Labels are never cued.
-// Starts come from WhisperX / faster-whisper word times, checked with
-// wav2vec2 forced alignment of the printed line. Re-run with
-// `python scripts/align-songs.py`.
+// Starts are faster-whisper word times from `python scripts/align-songs.py`.
+// data/song-alignment.json is that script's per-line score for the same video.
 export const songCueTimes: Record<string, { videoId: string; videoDuration: number; cues: { line: number; start: number }[] }> = {
   "this-little-light-of-mine": {
     videoId: "Xe_1XJsjMZY",
     videoDuration: 101,
-    cues: [{ line: 0, start: 10.22 }, { line: 3, start: 14.55 }, { line: 3, start: 19.49 }, { line: 3, start: 23.36 }, { line: 4, start: 24.94 }, { line: 5, start: 31.07 }, { line: 6, start: 34.39 }, { line: 7, start: 40.92 }, { line: 8, start: 44.24 }, { line: 9, start: 54.29 }, { line: 12, start: 70.08 }, { line: 13, start: 74.46 }, { line: 14, start: 78.87 }, { line: 15, start: 83.85 }],
+    cues: [{ line: 0, start: 10.24 }, { line: 1, start: 30.52 }, { line: 2, start: 49.94 }, { line: 3, start: 54.02 }, { line: 4, start: 58.58 }, { line: 5, start: 62.76 }, { line: 6, start: 69.7 }, { line: 7, start: 73.88 }],
   },
   "ive-got-the-joy": {
     videoId: "8i_IoI9NmW8",
@@ -28,7 +27,7 @@ export const songCueTimes: Record<string, { videoId: string; videoDuration: numb
   "do-lord": {
     videoId: "FCXvjx-nP9g",
     videoDuration: 152,
-    cues: [{ line: 0, start: 7.2 }, { line: 1, start: 12.49 }, { line: 2, start: 17.21 }, { line: 3, start: 21.04 }, { line: 4, start: 26.12 }, { line: 7, start: 39.48 }, { line: 11, start: 51.72 }, { line: 3, start: 61.44 }, { line: 8, start: 65.8 }, { line: 9, start: 71.38 }, { line: 10, start: 76.28 }, { line: 7, start: 79.76 }, { line: 0, start: 91.58 }, { line: 1, start: 97.43 }, { line: 11, start: 101.4 }, { line: 3, start: 121.84 }, { line: 2, start: 127.16 }, { line: 7, start: 140.82 }],
+    cues: [{ line: 0, start: 7.2 }, { line: 1, start: 12.49 }, { line: 2, start: 17.21 }, { line: 3, start: 21.04 }, { line: 4, start: 26.12 }, { line: 5, start: 30.98 }, { line: 6, start: 35.76 }, { line: 7, start: 39.48 }, { line: 11, start: 51.72 }, { line: 3, start: 61.44 }, { line: 8, start: 65.8 }, { line: 9, start: 71.38 }, { line: 10, start: 76.28 }, { line: 7, start: 79.76 }, { line: 0, start: 91.58 }, { line: 1, start: 97.43 }, { line: 11, start: 101.4 }, { line: 3, start: 121.84 }, { line: 2, start: 127.16 }, { line: 7, start: 140.82 }],
   },
   "ive-got-peace-like-a-river": {
     videoId: "A9xOG-v0LzU",
@@ -41,9 +40,9 @@ export const songCueTimes: Record<string, { videoId: string; videoDuration: numb
     cues: [{ line: 0, start: 10.28 }, { line: 1, start: 17.26 }, { line: 2, start: 23.56 }, { line: 3, start: 31.32 }, { line: 0, start: 39.48 }, { line: 1, start: 47.62 }, { line: 2, start: 54.88 }, { line: 3, start: 62.02 }, { line: 0, start: 69.86 }, { line: 1, start: 78.04 }, { line: 2, start: 85.04 }, { line: 3, start: 91.28 }],
   },
   "jesus-loves-me": {
-    videoId: "f1JbSvhw43I",
-    videoDuration: 188,
-    cues: [{ line: 0, start: 11.34 }, { line: 1, start: 17.64 }, { line: 2, start: 23.22 }, { line: 3, start: 30.06 }, { line: 5, start: 37.74 }, { line: 6, start: 47.12 }, { line: 7, start: 50.62 }, { line: 8, start: 57.1 }, { line: 7, start: 93.44 }, { line: 5, start: 100.18 }, { line: 6, start: 106.56 }, { line: 8, start: 111.64 }, { line: 7, start: 149.2 }, { line: 5, start: 156.04 }, { line: 6, start: 162.22 }, { line: 8, start: 167.22 }],
+    videoId: "QSaWPYb6_6k",
+    videoDuration: 125,
+    cues: [{ line: 0, start: 15.5 }, { line: 1, start: 20.56 }, { line: 2, start: 26.02 }, { line: 3, start: 29.54 }, { line: 5, start: 36.3 }, { line: 6, start: 40.82 }, { line: 7, start: 45.68 }, { line: 8, start: 50.12 }, { line: 9, start: 58.24 }, { line: 10, start: 63.94 }, { line: 11, start: 68.76 }, { line: 12, start: 73.4 }, { line: 5, start: 77.88 }, { line: 6, start: 83.44 }, { line: 7, start: 88.6 }, { line: 8, start: 93.72 }, { line: 5, start: 98.4 }, { line: 6, start: 102.98 }, { line: 7, start: 108.26 }, { line: 8, start: 113.14 }, { line: 8, start: 118.1 }],
   },
   "hes-got-the-whole-world": {
     videoId: "b4uNT8a4Q1s",
@@ -53,7 +52,7 @@ export const songCueTimes: Record<string, { videoId: string; videoDuration: numb
   "praise-him-praise-him": {
     videoId: "Srbmk3zrsss",
     videoDuration: 116,
-    cues: [{ line: 0, start: 8.54 }, { line: 1, start: 13.14 }, { line: 0, start: 17.4 }, { line: 3, start: 21.96 }, { line: 5, start: 27.48 }, { line: 2, start: 30.08 }, { line: 7, start: 34.72 }, { line: 2, start: 38.86 }, { line: 1, start: 43.16 }, { line: 4, start: 50.78 }, { line: 3, start: 55.88 }, { line: 4, start: 60.17 }, { line: 5, start: 64.7 }, { line: 6, start: 72.84 }, { line: 7, start: 77.33 }, { line: 1, start: 88.64 }, { line: 3, start: 92.36 }],
+    cues: [{ line: 0, start: 8.54 }, { line: 1, start: 13.14 }, { line: 0, start: 17.4 }, { line: 3, start: 21.96 }, { line: 2, start: 30.08 }, { line: 5, start: 34.72 }, { line: 2, start: 38.86 }, { line: 1, start: 43.16 }, { line: 0, start: 51.54 }, { line: 3, start: 55.88 }, { line: 0, start: 60.22 }, { line: 5, start: 64.7 }, { line: 4, start: 72.84 }, { line: 1, start: 88.24 }, { line: 3, start: 92.36 }],
   },
   "jesus-loves-even-me": {
     videoId: "DnJ65AKkRaE",
@@ -63,7 +62,7 @@ export const songCueTimes: Record<string, { videoId: string; videoDuration: numb
   "away-in-a-manger": {
     videoId: "h4Jcl_ax2OE",
     videoDuration: 140,
-    cues: [{ line: 1, start: 15.74 }, { line: 2, start: 24.44 }, { line: 3, start: 32.34 }, { line: 4, start: 45.91 }, { line: 5, start: 54.18 }, { line: 6, start: 61.0 }, { line: 7, start: 68.88 }, { line: 8, start: 79.28 }, { line: 9, start: 90.38 }, { line: 10, start: 98.0 }, { line: 11, start: 106.02 }, { line: 11, start: 114.68 }],
+    cues: [{ line: 0, start: 7.96 }, { line: 1, start: 15.74 }, { line: 2, start: 24.44 }, { line: 3, start: 32.34 }, { line: 4, start: 45.91 }, { line: 5, start: 54.18 }, { line: 6, start: 61.0 }, { line: 7, start: 68.88 }, { line: 8, start: 79.28 }, { line: 9, start: 90.38 }, { line: 10, start: 98.0 }, { line: 11, start: 106.02 }, { line: 11, start: 114.68 }],
   },
   "zacchaeus-was-a-wee-little-man": {
     videoId: "C8GJXE7e5s0",
